@@ -1,0 +1,84 @@
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+
+<window id="idWindowBMS"  sclass="windowSub" width="100%" height="100%"
+	use="com.cimmyt.zk.bms.ControlAPIListGermplasm" onCreate="idWindowBMS.loadContext()"
+	>
+
+	<borderlayout width="100%" height="100%">
+	
+
+	
+<north  sclass="borderNort" border="none" 
+				margins="0,15,0,0" style="overflow:visible;"  height="50px">
+				<hbox width="100%" hflex="true" style="position:absolute; ">
+					<fisheyebar id="idFsb"
+						attachEdge="top" itemWidth="40" itemHeight="40" itemMaxHeight="60"
+						itemMaxWidth="60">
+						<fisheye id="idAddFilter"
+							label="${lblAddQueryParam}" image="${imgAdd}"
+							onClick="" />
+						<fisheye id="idExportXLS"
+							label="${lblMenTExpXLS}" image="${imgDownloadExcel}"
+							onClick="" />
+						<fisheye id="idExportCSV"
+							label="${lblMenTExpCSV}" image="${imgDownloadCSV}"
+							onClick="" />
+						
+						<!--  <fisheye id="idFindFiles" style="margin-left:15px"
+							label="${lblSearchFiles}" image="${imgQuery}"
+							onClick="thiz.doFindDataSets()" />-->
+					</fisheyebar>
+
+					<space width="150px"></space>
+				</hbox>
+			</north>
+	
+		<center  >
+		<div height="100%">
+			<grid width="98%"  height="95%"
+				id="idGridGermplasm" 
+				 >
+				<columns>
+				<column label=""  width="5%" />
+				 <column label="${lblBMSColListName}"  width="35%" />
+				 <column label="${lblBMSColDes}"  width="35%" />
+				 <column label="${lblBMSColNotes}"  width="20%" />
+				 <column label="${lblBMSColListSize}"  width="5%" />
+				</columns>
+			</grid>
+			</div>
+		</center>
+		<south  height="150px">
+		<box>
+		 <hbox>
+		 		<label sclass="labelWindow" value="*"/>	
+			    <label value="${lblMGLocation}"/>
+			       <combobox id="idComboLocation" readonly="true" maxlength="85" cols="85" width="100%"
+			    onSelect=""></combobox>
+			     <separator></separator>
+			     <label sclass="labelWindow" value="*"/>
+			    <label value="${lblMenuSeason}"/>
+			      <combobox id="idComboSeason" readonly="true" maxlength="85" cols="85" width="100%"
+			    onSelect=""></combobox>
+			    	<fisheyebar id="idFBMS_ok" style="position:center;"
+						attachEdge="top" itemWidth="50" itemHeight="50" itemMaxHeight="60"
+						itemMaxWidth="60">
+						
+						<fisheye label="${lblMenTAdd}"
+							id="idFisheyeNext" image="${imgOk}"
+							onClick="idWindowBMS.addInformationToServices()" visible="true" />
+						
+					</fisheyebar>
+		 </hbox>
+		</box>
+		</south>
+	</borderlayout>
+</window>
+</zk>

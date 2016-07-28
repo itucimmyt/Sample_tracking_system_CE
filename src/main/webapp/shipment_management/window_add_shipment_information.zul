@@ -1,0 +1,141 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+
+<window border="normal" width="700px" height="550px" id="idShipmentAdd"
+use="com.cimmyt.zk.shipments.ControlWindowShipments" onCreate="idShipmentAdd.loadContextAttribute()" >
+
+	<caption image="${imgShipment}" label="${lblSMAddShipment}" sclass="titleWindow" />
+	<vbox  width="100%" height="100%" align="center" pack="center">
+	<grid>
+		<columns>
+                    <column width="220px">
+                     </column>
+          </columns>
+		<rows>
+			<row>
+				<cell>
+					<space width="6px"></space>
+					<label value="${lblInvId}"/>
+				</cell>
+				<cell >
+					<intbox id="id" cols="11" maxlength="11" disabled="true"></intbox>
+				</cell>
+			</row>
+			<row>
+			  <cell>
+			  	<label sclass="labelWindow" value="*"/>
+			    <label value="${lblSLWSWRD}"/>
+			  </cell>
+			  <cell>
+			    <datebox id="idDBRegDate" format="yyyy-MM-dd" disabled="true"
+			    onCreate="idDBRegDate.setValue(org.zkoss.util.Dates.today())" mold="rounded" ></datebox>
+			  </cell>
+			</row>
+			<row>
+			  <cell>
+			  	<label sclass="labelWindow" value="*"/>
+			    <label value="${lblSMStatus}"/>
+			  </cell>
+			  <cell>
+			    <combobox id="idComboStatus" disabled="true" cols="85"  width="100%"/>
+			  </cell>
+			</row>
+			
+			<row>
+			  <cell>
+			  	<label sclass="labelWindow" value="*"/>
+			    <label value="${lblSMProviderName}"/>
+			  </cell>
+			  <cell>
+			    <combobox id="idComboCompany" maxlength="85" cols="85" width="100%"
+			    onSelect="idShipmentAdd.validateFields(event)"></combobox>
+			  </cell>
+			</row>
+			<row>
+			  <cell>
+	            <label sclass="labelWindow" value="*"/>
+	            <label value="${lblSMCompanyInfo}"/>
+	          </cell>
+	          <cell>
+              	<hbox>
+              	  <cell width="120px">
+              	  	<label sclass="labelWindow" value="*"/>
+              	  	<label value="${lblSMCompanyAddress}" width="100px"/>
+              	  </cell>
+			  	  <cell>
+			  	  	<textbox id="compAddress" cols="100" maxlength="100" multiline="false" disabled="true" width="100%"/>
+			  	  </cell>			      
+                </hbox>
+                <hbox>
+                  <cell  width="120px">
+                  	<label sclass="labelWindow" value="*"/>
+			      	<label value="${lblSMCEmail}" width="100px"/>
+                  </cell>
+			  	  <cell>
+			  	  	<textbox id="compEmail" cols="100" multiline="false" width="100%" disabled="true"/>
+			  	  </cell>
+                </hbox>
+                <hbox>
+                  <cell  width="120px">
+                  	<label sclass="labelWindow" value="*"/>
+			      	<label value="${lblSMContactName}" />
+                  </cell>
+                  <cell>
+                  	<textbox id="compName" cols="80" multiline="false" width="100%" disabled="true"/>
+                  </cell>
+                </hbox>
+              </cell>
+            </row>
+			<row>
+			  <cell>
+			  	<label sclass="labelWindow" value="*"/>
+			    <label value="${lblGCommnets}"/>
+			  </cell>
+			  <cell>
+			    <textbox id="comments" cols="100" maxlength="255" multiline="false" width="99.5%"
+			    onChanging="idShipmentAdd.validateFields(event)"/>
+			  </cell>
+			</row>
+			<row>
+			  <cell>
+			  	<space width="5px"/>
+			    <label value="${lblSMTrackNumber}"/>
+			  </cell>
+			  <cell>
+			    <textbox id="trackingNumber" cols="100" maxlength="20" multiline="false" width="99.5%"
+			    onChanging="idShipmentAdd.validateFields(event)"/>
+			  </cell>
+			</row>
+			<row>
+			  <cell>
+			  	<space width="5px"/>
+			    <label value="${lblSMTrackNumberDeliv}"/>
+			  </cell>
+			  <cell>
+			    <textbox id="trackingNumberDelivery" cols="100" maxlength="20" multiline="false" width="99.5%"/>
+			  </cell>
+			</row>
+		</rows>
+	</grid>
+
+	<fisheyebar id="idFsb" attachEdge="top"
+	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
+	    <fisheye label="${lblMenTAdd}" id="idFisheyeAdd"
+	        image="${imgOk}" onClick="idShipmentAdd.add(event)" visible="false"/>
+	    <fisheye label="${lblMenTCancel}" 
+	    image="${imgCancel}" onClick="idShipmentAdd.closeWindow()"/>
+	</fisheyebar>
+	</vbox>
+</window>
+</zk>

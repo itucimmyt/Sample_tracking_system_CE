@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 23, 2013 11:57:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="org.cimmyt.dnast.dto.StProject" table="st_project">
+        <id name="projectid" type="java.lang.Integer">
+            <column name="projectid" />
+            <generator class="identity" />
+        </id>
+        <property name="projectName" type="string">
+            <column name="projectName" />
+        </property>
+        <property name="projectDescription" type="string">
+            <column name="projectDescription" />
+        </property>
+        <property name="purposeName" type="string">
+            <column name="purposeName" />
+        </property>
+        <property name="purposeDescription" type="string">
+            <column name="purposeDescription" />
+        </property>
+        <property name="lastsampleid" type="java.lang.Integer">
+            <column name="lastsampleid" />
+        </property>
+        <set name="stLabStudies" table="st_lab_study" inverse="true" lazy="true" fetch="select" >
+            <key>
+                <column name="projectid"/>
+            </key>
+            <one-to-many class="org.cimmyt.dnast.dto.StLabStudy" />
+        </set>
+
+<!--         <property name="fundingSource" type="string"> -->
+<!--             <column name="fundingSource" /> -->
+<!--         </property> -->
+<!--         <property name="researchArea" type="string"> -->
+<!--             <column name="researchArea" /> -->
+<!--         </property> -->
+<!--         <property name="breedingProgram" type="string"> -->
+<!--             <column name="breedingProgram" /> -->
+<!--         </property> -->
+
+    </class>
+</hibernate-mapping>

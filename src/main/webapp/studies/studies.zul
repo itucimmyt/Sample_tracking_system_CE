@@ -1,0 +1,113 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+	<window id="idWindow" sclass="windowSub" width="100%" height="100%"
+		use="com.cimmyt.zk.studies.ControlStudies"
+		onCreate="idWindow.doAfterCompose(null)">
+		<borderlayout width="100%" height="100%">
+		
+		
+			<north  sclass="borderNort" border="none" 
+				margins="0,15,0,0" style="overflow:visible;"  height="50px">
+				<hbox width="100%" hflex="true" style="position:absolute; ">
+					<fisheyebar id="idFsbStudies" 
+						attachEdge="top" itemWidth="40" itemHeight="40" itemMaxHeight="60"
+						itemMaxWidth="60">
+						<fisheye label="${lblMenTAdd}" id="studies$idAdd"
+								image="${imgAdd}" onClick="idWindow.add()" />
+							<fisheye label="${lblMenTEdit}" id="studies$idEdit"
+								image="${imgEdit}" onClick="idWindow.edit()" />
+							<fisheye label="${lblMenTDelete}" id="studies$idDelete"
+								image="${imgDeleteItem}" onClick="idWindow.delete()" />
+							<fisheye label="${lblSRLab}" id="studies$idLaboratoryReport"
+								image="${imgReportGeneration}" onClick="idWindow.createReportLaboratory()" />
+							<fisheye label="${lblSRDP}" id="studies$idResultData"
+								image="${imgResDatWinT}" onClick="idWindow.loadWindowResultData()" />
+							<fisheye label="${lblMenTUpRes}" id="studies$idUpdateResult"
+								image="${imgUpDResltD}" onClick="idWindow.loadWindowUpDateResultData()" />
+								
+					</fisheyebar>
+
+					<space width="l150px"></space>
+
+						<hbox align="center" hflex="true" width="100%" vflex="true">
+							<label sclass="textNor" value="${lblProSCLF}"></label>
+							<label sclass="textNor"	value="${lblMGProject}" />
+							<separator width="5px" />
+							<textbox id="idSN" cols="50" width="120px"
+								maxlength="50" onOK="idWindow.search()">
+							</textbox>
+							<separator width="10px"></separator>
+
+							<fisheyebar attachEdge="right"
+								 labelEdge="bottom" orient="horizontal" itemWidth="32"
+								itemHeight="32" itemMaxHeight="40" itemMaxWidth="40">
+								<fisheye label="${lblProSB}"
+									image="${imgFind}" onClick="idWindow.search()" />
+							</fisheyebar>
+						</hbox>
+
+				</hbox>
+			</north>
+			
+			
+			<center autoscroll="false" sclass="borderNort">
+				<vbox vflex="true">
+					<listbox id="idLisB" multiple="false" width="100%" vflex="true"
+						height="100%" checkmark="true" sizedByContent="true">
+						<listhead id="idListHead">
+							<!--  <listheader sort="auto" width="10%" visible="false">
+								<label value="${lblInvId}"
+									sclass="columnForList" />
+							</listheader>-->
+							<listheader sort="auto" width="10%" value="proj.projectname,proj.purposename" onSort="idWindow.onSorting(event)">
+								<label value="${lblMGProject}"
+									sclass="columnForList" />
+							</listheader>
+							<listheader sort="auto" width="15%" value="title" onSort="idWindow.onSorting(event)">
+								<label value="${lblMGSTitle}"
+									sclass="columnForList" />
+							</listheader>
+							<listheader sort="auto" width="25%" value="objective" onSort="idWindow.onSorting(event)">
+								<label value="${lblMGObjetive}"
+									sclass="columnForList" />
+							</listheader>
+							<listheader sort="auto" width="10%" value="invest.invest_name" onSort="idWindow.onSorting(event)">
+								<label value="${lblMGInvestigator}"
+									sclass="columnForList" />
+							</listheader>
+							<listheader sort="auto" width="10%" value="startdate" onSort="idWindow.onSorting(event)">
+								<label value="${lblMGStaD}"
+									sclass="columnForList" />
+							</listheader>
+							<listheader sort="auto" width="10%" value="enddate" onSort="idWindow.onSorting(event)">
+								<label value="${lblMGEndD}"
+									sclass="columnForList" />
+							</listheader>
+							<listheader sort="auto" width="10%" value="tmplate.templatename" onSort="idWindow.onSorting(event)">
+								<label value="${lblMGDNATem}"
+									sclass="columnForList" />
+							</listheader>
+							<listheader sort="auto" width="10%" value="st.statusDescription" onSort="idWindow.onSorting(event)">
+								<label value="${lblStudyStatus}"
+									sclass="columnForList" />
+							</listheader>
+						</listhead>
+					</listbox>
+					<paging id="idPaging" pageSize="10" detailed="true"></paging>
+				</vbox>
+			</center>
+			<south ></south>
+		</borderlayout>
+	</window>
+</zk>

@@ -1,0 +1,45 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+<zk>
+<window border="normal" width="300px" id="idWindowSelectField" height="240px"
+		title="${lblSTTSWF}" use="com.cimmyt.zk.studies.ControlWindowSelectField"
+		onCreate="idWindowSelectField.oncreation()">
+<box>
+	<hbox>	
+	<vlayout>
+	<checkbox label="SampleID" value="0" onCheck="idWindowSelectField.loadListField(self)"/>
+	 <checkbox id="idGID" label="${lblMGColGID}" value="1" onCheck="idWindowSelectField.loadListField(self)"/>
+	 <checkbox id="idACC" label="${lblMGColACC}" value="2" onCheck="idWindowSelectField.loadListField(self)"/>
+	 <checkbox id="idColPlantNo" label="${lblMGColPlantNo}" value="3" onCheck="idWindowSelectField.loadListField(self)"/>
+	 <checkbox id="idColEntNo" label="${lblMGColEntNo}" value="4" onCheck="idWindowSelectField.loadListField(self)"/>
+	</vlayout>
+	<separator/>
+	<separator/>
+	<separator/>
+	<hlayout height="90px" style="padding:10px">
+		<listbox id="idListBoxTemplate" height="100px" width="150px" autopaging="true" checkmark="true" multiple="true" maxlength="10"></listbox>
+	</hlayout>
+	</hbox>
+</box>		
+
+<box width="100%" pack="center" align="center">
+			<fisheyebar id="idFsb" attachEdge="top" itemWidth="50"
+				itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
+				<fisheye label="${lblMenTAdd}" image="${imgOk}"
+					onClick="idWindowSelectField.addFields()" />
+				<fisheye label="${lblMenTCancel}" image="${imgClose}"
+					onClick="idWindowSelectField.closeWindow()" />
+			</fisheyebar>
+
+		</box>
+</window>
+</zk>

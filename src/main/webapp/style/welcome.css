@@ -1,0 +1,320 @@
+
+div .z-grid, .z-center, .z-north, .z-south, .z-north-noborder
+  	{
+  		background:#E9EEEA;
+  		border:0px;
+  		margin-top: 0px;
+  		margin-bottom: 0px;
+  		padding-left: 10pt;
+  		padding-right: 10pt;
+}
+
+.westMenu
+{
+  		background: transparent;
+  		border:0px;
+  		margin-top: 5px;
+  		margin-bottom: 5px;
+  		padding-left: 5px;
+  		padding-right: 5px;
+  		padding-top: 20px;
+  		width: 50px;
+}
+
+  	.z-west
+  	{
+  		background: transparent;
+  		border:0px;
+  		margin-top: 5px;
+  		margin-bottom: 5px;
+  		padding-left: 5px;
+  		padding-right: 5px;
+  		padding-top: 20px;
+  		width: 50px;
+}
+.z-borderlayout{
+	background:#E9EEEA;
+}
+
+.textWelcome{
+	font-size: 16px;
+}
+.headerWelcome{
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.z-west-colpsd{
+	background:#E9EEEA;
+}
+
+.borderLayout{
+	background:#E9EEEA;
+}
+
+
+.z-window-embedded-hl,.z-window-embedded-hr,.z-window-embedded-tl,.z-window-embedded-hm
+	{
+	background-color: #E9EEEA;
+	background-image: none;
+}
+
+.z-north div.z-vbox-sep,
+.z-north div.z-hbox-sep,
+.z-north div.z-grid,
+.z-north div.z-grid-body
+	{
+	background-color: #E9EEEA;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+	background-image: none;
+	border: 1px, 1px, 1px, 1px;
+	border-color: #E9EEEA;
+}
+
+
+
+.borderNort , .borderNort .z-center{
+	border: 0px,0px,0px,0px;
+	border-style: none;
+	background-color: #E9EEEA;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+	border-color: #aaaaaa;
+	
+}
+
+
+
+.subtitle {
+	font-size: 18px;
+	color: black;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+	background-color: #E9EEEA;
+}
+
+.textNor {
+	font-size: 12px;
+	color: black;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.columnForList {
+	font-size: 12px;
+	color: black;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.windowSub {
+	background: #EFF5FB;
+}
+
+
+.textIpnput {
+	font-size: 12px;
+	color: black;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.labelWindow{
+	font-size: 12px;
+	color: red;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.subTitleWindow {
+	font-size: 20px;
+	color: gray;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+	background: #E9EEEA;
+	
+}
+
+.labelWindowR {
+	font-size: 11px;
+	color: black;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.labelBold{
+	font-weight:bold; 
+	font-size:12px
+}
+
+.fish-eye-custom{
+	background-color: #E9EEEA";
+	position:center;
+}
+
+
+.z-caption a,
+.z-caption a:visited {
+	font-size: 40px;
+	font-weight: normal;
+	color: black;
+	background: none;
+	text-decoration: none;
+}
+
+
+.z-window-embedded, .z-window-modal, .z-window-overlapped, .z-window-popup, .z-window-highlighted {
+margin: 0;
+padding: 0;
+overflow: hidden;
+zoom: 1;
+background-image: none;
+background-color: #E9EEEA;
+}
+
+.z-window-modal-tl, .z-window-modal-tr, .z-window-modal-hl
+, .z-window-modal-cl{
+	background-image: none;
+background-color: #F9FEFA;
+}
+
+.z-window-modal-hm, .z-window-modal-cm, .z-window-modal-cnt{
+	background-image: none;
+background-color: #E9EEEA;
+}
+
+.z-window-modal-hr, .z-window-modal-cr{
+	background-image: none;
+background-color: #D9DEDA;
+}
+
+.z-window-modal-bl, .z-window-modal-br{
+	background-image: none;
+background-color: #C9CECA;
+}
+
+.myGrid{
+	background-color: #E9EEEA;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+	background-image: none;
+	border: 0px, 0px, 0px, 0px;
+	border-color: #E9EEEA;
+}
+
+
+tr.z-row td.z-row-inner, tr.z-row .z-cell {
+		background-color: #E9EEEA;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+	background-image: none;
+	border: 0px, 0px, 0px, 0px;
+	border-color: #E9EEEA;
+}
+
+.z-caption .z-caption-l, .z-caption .z-caption-r {
+font-size: 24px;
+}
+
+/*********row customs**************/
+
+.myRows .z-listbox-autopaging .z-listcell-cnt {
+	height: 14px;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+/************ paging custom ************************/
+.z-paging-btn .z-paging-first {
+background-position: 0-0px;
+	background-image:url('../images/new/Go-to-First-Item24.gif');
+	
+}
+.z-paging-btn .z-paging-prev {
+background-position: 0-0px;
+background-image: url('../images/new/Back24.gif');
+}
+
+.z-paging-btn .z-paging-next {
+background-position: 0 0;
+background-image: url('../images/new/Next24.gif');
+}
+
+.z-paging-btn .z-paging-last {
+background-position: 0 0;
+background-image: url('../images/new/Go-to-Last-Item24.gif');
+}
+
+.z-paging{
+	text-align: left;
+}
+/********************* tab panel ******************************************/
+
+
+div .z-grid, .z-center, .z-north, .z-south, .z-north-noborder {
+background: #E9EEEA;
+border: 0px;
+margin-top: 0px;
+margin-bottom: 0px;
+padding-left: 0pt;
+padding-right: 0pt;
+}
+
+.z-separator-ver-bar {
+	background-image: url('../images/new/bullet2.png');
+	background-position: top center;
+	background-repeat: repeat-y;
+}
+
+.z-borderlayout
+
+.z-loading {
+	background-color: #E9EEEA;
+	cursor: wait;
+	white-space: nowrap;
+	padding:3px;
+	border: 1px solid #5a9e5b;
+	font-size: medium;
+	font-weight: normal; 
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.z-loading-indicator {
+	background-color: #E9EEEA;
+	color: #102B6D;
+	border:3px solid #266714;
+	white-space: nowrap;
+	padding:6px;
+}
+
+div .z-grid-body{
+	background:#E9EEEA;
+}
+
+/******Resizing and close buttons in window components******/
+.z-window-embedded-max, .z-window-modal-max, .z-window-overlapped-max
+, .z-window-popup-max, .z-window-highlighted-max{
+	background: transparent no-repeat 0 0;
+	background-image: url(../images/new/Expand24.gif);
+	height: 24px;
+	width: 24px;
+	margin-right: 0px;
+}
+
+.z-window-embedded-close, .z-window-modal-close, .z-window-overlapped-close, 
+.z-window-popup-close, .z-window-highlighted-close{
+	background: transparent no-repeat 0 0;
+	background-image: url(../images/new/Close24.gif);
+	height: 24px;
+	width: 24px;
+	margin-right: 0px;
+}
+
+.z-window-embedded-min, .z-window-modal-min, .z-window-overlapped-min, 
+.z-window-popup-min, .z-window-highlighted-min{
+	background: transparent no-repeat 0 0;
+	background-image: url(../images/new/Delete24.gif);
+	height: 24px;
+	width: 24px;
+	margin-right: 0px;
+}
+
+.z-window-embedded-maxd, .z-window-modal-maxd, .z-window-overlapped-maxd, 
+.z-window-popup-maxd, .z-window-highlighted-maxd{
+	background: transparent no-repeat 0 0;
+	background-image: url(../images/new/Collapse24.gif);
+	height: 24px;
+	width: 24px;
+	margin-right: 0px;
+}

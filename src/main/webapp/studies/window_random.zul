@@ -1,0 +1,53 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+
+	<window border="normal" width="460px" id="idWindowRandom" height="220px"
+		title="${lblSWPRTW}" use="com.cimmyt.zk.studies.ControlWindowRandom"
+		onCreate="idWindowRandom.loadContext()">
+		<grid>
+			<rows>
+				<row>
+					<cell width="100%">
+						<label value="${lblSWPRTWS}" />
+					</cell>
+					<cell width="100%">
+						<spinner id="idSpinnerSize" readonly="true" width="180px" value="1"/>
+					</cell>
+				</row>
+				<row>
+					<cell>
+						<label>${lblSWPRTWErr}</label>
+						</cell>
+					<cell width="100%">
+						<textbox id="idTextError" sclass="textIpnput"
+							cols="100" maxlength="100" width="175px" height="50px"
+							multiline="true" readonly="true">
+						</textbox>
+
+					</cell>
+				</row>
+			</rows>
+		</grid>
+		<box width="100%" pack="center" align="center">
+			<fisheyebar id="idFsb" attachEdge="top" itemWidth="50"
+				itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
+				<fisheye label="${lblMenTAdd}" image="${imgOk}"
+					onClick="idWindowRandom.createControlRandom()" />
+				<fisheye label="${lblMenTCancel}" image="${imgClose}"
+					onClick="idWindowRandom.closeWindow()" />
+			</fisheyebar>
+
+		</box>
+	</window>
+</zk>

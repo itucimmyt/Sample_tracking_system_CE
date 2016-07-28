@@ -1,0 +1,388 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+<zk>
+<window border="normal" width="400px" height="580px" id="idWindowFuntions"
+use="com.cimmyt.zk.investigator.ControlFuntionsUser" onCreate="idWindowFuntions.loadContext()" >
+	<caption image="${imgInvestigator2}" label="" sclass="titleWindow"/>
+
+	<tree rows="15">
+		<treechildren>
+			<treeitem>
+				<treerow>
+					<treecell>
+							<checkbox id="id1" value="1" label="${lblMenuStudyTemp}" checked="true" onCheck="idWindowFuntions.checkItem(self)"></checkbox>
+					</treecell>
+				</treerow>
+				<treechildren>
+					 <treeitem>
+					   <treerow>
+					     <treecell>
+					       <checkbox id="id2" value="2" label="${lblMenTAdd}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					 </treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id3" value="3" label="${lblMenTEdit}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id4" value="4" label="${lblMenTDelete}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+				</treechildren>
+			</treeitem>
+
+			<treeitem>
+				<treerow>
+					<treecell >
+						<checkbox id="id5" value="5" label="${lblMenuStoreLoc}" checked="true" onCheck="idWindowFuntions.checkItem(self)"></checkbox>
+					</treecell>
+				</treerow>
+				<treechildren>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id6" value="6" label="${lblMenTAdd}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id7" value="7" label="${lblMenTEdit}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id8" value="8" label="${lblMenTDelete}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id9" value="9" label="${lblMenTBarCode}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id10" value="10" label="${lblMenTAddSamL}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+				</treechildren>
+			</treeitem>
+
+			<treeitem>
+				<treerow>
+					<treecell>
+						<checkbox id="id11" value="11" label="${lblMenuStudies}" checked="true" onCheck="idWindowFuntions.checkItem(self)"></checkbox>
+					</treecell>
+				</treerow>
+				<treechildren>
+				<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id12" value="12" label="${lblMenTAdd}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id13" value="13" label="${lblMenTEdit}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id14" value="14" label="${lblMenTDelete}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id15" value="15" label="${lblSRLab}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id16" value="16" label="${lblSRDP}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id17" value="17" label="${lblMenTUpRes}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+				</treechildren>
+			</treeitem>
+
+			<treeitem>
+				<treerow>
+					<treecell>
+					<checkbox id="id18" value="18" label="${lblMenuCompanie}" checked="true" onCheck="idWindowFuntions.checkItem(self)"></checkbox>
+					</treecell>
+				</treerow>
+				<treechildren>
+					 <treeitem>
+					   <treerow>
+					     <treecell>
+					       <checkbox id="id19" value="19" label="${lblMenTAdd}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					 </treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id20" value="20" label="${lblMenTEdit}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id21" value="21" label="${lblMenTDelete}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+				</treechildren>
+			</treeitem>
+
+			<treeitem>
+				<treerow>
+					<treecell>
+					<checkbox id="id22" value="22" label="${lblMenuShipManag}" checked="true" onCheck="idWindowFuntions.checkItem(self)"></checkbox>
+					</treecell>
+				</treerow>
+				<treechildren>
+					 <treeitem>
+					   <treerow>
+					     <treecell>
+					       <checkbox id="id23" value="23" label="${lblMenTAdd}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					 </treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id24" value="24" label="${lblMenTEdit}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id25" value="25" label="${lblMenTDelete}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+				</treechildren>
+			</treeitem>
+
+
+			<treeitem>
+				<treerow>
+					<treecell>
+					<checkbox id="id26" value="26" label="${lblMenuProject}" checked="true" onCheck="idWindowFuntions.checkItem(self)"></checkbox>
+					</treecell>
+				</treerow>
+				<treechildren>
+					 <treeitem>
+					   <treerow>
+					     <treecell>
+					       <checkbox id="id27" value="27" label="${lblMenTAdd}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					 </treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id28" value="28" label="${lblMenTEdit}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id29" value="29" label="${lblMenTDelete}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+				</treechildren>
+			</treeitem>
+
+
+		<treeitem>
+				<treerow>
+					<treecell>
+					<checkbox id="id30" value="30" label="${lblMenuInvest}" checked="true" onCheck="idWindowFuntions.checkItem(self)"></checkbox>
+					</treecell>
+				</treerow>
+				<treechildren>
+					 <treeitem>
+					   <treerow>
+					     <treecell>
+					       <checkbox id="id31" value="31" label="${lblMenTAdd}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					 </treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id32" value="32" label="${lblMenTEdit}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id33" value="33" label="${lblMenTDelete}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+				</treechildren>
+			</treeitem>
+
+			<treeitem>
+				<treerow>
+					<treecell>
+					<checkbox id="id34" value="34" label="${lblMenuTiss}" checked="true" onCheck="idWindowFuntions.checkItem(self)"></checkbox>
+					</treecell>
+				</treerow>
+				<treechildren>
+					 <treeitem>
+					   <treerow>
+					     <treecell>
+					       <checkbox id="id35" value="35" label="${lblMenTAdd}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					 </treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id36" value="36" label="${lblMenTEdit}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id37" value="37" label="${lblMenTDelete}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+				</treechildren>
+			</treeitem>
+
+			<treeitem>
+				<treerow>
+					<treecell>
+					<checkbox id="id38" value="38" label="${lblMenuLocat}" checked="true" onCheck="idWindowFuntions.checkItem(self)"></checkbox>
+					</treecell>
+				</treerow>
+				<treechildren>
+					 <treeitem>
+					   <treerow>
+					     <treecell>
+					       <checkbox id="id39" value="39" label="${lblMenTAdd}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					 </treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id40" value="40" label="${lblMenTEdit}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id41" value="41" label="${lblMenTDelete}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+				</treechildren>
+			</treeitem>
+
+		<treeitem>
+				<treerow>
+					<treecell>
+					<checkbox  id="id42" value="42" label="${lblMenuSeason}" checked="true" onCheck="idWindowFuntions.checkItem(self)"></checkbox>
+					</treecell>
+				</treerow>
+				<treechildren>
+					 <treeitem>
+					   <treerow>
+					     <treecell>
+					       <checkbox id="id43" value="43" label="${lblMenTAdd}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					 </treeitem>
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id44" value="44" label="${lblMenTEdit}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+					
+					<treeitem>
+					 <treerow>
+					     <treecell>
+					       <checkbox id="id45" value="45" label="${lblMenTDelete}" checked="true" onCheck="idWindowFuntions.checkItem(self)"/>
+					     </treecell>
+					   </treerow>
+					</treeitem>
+				</treechildren>
+			</treeitem>
+
+		</treechildren>
+	</tree>
+	
+	<box> 
+	<fisheyebar id="idFsb" style="position:absolute; margin:15px 150px;" attachEdge="top"
+	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
+	    <fisheye label="${lblMenTAdd}" 
+	        image="${imgOk}" onClick="idWindowFuntions.add()"/>
+	    <fisheye label="${lblMenTCancel}" 
+	    image="${imgClose}" onClick="idWindowFuntions.cancel()"/>
+	</fisheyebar>
+	
+	</box>
+</window>
+</zk>

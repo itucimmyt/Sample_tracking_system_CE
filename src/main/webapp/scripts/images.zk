@@ -1,0 +1,80 @@
+/*
+Contains variables that store the URL to images. 
+.zul pages that import this script require to import '/scripts/locale.zk' before, to work properly.
+*/
+
+		String imgExit = props.getKey("img.url.exit",Bundle.img).trim();
+		String imgClose = props.getKey("img.url.close",Bundle.img).trim();
+		String imgNext = props.getKey("img.url.next",Bundle.img).trim();
+		String imgPrev = props.getKey("img.url.prev",Bundle.img).trim();
+		String imgPlay = props.getKey("img.url.play",Bundle.img).trim();
+		String imgPlayAll = props.getKey("img.url.playall",Bundle.img).trim();
+		String imgPlayBackAll = props.getKey("img.url.playbackall",Bundle.img).trim();
+		String imgHome = props.getKey("img.url.home",Bundle.img).trim();
+		String imgAdd = props.getKey("img.url.add",Bundle.img).trim();
+		String imgEdit = props.getKey("img.url.edit",Bundle.img).trim();
+		String imgDeleteItem = props.getKey("img.url.deleteitem",Bundle.img).trim();
+		String imgDelete = props.getKey("img.url.delete",Bundle.img).trim();
+		String imgFind = props.getKey("img.url.find",Bundle.img).trim();
+		String imgOk = props.getKey("img.url.ok",Bundle.img).trim();
+		String imgCancel = props.getKey("img.url.cancel",Bundle.img).trim();
+		String imgUpload = props.getKey("img.url.upload",Bundle.img).trim();
+		String imgUpload32 = props.getKey("img.url.upload32",Bundle.img).trim();
+		String imgReportGeneration = props.getKey("img.url.report.generation",Bundle.img).trim();
+
+		String imgTemplate = props.getKey("img.url.plate.template",Bundle.img).trim();
+		String imgSelectall = props.getKey("img.url.plate.selectall",Bundle.img).trim();
+		String imgClear = props.getKey("img.url.plate.clear",Bundle.img).trim();
+		String imgAssign = props.getKey("img.url.plate.assign",Bundle.img).trim();
+		String imgBlank = props.getKey("img.url.plate.blank",Bundle.img).trim();
+		String imgControlCIMMYT = props.getKey("img.url.tube.control",Bundle.img).trim();
+		String imgSelControl = props.getKey("img.url.plate.selcontrol",Bundle.img).trim();
+		String imgRandomControl = props.getKey("img.url.plate.randomcontrol",Bundle.img).trim();
+		String imgDartControl = props.getKey("img.url.plate.dartcontrol",Bundle.img).trim();
+		String imgKbioscience = props.getKey("img.url.plate.kbioscience",Bundle.img).trim();
+		String imgLoadCsv = props.getKey("img.url.plate.loadcsv",Bundle.img).trim();
+		String imgCreateControl = props.getKey("img.url.plate.createcontrol",Bundle.img).trim();
+		String imgFileControls = props.getKey("img.url.plate.filecontrols",Bundle.img).trim();
+		String imgFileControlsUpload = props.getKey("img.url.plate.filecontrols.upload",Bundle.img).trim();
+		String imgTemplateDownload = props.getKey("img.url.plate.filecontrols.download.template",Bundle.img).trim();
+		String imgHelp = props.getKey("img.url.plate.help",Bundle.img).trim();
+		String imgSaveN = props.getKey("img.url.save.new",Bundle.img).trim();
+
+		String imgBannerTop = props.getKey("img.url.bannertop",Bundle.img).trim();
+		String imgDnastIcon = props.getKey("img.url.dnast",Bundle.img).trim();
+		String imgStudyTemplate = props.getKey("img.url.studytemplate",Bundle.img).trim();
+		String imgStudyTemplate2 = props.getKey("img.url.studytemplate2",Bundle.img).trim();
+		String imgStoreLocation = props.getKey("img.url.storelocation",Bundle.img).trim();
+		String imgStoreLocation2 = props.getKey("img.url.storelocation2",Bundle.img).trim();
+		String imgLabStudy = props.getKey("img.url.labstudy",Bundle.img).trim();
+		String imgLabStudy2 = props.getKey("img.url.labstudy2",Bundle.img).trim();
+		String imgCompany = props.getKey("img.url.company",Bundle.img).trim();
+		String imgCompany2 = props.getKey("img.url.company2",Bundle.img).trim();
+		String imgShipment = props.getKey("img.url.shipment",Bundle.img).trim();
+		String imgProject = props.getKey("img.url.project",Bundle.img).trim();
+		String imgProject2 = props.getKey("img.url.project2",Bundle.img).trim();
+		String imgInvestigator = props.getKey("img.url.investigator",Bundle.img).trim();
+		String imgInvestigator2 = props.getKey("img.url.investigator2",Bundle.img).trim();
+		String imgTissue = props.getKey("img.url.tissue",Bundle.img).trim();
+		String imgTissue2 = props.getKey("img.url.tissue2",Bundle.img).trim();
+		String imgLocation = props.getKey("img.url.location",Bundle.img).trim();
+		String imgLocation2 = props.getKey("img.url.location2",Bundle.img).trim();
+		String imgSeason = props.getKey("img.url.season",Bundle.img).trim();
+		String imgSeason2 = props.getKey("img.url.season2",Bundle.img).trim();
+		String imgQuery = props.getKey("img.url.query",Bundle.img).trim();
+		String imgHistory = props.getKey("img.url.history",Bundle.img).trim();
+		String imgBarcode = props.getKey("img.url.barcode",Bundle.img).trim();
+		String imgStoreSamples = props.getKey("img.url.storesamples",Bundle.img).trim();
+		String imgStoreSamples2 = props.getKey("img.url.storesamples2",Bundle.img).trim();
+		String imgGenericOk = props.getKey("img.url.generic.ok",Bundle.img).trim();
+		String imgGenericOkP = props.getKey("img.url.generic.ok.p",Bundle.img).trim();
+		String imgUpDResltD = props.getKey("img.url.result.data.update.image",Bundle.img).trim();
+		String imgBMSModule = props.getKey("img.url.button.menu.bms",Bundle.img).trim();
+		
+		// images result data
+		String imgResDatWinT = props.getKey("img.url.result.data.imagen.window",Bundle.img).trim();
+		String imgExportXLS = props.getKey("img.url.result.data.imagen.excel",Bundle.img).trim();
+		
+		//images download file
+		String imgDownloadExcel = props.getKey("img.url.download.excel",Bundle.img).trim();
+		String imgDownloadCSV = props.getKey("img.url.download.csv",Bundle.img).trim();

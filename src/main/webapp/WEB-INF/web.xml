@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>dna_sample_trackingw</display-name>
+	<listener>
+		<description>
+		Used to cleanup when a session is destroyed</description>
+		<display-name>ZK Session cleaner</display-name>
+		<listener-class>org.zkoss.zk.ui.http.HttpSessionListener</listener-class>
+	</listener>
+	<servlet>
+		<description>
+		The ZK loader for ZUML pages</description>
+		<servlet-name>zkLoader</servlet-name>
+		<servlet-class>org.zkoss.zk.ui.http.DHtmlLayoutServlet</servlet-class>
+		<init-param>
+			<param-name>update-uri</param-name>
+			<param-value>/zkau</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<description>
+		The asynchronous update engine for ZK</description>
+		<servlet-name>auEngine</servlet-name>
+		<servlet-class>org.zkoss.zk.au.http.DHtmlUpdateServlet</servlet-class>
+		 <init-param>
+        	<param-name>extension0</param-name>
+        	<param-value>/view=com.cimmyt.zk.CustomAuDynaMediar</param-value>
+    	</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>zkLoader</servlet-name>
+		<url-pattern>*.zul</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>zkLoader</servlet-name>
+		<url-pattern>*.zhtml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>auEngine</servlet-name>
+		<url-pattern>/zkau/*</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>  
+        classpath:context.xml
+        classpath:dataAccess.xml
+        
+        </param-value>
+	</context-param>
+
+
+
+	<!-- ****************************** RESTEasy config ****************************** -->
+ 	<context-param>
+      <param-name>resteasy.servlet.mapping.prefix</param-name>
+      <param-value>/rest</param-value>
+   </context-param>
+ 
+ 	<filter>
+		<filter-name>hibernateFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>/rest/*</url-pattern>
+	</filter-mapping>
+
+
+
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
+		</listener-class>
+	</listener>
+
+	<!-- This listener MUST be declared after ResteasyBootstrap as it uses ServletContext 
+		attributes initialized by it -->
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener
+		</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>RestDispatcher</servlet-name>
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>com.cimmyt.rest.MessageApplicationDNA</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RestDispatcher</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- ****************************** end RESTEasy config ****************************** -->
+
+
+<!--
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+-->
+	<welcome-file-list>
+	<!--  
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>-->
+		<welcome-file>welcome.zul</welcome-file>
+	</welcome-file-list>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
+	<servlet>
+    <display-name>Authenticate</display-name>
+    <servlet-name>Authenticate</servlet-name>
+	    <servlet-class>
+	        org.springframework.web.context.support.HttpRequestHandlerServlet
+	    </servlet-class>
+	</servlet>
+	 
+	<servlet-mapping>
+	    <servlet-name>Authenticate</servlet-name>
+	    <url-pattern>/login</url-pattern>
+	</servlet-mapping>
+
+
+
+
+</web-app>

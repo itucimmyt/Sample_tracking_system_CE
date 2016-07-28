@@ -1,0 +1,50 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+
+	<window border="normal" width="430px" height="340px"
+		id="idWindowFileUpload" use="com.cimmyt.zk.studies.ControlLoadFile"
+		onCreate="idWindowFileUpload.loadContext()">
+		<caption image="${imgLabStudy2}" label="${lblSWFUT}"
+			sclass="titleWindow" />
+		<vbox>
+			<hbox>
+			<button label="${lblSWFUS}" mold="trendy" upload="true,maxsize=-1"
+				image="${imgUpload32}"
+				onUpload="idWindowFileUpload.upLoadFile(((UploadEvent)event).getMedia())"
+				tooltiptext="${lblSWFUC}" id="idButtonLFF" />
+				<button label="${lblTempSampleButton}" image="${imgUpload32}"
+				visible="false" id="idButtonLFS" onClick="idWindowFileUpload.upLoadFromService()"
+				/>
+				</hbox>
+			<label value="${lblSWFUBM}"></label>
+			<textbox id="idTextError" readonly="true" width="410px"
+				height="60px" multiline="true" tabindex="11">
+			</textbox>
+		</vbox>
+
+		<box>
+			<fisheyebar id="idFsb"
+				style="position:absolute; margin:15px 180px;" attachEdge="top"
+				itemWidth="50" itemHeight="50" itemMaxHeight="60"
+				itemMaxWidth="60">
+				<fisheye label="${lblMenTAdd}" visible="false"
+					id="idLoadFile" image="${imgOk}"
+					onClick="idWindowFileUpload.addFile()"/>
+				<fisheye label="${lblMenTCancel}" image="${imgClose}"
+					onClick="idWindowFileUpload.closeWindow()"/>
+			</fisheyebar>
+
+		</box>
+	</window>
+</zk>

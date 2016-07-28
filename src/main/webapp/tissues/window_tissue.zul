@@ -1,0 +1,52 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+
+<window border="normal" width="500px" height="250px" id="idWindow"
+use="com.cimmyt.zk.tissue.ControlWindowTissue" onCreate="idWindow.loadContextAttribute()" >
+	<caption image="${imgTissue2}" label="" sclass="titleWindow" />
+	<grid>
+		<rows>
+			<row>
+				<cell width="30%">
+					<space width="6px"></space>
+					<label value="${lblInvId}"/>
+				</cell>
+				<cell width="70%">
+					<intbox id="id" cols="11" maxlength="11" disabled="true"></intbox>
+				</cell>
+			</row>
+			<row>
+				<cell>
+					<label id="idL1" sclass="labelWindow" value="*"/>
+					<label>${lblInvName}</label>
+				</cell>
+				<cell>
+					<textbox id="idName" sclass="textIpnput" cols="100" maxlength="100"
+					width="95%"></textbox>
+				</cell>
+			</row>
+		</rows>
+	</grid>
+	<box> 
+	<fisheyebar id="idFsb" style="position:absolute; margin:15px 180px;" attachEdge="top"
+	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
+	    <fisheye label="${lblMenTAdd}" 
+	        image="${imgOk}" onClick="idWindow.add()"/>
+	    <fisheye label="${lblMenTCancel}" 
+	    image="${imgClose}" onClick="idWindow.closeWindow()"/>
+	</fisheyebar>
+	
+	</box>
+</window>
+</zk>

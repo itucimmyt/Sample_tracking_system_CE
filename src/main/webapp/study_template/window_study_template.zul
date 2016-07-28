@@ -1,0 +1,93 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+
+<window border="normal" width="830px" height="580px" id="idWindow" sclass="myWindow"
+use="com.cimmyt.zk.studyTemplate.ControlWindowStudyTemplate" onCreate="idWindow.loadContextAttribute()" >
+	<caption image="${imgStudyTemplate2}" sclass="myCaption" />
+	<grid >
+		<rows>
+			<row >
+				<cell>
+					<space width="6px"></space>
+					<label value="${lblInvId}"/>
+				</cell>
+				<cell>
+					<intbox id="id" cols="11" maxlength="11" disabled="true"></intbox>
+				</cell>
+			</row>
+			<row>
+			<cell>
+				<label id="idL1" sclass="labelWindow" value="*"/>
+				<label >${lblInvName}</label>
+			</cell>
+				<cell>
+				<textbox id="idName" sclass="textIpnput" cols="45" maxlength="45"
+				width="95%" ></textbox>
+				</cell>
+			</row>
+			<row>
+			<cell>
+				<label id="idL2" sclass="labelWindow" value="*"/>
+				<label >${lblGCommnets}</label>
+			</cell>
+				<cell>
+				<textbox id="idDes" sclass="textIpnput" width="95%"  height="40px"
+				 cols="100"  multiline="true" maxlength="100" />
+				</cell>
+			</row>
+		</rows>
+	</grid>
+
+	<vbox>
+	<label sclass="subTitleWindow">${lblSTTSWF}</label>
+     <box height="40px">
+				<fisheyebar id="idFA" style="position:absolute; margin:0px 250px;" attachEdge="top"
+		        itemWidth="40" itemHeight="40" itemMaxHeight="60" itemMaxWidth="60">
+		        <fisheye id="idFieldAdd" label="${lblMenTAdd}" 
+	            image="${imgAdd}" onClick ="idWindow.addField()" />
+	            <fisheye id="idFieldDelete" label="${lblMenTDelete}" 
+	            image="${imgDeleteItem}" onClick ="idWindow.deleteField()"/>
+								
+			</fisheyebar>
+	</box>
+		<listbox id="idLisB" multiple="false" width="800px" height="200px"
+				checkmark="true" sizedByContent="false" >
+					<listhead id="idListHead">
+					  <listheader sort="auto" width="30%">
+					    	<label value="${lblSTTSWFN}" sclass="columnForList"/>
+					  </listheader >
+					  <listheader sort="auto" width="50%">
+					    	<label value="${lblGDescription}" sclass="columnForList"/>
+					  </listheader>
+					  <listheader sort="auto" width="20%">
+					    	<label value="${lblSTTSWDT}" sclass="columnForList"/>
+					  </listheader>
+
+					</listhead>
+				</listbox>
+	</vbox>
+	
+	
+	<box> 
+	<fisheyebar id="idFsb" style="position:absolute; margin:15px 280px;" attachEdge="top"
+	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
+	    <fisheye label="${lblMenTAdd}" 
+	        image="${imgOk}" onClick="idWindow.add()"/>
+	    <fisheye label="${lblMenTCancel}" 
+	    image="${imgClose}" onClick="idWindow.closeWindow()"/>
+	</fisheyebar>
+	
+	</box>
+</window>
+</zk>

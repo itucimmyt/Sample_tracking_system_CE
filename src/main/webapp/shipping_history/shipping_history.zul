@@ -1,0 +1,96 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+	<window id="idWindow" sclass="windowSub" width="100%" height="100%" use="com.cimmyt.zk.studyTemplate.ControlStudyTemplate"
+	onCreate="idWindow.doAfterCompose(0,null)">
+	<caption image="${imgStudyTemplate2}" label="${lblSTT}" />
+		<borderlayout width="100%" height="100%"> 
+			<north  sclass="borderNort"
+				   	  	height="128px" 
+						border="none" 
+						maxsize="128" 
+						minsize="128" 
+						flex="true"
+						margins="0,0,0,0"
+						style="bacground:#ffffff" 
+						collapsible="true"
+						splittable="true"
+				   	 >
+						<box height="100%">
+						  <hbox width="100%">
+						   <box width="500px">
+							<vbox >
+								 <hbox>
+								   <separator width="20px"></separator>
+									<label sclass="subtitle" value="${lblProSC}" />
+								</hbox>
+								 <hbox>
+								   <separator width="20px"></separator>
+									<label sclass="textNor" value="${lblProSCL}" />
+								</hbox>
+								<separator height="2px"/>
+								<label sclass="textNor" value="${lblProSCLF}"></label>
+								<hbox>
+								   <separator width="10px"></separator>
+									<label sclass="textNor" value="${lblInvName}" />
+									<separator width="5px"/>
+									<textbox id="idSN" cols="4" maxlength="4"></textbox>
+									<separator width="10px"></separator>
+									<label sclass="textNor" value="${lblMenGR}"/>
+									<intbox id="idRL" maxlength="2" cols="2"></intbox>
+									<separator width="10px"/>
+									<fisheyebar  style="position:center; " attachEdge="top"
+						        	itemWidth="32" itemHeight="32" itemMaxHeight="40" itemMaxWidth="40">
+						        	<fisheye label="${lblProSB}" 
+							            image="${imgFind}" onClick ="idWindow.search()" />
+									</fisheyebar>
+								</hbox>
+								
+							</vbox>
+							</box>
+							<box  width="20%" >
+							<vbox>
+								<div align="center" width="100%">
+								<fisheyebar id="idFsb" style="position:center; " attachEdge="top"
+						        itemWidth="60" itemHeight="60" itemMaxHeight="80" itemMaxWidth="80">
+							        <fisheye label="${lblMenTAdd}" 
+							            image="${imgAdd}" onClick ="idWindow.add()" />
+							            <fisheye label="${lblMenTEdit}" 
+							            image="${imgEdit}" onClick ="idWindow.edit()"/>
+							            <fisheye label="${lblMenTDelete}" 
+							            image="${imgDeleteItem}" onClick ="idWindow.delete()"/>
+									
+									</fisheyebar>
+								</div>
+							 </vbox>
+							</box>
+							</hbox>
+						</box>
+			</north>
+			<center autoscroll="true">
+				<listbox id="idLisB" multiple="false" width="100%" height="800px"
+				checkmark="true" sizedByContent="false" >
+					<listhead id="idListHead">
+					  <listheader sort="auto" width="10%">
+					    	<label value="${lblInvId}" sclass="columnForList"/>
+					  </listheader >
+					  <listheader sort="auto" width="90%">
+					    	<label value="${lblInvName}" sclass="columnForList"/>
+					  </listheader>
+
+					</listhead>
+				</listbox>	 
+			</center>
+		</borderlayout>
+	</window>
+</zk>

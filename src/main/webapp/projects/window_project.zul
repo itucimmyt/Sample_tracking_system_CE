@@ -1,0 +1,79 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+
+<window border="normal" width="500px" height="350px" id="idWindow"
+style="overflow:visible"
+use="com.cimmyt.zk.projects.ControlWindowProject" onCreate="idWindow.loadContextAttribute()" >
+	<caption image="${imgProject2}" label="" sclass="titleWindow" />
+	<grid style="overflow:visible">
+		<rows>
+			<row>
+				<cell width="30%">
+					<space width="6px"></space>
+					<label value="${lblPSWPI}"/>
+				</cell>
+				<cell width="70%">
+					<intbox id="idProject" cols="11" maxlength="11" disabled="true"></intbox>
+				</cell>
+			</row>
+			<row>
+			<cell>
+				<label sclass="labelWindow" value="*"/>
+				<label >${lblPCPN}</label>
+			</cell>
+			<cell>
+				<textbox id="idProjNam" sclass="textIpnput" cols="4" maxlength="4" width="95%"/>
+				</cell>
+			</row>
+			<row>
+			<cell>
+				<label sclass="labelWindow" value="*"/>
+				<label>${lblPCD}</label>
+			</cell>
+			<cell>
+				<textbox id="idProjDes" sclass="textIpnput" cols="100" maxlength="250" width="95%"/>
+				</cell>
+			</row>
+			<row>
+			<cell>
+				<label sclass="labelWindow" value="*"/>
+				<label>${lblPCN}</label>
+			</cell>
+				<cell>
+					<textbox id="idPurNam" sclass="textIpnput" cols="4" maxlength="4" width="95%"/>
+				</cell>
+			</row>
+			<row>
+			<cell>
+				<label sclass="labelWindow" value="*"/>
+				<label>${lblPCPD}</label>
+			</cell>
+				<cell>
+				<textbox id="idPurNamD" sclass="textIpnput" cols="100" maxlength="250" width="95%"/>
+			</cell>
+			</row>
+		</rows>
+	</grid>
+	<box style="overflow:visible"> 
+	<fisheyebar id="idFsb" style="position:absolute; margin:15px 180px;" attachEdge="top"
+	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
+	    <fisheye label="${lblMenTAdd}" 
+	        image="${imgOk}" onClick="idWindow.addProject()"/>
+	    <fisheye label="${lblMenTCancel}" 
+	    image="${imgClose}" onClick="idWindow.closeWindow()"/>
+	</fisheyebar>
+	
+	</box>
+</window>
+</zk>

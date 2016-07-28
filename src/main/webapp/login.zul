@@ -1,0 +1,79 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+
+	<window width="330px" closable="true" title="${lblWelcomeHeader}"
+		use="com.cimmyt.zk.welcome.LoginWelcome" id="idCenter" border="normal"
+		onOpen="idCenter.init()">
+
+		<grid>
+			<rows>
+				<row>
+					<cell width="80px">
+						<label id="idUser" value="${lblWelcomeUser}" />
+					</cell>
+					<textbox id="idTUser" sclass="label" width="95%"
+						value="" maxlength="15" cols="15"
+						onOK="idCenter.validateUserPass()" />
+					<cell rowspan="2">
+						<fisheyebar style="margin:5px 5px;"
+							attachEdge="top" itemWidth="50" itemHeight="50"
+							itemMaxHeight="60" itemMaxWidth="60">
+							<fisheye id="idLabFis"
+								onClick="idCenter.validateUserPass()" image="${imgNext}" />
+						</fisheyebar>
+					</cell>
+				</row>
+				<row>
+					<cell>
+						<label id="idPass" sclass="head2"
+							value="${lblWelcomePassw}" />
+					</cell>
+					<textbox id="idTPas" sclass="label" width="95%"
+						value="" maxlength="15" type="password" cols="15"
+						onOK="idCenter.validateUserPass()">
+					</textbox>
+				</row>
+				<row>
+					<cell>
+						<label>${lblMCrop}</label>
+					</cell>
+					<cell colspan="2">
+						<radiogroup id="idRGCorn" visible="true"
+							style="text-align:middle" orient="horizontal">
+							<radio id="idRCorn" value="1"
+								label="${lblWelcomeItemCorn}" checked="true"/>
+							<radio id="idRWheat" value="2"
+								label="${lblWelcomeItemWheat}"  />
+						</radiogroup>
+					</cell>
+				</row>
+				<row>
+					<cell>
+						<a id="idReg"
+							onClick="idCenter.sendRegister()">
+							${lblWelcomeReg}
+						</a>
+					</cell>
+					<!-- 
+					<cell colspan="2" align="right">
+						<a id="idReset"
+							onClick="idCenter.sendReset()">
+							${lblWelcomeFP}
+						</a>
+					</cell>-->
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

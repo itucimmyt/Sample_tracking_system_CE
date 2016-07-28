@@ -1,0 +1,271 @@
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+ <beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:task="http://www.springframework.org/schema/task"
+        xsi:schemaLocation="
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+            http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-2.5.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+            http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+            
+        
+            <!-- ADD DAOS -->
+    <bean id="projectDAO" class="com.cimmyt.model.dao.impl.ProjectDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="labStudyDAO" class="com.cimmyt.model.dao.impl.LabStudyDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>   
+ 	<bean id="investigatorDAO" class="com.cimmyt.model.dao.impl.InvestigatorDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="tissueDAO" class="com.cimmyt.model.dao.impl.TissueDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean> 
+     <bean id="locationDAO" class="com.cimmyt.model.dao.impl.LocationCatalogDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+     <bean id="sampleIDDAO" class="com.cimmyt.model.dao.impl.SampleIDDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="seasonDAO" class="com.cimmyt.model.dao.impl.SeasonDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean> 
+    <bean id="studyTemplateParamsDAO" class="com.cimmyt.model.dao.impl.StudyTemplateParamsDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean> 
+    <bean id="studyTemplateDAO" class="com.cimmyt.model.dao.impl.StudyTemplateDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    	<property name="studyTemplateParamsDAO" ref="studyTemplateParamsDAO"></property>
+    </bean> 
+    <bean id="storageLocationDAO" class="com.cimmyt.model.dao.impl.StorageLocationDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>  
+    <bean id="companyDAO" class="com.cimmyt.model.dao.impl.CompanyDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    	<property name="storageLocationDAO" ref="storageLocationDAO"></property>
+    </bean>     
+ 	<bean id="shipmentDAO" class="com.cimmyt.model.dao.impl.ShipmentDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="shipmentSetsDAO" class="com.cimmyt.model.dao.impl.ShipmentSetsDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="shipmentDetailDAO" class="com.cimmyt.model.dao.impl.ShipmentDetailDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="statusDAO" class="com.cimmyt.model.dao.impl.StatusDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean> 
+	<bean id="sampleDetailDAO" class="com.cimmyt.model.dao.impl.SampleDetailDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+	<bean id="storageMovDAO" class="com.cimmyt.model.dao.impl.StorageMovDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="organismDAO" class="com.cimmyt.model.dao.impl.OrganismDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="lastPlateProjectDAO" class="com.cimmyt.model.dao.impl.LastPlateProjectDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+	<bean id="sampleDetResultDAO" class="com.cimmyt.model.dao.impl.SampleDetResultDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="resultsPreferencesDAO" class="com.cimmyt.model.dao.impl.ResultsPreferencesDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+
+	<bean id="temporalSampleDAO" class="com.cimmyt.model.dao.impl.TempSampleDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+   
+   <bean id="registerDAO" class="com.cimmyt.model.dao.impl.RegisterDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+   
+   <bean id="userDAO" class="com.cimmyt.model.dao.impl.UserDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    
+     <bean id="userFunctionsDAO" class="com.cimmyt.model.dao.impl.UserFunctionsDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="serviceProject" class="com.cimmyt.service.impl.ServiceProyectImpl">
+        <property name="projectDAO" ref="projectDAO"/>         
+    </bean>
+    <bean id="serviceReportLaboratory" class="com.cimmyt.reports.impl.ServiceReportLaboratoryImpl">
+       <property name="seriviceStudyTemplate" ref="seriviceStudyTemplate" />
+    </bean>
+    <bean id="serviceLabStudy" class="com.cimmyt.service.impl.ServiceLabStudyImpl">
+        <property name="labStudyDAO" ref="labStudyDAO"/>
+        <property name="lastPlateProjectDAO" ref="lastPlateProjectDAO"/>
+        <property name="studyTemplateDAO" ref="studyTemplateDAO"/>
+        <property name="sampleIDDAO" ref="sampleIDDAO"/>
+        <property name="sampleDetResultDAO" ref="sampleDetResultDAO"/>
+        <property name="mySqlProcedure" ref="mySqlProcedure"/>
+        <property name="serviceReportLaboratory" ref="serviceReportLaboratory"/>
+        <property name="tempSampleDAO" ref="temporalSampleDAO"/>
+    </bean>
+    
+     <bean id="serviceClientContry" class="com.cimmyt.rest.client.impl.ClientCatalogContryImpl">      
+    </bean>
+    
+    <bean id="serviceInvestigator" class="com.cimmyt.service.impl.ServiceInvestigatorImpl">
+        <property name="investigatorDAO" ref="investigatorDAO"/>          
+    </bean>
+	<bean id="serviceTissue" class="com.cimmyt.service.impl.ServiceTissueImpl">
+        <property name="tissueDAO" ref="tissueDAO"/>         
+    </bean>
+    	<bean id="serviceLocation" class="com.cimmyt.service.impl.ServiceLocationImpl">
+        <property name="locationDAO" ref="locationDAO"/> 
+        <property name="sampleDetailDAO" ref="sampleDetailDAO"/>
+        <property name="storageMovDAO" ref="storageMovDAO"/>
+    </bean>
+   	<bean id="serviceSample" class="com.cimmyt.service.impl.ServiceSampleImpl">
+        <property name="sampleIDDAO" ref="sampleIDDAO"/>         
+    </bean>
+    <bean id="serviceSeason" class="com.cimmyt.service.impl.ServiceSeasonImpl">
+        <property name="seasonDAO" ref="seasonDAO"/>         
+    </bean>
+    <bean id="seriviceStudyTemplate" class="com.cimmyt.service.impl.ServiceStudyTemplateImpl">
+        <property name="studyTemplateDAO" ref="studyTemplateDAO"/>
+        <property name="sampleDetResultDAO" ref="sampleDetResultDAO"/>         
+    </bean>
+    <bean id="serviceCompany" class="com.cimmyt.service.impl.ServiceCompanyImpl">
+        <property name="companyDAO" ref="companyDAO"/>         
+    </bean>
+    <bean id="serviceShipment" class="com.cimmyt.service.impl.ServiceShipmentImpl">
+        <property name="shipmentDAO" ref="shipmentDAO"/>         
+    </bean>
+    <bean id="serviceShipmentSet" class="com.cimmyt.service.impl.ServiceShipmentSetImpl">
+        <property name="shipmentSetsDAO" ref="shipmentSetsDAO"/>         
+    </bean>
+    <bean id="serviceShipmentDetail" class="com.cimmyt.service.impl.ServiceShipmentDetailImpl">
+        <property name="shipmentDetailDAO" ref="shipmentDetailDAO"/>         
+    </bean>
+    <bean id="serviceStatus" class="com.cimmyt.service.impl.ServiceStatusImpl">
+        <property name="statusDAO" ref="statusDAO"/>         
+    </bean>
+     <bean id="serviceStorageLocation" class="com.cimmyt.service.impl.ServiceStorageLocationImpl">
+        <property name="storageLocationDAO" ref="storageLocationDAO"/>         
+    </bean>
+       <bean id="serviceSampleDetail" class="com.cimmyt.service.impl.ServiceSampleDetailImpl">
+        <property name="sampleDetailDAO" ref="sampleDetailDAO"/>         
+    </bean>
+    <bean id="serviceOrganism" class="com.cimmyt.service.impl.ServiceOrganismImpl">
+        <property name="organismDAO" ref="organismDAO"/>         
+    </bean>
+    <bean id="serviceLastPlateProject" class="com.cimmyt.service.impl.ServiceLastPlateProjectImpl">
+        <property name="lastPlateProjectDAO" ref="lastPlateProjectDAO"/>         
+    </bean>
+
+	<bean id="serviceTemporalSample" class="com.cimmyt.service.impl.ServiceTemporalSampleImpl">
+        <property name="temporalSampleDAO" ref="temporalSampleDAO"/>         
+    </bean>
+
+    <bean id="authenticateDAOImp" class="org.cimmyt.dnast.dao.imp.AuthenticateDAOImp">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean> 
+    
+    <bean id="serviceLogin" class="com.cimmyt.service.impl.ServiceLoginImpl">
+    	<property name="authenticateDAO" ref="authenticateDAOImp" />
+    </bean> 
+    <bean id="Authenticate" class="org.cimmyt.dnast.servlet.AuthenticateServlet">
+        <property name="authDAO" ref="authenticateDAOImp"/>         
+    </bean>
+    <bean id="serviceBMSClient" class="com.cimmyt.bms.client.RESTSpringClientBMSAPI">
+    	<property name="serviceTemporalSample" ref="serviceTemporalSample"/>
+     </bean>
+    <bean id="serviceEmail" class="com.cimmyt.utils.ManageEmail"/>
+    
+    <aop:aspectj-autoproxy proxy-target-class="true">
+    	<aop:include name="serviceTemporalSample"/>
+    </aop:aspectj-autoproxy>
+    	<!-- Serch annotated classes, web services and xml bean definitions -->
+	<context:component-scan base-package="org.cimmyt.dnast.dto" />
+	<context:component-scan base-package="org.cimmyt.dnast.service.imp" />
+	<context:component-scan base-package="com.cimmyt.zk.query" />
+	
+	
+	<bean id="projectHome" class="org.cimmyt.dnast.dao.imp.StProjectHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="studyHome" class="org.cimmyt.dnast.dao.imp.StLabStudyHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="sampleHome" class="org.cimmyt.dnast.dao.imp.StSampleDetailHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+    <bean id="projectBO" class="org.cimmyt.dnast.bo.imp.ProjectImpBO">
+        <property name="projectHome" ref="projectHome"/>         
+        <property name="studyHome" ref="studyHome"/>         
+    </bean>
+    <bean id="studyBO" class="org.cimmyt.dnast.bo.imp.StudyImpBO">
+        <property name="studyHome" ref="studyHome"/>         
+        <property name="sampleHome" ref="sampleHome"/>         
+    </bean>
+    <bean id="serviceControlFile" class="com.cimmyt.loadStudy.impl.ServiceControlFileImpl"/>	
+	<bean id="serviceManagerFileCSV" class="com.cimmyt.csv.FileManagerCSVImpl"/>
+    <bean id="serviceLoadStudy" class="com.cimmyt.loadStudy.impl.ServiceLoadStudyImpl"/>
+    <bean id="serviceCreatePlate" class="com.cimmyt.loadStudy.impl.ServiceCreatePlateImpl"/>
+    <bean id="serviceResultPreference" class="com.cimmyt.service.impl.ServiceResultPreferenceImpl">
+        <property name="resultsPreferencesDAO" ref="resultsPreferencesDAO"/>
+        <property name="studyTemplateDAO" ref="studyTemplateDAO"/>
+        <property name="serviceReportLaboratory" ref="serviceReportLaboratory"/>         
+    </bean>
+    <bean id="serviceResultData" class="com.cimmyt.service.impl.ServiceResultDataImpl">
+      <property name="serviceLabStudy" ref="serviceLabStudy"/>
+    </bean>
+    <bean id="serviceReportKBio" class="com.cimmyt.reports.impl.ServiceReportKBioImpl">
+    </bean>
+
+<!-- Scheduled task for sending new shipments to KBase in background -->
+    <task:scheduler id="scheduler"/>
+
+    <bean class="org.cimmyt.dnast.service.imp.FileRepositoryServiceClientImp" name="serviceKB">
+	    <property name="serviceShipment" ref="serviceShipment"/>
+	    <property name="serviceSampleDet" ref="serviceSampleDetail"/>
+	    <property name="serviceInvestigator" ref="serviceInvestigator"/>
+    </bean>
+
+ 	<bean id="serviceRegister" class="com.cimmyt.service.impl.ServiceRegisterImpl">
+        <property name="registerDAO" ref="registerDAO"/>     
+          <property name="serviceClientContry" ref="serviceClientContry"/>   
+          <property name="userDAO" ref="userDAO"/>
+          <property name="serviceEmail" ref="serviceEmail"/>
+          
+    </bean>
+
+	<bean id="serviceUser" class="com.cimmyt.service.impl.ServiceUserImpl">           
+          <property name="userDAO" ref="userDAO"/>
+          <property name="serviceEmail" ref="serviceEmail"/>
+          <property name="authenticateDAO" ref ="authenticateDAOImp"/>
+          <property name="userFunctionsDAO" ref ="userFunctionsDAO"/>
+          <property name="investigatorDAO" ref ="investigatorDAO"/>
+          
+    </bean>
+
+	<bean class ="com.cimmyt.rest.context.SpringApplicationContext"/>
+<!-- uncomment for enabling background sending of shipments to KBase -->
+<!--     <task:scheduled-tasks > -->
+<!--     	<task:scheduled ref="serviceKB" method="sendPendingShipmentsToKBase" cron="0 */5 8-17 ? * MON-FRI" /> -->
+<!--     </task:scheduled-tasks> -->
+    
+    
+ </beans>

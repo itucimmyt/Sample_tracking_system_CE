@@ -1,0 +1,73 @@
+<?page title="Auto Generated index.zul"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<window title="Server Code: ${requestScope['javax.servlet.error.status_code']}" id="win"
+width="300px" border="normal" mode="modal" closable="true">
+    <vbox>
+
+<zscript>
+String message = requestScope.get("javax.servlet.error.message");
+Throwable t = requestScope.get("javax.servlet.error.exception");
+
+private void showDetail(){
+	if(link.getLabel().contains("Show")){
+		win.setWidth("500px");
+		errGrid.setHeight("300px");
+		errGrid.setWidth("482px");
+		link.setLabel("Hide Detail");
+	}else{
+		win.setWidth("300px");
+		errGrid.setHeight("0px");
+		errGrid.setWidth("100px");
+		link.setLabel("Show Detail...");
+	}
+
+}
+
+</zscript>
+
+	<style src="/style/welcome.css" dynamic="true" />
+	<label value="An exception occurred in the server. Please try again later or contact your System Administrator."/>
+	<space height="15px"></space>
+	<label>Server Message: ${message}</label>
+	<space height="15px"></space>
+	
+	<a onClick="showDetail()" id="link">Show Details...</a>
+
+	<grid height="0px" autopaging="true" mold="paging" id="errGrid">
+		<columns sizable="true">
+			<column label="Error Log" width="60%"/>
+			<column label="Step" width="30%"/>
+			<column label="Line" width="10%"/>
+		</columns>
+		<rows>
+			<row forEach="${t.stackTrace}" height="10px">
+				<cell>${each.className}</cell>
+				<cell>${each.methodName}</cell>
+				<cell>${each.lineNumber}</cell>
+			</row>
+		</rows>
+	</grid>
+
+        <hbox width="100%" pack="center">
+            <button label="Continue" onClick="spaceOwner.detach()"/>
+            <button label="Send Report" onClick="Executions.sendRedirect(null)"/>
+        </hbox>
+    </vbox>
+ 
+    <!-- sends error to Log -->
+    <zscript>
+    org.zkoss.util.logging.Log.lookup("Fatal").error(
+    	"ZK ERROR: "+requestScope.get("javax.servlet.error.exception")
+    );
+    </zscript>
+</window>

@@ -1,0 +1,324 @@
+import com.cimmyt.utils.PropertyHelper;
+import com.cimmyt.utils.PropertyHelper.Languages;
+import com.cimmyt.utils.PropertyHelper.Bundle;
+import java.util.Locale;
+
+PropertyHelper props = null;
+
+		
+        if(session.getAttribute("locale") == null)
+        {
+            props = new PropertyHelper();
+            props.setMessagesBundle(props.setLanguageToLocale());
+            session.setAttribute("locale", props);
+        }
+        else
+        {
+            props = (PropertyHelper)session.getAttribute("locale");
+        }
+
+		String welcomeTitle = props.getKey("lbl.welcome.title");
+		String welcomeText = props.getKey("lbl.welcome.text");
+
+        String lblWelcomeHeader = props.getKey("lbl.welcome.header").trim();
+        String lblWelcomeSelCult = props.getKey("lbl.welcome.select.cultivo").trim();
+        String lblWelcomeSelLanguage = props.getKey("lbl.welcome.select.lenguage").trim();
+        String lblWelcomeItemLanEng = props.getKey("lbl.welcome.item.lenguage.english").trim();
+        String lblWelcomeItemLanSpan = props.getKey("lbl.welcome.item.lenguage.spanish").trim();
+        String lblWelcomeItemCorn = props.getKey("lbl.welcome.item.lenguage.corn").trim();
+        String lblWelcomeItemWheat = props.getKey("lbl.welcome.item.lenguage.wheat").trim();
+        String lblWelcomeItemGo = props.getKey("lbl.welcome.item.go").trim();
+		String lblWelcomeUser = props.getKey("lbl.welcome.user").trim();
+		String lblWelcomePassw = props.getKey("lbl.welcome.password").trim();
+		String lblWelcomeSIU = props.getKey("lbl.welcome.science.informatic.unit").trim();
+		String lblWelcomeDNAN = props.getKey("lbl.welcome.name.aplication").trim();
+		String lblWelcomeReg = props.getKey("lbl.welcome.register").trim();
+		String lblWelcomeFP = props.getKey("lbl.welcome.forgot.pass").trim();
+		String lblNotAvailable = props.getKey("lbl.generic.message.notavailable").trim();
+		String lblWelLogin = props.getKey("lbl.welcome.login").trim();
+        
+        // Menu
+        
+        String lblMenu = props.getKey("lbl.menu.menu").trim();
+        String lblNext = props.getKey("lbl.menu.next").trim();
+        String lblPrevious = props.getKey("lbl.menu.previous").trim();
+        String lblMenuStudyTemp = props.getKey("lbl.menu.study.templates").trim();
+        String lblMenuStudyTempDesc = props.getKey("lbl.menu.study.templates.desc").trim();
+        String lblMenuStoreLoc = props.getKey("lbl.menu.storage.locations").trim();
+        String lblMenuStoreLocDesc = props.getKey("lbl.menu.storage.locations.desc").trim();
+        String lblMenuStudies = props.getKey("lbl.menu.studies").trim();
+        String lblMenuStudiesDesc = props.getKey("lbl.menu.studies.desc").trim();
+        String lblMenuCompanie = props.getKey("lbl.menu.companies").trim();
+        String lblMenuCompanieDesc = props.getKey("lbl.menu.companies.desc").trim();
+        String lblMenuShipManag = props.getKey("lbl.menu.shipment.management").trim();
+        String lblMenuShipManagDesc = props.getKey("lbl.menu.shipment.management.desc").trim();
+        String lblMenuProject = props.getKey("lbl.menu.projects").trim();
+        String lblMenuProjectDesc = props.getKey("lbl.menu.projects.desc").trim();
+        String lblMenuInvest = props.getKey("lbl.menu.investigators").trim();
+        String lblMenuInvestDesc = props.getKey("lbl.menu.investigators.desc").trim();
+        String lblMenuTiss = props.getKey("lbl.menu.tissues").trim();
+        String lblMenuTissDesc = props.getKey("lbl.menu.tissues.desc").trim();
+        String lblMenuLocat = props.getKey("lbl.menu.locations").trim();
+        String lblMenuLocatDesc = props.getKey("lbl.menu.locations.desc").trim();
+        String lblMenuSeason = props.getKey("lbl.menu.Seasons").trim();
+        String lblMenuSeasonDesc = props.getKey("lbl.menu.Seasons.desc").trim();
+        String lblMenuQuerie = props.getKey("lbl.menu.queries").trim();
+        String lblMenuQuerieDesc = props.getKey("lbl.menu.queries.desc").trim();
+        String lblMenuHome = props.getKey("lbl.menu.home").trim();
+        String lblMenuExit = props.getKey("lbl.menu.exit").trim();
+        
+        String lblMenTAdd = props.getKey("lbl.menu.tool.add").trim();
+        String lblMenTEdit = props.getKey("lbl.menu.tool.edit").trim();
+        String lblMenTDelete = props.getKey("lbl.menu.tool.delete").trim();
+        String lblMenTBarCode = props.getKey("lbl.menu.tool.bar.code").trim();
+        String lblMenTAddSamL = props.getKey("lbl.menu.tool.add.sample.location").trim();
+        String lblMenTRepM = props.getKey("lbl.menu.tool.report.menu").trim();
+        String lblMenTResData = props.getKey("lbl.menu.tool.result.data").trim();
+		String lblMenTUpRes = props.getKey("lbl.menu.tool.update.results").trim();
+		String lblMenTReportB2d = props.getKey("lbl.menu.tool.report.bar.2d").trim();
+		String lblMenTSend = props.getKey("lbl.menu.tool.send").trim();
+		String lblMenTCancel = props.getKey("lbl.menu.tool.cancel").trim();
+		String lblMenTReceived = props.getKey("lbl.menu.tool.received").trim();
+		String lblMenTDefQuery = props.getKey("lbl.menu.tool.define.query").trim();
+	    String lblMenTExpXLS = props.getKey("lbl.menu.tool.export.excel").trim();
+	    String lblMenTExpCSV = props.getKey("lbl.menu.tool.export.csv").trim();
+	    String lblMenTCancel = props.getKey("lbl.menu.tool.cancel").trim();
+	    String lblMenGR = props.getKey("lbl.generic.message.row").trim();
+	    String lblGDescription = props.getKey("lbl.generic.message.description").trim();
+	    String lblGType = props.getKey("lbl.generic.message.type").trim();
+	    String lblGCommnets = props.getKey("lbl.generic.message.comments").trim();
+	    String lblMProfile = props.getKey("lbl.menu.profile").trim();
+	    String lblMCrop = props.getKey("lbl.menu.crop").trim();
+	    String lblMPreferens = props.getKey("lbl.menu.preferens").trim();
+	    String lblMEmail = props.getKey("lbl.generic.message.email").trim();
+	    String lblMAdress = props.getKey("lbl.generic.message.adress").trim();
+	    String lblMCname = props.getKey("lbl.generic.message.contact.name").trim();
+	    String lblMPNumber = props.getKey("lbl.generic.message.phone.number").trim();
+		String lblMGSN = props.getKey("lbl.generic.message.study.name").trim();
+		String lblMGPN = props.getKey("lbl.generic.message.plate.name").trim();
+		String lblMGWell = props.getKey("lbl.generic.message.well").trim();
+ 		String lblMGSI = props.getKey("lbl.generic.message.sample.id").trim();
+ 		String lblMGSL = props.getKey("lbl.generic.message.Study.list").trim();
+ 		String lblMGSTitle = props.getKey("lbl.generic.message.title").trim();
+ 		String lblMGED = props.getKey("lbl.generic.message.end.date").trim();
+ 		String lblMGDNAT = props.getKey("lbl.generic.message.dna.template").trim();
+ 		String lblSampleStatus = props.getKey("lbl.generic.message.sample.status").trim();
+ 		String lblStudyStatus = props.getKey("lbl.generic.message.study.status").trim();
+ 		String lblMGAAll = props.getKey("lbl.generic.message.add.all").trim();
+ 		String lblMGRem = props.getKey("lbl.generic.message.remove").trim();
+ 		String lblMGRAll = props.getKey("lbl.generic.message.remove.all").trim();
+ 		String lblMGObjetive = props.getKey("lbl.generic.message.objetive").trim();
+ 		String lblMGInvestigator = props.getKey("lbl.generic.message.investigator").trim();
+ 		String lblMGStaD = props.getKey("lbl.generic.message.start.d").trim();
+ 		String lblMGEndD = props.getKey("lbl.generic.message.end.d").trim();
+ 		String lblMGDNATem = props.getKey("lbl.generic.message.dna.template").trim();
+ 		String lblMGProject = props.getKey("lbl.generic.message.project").trim();
+ 		String lblMGOrganism = props.getKey("lbl.generic.message.organism").trim();
+ 		String lblMGLocation = props.getKey("lbl.generic.message.location").trim();
+ 		String lblMGHelp = props.getKey("lbl.generic.message.help").trim();
+ 		String lblMGPlate = props.getKey("lbl.menu.plate").trim();
+ 		String lblMGAddN = props.getKey("lbl.generic.window.title").trim();
+ 		
+ 		String lblMGColGID = props.getKey("lbl.generic.message.column.gid").trim();
+ 		String lblMGColACC = props.getKey("lbl.generic.message.column.acc").trim();
+ 		String lblMGColPlantNo = props.getKey("lbl.generic.message.column.plant.no").trim();
+ 		String lblMGColSpecie = props.getKey("lbl.generic.message.column.specie").trim();
+ 		String lblMGColEntNo = props.getKey("lbl.generic.message.column.entry.no").trim();
+ 		
+ 		// projects
+		String lblProTit = props.getKey("lbl.projects.title").trim();
+		String lblProSC = props.getKey("lbl.projects.search.criterial").trim();
+		String lblProSCL = props.getKey("lbl.projects.search.criterial.label").trim();
+		String lblProSCLF = props.getKey("lbl.projects.search.criterial.label.field").trim();
+		String lblProSB = props.getKey("lbl.projects.search.button").trim();
+		String lblPCPN = props.getKey("lbl.projects.column.project.name").trim();
+		String lblPCD = props.getKey("lbl.projects.column.project.description").trim();
+		String lblPCN = props.getKey("lbl.projects.column.purpose.name").trim();
+		String lblPCPD = props.getKey("lbl.projects.column.purpose.description").trim();
+		String lblPSWPI = props.getKey("lbl.projects.sub.window.project.id").trim();
+		String lblPSWEPD = props.getKey("lbl.projects.sub.window.enter.project.data").trim();
+		String lblPSWANP = props.getKey("lbl.projects.sub.window.add.new.project").trim();
+		
+		// investigators
+		String lblInvTit = props.getKey("lbl.investigators.title").trim();
+		String lblInvId = props.getKey("lbl.investigators.sub.window.id").trim();
+		String lblInvUserName = props.getKey("lbl.investigators.sub.window.user.name").trim();
+		String lblInvName = props.getKey("lbl.investigators.sub.window.name").trim();
+ 		String lblInvAN = props.getKey("lbl.investigators.sub.window.Abbre.name").trim();
+ 		String lblInvE = props.getKey("lbl.investigators.sub.window.email").trim();
+ 		String lblInvPho = props.getKey("lbl.investigators.sub.window.phone").trim();
+ 		String lblInvPass = props.getKey("lbl.investigators.sub.window.password").trim();
+ 		String lblInvED = props.getKey("lbl.investigators.sub.window.enter.investigator.d").trim();
+		String lblInvSelectRole = props.getKey("lbl.investigators.sub.window.select.role").trim();
+		String lblInvRole = props.getKey("lbl.investigators.sub.window.role").trim();
+		String lblInvResearcherName = props.getKey("lbl.investigators.sub.window.name.researcher").trim();
+
+		// Tissues
+		String lblTiTit = props.getKey("lbl.tissue.title").trim();
+		String lblTWETD = props.getKey("lbl.tissue.title.sub.win.enter.tissue.d").trim();
+
+		//Location
+		String lblLocTit = props.getKey("lbl.location.title").trim();
+		String lblLWETD = props.getKey("lbl.location.title.sub.win.enter.d").trim();
+		
+		// Seasons
+		String lblSeaTit = props.getKey("lbl.seasons.title").trim();
+		String lblLWSTD = props.getKey("lbl.seasons.title.sub.win.enter.d").trim();
+		
+		//study templates
+		String lblSTT = props.getKey("lbl.study.template.title").trim();
+		String lblSTTSWANT = props.getKey("lbl.study.template.title.sub.win.add.new.title").trim();
+		String lblSTTSWANTST = props.getKey("lbl.study.template.title.sub.win.add.new.sub.title").trim();
+		String lblSTTSWANTex = props.getKey("lbl.study.template.title.sub.win.add.new.text").trim();
+		String lblSTTSWF = props.getKey("lbl.study.template.title.sub.win.fields").trim();
+		String lblSTTSWFN = props.getKey("lbl.study.template.title.sub.win.field.name").trim();
+		String lblSTTSWDT = props.getKey("lbl.study.template.title.sub.win.data.type").trim();
+		
+		// Register
+		String lblRegisterT = props.getKey("lbl.register.user.title").trim();
+		String lblRegisterN = props.getKey("lbl.register.user.username").trim();
+		String lblRegisterP = props.getKey("lbl.register.user.password").trim();
+		String lblRegisterCP = props.getKey("lbl.register.user.confirm.pass").trim();
+		String lblRegisterE = props.getKey("lbl.register.user.email").trim();
+		String lblRegisterCE = props.getKey("lbl.register.user.confirm.email").trim();
+		String lblRegisterVM = props.getKey("lbl.register.user.validad.mail").trim();
+		String lblRegisterFN = props.getKey("lbl.register.user.first.name").trim();
+		String lblRegisterLN = props.getKey("lbl.register.user.last.name").trim();
+		String lblRegisterCi = props.getKey("lbl.register.user.city").trim();
+		String lblRegisterCo = props.getKey("lbl.register.user.country").trim();
+		String lblRegisterIn = props.getKey("lbl.register.user.industry").trim();
+		String lblRegisterComN = props.getKey("lbl.register.user.company.name").trim();
+		String lblRegisterComS = props.getKey("lbl.register.user.company.size").trim();
+		String lblRegisterPho = props.getKey("lbl.register.user.phone").trim();
+		String lblRegisterTerm = props.getKey("lbl.register.terms").trim();
+		String lblRegisterTEAc = props.getKey("lbl.register.terms.accept").trim();
+		String lblRegisterIB = props.getKey("lbl.register.immediate.boss").trim();
+		String lblRegisterUER = props.getKey("lbl.register.user.email").trim();
+		String lblRegisterRPass = props.getKey("lbl.register.user.reser.pass").trim();
+		
+		// Companies 
+		String lblCompanyTit = props.getKey("lbl.companies.title").trim();
+		String lblComWT = props.getKey("lbl.companies.title.sub.win.add.new.sub.title").trim();
+		
+		// Storage location 
+		String lblSLT = props.getKey("lbl.storage.location.title").trim();
+		String lblSLWTA = props.getKey("lbl.storage.location.window.title.add").trim();
+		String lblSLWTE = props.getKey("lbl.storage.location.window.title.edit").trim();
+		String lblSLWTE = props.getKey("lbl.storage.location.window.title.sub.tit").trim();
+		String lblSLWSN = props.getKey("lbl.storage.location.window.short.name").trim();
+		String lblSLWLN = props.getKey("lbl.storage.location.window.location.name").trim();
+		String lblSLWC = props.getKey("lbl.storage.location.window.comments").trim();
+		String lblSLWSWT = props.getKey("lbl.storage.location.sample.win.title").trim();
+		String lblSLWSWST = props.getKey("lbl.storage.location.sample.win.sub.title").trim();
+		String lblSLWSWRD = props.getKey("lbl.storage.location.sample.win.restratrion.date").trim();
+		String lblSLWSWTime = props.getKey("lbl.storage.location.sample.win.time").trim();
+		String lblSLWSWTarget = props.getKey("lbl.storage.location.sample.win.target").trim();
+		String lblSLWSWI = props.getKey("lbl.storage.location.sample.win.info").trim();
+		String lblSLWSWF = props.getKey("lbl.storage.location.sample.win.add.from").trim();
+		String lblSLWSWB = props.getKey("lbl.storage.location.sample.win.barcode").trim();
+		String lblSLWSWCAS = props.getKey("lbl.storage.location.sample.win.com.all.sam").trim();
+		String lblSLWSWCIS = props.getKey("lbl.storage.location.sample.win.com.ind.sam").trim();
+		String lblSLWSWTBS = props.getKey("lbl.storage.location.sample.win.tool.button.stu").trim();
+		String lblSLWSWSAS = props.getKey("lbl.storage.location.available.sample").trim();
+		String lblSLWSWSSS = props.getKey("lbl.storage.location.selected.sample").trim();
+		
+		// studies
+		String lblStuTit = props.getKey("lbl.studies.title").trim();
+		String lblStuSubT = props.getKey("lbl.studies.title.sub.win.add.sub.title").trim();
+		String lblStuNST = props.getKey("lbl.studies.title.sub.win.add.new.title").trim();
+		String lblSTSWATP = props.getKey("lbl.studies.title.sub.win.add.sub.t.plate").trim();
+		String lblSWPT = props.getKey("lbl.studies.title.sub.win.add.plate.type").trim();
+		String lblSCIR = props.getKey("lbl.studies.combo.item.r").trim();
+		String lblSCIST = props.getKey("lbl.studies.combo.item.s.t").trim();
+		String lblSWPS = props.getKey("lbl.studies.title.sub.win.add.plate.size").trim();
+		String lblSWPN = props.getKey("lbl.studies.title.sub.win.add.plate.number").trim();
+		String lblSWNPI = props.getKey("lbl.studies.title.sub.win.add.number.ind").trim();
+		String lblSWNL = props.getKey("lbl.studies.title.sub.win.add.load").trim();
+		String lblSWNLC = props.getKey("lbl.studies.title.sub.win.add.load.colums").trim();
+		String lblSWNLR = props.getKey("lbl.studies.title.sub.win.add.load.rows").trim();
+		String lblSWNSMix = props.getKey("lbl.studies.title.sub.win.add.sample.mixture").trim();
+		String lblStdGroup1 = props.getKey("lbl.studies.bar1");
+		String lblStdGroup2 = props.getKey("lbl.studies.bar2");
+		String lblStdGroup3 = props.getKey("lbl.studies.bar3");
+		String lblStdGroup4 = props.getKey("lbl.studies.bar4");
+		String lblSWPGP = props.getKey("lbl.studies.generate.plate").trim();
+		String lblSWPSAll = props.getKey("lbl.studies.select.all").trim();
+		String lblSWPAT = props.getKey("lbl.studies.assign.tube").trim();
+		String lblSWPCS = props.getKey("lbl.studies.clear.select").trim();
+		String lblSWPSC = props.getKey("lbl.studies.select.control").trim();
+		String lblSWPRC = props.getKey("lbl.studies.random.controls").trim();
+		String lblSWPDarC = props.getKey("lbl.studies.dart.control").trim();
+		String lblSWPKBC = props.getKey("lbl.studies.kbio.control").trim();
+		String lblSWPLDFF = props.getKey("lbl.studies.load.da.f.file").trim();
+		String lblSWPGCF = props.getKey("lbl.studies.generate.c.file").trim();
+		String lblSWPLCFF = props.getKey("lbl.studies.load.control.f.f").trim();
+		String lblSWPBlank = props.getKey("lbl.studies.plate.item.blank").trim();
+		String lblSWPBlankCimmyt = props.getKey("lbl.studies.plate.item.blank.cimmyt").trim();
+		String lblSWPRTW = props.getKey("lbl.studies.title.random").trim();
+		String lblSWPRTWS = props.getKey("lbl.studies.title.random.sub").trim();
+		String lblSWPRTWErr = props.getKey("lbl.studies.title.random.error").trim();
+		String lblSWFUT = props.getKey("lbl.studies.file.upload.title").trim();
+		String lblSWFUS = props.getKey("lbl.studies.file.upload.select").trim();
+		String lblSWFUC = props.getKey("lbl.studies.file.upload.click.f").trim();
+		String lblSWFUBM = props.getKey("lbl.studies.file.upload.box.message").trim();
+		String lblSRLab = props.getKey("lbl.studies.laboratory.report").trim();
+		String lblSRDP = props.getKey("lbl.studies.laboratory.result.data").trim();
+
+		// Shipping history
+		String lblHST = props.getKey("lbl.history.shipping.title").trim();
+		
+		//queries
+		String lblQueryWTile = props.getKey("lbl.query.window.title").trim();
+
+		String lblNewQuery = props.getKey("lbl.query.button.newQuery").trim();
+		String lblAddQueryParam = props.getKey("lbl.query.button.addQParam").trim();
+		String lblSearchFiles = props.getKey("lbl.query.button.searchFiles").trim();
+		String lblSearchDB = props.getKey("lbl.query.button.searchDB").trim();
+		String lblSearch = props.getKey("lbl.query.button.search").trim();
+		String lblSearchResult = props.getKey("lbl.query.title.results").trim();
+		String lblKnowledgeBase = props.getKey("lbl.query.kb").trim();
+		String lblQueryInfo = props.getKey("lbl.query.info").trim();
+
+		//result data
+		String lblResultDaTW = props.getKey("lbl.result.data.title.window").trim();
+		String lblResultDCS = props.getKey("lbl.result.data.configuration.save").trim();
+		String lblResultDSC = props.getKey("lbl.result.data.save.configuration").trim();
+		String lblResultDLT = props.getKey("lbl.result.data.label.title").trim();
+		String lblResultLRN = props.getKey("lbl.result.data.label.record.num").trim();
+		String lblEmptyParams = props.getKey("lbl.query.empty.params").trim();
+
+		String lblEmptyParams = props.getKey("lbl.query.empty.params").trim();
+
+		// Shipment Management
+		String lblSMAddShipment = props.getKey("lbl.shipment.title.add.single").trim();
+		String lblSMIdShipment = props.getKey("lbl.shipment.title.add").trim();
+		String lblSMSendDate = props.getKey("lbl.shipment.send.date").trim();
+		String lblSMCompanyInfo = props.getKey("lbl.shipment.company.info").trim();
+		String lblSMCompanyAddress = props.getKey("lbl.shipment.company.address").trim();
+		String lblSMCEmail = props.getKey("lbl.shipment.company.email").trim();
+		String lblSMContactName = props.getKey("lbl.shipment.contact.name").trim();
+		String lblSMTrackNumber = props.getKey("lbl.shipment.track.number").trim();
+		String lblSMTrackNumberDeliv = props.getKey("lbl.shipment.track.number.deliv").trim();
+		String lblSMStatus = props.getKey("lbl.shipment.status").trim();
+		String lblSMProviderName = props.getKey("lbl.shipment.provider.name").trim();
+		String lblSMSourceLab = props.getKey("lbl.shipment.report.sourcelab").trim();
+		String lblSMSampleDNA = props.getKey("lbl.shipment.report.sampledna").trim();
+		String lblSMSampleVol = props.getKey("lbl.shipment.report.samplevol").trim();
+		String lblSMSampleMass = props.getKey("lbl.shipment.report.samplemass").trim();
+		String lblSMPreparer = props.getKey("lbl.shipment.report.preparer").trim();
+		String lblSMKingdom = props.getKey("lbl.shipment.report.kingdom").trim();
+		String lblSMGenus = props.getKey("lbl.shipment.report.genus").trim();
+		String lblSMResearcher = props.getKey("lbl.shipment.search.researcher").trim();
+		String lblShipPlateAva = props.getKey("lbl.shipment.available.plate").trim();
+		String lblShipPlateSel = props.getKey("lbl.shipment.selected.plate").trim();
+		
+		//Temporary samples
+		String lblTempSampleButton = props.getKey("lbl.temporal.sample.message.assign.button");
+		
+		//BMS
+		String lblBMSModule = props.getKey("lbl.bms.module");
+		String lblBMSColListName = props.getKey("lbl.bms.col.list.name");
+		String lblBMSColDes = props.getKey("lbl.bms.col.descrition");
+		String lblBMSColNotes = props.getKey("lbl.bms.col.notes");
+		String lblBMSColListSize = props.getKey("lbl.bms.col.list.size");
+		

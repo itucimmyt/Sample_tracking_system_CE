@@ -1,0 +1,165 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+
+
+	<window border="normal" width="850px" height="650px"
+		id="idWindowPlate" 
+		maximizable="true" closable="true"
+		use="com.cimmyt.zk.studies.ControlWindowPlate"
+		onClose="idWindowPlate.closeWindow()"
+		onCreate="idWindowPlate.loadContextComponent()">
+		<caption image="${imgLabStudy2}" label="${lblSTSWATP}"/>
+		<borderlayout>
+			<north height="70px" hflex="1">
+				<hbox hflex="1" pack="center">
+					<grid width="800px">
+						<rows>
+							<row>
+								<cell>
+									<label id="idPlateType" value="${lblSWPT}">
+									</label>
+								</cell>
+								<cell>
+									<combobox readonly="true"
+										id="idComPT" width="100px" />
+								</cell>
+								<cell>
+									<label value="${lblSWNPI}" />
+								</cell>
+								<cell>
+									<spinner value="1" disabled="true"
+										width="70px" />
+								</cell>
+								<cell valign="bottom" width="200px">
+									<label value="${lblSWNL}" />
+								</cell>
+							</row>
+							<row>
+								<cell >
+									<label value="${lblSWPN}" />
+								</cell>
+								<cell>
+									<spinner id="idSNP" value="1"
+										constraint="no empty, min 1 max 400" maxlength="3"
+										width="100px" />
+								</cell>
+								<cell >
+									<label value="${lblSWPS}"/>
+								</cell>
+								<cell>
+									<spinner id="idSPS" value="96"
+										constraint="no empty, min 96 max 384" readonly="true"
+										step="288" width="70px" />
+								</cell>
+								<cell >
+								<combobox id="idCBLoadWay"></combobox>
+									<!--  <radiogroup id="idRGTC" 
+										orient="horizontal">
+										<radio id="idRBColumn"
+											label="${lblSWNLC}" checked="true">
+										</radio>
+										<radio disabled="false" id="idRBRow"
+											label="${lblSWNLR}" />
+									</radiogroup>-->
+								</cell>
+							</row>
+						</rows>
+					</grid>
+				</hbox>
+			</north>
+			<center>
+			<vbox vflex="1" hflex="1" pack="center" width="100%">
+					<hbox align="center" pack="center" width="100%">
+						<vbox sclass="fish-eye-custom" align="center">
+							<label value="${lblStdGroup1}"  style="font-weight:bold;"/>
+							<fisheyebar attachEdge="top" itemWidth="40"
+								itemHeight="40" itemMaxHeight="60" itemMaxWidth="60">
+								<fisheye label="${lblSWPGP}" id=""
+									image="${imgTemplate}"
+									onClick="idWindowPlate.generatePlates()" />
+								<fisheye label="${lblSWPSAll}"
+									image="${imgSelectall}" onClick="idWindowPlate.selectAll()" />
+								<fisheye label="${lblSWPCS}"
+									image="${imgClear}" onClick="idWindowPlate.clearSelecction()" />
+								<fisheye label="${lblSWPAT}"
+									image="${imgAssign}" onClick="idWindowPlate.setAssign()" />
+								<fisheye label="${lblSWPBlank}"
+									image="${imgBlank}" onClick="idWindowPlate.blankSelecction()" />
+
+							</fisheyebar>
+						</vbox>
+
+						<separator bar="true" height="100%" spacing="20px;" orient="vertical"/>
+						<vbox sclass="fish-eye-custom" align="center">
+							<label value="${lblStdGroup2}"  style="font-weight:bold;"/>
+							<fisheyebar attachEdge="top" itemWidth="40"
+								itemHeight="40" itemMaxHeight="60" itemMaxWidth="60">
+								<fisheye label="${lblSWPSC}"
+									image="${imgSelControl}"
+									onClick="idWindowPlate.selectControl()" />
+								<fisheye label="${lblSWPRC}"
+									image="${imgRandomControl}"
+									onClick="idWindowPlate.randomControl()" />
+								<fisheye label="${lblSWPDarC}"
+									image="${imgDartControl}"
+									onClick="idWindowPlate.loadControlDartAndKbios(true)" />
+								<fisheye label="${lblSWPKBC}"
+									image="${imgKbioscience}"
+									onClick="idWindowPlate.loadControlDartAndKbios(false)" />
+									<fisheye label="${lblSWPBlankCimmyt}"
+									image="${imgControlCIMMYT}" onClick="idWindowPlate.loadControlCIMMYTEmpty()" />
+							</fisheyebar>
+						</vbox>
+						<separator bar="true" height="100%" spacing="20px;" orient="vertical"/>
+
+						<vbox sclass="fish-eye-custom" align="center">
+							<label value="${lblStdGroup3}"  style="font-weight:bold;"/>
+							<fisheyebar attachEdge="top" itemWidth="40"
+								itemHeight="40" itemMaxHeight="60" itemMaxWidth="60">
+								<fisheye label="${lblSWPLDFF}"
+									image="${imgLoadCsv}" id="idFisheyeLoadFromFile"
+									onClick="idWindowPlate.loadDataFromFile()" />
+								<fisheye label="${lblSWPGCF}"
+									image="${imgCreateControl}" onClick="idWindowPlate.exportFileControl()" />
+								<fisheye label="${lblSWPLCFF}"
+									image="${imgFileControlsUpload}" onClick="idWindowPlate.upLoadFileControl()" />
+									<fisheye label="Template"
+									image="${imgTemplateDownload}" onClick="idWindowPlate.downloadTemplate()" />
+							</fisheyebar>
+						</vbox>
+					</hbox>
+				<space height="10px"></space>
+				<tabbox id="idTabBox" vflex="1" hflex="1"/>
+			</vbox>
+			</center>
+
+			<south height="80px">
+			<hbox width="100%" pack="center">
+					<fisheyebar id="idFsb" style="position:center;"
+						attachEdge="top" itemWidth="50" itemHeight="50" itemMaxHeight="60"
+						itemMaxWidth="60">
+						<fisheye label="${lblPrevious}"
+							image="${imgPrev}" onClick="idWindowPlate.setVisible(false)" />
+						<fisheye label="${lblMenTAdd}"
+							id="idFisheyeNext" image="${imgOk}"
+							onClick="idWindowPlate.saveSamples()" visible="false" />
+						<fisheye label="${lblMenTCancel}"
+							image="${imgCancel}" onClick="idWindowPlate.closeWindow()" />
+					</fisheyebar>
+					</hbox>
+			</south>
+
+		</borderlayout>
+	</window>
+</zk>

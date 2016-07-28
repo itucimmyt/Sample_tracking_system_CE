@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!--  <property name="hibernate.connection.driver_class">
+			com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/sampletracking</property>
+		<property name="onnection.username">root</property>
+		<property name="connection.password">DNA</property>
+		-->
+		<property name="connection.pool_size">10</property>
+		<property name="show_sql">false</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.jdbc.batch_size">30</property>
+		<property name="hibernate.cache.use_second_level_cache">false</property>
+		<property name="hibernate.max_fetch_depth">10</property> 
+
+		<!-- Mapping files -->
+		<mapping
+			class="com.cimmyt.model.bean.Company" />
+		<mapping
+			class="com.cimmyt.model.bean.LabStudy" />
+		<mapping
+			class="com.cimmyt.model.bean.SampleDetail" />
+		<mapping
+			class="com.cimmyt.model.bean.SampleDetResult" />
+		<mapping
+			class="com.cimmyt.model.bean.ShipmentSet" />
+		<mapping
+			class="com.cimmyt.model.bean.Shipment" />
+		<mapping
+			class="com.cimmyt.model.bean.ShipmentDetail" />
+		<mapping
+			class="com.cimmyt.model.bean.StorageLocation" />
+		<mapping
+			class="com.cimmyt.model.bean.StorageMov" />
+		<mapping
+			class="com.cimmyt.model.bean.StudyTemplate" />
+		<mapping
+			class="com.cimmyt.model.bean.StudyTemplateParams" />
+
+	<!-- Added NancyHN 24/10/2011 -->
+		<mapping
+			class="com.cimmyt.model.bean.Project" />
+		<mapping
+			class="com.cimmyt.model.bean.Investigator" />
+		<mapping
+			class="com.cimmyt.model.bean.Organism" />
+		<mapping
+			class="com.cimmyt.model.bean.LastPlateProject" />	
+		<mapping
+			class="com.cimmyt.model.bean.PlatesNotUsed" />
+		<mapping
+			class="com.cimmyt.model.bean.SampleID" />
+		<mapping
+			class="com.cimmyt.model.bean.TempSampleID" />
+		<mapping
+			class="com.cimmyt.model.bean.Tissue" />
+		<mapping
+			class="com.cimmyt.model.bean.ConstantsCornellReport" />
+		<mapping
+			class="com.cimmyt.model.bean.LocationCatalog" />
+		<mapping
+			class="com.cimmyt.model.bean.Season" />
+		<mapping
+			class="com.cimmyt.model.bean.ResultsPreferences" />
+		<mapping
+			class="com.cimmyt.model.bean.ResultsPreferencesDetail" />
+			<mapping
+			class="com.cimmyt.model.bean.MixtureMethod" />
+		<mapping
+			class="com.cimmyt.model.bean.MixtureDetail" />
+		<mapping
+			class="com.cimmyt.model.bean.SampleMixture" />
+		<mapping
+			class="com.cimmyt.model.bean.Status" />
+		<mapping
+			class="com.cimmyt.model.bean.LoadType" />
+
+		<mapping class="com.cimmyt.model.bean.TemporalSample"/>
+		<mapping class="com.cimmyt.model.bean.Funtions"/>
+		<mapping class="com.cimmyt.model.bean.Role"/>
+		 <mapping class="com.cimmyt.model.bean.UserFuntions"/>
+		 <mapping class="com.cimmyt.model.bean.Register"/>
+
+		<mapping resource="./User.hbm.xml"/>
+		
+		<mapping resource="./StInvestigator.hbm.xml"/>
+		<mapping resource="./StLabStudy.hbm.xml"/>
+		<mapping resource="./StSampleDetail.hbm.xml"/>
+		<mapping resource="./StProject.hbm.xml"/>
+		
+	</session-factory>
+</hibernate-configuration>

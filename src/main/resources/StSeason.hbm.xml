@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 23, 2013 11:57:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="StSeason" table="st_season" catalog="sampletrackingm">
+        <id name="seasonid" type="java.lang.Integer">
+            <column name="seasonid" />
+            <generator class="identity" />
+        </id>
+        <property name="seasonName" type="string">
+            <column name="season_name">
+                <comment>Season name</comment>
+            </column>
+        </property>
+        <property name="seasonDescription" type="string">
+            <column name="season_description">
+                <comment>Season description (optional)</comment>
+            </column>
+        </property>
+        <set name="stMixtureDetails" table="st_mixture_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="seasonid">
+                    <comment>Season identifier</comment>
+                </column>
+            </key>
+            <one-to-many class="StMixtureDetail" />
+        </set>
+        <set name="stLabStudies" table="st_lab_study" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="seasonid" />
+            </key>
+            <one-to-many class="StLabStudy" />
+        </set>
+        <set name="stSampleDetails" table="st_sample_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="seasonid" />
+            </key>
+            <one-to-many class="StSampleDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 23, 2013 11:57:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="org.cimmyt.dnast.dto.StLabStudy" table="st_lab_study">
+        <id name="labstudyid" type="java.lang.Integer">
+            <column name="labstudyid" />
+            <generator class="identity" />
+        </id>
+<!--        
+        <many-to-one name="stOrganism" class="StOrganism" fetch="select">
+            <column name="organismid">
+                <comment>Organism id (Maize or wheat)</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="stSeason" class="StSeason" fetch="select">
+            <column name="seasonid" />
+        </many-to-one>
+        <many-to-one name="stTissue" class="StTissue" fetch="select">
+            <column name="tissueid" />
+        </many-to-one>
+        <many-to-one name="stStudyTemplate" class="StStudyTemplate" fetch="select">
+            <column name="studytemplateid" not-null="true">
+                <comment>The study template ID used in this study</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="stLocation" class="StLocation" fetch="select">
+            <column name="locationid" />
+        </many-to-one>
+-->
+         <many-to-one name="stInvestigator" class="org.cimmyt.dnast.dto.StInvestigator" fetch="select">
+            <column name="investigatorid">
+                <comment>Breeders GID</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="stProject" class="org.cimmyt.dnast.dto.StProject" fetch="select">
+            <column name="projectid">
+                <comment>Project id</comment>
+            </column>
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title">
+                <comment>Large name</comment>
+            </column>
+        </property>
+        <property name="objective" type="string">
+            <column name="objective">
+                <comment>Description about the purpose of the study</comment>
+            </column>
+        </property>
+        <property name="startdate" type="date">
+            <column name="startdate" length="10">
+                <comment>Date start of the study</comment>
+            </column>
+        </property>
+        <property name="enddate" type="date">
+            <column name="enddate" length="10">
+                <comment>Finish date of the study</comment>
+            </column>
+        </property>
+        <property name="platetype" type="java.lang.Character">
+            <column name="platetype" length="1">
+                <comment>Type of Plate (Separated Tubes or Rack)</comment>
+            </column>
+        </property>
+        <property name="platesize" type="java.lang.Integer">
+            <column name="platesize">
+                <comment>The size plate, 96 or 384</comment>
+            </column>
+        </property>
+        <property name="numindiv" type="java.lang.Integer">
+            <column name="numindiv">
+                <comment>Number of Individuals in the study</comment>
+            </column>
+        </property>
+        <property name="numofplates" type="java.lang.Integer">
+            <column name="numofplates">
+                <comment>Number of plates used for the study</comment>
+            </column>
+        </property>
+        <property name="prefix" type="string">
+            <column name="prefix" length="50">
+                <comment>Prefix</comment>
+            </column>
+        </property>
+        <property name="pathLastFileLoaded" type="string">
+            <column name="path_last_file_loaded">
+                <comment>Path from the last file loaded to study</comment>
+            </column>
+        </property>
+        <property name="nameLastFileLoaded" type="string">
+            <column name="name_last_file_loaded">
+                <comment>Name from the last file loaded to study</comment>
+            </column>
+        </property>
+        <property name="numcontrols" type="java.lang.Integer">
+            <column name="numcontrols">
+                <comment>Tissue id</comment>
+            </column>
+        </property>
+        <set name="stSampleDetails" table="st_sample_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="labstudyid" not-null="true">
+                    <comment>Lab study ID for the sample</comment>
+                </column>
+            </key>
+            <one-to-many class="org.cimmyt.dnast.dto.StSampleDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 23, 2013 11:57:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="StSampleid" table="st_sampleid" catalog="sampletrackingm">
+        <id name="idsample" type="java.lang.Integer">
+            <column name="idsample" />
+            <generator class="identity" />
+        </id>
+        <property name="projectid" type="java.lang.Integer">
+            <column name="projectid" />
+        </property>
+        <property name="gid" type="java.lang.Integer">
+            <column name="gid" />
+        </property>
+        <property name="nplant" type="java.lang.Integer">
+            <column name="nplant" />
+        </property>
+        <property name="locationid" type="java.lang.Integer">
+            <column name="locationid" />
+        </property>
+        <property name="seasonid" type="java.lang.Integer">
+            <column name="seasonid" />
+        </property>
+        <property name="sampleid" type="java.lang.Integer">
+            <column name="sampleid" />
+        </property>
+    </class>
+</hibernate-mapping>

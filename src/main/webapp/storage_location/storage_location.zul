@@ -1,0 +1,75 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+
+	<window id="idWindow" sclass="windowSub" width="100%" height="100%"
+		use="com.cimmyt.zk.storage_location.ControlStorageLocation"
+		apply="com.cimmyt.zk.storage_location.TreeStorageLocation"
+		onCreate="idWindow.doAfterCompose(0,null)">
+		<borderlayout width="100%" height="100%">
+			<north sclass="borderNort" height="60px" border="none"
+				maxsize="60" style="overflow:visible;" minsize="60" flex="true"
+				margins="0,15,0,0">
+
+				<vbox width="150px" align="start"
+						style="overflow:visible;">
+					<fisheyebar id="idFsbStorageLocation" attachEdge="top"
+						style="position:absolute;" labelEdge="bottom" itemWidth="40"
+						itemHeight="40" itemMaxHeight="60" itemMaxWidth="60">
+						<fisheye label="${lblMenTAdd}" image="${imgAdd}" id="storeLocations$idAdd"
+							onClick="idWindow.add()" />
+						<fisheye label="${lblMenTEdit}" id="storeLocations$idEdit"
+							image="${imgEdit}" onClick="idWindow.edit()" />
+						<fisheye label="${lblMenTDelete}" id="storeLocations$idDelete"
+							image="${imgDeleteItem}" onClick="idWindow.delete()" />
+						<fisheye label="${lblMenTBarCode}" id="storeLocations$idBarCode"
+							image="${imgBarcode}" onClick="idWindow.printReport()" />
+						<fisheye label="${lblMenTAddSamL}" id="storeLocations$idStorageSample"
+							image="${imgStoreSamples}" onClick="idWindow.sampleAssigned()" />
+					</fisheyebar>
+				</vbox>
+
+			</north>
+			<center  sclass="borderNort"  autoscroll="true"
+				style="overflow:visible; padding: 0px,0px,0px,0px;">
+	<vbox height="98%" width="100%">
+				<tree id="tree" width="99.7%" height="40%" vflex="true"
+					>
+				</tree>
+				
+				</vbox>
+			</center>
+			<south height="50%" autoscroll="false" id="idSouth" flex="true">
+				<vbox vflex="true">
+					<listbox id="idListStudy" multiple="false" height="49%"
+					vflex="true"
+					 sclass="myRows" >
+						<listhead sizable="true">
+<!-- 							<listheader sort="auto" width="20%" label="${lblMenuLocat}"/> -->
+							<listheader sort="auto" width="40%" label="${lblMGSN}"
+								value="labstudyid.title"/>
+							<listheader sort="auto" width="20%" label="${lblMGPN}"
+								value="platename"/>
+							<listheader sort="auto" width="20%" label="${lblMGWell}"
+								value="plateloc"/>
+							<listheader sort="auto" width="20%" label="${lblMGSI}"
+							value="labstudyid.project.projectname,labstudyid.project.purposename,samplegid"/>
+						</listhead>
+					</listbox>
+					<paging id="idPaging" pageSize="10" detailed="true"></paging>
+				</vbox>
+			</south>
+
+		</borderlayout>
+	</window>
+</zk>

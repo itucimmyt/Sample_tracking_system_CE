@@ -1,0 +1,90 @@
+<?page title="Queries" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+
+<window id="thiz"  sclass="windowSub" width="100%" height="100%"
+	use="com.cimmyt.zk.query.UseControlQuery" onCreate="thiz.init()"
+	>
+
+	<borderlayout width="100%" height="100%">
+	
+
+	
+<north  sclass="borderNort" border="none" 
+				margins="0,15,0,0" style="overflow:visible;"  height="50px">
+				<hbox width="100%" hflex="true" style="position:absolute; ">
+					<fisheyebar id="idFsb"
+						attachEdge="top" itemWidth="40" itemHeight="40" itemMaxHeight="60"
+						itemMaxWidth="60">
+						<fisheye id="idAddFilter"
+							label="${lblAddQueryParam}" image="${imgAdd}"
+							onClick="thiz.doAddNewParam()" />
+						<fisheye id="idExportXLS"
+							label="${lblMenTExpXLS}" image="${imgDownloadExcel}"
+							onClick="thiz.doExportReport(com.cimmyt.utils.ConstantsDNA.FILE_TYPE_XLS)" />
+						<fisheye id="idExportCSV"
+							label="${lblMenTExpCSV}" image="${imgDownloadCSV}"
+							onClick="thiz.doExportReport(com.cimmyt.utils.ConstantsDNA.FILE_TYPE_CSV)" />
+						
+						<fisheye id="idFindFiles" style="margin-left:15px"
+							label="${lblSearchFiles}" image="${imgQuery}"
+							onClick="thiz.doFindDataSets()" />
+					</fisheyebar>
+
+					<space width="150px"></space>
+					
+					<hbox align="center" hflex="true" vflex="true" width="100%">
+						<label value="${lblSearchDB}" />
+						<combobox id="cboxSearchOn" readonly="true"
+						onChange="thiz.doChangeSearchTarget(self.getSelectedItem().getValue().toString())">
+							<comboitem value="KB" label="${lblKnowledgeBase}"></comboitem>
+							<comboitem value="DNA" label="${lblWelcomeDNAN}"></comboitem>
+						</combobox>
+						<space width="10px"></space>
+						<label value="${lblSearch}" id="lblSearchFor" visible="false"></label>						
+						<combobox id="cboxSearchFor" readonly="true" visible="false"
+						onChange="thiz.doChangeSearchFor()" 
+						onAfterRender="cboxSearchFor.setSelectedIndex(0);thiz.doChangeSearchFor()"/>
+					</hbox>
+
+				</hbox>
+			</north>
+	
+		<center  sclass="borderNort">
+		<vbox vflex="1">
+		<space height="5px"/>
+		<label value="${lblQueryInfo}" style="font-weight:bold"/>
+			<grid width="98%" hflex="true" height="100%"
+				id="idGridParams" vflex="true"
+				sizedByContent="true" emptyMessage="${lblEmptyParams}">
+				<columns>
+				</columns>
+				<rows></rows>
+			</grid>
+		</vbox>
+		</center>
+		<south height="60%">
+			<vbox width="100%" height="100%" align="center" vflex="true" hflex="true">
+				<label value="${lblSearchResult}" style="font-size:18px;"></label>
+				<grid width="100%" id="idGridResults"  vflex="true" hflex="true" mold="default" sizedByContent="true">
+					<columns>
+					</columns>
+					<rows></rows>
+				</grid>
+				<paging id="idPaging" detailed="true"></paging>
+				
+			</vbox>
+		</south>
+	</borderlayout>
+</window>
+</zk>

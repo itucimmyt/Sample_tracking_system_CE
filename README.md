@@ -1,37 +1,32 @@
-# You've added your first ReadMe file!
-A README.md file is intended to quickly orient readers to what your project can do.  New to Markdown? [Learn more](http://go.microsoft.com/fwlink/p/?LinkId=524306&clcid=0x409)
+# Ha agregado su primer archivo Léame.
+El archivo LÉAME.md sirve para explicar brevemente a los lectores lo que hace su proyecto. ¿Es nuevo en Markdown? [Más información](http://go.microsoft.com/fwlink/p/?LinkId=524306&clcid=0x409)
 
-## Edit this ReadMe and commit your change to a topic branch
-In Git, branches are cheap.  You should use them whenever you're making changes to your repository.  Edit this file by clicking on the edit icon.
+## Edite este Léame y confirme el cambio en una rama puntual
+En Git, las ramas consumen pocos recursos. Úselas cuando haga cambios en el repositorio. Edite este archivo haciendo clic en el icono de edición.
 
-Then make some changes to this ReadMe file.
+Luego haga cambios en este archivo Léame.
 
-> Make some **edits** to _this_ blockquote
+> Haga algunas **ediciones** en _este_ blockquote
 
-When you are done, click the dropdown arrow next to the save button - that will allow you to commit your changes to a new branch.
+Cuando termine, haga clic en la flecha desplegable que hay al lado del botón de guardar: así podrá confirmar los cambios en una rama nueva.
 
-## Create a pull request to contribute your changes back into master
-Pull requests are the way to move changes from a topic branch back into the master branch.
+## Cree una solicitud de extracción para aplicar los cambios en la principal
+Las solicitudes de extracción sirven para extrapolar cambios de una rama puntual a la rama principal.
 
-Click on the **Pull Requests** page in the **CODE** hub, then click "New Pull Request" to create a new pull request from your topic branch to the master branch.
+Haga clic en la página **Solicitudes de extracción** del concentrador **CÓDIGO** y luego haga clic en "Nueva solicitud de extracción" para crear una nueva solicitud de extracción de la rama puntual a la rama principal.
 
-When you are done adding details, click "Create Pull request". Once a pull request is sent, reviewers can see your changes, recommend modifications, or even push follow-up commits.
+Cuando termine de agregar detalles, haga clic en "Crear solicitud de extracción". Cuando se envíe una solicitud de extracción, los revisores podrán ver sus cambios, recomendar modificaciones o insertar confirmaciones de seguimiento.
 
-First time creating a pull request?  [Learn more](http://go.microsoft.com/fwlink/?LinkId=533211&clcid=0x409)
+¿Es la primera vez que crea una solicitud de extracción?  [Más información](http://go.microsoft.com/fwlink/?LinkId=533211&clcid=0x409)
 
-### Congratulations! You've completed the grand tour of the CODE hub!
+### ¡Enhorabuena! Ha terminado la visita completa al concentrador CÓDIGO.
 
-# Next steps
+# Pasos siguientes
 
-If you haven't already done so, [install Git](http://git-scm.com/downloads) (as well as [Git Credential Manager](https://java.visualstudio.com/Downloads/gitcredentialmanager/Index) for Linux or Mac OS)
+Si todavía no lo ha hecho:
+* [Instale Visual Studio](http://go.microsoft.com/fwlink/?LinkId=309297&clcid=0x409&slcid=0x409)
+* [Instale Git](http://git-scm.com/downloads)
 
-Choose and install one of these supported IDEs:
-* [Visual Studio](http://go.microsoft.com/fwlink/?LinkId=309297&clcid=0x409&slcid=0x409)
-* [Android Studio](https://developer.android.com/studio) (with [Team Services Plugin](https://java.visualstudio.com/Downloads/intellijplugin/Index))
-* [Eclipse](http://www.eclipse.org/downloads) (with [Team Explorer Everywhere](https://java.visualstudio.com/Downloads/eclipseplugin/Index))
-* [IntelliJ IDEA](https://www.jetbrains.com/idea/download) (with [Team Services Plugin](https://java.visualstudio.com/Downloads/intellijplugin/Index))
-* [Visual Studio Code](https://code.visualstudio.com/Download) (with [Team Services Extension](https://java.visualstudio.com/Downloads/visualstudiocode/Index))
+Luego clone este repositorio en la máquina local para empezar a trabajar en su propio proyecto.
 
-Then clone this repo to your local machine to get started with your own project.
-
-Happy coding!
+¡Feliz codificación!

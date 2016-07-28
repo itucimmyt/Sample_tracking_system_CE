@@ -1,0 +1,156 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk >
+<window title="${lblRegisterT}" border="normal" width="800px" closable="false"
+use="com.cimmyt.zk.register.ControlRegister" id="idWindowRegister" onCreate="idWindowRegister.doAfterCompose()">
+<script type="text/javascript" src="pwd_st.js"></script>
+
+	<grid>
+	<columns>
+	  <column width="30%"/>
+	  <column width="70%"/>
+	</columns>
+	  <rows>
+	  
+	     <row>
+	      <cell width="150px">
+	      <label id="lblEMail" style="color:red">*</label>
+	      	<label sclass="labelWindowR">${lblRegisterE}</label>
+	      </cell>
+	      <cell>
+	      <hbox>
+	        <textbox id="idTextEmail"  cols="50" maxlength="50" tabindex="4" ></textbox>
+	        <separator/><separator/>
+	        <label id="idLblErrorEmail" style="color:red"></label>
+	        </hbox>
+	      </cell>
+	    </row>
+	     <row>
+	      <cell>
+	      <label id="lblConfEmail" style="color:red">*</label>
+	      	<label sclass="labelWindowR">${lblRegisterCE}</label>
+	      </cell>
+	      <cell>
+	      <vbox>
+	      	<hbox>
+	        <textbox id="idTextCEmail" cols="50" maxlength="50" tabindex="5"></textbox>
+	        <label id="idLblErrorConEmail" style="color:red"/>
+	        </hbox>
+	        <label sclass="labelWindowR">${lblRegisterVM}</label>
+	        </vbox>
+	      </cell>
+	    </row>
+	    <row>
+					<cell>
+						<label>${lblMCrop}</label>
+					</cell>
+					<cell colspan="2">
+						<radiogroup id="idRGCornR" visible="true"
+							style="text-align:middle" orient="horizontal">
+							<radio id="idRCornR" value="1" 
+								label="${lblWelcomeItemCorn}" checked="true"/>
+							<radio id="idRWheatR" value="2"
+								label="${lblWelcomeItemWheat}"  />
+						</radiogroup>
+					</cell>
+		</row>
+	    <row>
+	      <cell>
+	      <label id="lblFisrtName" style="color:red">*</label>
+	      	<label sclass="labelWindowR">${lblRegisterFN}</label>
+	      </cell>
+	      <cell>
+	        <textbox id="idTextRegisterName" cols="30" maxlength="30" tabindex="6" ></textbox>
+	      </cell>
+	    </row>
+	     <row>
+	      <cell>
+	      <label id="lblSecondName" style="color:red">*</label>
+	      	<label sclass="labelWindowR">${lblRegisterLN}</label>
+	      </cell>
+	      <cell>
+	        <textbox id="idTxtSecondName" cols="60" maxlength="60" tabindex="7" ></textbox>
+	      </cell>
+	    </row>
+	     <row>
+	      <cell>
+	      	<label sclass="labelWindowR">${lblRegisterIB}</label>
+	      </cell>
+	      <cell>
+	        <textbox id="idTxtInmediateBoss" cols="60" maxlength="60" tabindex="8"  ></textbox>
+	      </cell>
+	    </row>
+	    <row>
+	      <cell>
+	      	<label sclass="labelWindowR">${lblRegisterCi}</label>
+	      </cell>
+	      <cell>
+	        <textbox id="idTxtCity" cols="60" maxlength="60" tabindex="9" ></textbox>
+	      </cell>
+	    </row>
+	    <row>
+	      <cell>
+	      <label id="lblcontry" style="color:red">*</label>
+	      	<label sclass="labelWindowR">${lblRegisterCo}</label>
+	      </cell>
+	      <cell >
+	        <combobox id="idCombContry"  readonly="true" width="150px" tabindex="10" cols="85">
+	        </combobox>
+	      </cell>
+	    </row>
+	     <row>
+	      <cell>
+	      <label id="lblindustry" style="color:red">*</label>
+	      	<label sclass="labelWindowR">${lblRegisterIn}</label>
+	      </cell>
+	      <cell>
+	       <textbox id="idTxtIndutria" cols="50" maxlength="50" tabindex="11" ></textbox>
+	      </cell>
+	    </row>
+	    
+	    <row>
+	      <cell>
+	      <label id="lblProvider" style="color:red">*</label>
+	      	<label sclass="labelWindowR">${lblRegisterComN}</label>
+	      </cell>
+	      <cell>
+	       <textbox id="idTxtProviderName" cols="50" maxlength="50" tabindex="12" ></textbox>
+	      </cell>
+	    </row>
+	     <row>
+	      <cell>
+	      	<label sclass="labelWindowR">${lblRegisterPho}</label>
+	      </cell>
+	      <cell>
+	       <textbox id="idTxtPhone" cols="50" maxlength="50" tabindex="13"></textbox>
+	      </cell>
+	    </row>
+	    <row>
+	      <cell/>
+	      <cell>
+	      <checkbox id="idChckTerms" label="${lblRegisterTerm}" tabindex="13">
+	      </checkbox>
+	      	
+	      	<a tabindex="14">${lblRegisterTEAc}</a>
+	      </cell>
+	    </row>
+	  </rows>
+	   
+	</grid>
+	<fisheyebar  style="margin:5px 300px;" attachEdge="top"
+			itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
+	<fisheye id="idLabFis"  onClick="idWindowRegister.add()" image="${imgNext}"/>
+	<fisheye label="${lblMenTCancel}" image="${imgClose}" onClick="idWindowRegister.closeWindow()"/>
+				 		</fisheyebar>
+</window>
+</zk>

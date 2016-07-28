@@ -1,0 +1,94 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+<zscript src="/scripts/locale.zk"/>
+
+<window border="normal" width="500px" height="415px" id="idCornellAdd"
+use="com.cimmyt.zk.shipments.ControlWindowCornell" onCreate="idCornellAdd.loadContextAttribute()" >
+
+	<caption image="${imgShipment}" label="" sclass="titleWindow" />
+	<vbox  width="100%" height="100%" align="center" pack="center">
+	<grid>
+		<rows>
+			<row>
+				<cell>
+			    	<label value="${lblSMSourceLab}"/>
+			  	</cell>
+			  	<cell>
+				    <textbox id="sourceLab" cols="100" maxlength="100" multiline="false" width="99.5%"
+					    onChange=""/>
+				</cell>
+			</row>
+			<row>
+			  	<cell>
+			    	<label value="${lblSMSampleDNA}"/>
+			  	</cell>
+			  	<cell>
+				    <textbox id="sampleDNA" cols="100" maxlength="100" multiline="false" width="99.5%"/>
+				</cell>
+			</row>
+			<row>
+				<cell>
+			    	<label value="${lblSMSampleVol}"/>
+			  	</cell>
+			  	<cell>
+				    <textbox id="sampleVol" cols="100" maxlength="100" multiline="false" width="99.5%"
+					    onChange=""/>
+				</cell>
+			</row>
+			<row>
+			  	<cell>
+			    	<label value="${lblSMSampleMass}"/>
+			  	</cell>
+			  	<cell>
+				    <textbox id="sampleMass" cols="100" maxlength="100" multiline="false" width="99.5%"/>
+				</cell>
+			</row>
+			<row>
+				<cell>
+			    	<label value="${lblSMPreparer}"/>
+			  	</cell>
+			  	<cell>
+				    <textbox id="preparer" cols="100" maxlength="100" multiline="false" width="99.5%"
+					    onChange=""/>
+				</cell>
+			</row>
+			<row>
+			  	<cell>
+			    	<label value="${lblSMKingdom}"/>
+			  	</cell>
+			  	<cell>
+				    <textbox id="kingdom" cols="100" maxlength="100" multiline="false" width="99.5%"/>
+				</cell>
+			</row>
+			<row>
+			  	<cell>
+			    	<label value="${lblSMGenusl}"/>
+			  	</cell>
+			  	<cell>
+				    <textbox id="genus" cols="100" maxlength="100" multiline="false" width="99.5%"/>
+				</cell>
+			</row>
+		</rows>
+	</grid>
+
+	<fisheyebar id="idFsb" attachEdge="top"
+	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
+	    <fisheye label="${lblMenTAdd}" id="idFisheyeCSV"
+	        image="${imgOk}" onClick="idCornellAdd.nextPag()" visible="true"/>
+	    <fisheye label="${lblMenTCancel}" 
+	    image="${imgCancel}" onClick="idCornellAdd.closeWindow()"/>
+	</fisheyebar>
+	</vbox>
+</window>
+</zk>

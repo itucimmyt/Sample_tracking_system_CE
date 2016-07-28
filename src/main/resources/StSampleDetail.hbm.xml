@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 23, 2013 11:57:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="org.cimmyt.dnast.dto.StSampleDetail" table="st_sample_detail">
+        <id name="studysampleid" type="java.lang.Integer">
+            <column name="studysampleid" />
+            <generator class="identity" />
+        </id>
+<!--        
+        <many-to-one name="stSeason" class="StSeason" fetch="select">
+            <column name="seasonid" />
+        </many-to-one>
+        <many-to-one name="stStorageLocation" class="StStorageLocation" fetch="select">
+            <column name="currentlocation">
+                <comment>Current Location for the sample, when value is NULL means that the sample has not been assigned to a location.</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="stLocation" class="StLocation" fetch="select">
+            <column name="locationid" />
+        </many-to-one>
+-->
+          <many-to-one name="stLabStudy" class="org.cimmyt.dnast.dto.StLabStudy" fetch="select">
+            <column name="labstudyid" not-null="true">
+                <comment>Lab study ID for the sample</comment>
+            </column>
+        </many-to-one>
+        <property name="breedergid" type="java.lang.Integer">
+            <column name="breedergid">
+                <comment>Breeders GID for the sample</comment>
+            </column>
+        </property>
+        <property name="sampleid" type="java.lang.Integer">
+            <column name="sampleid">
+                <comment>Sample GID</comment>
+            </column>
+        </property>
+        <property name="entryNo" type="java.lang.Integer">
+            <column name="entryNo">
+            </column>
+        </property>
+        <property name="nplanta" type="java.lang.Integer">
+            <column name="nplanta">
+                <comment>Number of individual</comment>
+            </column>
+        </property>
+        <property name="nval" type="string">
+            <column name="nval">
+                <comment>Name</comment>
+            </column>
+        </property>
+        <property name="platename" type="string">
+            <column name="platename" length="50">
+                <comment>Name of the plate</comment>
+            </column>
+        </property>
+        <property name="plateloc" type="string">
+            <column name="plateloc" length="7">
+                <comment>Location of the sample in the plate, for example A01, A10, H20</comment>
+            </column>
+        </property>
+        <property name="selforsend" type="java.lang.Character">
+            <column name="selforsend" length="1">
+                <comment>This sample was selected for send for genotyping?</comment>
+            </column>
+        </property>
+        <property name="lastmovdate" type="date">
+            <column name="lastmovdate" length="10">
+                <comment>Date of last movement of</comment>
+            </column>
+        </property>
+        <property name="specie" type="string">
+            <column name="specie" length="100">
+                <comment>Specie</comment>
+            </column>
+        </property>
+        <property name="priority" type="string">
+            <column name="priority" />
+        </property>
+        <property name="controltype" type="string">
+            <column name="controltype" length="4">
+                <comment>If is a control and type of control R=Random, C=Control D=Dart Control</comment>
+            </column>
+        </property>
+        <property name="sampleName" type="string">
+            <column name="sampleName" />
+        </property>
+    </class>
+</hibernate-mapping>

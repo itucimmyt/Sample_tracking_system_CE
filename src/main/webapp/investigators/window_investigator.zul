@@ -1,0 +1,54 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<!-- Copyright 2013 International Maize and Wheat Improvement Center -->
+<!--    Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!--    you may not use this file except in compliance with the License. -->
+<!--    You may obtain a copy of the License at -->
+<!--    http://www.apache.org/licenses/LICENSE-2.0 -->
+<!--    Unless required by applicable law or agreed to in writing, software -->
+<!--    distributed under the License is distributed on an "AS IS" BASIS, -->
+<!--    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!--    See the License for the specific language governing permissions and -->
+<!--    limitations under the License. -->
+
+<zk>
+
+<window border="normal" width="650px" height="480px" id="idWindow"
+use="com.cimmyt.zk.investigator.ControlWindowInvestigator" onCreate="idWindow.loadContextAttribute()" >
+	<caption image="${imgInvestigator2}" label="" sclass="titleWindow"/>
+	<vbox>
+	<grid>
+		<rows>
+			<row>
+			<cell>
+			    <label sclass="labelWindow" value="*"/>
+			    	<label value="${lblInvSelectRole}"/>
+			    </cell>
+			    <cell>
+			     <combobox id="idComboRole" readonly="true" cols="25"  />
+			    </cell>
+			</row>
+		</rows>
+	</grid>
+	<grid>
+	</grid>
+	</vbox>
+	<grid>
+	<columns>
+	  <column width="25%"></column>
+	  <column width="75%"></column>
+	</columns>
+		<rows id="idRowsUser">				
+		</rows>
+	</grid>
+	<box> 
+	<fisheyebar id="idFsb" style="position:absolute; margin:15px 180px;" attachEdge="top"
+	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
+	    <fisheye label="${lblMenTAdd}" 
+	        image="${imgOk}" onClick="idWindow.add()"/>
+	    <fisheye label="${lblMenTCancel}" 
+	    image="${imgClose}" onClick="idWindow.closeWindow()"/>
+	</fisheyebar>
+	
+	</box>
+</window>
+</zk>

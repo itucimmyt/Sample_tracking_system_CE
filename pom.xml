@@ -1,0 +1,323 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cimmyt</groupId>
+  <artifactId>dna_sample_trackingw</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>      
+  <name>dna_sample_tracking_mvn Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+  <repositories>
+ </repositories>
+  
+  <dependencies>
+  
+    <dependency>
+	<groupId>log4j</groupId>
+	<artifactId>log4j</artifactId>
+	<version>1.2.15</version>
+	<exclusions>
+    <exclusion>
+        <groupId>com.sun.jmx</groupId>
+        <artifactId>jmxri</artifactId>
+    </exclusion>
+    <exclusion>
+        <groupId>com.sun.jdmk</groupId>
+        <artifactId>jmxtools</artifactId>
+    </exclusion>
+    <exclusion>
+            <groupId>javax.jms</groupId>
+            <artifactId>jms</artifactId>
+    </exclusion>
+</exclusions>
+</dependency>
+  
+   <dependency>
+	<groupId>org.hibernate</groupId>
+	<artifactId>hibernate-core</artifactId>
+	<version>3.6.6.Final</version>
+</dependency>
+<dependency>
+ <groupId>org.hibernate</groupId>
+ <artifactId>hibernate-annotations</artifactId>
+ <version>3.4.0.GA</version>
+ <scope>provided</scope>
+</dependency>
+      
+    <dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-entitymanager</artifactId>
+    <version>3.6.10.Final</version>
+</dependency>    
+
+
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-orm</artifactId>
+	<version>4.1.0.RELEASE</version>
+</dependency>
+<dependency>
+	<groupId>net.sf.jasperreports</groupId>
+	<artifactId>jasperreports</artifactId>
+	<version>5.6.1</version>
+</dependency>
+
+<dependency>
+	<groupId>org.apache.poi</groupId>
+	<artifactId>poi</artifactId>
+	<version>3.10.1</version>
+</dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.4</version>
+    </dependency>
+<dependency>
+	<groupId>javax.servlet</groupId>
+	<artifactId>servlet-api</artifactId>
+	<version>2.5</version>
+</dependency>
+
+
+<dependency>
+	<groupId>org.jboss.resteasy</groupId>
+	<artifactId>resteasy-jaxrs</artifactId>
+	<version>2.3.2.Final</version>
+</dependency>
+<dependency>
+	<groupId>org.jboss.resteasy</groupId>
+	<artifactId>resteasy-jaxb-provider</artifactId>
+	<version>3.0.8.Final</version>
+</dependency>
+ <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-spring</artifactId>
+      <version>3.0.5.Final</version>
+   </dependency>
+   
+<dependency>
+	<groupId>org.jboss.resteasy</groupId>
+	<artifactId>resteasy-jackson-provider</artifactId>
+	<version>3.0.8.Final</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.httpcomponents</groupId>
+	<artifactId>httpclient</artifactId>
+	<version>4.2.3</version>
+</dependency>
+
+<dependency>
+	<groupId>net.sourceforge.javacsv</groupId>
+	<artifactId>javacsv</artifactId>
+	<version>2.0</version>
+</dependency>
+<!-- ######################### test -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    
+<dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-dbcp2</artifactId>
+	<version>2.0.1</version>
+	      <scope>test</scope>
+</dependency>
+<dependency>
+<groupId>org.mockito</groupId>
+<artifactId>mockito-core</artifactId>
+<version>1.10.8</version>
+<scope>test</scope>
+</dependency>
+<dependency>
+<groupId>org.springframework</groupId>
+<artifactId>spring-test</artifactId>
+<version>2.5</version>
+<scope>test</scope>
+</dependency>
+<!--###########################33 ZK  -->
+          <dependency>
+            <groupId>org.zkoss.zk</groupId>
+            <artifactId>zkex</artifactId>
+            <version>6.5.5</version>
+        </dependency>
+        
+      <dependency>
+	      <groupId>org.zkoss.zk</groupId>
+	      <artifactId>zk</artifactId>
+	      <version>6.5.5</version>
+    	</dependency>
+    	      <dependency>
+	      <groupId>org.zkoss.zk</groupId>
+	      <artifactId>zul</artifactId>
+	      <version>6.5.5</version>
+    	</dependency>
+    	<dependency>
+      <groupId>org.zkoss.zk</groupId>
+      <artifactId>zhtml</artifactId>
+      <version>6.5.5</version>
+    </dependency>
+  
+ 	<dependency>
+      <groupId>org.zkoss.zk</groupId>
+      <artifactId>zkplus</artifactId>
+      <version>6.5.5</version>
+    </dependency>
+	<dependency>
+      <groupId>org.zkoss.zk</groupId>
+      <artifactId>zcommon</artifactId>
+      <version>6.5.5</version>
+    </dependency>
+	
+    	<!-- Spring 3 dependencies -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>4.1.2.RELEASE</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.0.3.RELEASE</version>
+		</dependency>
+ 
+ <dependency>
+	  <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>3.0.5.RELEASE</version>
+      <scope>test</scope>
+	</dependency>
+ 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.0.3.RELEASE</version>
+		</dependency>
+ 
+ 
+		 <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>4.0.3.RELEASE</version>
+		</dependency>
+            
+         <dependency>
+			<groupId>aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>4.0.3.RELEASE</version>
+		</dependency>
+        
+        <!-- Spring AOP dependency -->
+        <dependency>
+    	        <groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.1</version>
+		</dependency>
+ 
+   <dependency>
+	<groupId>mysql</groupId>
+	<artifactId>mysql-connector-java</artifactId>
+	<version>5.1.12</version>
+</dependency>
+
+  
+  </dependencies>
+  <build>
+    <finalName>dna_sample_trackingw</finalName>
+        <plugins>
+			<!-- Maven Tomcat Plugin -->
+			<plugin>
+			 <groupId>org.apache.tomcat.maven</groupId>  
+ 			 <artifactId>tomcat7-maven-plugin</artifactId>  
+ 			 <version>2.2</version>
+ 			 <!--   
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				-->
+				<configuration>
+					<url>http://127.0.0.1:8080/manager/text</url>
+					<server>TomcatServer</server>
+					<path>/dna_sample_trackingw</path>
+				</configuration>
+			</plugin>
+				<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>7.6.8.v20121106</version>
+				<configuration>
+					<webAppConfig>
+						<contextPath>/${project.artifactId}</contextPath>
+						<allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>	 
+					</webAppConfig>
+					<scanIntervalSeconds>5</scanIntervalSeconds>
+
+				</configuration>
+			</plugin>
+			<!-- Maven compiler plugin -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-resource01</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+                        <outputDirectory>${basedir}/target/classes/com/cimmyt/reports/src</outputDirectory>
+                        <encoding>UTF-8</encoding>
+                        <resources>
+                            <resource>
+                                <directory>${basedir}/src/main/java/com/cimmyt/reports/src</directory>
+                                <includes>
+                                    <include>**/*.xls</include>
+                                    <include>**/*.jasper</include>
+                                    <include>**/*.jrxml</include>
+                                    <include>**/*.jpg</include>
+                                    <include>**/*.csv</include>
+                                </includes>
+                            </resource>
+                        </resources>
+                    </configuration>
+					</execution>
+				</executions>			
+			</plugin>
+		</plugins>
+
+    
+  </build>
+</project>

@@ -20,8 +20,8 @@ import static com.cimmyt.utils.Constants.LOCALE_LANGUAGE;
 import static com.cimmyt.utils.Constants.SELECT_OPTION_MENU;
 
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
 import org.zkoss.zul.Center;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Include;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
@@ -39,7 +39,7 @@ public class ControlMenuAndTool {
 	
 	private static Label idSelectedAction;
 	
-	public static void selectMenu2(ListMenu option, Center border, Fisheye fisheye) throws InterruptedException{
+	public static void selectMenu2(ListMenu option, Center border, Image fisheye) throws InterruptedException{
 		 try
 	        {
 			 PropertyHelper pro=(PropertyHelper) border.getDesktop().getSession().getAttribute(LOCALE_LANGUAGE);
@@ -96,7 +96,7 @@ public class ControlMenuAndTool {
 	                default:
 	            }
 			  	border.getDesktop().setAttribute(SELECT_OPTION_MENU, option); 
-				idSelectedAction.setValue(pro.getKey(LBL_WELCOME_NA_AP)+" - "+fisheye.getLabel());
+				idSelectedAction.setValue(pro.getKey(LBL_WELCOME_NA_AP)+" - "+fisheye.getTooltiptext());
 				
 	        }
 	        catch( Exception e )

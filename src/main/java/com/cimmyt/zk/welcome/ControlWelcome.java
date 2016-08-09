@@ -58,11 +58,12 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zkex.zul.Fisheye;
-import org.zkoss.zkex.zul.Fisheyebar;
 import org.zkoss.zul.A;
 import org.zkoss.zul.Borderlayout;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Vbox;
 import org.zkoss.zul.West;
 import org.zkoss.zul.Window;
 
@@ -74,7 +75,7 @@ import com.cimmyt.utils.StrUtils;
 @SuppressWarnings("serial")
 public class ControlWelcome extends Borderlayout{
 
-	private Fisheyebar eyeBar;
+	private Vbox idContainerImages;
 	private PropertyHelper prop;
 	private Label idLabelSIU;
 	private Label idLblProfile;
@@ -84,8 +85,8 @@ public class ControlWelcome extends Borderlayout{
 	private West idWest;
 	private A idLogin;
 	private A idPreference;
-	private Fisheye idLogout;
-	private Fisheye idHome;
+	private Image idLogout;
+	private Image idHome;
 
 	private final String STUDY_TEMPLATE = "studyTemplate";
 	private final String STORE_LOCATION = "storeLocations";
@@ -113,10 +114,11 @@ public class ControlWelcome extends Borderlayout{
 		 
 		loadContext();
 
+		
 		EventListener<Event> rolloverEvt = new EventListener<Event>() {
 			@Override
 			public void onEvent(Event evt) throws Exception {
-				switch(eyeBar.getChildren().indexOf(evt.getTarget())){
+				switch(idContainerImages.getChildren().indexOf(evt.getTarget())){
 				case 0: labelTitle.setValue(prop.getKey(LBL_GENERIC_STUDY_TEMPLATE));
 						labelText.setValue(prop.getKey(LBL_GENERIC_STUDY_TEMPLATE_DESC));
 					break;
@@ -154,7 +156,9 @@ public class ControlWelcome extends Borderlayout{
 						 labelText.setValue(prop.getKey(LBL_BMS_MENU));
 					break;
 				}
-				
+				Image image =  (Image)evt.getTarget();
+				image.setWidth("50px");
+				image.setHeight("50px");
 			}
 		};
 		
@@ -163,17 +167,19 @@ public class ControlWelcome extends Borderlayout{
 			public void onEvent(Event evt) throws Exception {
 				 labelTitle.setValue(prop.getKey(LBL_WELCOME_TITLE));
 				 labelText.setValue(prop.getKey(LBL_WELCOME_TEXT));
+				 Image image =  (Image)evt.getTarget();
+					image.setWidth("35px");
+					image.setHeight("35px");
 			}
 			
 		};
 		
 		
-		for(Component fisheye : eyeBar.getChildren()){
+		for(Component image : idContainerImages.getChildren()){
 			
-			fisheye.addEventListener("onMouseOver", rolloverEvt);
-			fisheye.addEventListener("onMouseOut", rolloutEvt);
+			image.addEventListener("onMouseOver", rolloverEvt);
+			image.addEventListener("onMouseOut", rolloutEvt);
 		}
-		
 		
 	
 		getDesktop().getSession().setAttribute(LOCALE_LANGUAGE, prop);
@@ -209,44 +215,44 @@ public class ControlWelcome extends Borderlayout{
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){
 			mapFuntions = (Map<String, String>) getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION);
 			if (mapFuntions.get(STUDY_TEMPLATE) == null){
-				Fisheye idAdd = (Fisheye)getFellow(STUDY_TEMPLATE);
-				eyeBar.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(STUDY_TEMPLATE);
+				idContainerImages.removeChild(idAdd);
 			}
 			if (mapFuntions.get(STORE_LOCATION) == null){
-				Fisheye idAdd = (Fisheye)getFellow(STORE_LOCATION);
-				eyeBar.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(STORE_LOCATION);
+				idContainerImages.removeChild(idAdd);
 			}
 			if (mapFuntions.get(STUDIES) == null){
-				Fisheye idAdd = (Fisheye)getFellow(STUDIES);
-				eyeBar.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(STUDIES);
+				idContainerImages.removeChild(idAdd);
 			}
 			if (mapFuntions.get(SERVICE_PROVIDER) == null){
-				Fisheye idAdd = (Fisheye)getFellow(SERVICE_PROVIDER);
-				eyeBar.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(SERVICE_PROVIDER);
+				idContainerImages.removeChild(idAdd);
 			}
 			if (mapFuntions.get(SHIPMENT_MANAGMENT) == null){
-				Fisheye idAdd = (Fisheye)getFellow(SHIPMENT_MANAGMENT);
-				eyeBar.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(SHIPMENT_MANAGMENT);
+				idContainerImages.removeChild(idAdd);
 			}
 			if (mapFuntions.get(PROJECTS) == null){
-				Fisheye idAdd = (Fisheye)getFellow(PROJECTS);
-				eyeBar.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(PROJECTS);
+				idContainerImages.removeChild(idAdd);
 			}
 			if (mapFuntions.get(RESEARCHERS) == null){
-				Fisheye idAdd = (Fisheye)getFellow(RESEARCHERS);
-				eyeBar.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(RESEARCHERS);
+				idContainerImages.removeChild(idAdd);
 			}
 			if (mapFuntions.get(TISSUES) == null){
-				Fisheye idAdd = (Fisheye)getFellow(TISSUES);
-				eyeBar.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(TISSUES);
+				idContainerImages.removeChild(idAdd);
 			}
 			if (mapFuntions.get(LOCATION) == null){
-				Fisheye idAdd = (Fisheye)getFellow(LOCATION);
-				eyeBar.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(LOCATION);
+				idContainerImages.removeChild(idAdd);
 			}
 			if (mapFuntions.get(SEASON) == null){
-				Fisheye idAdd = (Fisheye)getFellow(SEASON);
-				eyeBar.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(SEASON);
+				idContainerImages.removeChild(idAdd);
 			}
 		}
 	}
@@ -255,14 +261,14 @@ public class ControlWelcome extends Borderlayout{
 		idLabelSIU = (Label)getFellow("idLabelSIU");
 		idLblProfile = (Label)getFellow("idLblProfile");
 		idLabelSIU2 = (Label)getFellow("idLabelSIU2");
-		eyeBar     = (Fisheyebar)getFellow("idFsb");
+		idContainerImages = (Vbox)getFellow("idContainerImages");
 		labelTitle     = (Label)getFellow("idHeader");
 		labelText     = (Label)getFellow("idText");
 		idWest = (West)getFellow("idWest");
 		idLogin = (A)getFellow("idLogin");
 		idPreference = (A)getFellow("idPreference");
-		idLogout = (Fisheye)getFellow("idLogout");
-		idHome = (Fisheye)getFellow("idHome");
+		idLogout = (Image)getFellow("idLogout");
+		idHome = (Image)getFellow("idHome");
 	}
 	/**
 	 * validate user and password

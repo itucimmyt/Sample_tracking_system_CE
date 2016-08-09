@@ -49,7 +49,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
 import org.zkoss.zul.Label;
@@ -83,7 +82,6 @@ public class LoginWelcome extends Window{
 	private Radiogroup idRGCorn;
 	private A idReg;
 	private A idReset;
-	private Fisheye eye1;
 	PropertyHelper prop = new PropertyHelper();
 	private static ServiceLogin serviceLogin;
 	static {

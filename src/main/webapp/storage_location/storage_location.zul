@@ -21,23 +21,64 @@
 				maxsize="60" style="overflow:visible;" minsize="60" flex="true"
 				margins="0,15,0,0">
 
-				<vbox width="150px" align="start"
+				<hbox id="idhBox" width="150px" align="start"
 						style="overflow:visible;">
-					<fisheyebar id="idFsbStorageLocation" attachEdge="top"
-						style="position:absolute;" labelEdge="bottom" itemWidth="40"
-						itemHeight="40" itemMaxHeight="60" itemMaxWidth="60">
-						<fisheye label="${lblMenTAdd}" image="${imgAdd}" id="storeLocations$idAdd"
-							onClick="idWindow.add()" />
-						<fisheye label="${lblMenTEdit}" id="storeLocations$idEdit"
-							image="${imgEdit}" onClick="idWindow.edit()" />
-						<fisheye label="${lblMenTDelete}" id="storeLocations$idDelete"
-							image="${imgDeleteItem}" onClick="idWindow.delete()" />
-						<fisheye label="${lblMenTBarCode}" id="storeLocations$idBarCode"
-							image="${imgBarcode}" onClick="idWindow.printReport()" />
-						<fisheye label="${lblMenTAddSamL}" id="storeLocations$idStorageSample"
-							image="${imgStoreSamples}" onClick="idWindow.sampleAssigned()" />
-					</fisheyebar>
-				</vbox>
+					<image  id="storeLocations$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.add()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							storeLocations$idAdd.setWidth("60px");
+							storeLocations$idAdd.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							storeLocations$idAdd.setWidth("40px");
+							storeLocations$idAdd.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="storeLocations$idEdit" tooltiptext="${lblMenTEdit}" src="${imgEdit}" onClick="idWindow.edit()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							storeLocations$idEdit.setWidth("60px");
+							storeLocations$idEdit.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							storeLocations$idEdit.setWidth("40px");
+							storeLocations$idEdit.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="storeLocations$idDelete" tooltiptext="${lblMenTDelete}" src="${imgDeleteItem}" onClick="idWindow.delete()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							storeLocations$idDelete.setWidth("60px");
+							storeLocations$idDelete.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							storeLocations$idDelete.setWidth("40px");
+							storeLocations$idDelete.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="storeLocations$idBarCode" tooltiptext="${lblMenTBarCode}" src="${imgBarcode}" onClick="idWindow.printReport()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							storeLocations$idBarCode.setWidth("60px");
+							storeLocations$idBarCode.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							storeLocations$idBarCode.setWidth("40px");
+							storeLocations$idBarCode.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="storeLocations$idStorageSample" tooltiptext="${lblMenTAddSamL}" src="${imgStoreSamples}" onClick="idWindow.sampleAssigned()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							storeLocations$idStorageSample.setWidth("60px");
+							storeLocations$idStorageSample.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							storeLocations$idStorageSample.setWidth("40px");
+							storeLocations$idStorageSample.setHeight("40px");
+						</attribute>
+					</image>
+				</hbox>
 
 			</north>
 			<center  sclass="borderNort"  autoscroll="true"

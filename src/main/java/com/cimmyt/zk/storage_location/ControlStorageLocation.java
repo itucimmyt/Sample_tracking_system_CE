@@ -14,7 +14,6 @@ package com.cimmyt.zk.storage_location;
 
 import static com.cimmyt.utils.Constants.ATTRIBUTE_NAME_USER_BEAN;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_PARAM_MAP_FUNTION;
-import static com.cimmyt.utils.Constants.ATTRIBUTE_PARAM_REPORT;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SAMPLE_LOCATION_LIST;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_STORAGE_LOCATION_ITEM;
 import static com.cimmyt.utils.Constants.COMPANY_SERVICE_BEAN_NAME;
@@ -51,9 +50,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
-import org.zkoss.zkex.zul.Fisheyebar;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Tree;
@@ -62,7 +61,6 @@ import org.zkoss.zul.Window;
 
 import com.cimmyt.bean.ReportBarCodeBean;
 import com.cimmyt.bean.UserBean;
-import com.cimmyt.model.bean.SampleDetail;
 import com.cimmyt.model.bean.StorageLocation;
 import com.cimmyt.model.bean.StudyTemplate;
 import com.cimmyt.reports.bean.ExportReport;
@@ -90,7 +88,7 @@ public class ControlStorageLocation extends Window {
     private final String ID_DELETE = "storeLocations$idDelete";
     private final String ID_BAR_CODE = "storeLocations$idBarCode";
     private final String ID_STORAGE_SAMPLE = "storeLocations$idStorageSample";
-    private Fisheyebar fisheyebar;
+    private Hbox idhBox;
     private UserBean userBean;
     
 	static {
@@ -132,29 +130,29 @@ public class ControlStorageLocation extends Window {
 
 	@SuppressWarnings("unchecked")
 	private void loadFisheye (){
-		fisheyebar = (Fisheyebar)getFellow("idFsbStorageLocation");
+		idhBox = (Hbox)getFellow("idhBox");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){
 			mapFuntions = (Map<String, String>) getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION);
 			if (mapFuntions.get(ID_ADD) == null){
-				Fisheye id = (Fisheye)getFellow(ID_ADD);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_ADD);
+				idhBox.removeChild(id);
 			}
 			if (mapFuntions.get(ID_EDIT) == null){
-				Fisheye id = (Fisheye)getFellow(ID_EDIT);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_EDIT);
+				idhBox.removeChild(id);
 			}
 			if (mapFuntions.get(ID_DELETE) == null){
-				Fisheye id = (Fisheye)getFellow(ID_DELETE);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_DELETE);
+				idhBox.removeChild(id);
 			}
 			if (mapFuntions.get(ID_BAR_CODE) == null){
-				Fisheye id = (Fisheye)getFellow(ID_BAR_CODE);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_BAR_CODE);
+				idhBox.removeChild(id);
 			}
 			if (mapFuntions.get(ID_STORAGE_SAMPLE) == null){
-				Fisheye id = (Fisheye)getFellow(ID_STORAGE_SAMPLE);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_STORAGE_SAMPLE);
+				idhBox.removeChild(id);
 			}
 		}
 	}

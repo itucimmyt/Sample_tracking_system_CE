@@ -51,15 +51,31 @@ use="com.cimmyt.zk.studyTemplate.ControlWindowStudyTemplate" onCreate="idWindow.
 
 	<vbox>
 	<label sclass="subTitleWindow">${lblSTTSWF}</label>
-     <box height="40px">
-				<fisheyebar id="idFA" style="position:absolute; margin:0px 250px;" attachEdge="top"
-		        itemWidth="40" itemHeight="40" itemMaxHeight="60" itemMaxWidth="60">
-		        <fisheye id="idFieldAdd" label="${lblMenTAdd}" 
-	            image="${imgAdd}" onClick ="idWindow.addField()" />
-	            <fisheye id="idFieldDelete" label="${lblMenTDelete}" 
-	            image="${imgDeleteItem}" onClick ="idWindow.deleteField()"/>
-								
-			</fisheyebar>
+     <box height="40px" width="830px">
+     <div align="center" width="830px">
+     <image  id="idFieldAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.addField()"
+		width="35px" height="35px">
+			<attribute name="onMouseOver">
+				idFieldAdd.setWidth("50px");
+				idFieldAdd.setHeight("50px");
+			</attribute>
+			<attribute name="onMouseOut">
+				idFieldAdd.setWidth("35px");
+				idFieldAdd.setHeight("35px");
+			</attribute>
+		</image>
+		 <image  id="idFieldDelete" tooltiptext="${lblMenTDelete}" src="${imgDeleteItem}" onClick="idWindow.deleteField()"
+		width="35px" height="35px">
+			<attribute name="onMouseOver">
+				idFieldDelete.setWidth("50px");
+				idFieldDelete.setHeight("50px");
+			</attribute>
+			<attribute name="onMouseOut">
+				idFieldDelete.setWidth("35px");
+				idFieldDelete.setHeight("35px");
+			</attribute>
+		</image>
+     </div>
 	</box>
 		<listbox id="idLisB" multiple="false" width="800px" height="200px"
 				checkmark="true" sizedByContent="false" >
@@ -79,15 +95,31 @@ use="com.cimmyt.zk.studyTemplate.ControlWindowStudyTemplate" onCreate="idWindow.
 	</vbox>
 	
 	
-	<box> 
-	<fisheyebar id="idFsb" style="position:absolute; margin:15px 280px;" attachEdge="top"
-	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
-	    <fisheye label="${lblMenTAdd}" 
-	        image="${imgOk}" onClick="idWindow.add()"/>
-	    <fisheye label="${lblMenTCancel}" 
-	    image="${imgClose}" onClick="idWindow.closeWindow()"/>
-	</fisheyebar>
-	
+	<box width="830px" > 
+	<div align="center" width="830px">
+	 <image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindow.add()"
+		width="40px" height="40px">
+			<attribute name="onMouseOver">
+				idAdd.setWidth("60px");
+				idAdd.setHeight("60px");
+			</attribute>
+			<attribute name="onMouseOut">
+				idAdd.setWidth("40px");
+				idAdd.setHeight("40px");
+			</attribute>
+		</image>
+		<image  id="idCancel" tooltiptext="${lblMenTCancel}" src="${imgClose}" onClick="idWindow.closeWindow()"
+		width="40px" height="40px">
+			<attribute name="onMouseOver">
+				idCancel.setWidth("60px");
+				idCancel.setHeight("60px");
+			</attribute>
+			<attribute name="onMouseOut">
+				idCancel.setWidth("40px");
+				idCancel.setHeight("40px");
+			</attribute>
+		</image>
+	</div>
 	</box>
 </window>
 </zk>

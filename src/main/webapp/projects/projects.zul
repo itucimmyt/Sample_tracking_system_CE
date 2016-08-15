@@ -19,19 +19,40 @@
 			
 			<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
-				<hbox width="100%" hflex="true" style="position:absolute; ">
-					<fisheyebar id="idFsbProject" 
-						attachEdge="top" itemWidth="40" itemHeight="40" itemMaxHeight="60"
-						itemMaxWidth="60">
-						<fisheye label="${lblMenTAdd}" image="${imgAdd}" id="projects$idAdd"
-							onClick="idWindowProject.addProject()" />
-						<fisheye label="${lblMenTEdit}" id="projects$idEdit"
-							image="${imgEdit}" onClick="idWindowProject.editProject()" />
-						<fisheye label="${lblMenTDelete}" id="projects$idDelete"
-							image="${imgDeleteItem}" onClick="idWindowProject.deleteProject()" />
-
-					</fisheyebar>
-
+				<hbox id="idHboxProjects" width="100%" hflex="true" style="position:absolute; ">
+				<image  id="projects$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindowProject.addProject()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							projects$idAdd.setWidth("60px");
+							projects$idAdd.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							projects$idAdd.setWidth("40px");
+							projects$idAdd.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="projects$idEdit" tooltiptext="${lblMenTEdit}" src="${imgEdit}" onClick="idWindowProject.editProject()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							projects$idEdit.setWidth("60px");
+							projects$idEdit.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							projects$idEdit.setWidth("40px");
+							projects$idEdit.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="projects$idDelete" tooltiptext="${lblMenTDelete}" src="${imgDeleteItem}" onClick="idWindowProject.deleteProject()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							projects$idDelete.setWidth("60px");
+							projects$idDelete.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							projects$idDelete.setWidth("40px");
+							projects$idDelete.setHeight("40px");
+						</attribute>
+					</image>
 					<space width="40px"></space>
 
 						<hbox align="center" width="100%" vflex="true" >
@@ -56,14 +77,17 @@
 							<textbox id="idSPuD" cols="15"
 								maxlength="15" width="80px">
 							</textbox>
-
-							<fisheyebar attachEdge="right"
-								labelEdge="bottom" orient="horizontal" itemWidth="32"
-								itemHeight="32" itemMaxHeight="40" itemMaxWidth="40">
-								<fisheye label="${lblProSB}"
-									image="${imgFind}" onClick="idWindowProject.searchProject()" />
-							</fisheyebar>
-
+							<image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindowProject.searchProject()"
+											width="32px" height="32px">
+												<attribute name="onMouseOver">
+													idFindP.setWidth("40px");
+													idFindP.setHeight("40px");
+												</attribute>
+												<attribute name="onMouseOut">
+													idFindP.setWidth("32px");
+													idFindP.setHeight("32px");
+												</attribute>
+							</image>
 						</hbox>
 				</hbox>
 			</north>

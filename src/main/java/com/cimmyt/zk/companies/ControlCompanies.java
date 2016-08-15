@@ -37,9 +37,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
-import org.zkoss.zkex.zul.Fisheyebar;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listhead;
@@ -68,7 +68,7 @@ public class ControlCompanies extends Window{
     private final String ID_ADD = "serviceProvider$idAdd";
     private final String ID_EDIT = "serviceProvider$idEdit";
     private final String ID_DELETE = "serviceProvider$idDelete";
-    private Fisheyebar fisheyebar;
+    private Hbox idHboxCompanies;
     private UserBean userBean;
 
 	static {
@@ -119,26 +119,26 @@ public class ControlCompanies extends Window{
 		}
 		idLisB.appendChild(idListHead);
 		 if (userBean!= null && userBean.getRole()!= null && !userBean.getRole().getIdstRol().equals(ConstantsDNA.ROLE_ADMINISTRATOR))
-			 loadFisheye();
+			 loadImage();
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadFisheye (){
-		fisheyebar = (Fisheyebar)getFellow("idFsbCompanies");
+	private void loadImage (){
+		idHboxCompanies = (Hbox)getFellow("idHboxCompanies");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){
 			mapFuntions = (Map<String, String>) getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION);
 			if (mapFuntions.get(ID_ADD) == null){
-				Fisheye id = (Fisheye)getFellow(ID_ADD);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_ADD);
+				idHboxCompanies.removeChild(id);
 			}
 			if (mapFuntions.get(ID_EDIT) == null){
-				Fisheye id = (Fisheye)getFellow(ID_EDIT);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_EDIT);
+				idHboxCompanies.removeChild(id);
 			}
 			if (mapFuntions.get(ID_DELETE) == null){
-				Fisheye id = (Fisheye)getFellow(ID_DELETE);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_DELETE);
+				idHboxCompanies.removeChild(id);
 			}
 		}
 	}

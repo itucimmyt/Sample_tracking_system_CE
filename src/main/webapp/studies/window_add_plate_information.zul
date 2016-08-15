@@ -83,81 +83,220 @@
 					<hbox align="center" pack="center" width="100%">
 						<vbox sclass="fish-eye-custom" align="center">
 							<label value="${lblStdGroup1}"  style="font-weight:bold;"/>
-							<fisheyebar attachEdge="top" itemWidth="40"
-								itemHeight="40" itemMaxHeight="60" itemMaxWidth="60">
-								<fisheye label="${lblSWPGP}" id=""
-									image="${imgTemplate}"
-									onClick="idWindowPlate.generatePlates()" />
-								<fisheye label="${lblSWPSAll}"
-									image="${imgSelectall}" onClick="idWindowPlate.selectAll()" />
-								<fisheye label="${lblSWPCS}"
-									image="${imgClear}" onClick="idWindowPlate.clearSelecction()" />
-								<fisheye label="${lblSWPAT}"
-									image="${imgAssign}" onClick="idWindowPlate.setAssign()" />
-								<fisheye label="${lblSWPBlank}"
-									image="${imgBlank}" onClick="idWindowPlate.blankSelecction()" />
-
-							</fisheyebar>
+							<hbox>
+								<image  id="idGeneratePlate" tooltiptext="${lblSWPGP}" src="${imgTemplate}" onClick="idWindowPlate.generatePlates()"
+									width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idGeneratePlate.setWidth("60px");
+											idGeneratePlate.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idGeneratePlate.setWidth("40px");
+											idGeneratePlate.setHeight("40px");
+										</attribute>
+								</image>
+								<image  id="idSelectAll" tooltiptext="${lblSWPSAll}" src="${imgSelectall}" onClick="idWindowPlate.selectAll()"
+									width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idSelectAll.setWidth("60px");
+											idSelectAll.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idSelectAll.setWidth("40px");
+											idSelectAll.setHeight("40px");
+										</attribute>
+								</image>
+								<image  id="idClearSelect" tooltiptext="${lblSWPCS}" src="${imgClear}" onClick="idWindowPlate.clearSelecction()"
+									width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idClearSelect.setWidth("60px");
+											idClearSelect.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idClearSelect.setWidth("40px");
+											idClearSelect.setHeight("40px");
+										</attribute>
+								</image>
+								<image  id="idAssign" tooltiptext="${lblSWPAT}" src="${imgAssign}" onClick="idWindowPlate.setAssign()"
+									width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idAssign.setWidth("60px");
+											idAssign.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idAssign.setWidth("40px");
+											idAssign.setHeight("40px");
+										</attribute>
+								</image>
+								<image  id="idBlank" tooltiptext="${lblSWPBlank}" src="${imgBlank}" onClick="idWindowPlate.blankSelecction()"
+									width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idBlank.setWidth("60px");
+											idBlank.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idBlank.setWidth("40px");
+											idBlank.setHeight("40px");
+										</attribute>
+								</image>
+								</hbox>
 						</vbox>
 
 						<separator bar="true" height="100%" spacing="20px;" orient="vertical"/>
 						<vbox sclass="fish-eye-custom" align="center">
 							<label value="${lblStdGroup2}"  style="font-weight:bold;"/>
-							<fisheyebar attachEdge="top" itemWidth="40"
-								itemHeight="40" itemMaxHeight="60" itemMaxWidth="60">
-								<fisheye label="${lblSWPSC}"
-									image="${imgSelControl}"
-									onClick="idWindowPlate.selectControl()" />
-								<fisheye label="${lblSWPRC}"
-									image="${imgRandomControl}"
-									onClick="idWindowPlate.randomControl()" />
-								<fisheye label="${lblSWPDarC}"
-									image="${imgDartControl}"
-									onClick="idWindowPlate.loadControlDartAndKbios(true)" />
-								<fisheye label="${lblSWPKBC}"
-									image="${imgKbioscience}"
-									onClick="idWindowPlate.loadControlDartAndKbios(false)" />
-									<fisheye label="${lblSWPBlankCimmyt}"
-									image="${imgControlCIMMYT}" onClick="idWindowPlate.loadControlCIMMYTEmpty()" />
-							</fisheyebar>
+							<hbox>
+							<image  id="idSelControl" tooltiptext="${lblSWPSC}" src="${imgSelControl}" onClick="idWindowPlate.selectControl()"
+									width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idSelControl.setWidth("60px");
+											idSelControl.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idSelControl.setWidth("40px");
+											idSelControl.setHeight("40px");
+										</attribute>
+								</image>
+								<image  id="idRandControl" tooltiptext="${lblSWPRC}" src="${imgRandomControl}" onClick="idWindowPlate.randomControl()"
+										width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idRandControl.setWidth("60px");
+											idRandControl.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idRandControl.setWidth("40px");
+											idRandControl.setHeight("40px");
+										</attribute>
+								</image>
+								<image  id="idDartControl" tooltiptext="${lblSWPDarC}" src="${imgDartControl}" onClick="idWindowPlate.loadControlDartAndKbios(true)"
+										width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idDartControl.setWidth("60px");
+											idDartControl.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idDartControl.setWidth("40px");
+											idDartControl.setHeight("40px");
+										</attribute>
+								</image>
+								<image  id="idKBControl" tooltiptext="${lblSWPKBC}" src="${imgKbioscience}" onClick="idWindowPlate.loadControlDartAndKbios(false)"
+										width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idKBControl.setWidth("60px");
+											idKBControl.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idKBControl.setWidth("40px");
+											idKBControl.setHeight("40px");
+										</attribute>
+								</image>
+								<image  id="idCimmytControl" tooltiptext="${lblSWPBlankCimmyt}" src="${imgControlCIMMYT}" onClick="idWindowPlate.loadControlCIMMYTEmpty()"
+										width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idCimmytControl.setWidth("60px");
+											idCimmytControl.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idCimmytControl.setWidth("40px");
+											idCimmytControl.setHeight("40px");
+										</attribute>
+								</image>
+							</hbox>
 						</vbox>
 						<separator bar="true" height="100%" spacing="20px;" orient="vertical"/>
 
 						<vbox sclass="fish-eye-custom" align="center">
 							<label value="${lblStdGroup3}"  style="font-weight:bold;"/>
-							<fisheyebar attachEdge="top" itemWidth="40"
-								itemHeight="40" itemMaxHeight="60" itemMaxWidth="60">
-								<fisheye label="${lblSWPLDFF}"
-									image="${imgLoadCsv}" id="idFisheyeLoadFromFile"
-									onClick="idWindowPlate.loadDataFromFile()" />
-								<fisheye label="${lblSWPGCF}"
-									image="${imgCreateControl}" onClick="idWindowPlate.exportFileControl()" />
-								<fisheye label="${lblSWPLCFF}"
-									image="${imgFileControlsUpload}" onClick="idWindowPlate.upLoadFileControl()" />
-									<fisheye label="Template"
-									image="${imgTemplateDownload}" onClick="idWindowPlate.downloadTemplate()" />
-							</fisheyebar>
+							<hbox>
+							<image  id="idLoadFromFile" tooltiptext="${lblSWPLDFF}" src="${imgLoadCsv}" onClick="idWindowPlate.loadDataFromFile()"
+										width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idLoadFromFile.setWidth("60px");
+											idLoadFromFile.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idLoadFromFile.setWidth("40px");
+											idLoadFromFile.setHeight("40px");
+										</attribute>
+								</image>
+								<image  id="idExportFileC" tooltiptext="${lblSWPGCF}" src="${imgCreateControl}" onClick="idWindowPlate.exportFileControl()"
+										width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idExportFileC.setWidth("60px");
+											idExportFileC.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idExportFileC.setWidth("40px");
+											idExportFileC.setHeight("40px");
+										</attribute>
+								</image>
+								<image  id="idUploadFileC" tooltiptext="${lblSWPLCFF}" src="${imgFileControlsUpload}" onClick="idWindowPlate.upLoadFileControl()"
+										width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idUploadFileC.setWidth("60px");
+											idUploadFileC.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idUploadFileC.setWidth("40px");
+											idUploadFileC.setHeight("40px");
+										</attribute>
+								</image>
+								<image  id="idTemplate" tooltiptext="Template" src="${imgTemplateDownload}" onClick="idWindowPlate.downloadTemplate()"
+										width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idTemplate.setWidth("60px");
+											idTemplate.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idTemplate.setWidth("40px");
+											idTemplate.setHeight("40px");
+										</attribute>
+								</image>
+							</hbox>
 						</vbox>
 					</hbox>
 				<space height="10px"></space>
 				<tabbox id="idTabBox" vflex="1" hflex="1"/>
 			</vbox>
 			</center>
-
 			<south height="80px">
+			<div align="center" width="100%">
 			<hbox width="100%" pack="center">
-					<fisheyebar id="idFsb" style="position:center;"
-						attachEdge="top" itemWidth="50" itemHeight="50" itemMaxHeight="60"
-						itemMaxWidth="60">
-						<fisheye label="${lblPrevious}"
-							image="${imgPrev}" onClick="idWindowPlate.setVisible(false)" />
-						<fisheye label="${lblMenTAdd}"
-							id="idFisheyeNext" image="${imgOk}"
-							onClick="idWindowPlate.saveSamples()" visible="false" />
-						<fisheye label="${lblMenTCancel}"
-							image="${imgCancel}" onClick="idWindowPlate.closeWindow()" />
-					</fisheyebar>
-					</hbox>
+				<image  id="idPrevious" tooltiptext="${lblPrevious}" src="${imgPrev}" onClick="idWindowPlate.setVisible(false)"
+											width="40px" height="40px">
+											<attribute name="onMouseOver">
+												idPrevious.setWidth("60px");
+												idPrevious.setHeight("60px");
+											</attribute>
+											<attribute name="onMouseOut">
+												idPrevious.setWidth("40px");
+												idPrevious.setHeight("40px");
+											</attribute>
+				</image>
+				<image  id="idNext" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowPlate.saveSamples()"
+											width="40px" height="40px" visible="false">
+											<attribute name="onMouseOver">
+												idNext.setWidth("60px");
+												idNext.setHeight("60px");
+											</attribute>
+											<attribute name="onMouseOut">
+												idNext.setWidth("40px");
+												idNext.setHeight("40px");
+											</attribute>
+				</image>
+				<image  id="idCancel" tooltiptext="${lblMenTCancel}" src="${imgCancel}" onClick="idWindowPlate.closeWindow()"
+											width="40px" height="40px" >
+											<attribute name="onMouseOver">
+												idCancel.setWidth("60px");
+												idCancel.setHeight("60px");
+											</attribute>
+											<attribute name="onMouseOut">
+												idCancel.setWidth("40px");
+												idCancel.setHeight("40px");
+											</attribute>
+				</image>
+			</hbox>
+			</div>
 			</south>
 
 		</borderlayout>

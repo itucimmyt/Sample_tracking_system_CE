@@ -20,24 +20,49 @@ use="com.cimmyt.zk.studies.ControlListResultData" onCreate="idWindowRL.loadConte
 	 	<listbox id="idGridResultsList" width="980px" height="620px"
 	 	sizedByContent="true"
 					autopaging="true" pagingPosition="bottom" mold="paging">
-	 	
 	 	</listbox>
-			 
-	 
 	 	</center>
-	 	<south height="120px">
-	 		<box>
+	 	<south height="120px"> 
+	 		<hbox width="100%">
+	 		<label id="idLblRN" value="${lblResultLRN} "/>
+	 		<div align="center" width="800px">
 	 		<hbox>
-	 		<label id="idLblRN" value="${lblResultLRN} "/> 
-				<fisheyebar id="idFsb" style="position:absolute; margin:15px 280px;" attachEdge="top"
-				 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
-				  <fisheye label="${lblMenTExpXLS}" image="${imgExportXLS}" onClick="idWindowRL.createReportListResultXLS()"/>
-				  <fisheye label="${lblMenTExpCSV}" image="${imgLoadCsv}" onClick="idWindowRL.exportFileControl()"/>
-				  <fisheye label="${lblMenTCancel}" image="${imgClose}" onClick="idWindowRL.closeWindow()"/>
-				</fisheyebar>
+	 		<image  id="idExXLS" tooltiptext="${lblMenTExpXLS}" src="${imgExportXLS}" onClick="idWindowRL.createReportListResultXLS()"
+											width="40px" height="40px" >
+											<attribute name="onMouseOver">
+												idExXLS.setWidth("60px");
+												idExXLS.setHeight("60px");
+											</attribute>
+											<attribute name="onMouseOut">
+												idExXLS.setWidth("40px");
+												idExXLS.setHeight("40px");
+											</attribute>
+				</image>
+						<image  id="idExCSV" tooltiptext="${lblMenTExpCSV}" src="${imgLoadCsv}" onClick="idWindowRL.exportFileControl()"
+					width="50px" height="50px" >
+						<attribute name="onMouseOver">
+							idExCSV.setWidth("60px");
+							idExCSV.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idExCSV.setWidth("50px");
+							idExCSV.setHeight("50px");
+						</attribute>
+				</image>
+				<image  id="idCancel" tooltiptext="${lblMenTCancel}" src="${imgClose}" onClick="idWindowRL.closeWindow()"
+					width="50px" height="50px" visible="true">
+						<attribute name="onMouseOver">
+							idCancel.setWidth("60px");
+							idCancel.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idCancel.setWidth("50px");
+							idCancel.setHeight("50px");
+						</attribute>
+					</image> 
+					</hbox>
+				</div>
 			</hbox>
-			</box>
-	 	
 	 	</south>
 	</borderlayout>
 </window>

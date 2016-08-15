@@ -44,9 +44,9 @@ import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
-import org.zkoss.zkex.zul.Fisheye;
-import org.zkoss.zkex.zul.Fisheyebar;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listhead;
@@ -93,7 +93,7 @@ public class ControlStudies extends Window {
 	private final String ID_REPORT = "studies$idLaboratoryReport";
 	private final String ID_RESULT_DATA = "studies$idResultData";
 	private final String ID_UPDATE_RESULT = "studies$idUpdateResult";
-	private Fisheyebar fisheyebar;
+	private Hbox idHBoxMenuStudies;
 
 	static {
 		if(serviceLabStudy == null)
@@ -153,33 +153,33 @@ public class ControlStudies extends Window {
 
 	@SuppressWarnings("unchecked")
 	private void loadFisheye (){
-		fisheyebar = (Fisheyebar)getFellow("idFsbStudies");
+		idHBoxMenuStudies = (Hbox)getFellow("idHBoxMenuStudies");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){
 			mapFuntions = (Map<String, String>) getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION);
 			if (mapFuntions.get(ID_ADD) == null){
-				Fisheye id = (Fisheye)getFellow(ID_ADD);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_ADD);
+				idHBoxMenuStudies.removeChild(id);
 			}
 			if (mapFuntions.get(ID_EDIT) == null){
-				Fisheye id = (Fisheye)getFellow(ID_EDIT);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_EDIT);
+				idHBoxMenuStudies.removeChild(id);
 			}
 			if (mapFuntions.get(ID_DELETE) == null){
-				Fisheye id = (Fisheye)getFellow(ID_DELETE);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_DELETE);
+				idHBoxMenuStudies.removeChild(id);
 			}
 			if (mapFuntions.get(ID_REPORT) == null){
-				Fisheye id = (Fisheye)getFellow(ID_REPORT);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_REPORT);
+				idHBoxMenuStudies.removeChild(id);
 			}
 			if (mapFuntions.get(ID_RESULT_DATA) == null){
-				Fisheye id = (Fisheye)getFellow(ID_RESULT_DATA);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_RESULT_DATA);
+				idHBoxMenuStudies.removeChild(id);
 			}
 			if (mapFuntions.get(ID_UPDATE_RESULT) == null){
-				Fisheye id = (Fisheye)getFellow(ID_UPDATE_RESULT);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_UPDATE_RESULT);
+				idHBoxMenuStudies.removeChild(id);
 			}
 		}
 	}

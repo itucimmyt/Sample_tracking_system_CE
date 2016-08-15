@@ -30,8 +30,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.zkoss.util.media.Media;
-import org.zkoss.zkex.zul.Fisheye;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
@@ -52,7 +52,7 @@ public class ControlLoadFileResult extends Window{
 
 	private Window idWindow;
 	private Textbox idTextError;
-	private Fisheye idLoadFile;
+	private Image idLoadFile;
 	private PropertyHelper pro=null;
 	private int typeFile = 1;
 	private LabStudy beanStudy;
@@ -193,7 +193,7 @@ public class ControlLoadFileResult extends Window{
 	private void loadComponent(){
 		idWindow = (Window)getFellow("idWindowFileUpload");
 		idTextError = (Textbox)getFellow("idTextError");
-		idLoadFile = (Fisheye)getFellow("idLoadFile");
+		idLoadFile = (Image)getFellow("idLoadFile");
 	}
 	/** Close Window */
 	public void closeWindow(){

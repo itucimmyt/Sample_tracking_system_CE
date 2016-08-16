@@ -40,9 +40,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
-import org.zkoss.zkex.zul.Fisheyebar;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listhead;
@@ -69,7 +69,7 @@ public class ControlSeason extends Window {
 	private PropertyHelper pro=null;
     private Logger logger= Logger.getLogger(ControlWindowProject.class);
     private Listbox idLisB;
-    private Fisheyebar idFseason ;
+    private Hbox idHboxSeason ;
 	static {
 		if(serviceSeason == null)
         {
@@ -113,26 +113,26 @@ public class ControlSeason extends Window {
 			}
 		}
 		idLisB.appendChild(idListHead);
-		loadFisheye();
+		loadImage();
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadFisheye(){
-		idFseason = (Fisheyebar)getFellow("idFseason");
+	private void loadImage(){
+		idHboxSeason = (Hbox)getFellow("idHboxSeason");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){
 			mapFuntions = (Map<String, String>) getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION);
 			if (mapFuntions.get(ID_seasonidAdd) == null){
-				Fisheye idAdd = (Fisheye)getFellow(ID_seasonidAdd);
-				idFseason.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(ID_seasonidAdd);
+				idHboxSeason.removeChild(idAdd);
 			}
 			if (mapFuntions.get(ID_seasonidEdit) == null){
-				Fisheye idAdd = (Fisheye)getFellow(ID_seasonidEdit);
-				idFseason.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(ID_seasonidEdit);
+				idHboxSeason.removeChild(idAdd);
 			}
 			if (mapFuntions.get(ID_seasonidDelete) == null){
-				Fisheye idAdd = (Fisheye)getFellow(ID_seasonidDelete);
-				idFseason.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(ID_seasonidDelete);
+				idHboxSeason.removeChild(idAdd);
 			}
 		}
 		

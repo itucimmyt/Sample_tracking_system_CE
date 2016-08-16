@@ -39,9 +39,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
-import org.zkoss.zkex.zul.Fisheyebar;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listhead;
@@ -67,7 +67,7 @@ public class ControlLocation extends Window{
     private final String ID_ADD = "location$idAdd";
     private final String ID_EDIT = "location$idEdit";
     private final String ID_DELETE = "location$idDelete";
-    private Fisheyebar fisheyebar;
+    private Hbox idHboxLocation;
 	static {
 		if(serviceLocation == null)
         {
@@ -114,7 +114,7 @@ public class ControlLocation extends Window{
 			}
 		}
 		idLisB.appendChild(idListHead);
-		loadFisheye();
+		loadImage();
 	}
 
 	private void loatItem (LocationBean bean){
@@ -130,22 +130,22 @@ public class ControlLocation extends Window{
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadFisheye (){
-		fisheyebar = (Fisheyebar)getFellow("idFsbLocation");
+	private void loadImage (){
+		idHboxLocation = (Hbox)getFellow("idHboxLocation");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){
 			mapFuntions = (Map<String, String>) getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION);
 			if (mapFuntions.get(ID_ADD) == null){
-				Fisheye id = (Fisheye)getFellow(ID_ADD);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_ADD);
+				idHboxLocation.removeChild(id);
 			}
 			if (mapFuntions.get(ID_EDIT) == null){
-				Fisheye id = (Fisheye)getFellow(ID_EDIT);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_EDIT);
+				idHboxLocation.removeChild(id);
 			}
 			if (mapFuntions.get(ID_DELETE) == null){
-				Fisheye id = (Fisheye)getFellow(ID_DELETE);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_DELETE);
+				idHboxLocation.removeChild(id);
 			}
 		}
 	}

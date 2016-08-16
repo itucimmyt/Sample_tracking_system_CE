@@ -39,9 +39,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
-import org.zkoss.zkex.zul.Fisheyebar;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listhead;
@@ -68,7 +68,7 @@ public class ControlTissue extends Window {
     private final String ID_ADD = "tissues$idAdd";
     private final String ID_EDIT = "tissues$idEdit";
     private final String ID_DELETE = "tissues$idDelete";
-    private Fisheyebar fisheyebar;
+    private Hbox idHboxTissue;
 	static {
 		if(serviceTissue == null)
         {
@@ -115,26 +115,26 @@ public class ControlTissue extends Window {
 			}
 		}
 		idLisB.appendChild(idListHead);
-		loadFisheye();
+		loadImage();
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadFisheye (){
-		fisheyebar = (Fisheyebar)getFellow("idFsbTissue");
+	private void loadImage (){
+		idHboxTissue = (Hbox)getFellow("idHboxTissue");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){
 			mapFuntions = (Map<String, String>) getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION);
 			if (mapFuntions.get(ID_ADD) == null){
-				Fisheye id = (Fisheye)getFellow(ID_ADD);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_ADD);
+				idHboxTissue.removeChild(id);
 			}
 			if (mapFuntions.get(ID_EDIT) == null){
-				Fisheye id = (Fisheye)getFellow(ID_EDIT);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_EDIT);
+				idHboxTissue.removeChild(id);
 			}
 			if (mapFuntions.get(ID_DELETE) == null){
-				Fisheye id = (Fisheye)getFellow(ID_DELETE);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_DELETE);
+				idHboxTissue.removeChild(id);
 			}
 		}
 	}
@@ -215,7 +215,7 @@ public class ControlTissue extends Window {
 				Messagebox.OK, Messagebox.INFORMATION);
 	}
 
-	public void deleteProject (){
+	public void delete (){
 		pro = (PropertyHelper)getDesktop().getSession().getAttribute(LOCALE_LANGUAGE);
 		idLisB = (Listbox)getFellow("idLisB");
 		if (idLisB.getSelectedIndex() != -1){

@@ -14,29 +14,28 @@ package com.cimmyt.zk.shipments;
 
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SHIPMENTS_ITEM;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SHIPMENT_ITEM;
+import static com.cimmyt.utils.Constants.COMPANY_SERVICE_BEAN_NAME;
+import static com.cimmyt.utils.Constants.INVESTIGATOR_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_FIELD_REQUIRED;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_INFORMATION;
 import static com.cimmyt.utils.Constants.LBL_SHIPMENT_SAVE_SUCCESS;
-import static com.cimmyt.utils.Constants.SAMPLE_DETAIL_SERVICE_BEAN_NAME;
-import static com.cimmyt.utils.Constants.STATUS_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.LOCALE_LANGUAGE;
-import static com.cimmyt.utils.Constants.COMPANY_SERVICE_BEAN_NAME;
+import static com.cimmyt.utils.Constants.SAMPLE_DETAIL_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.SHIPMENT_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.SHIPMENT_SERVICE_DETAIL_BEAN_NAME;
-import static com.cimmyt.utils.Constants.INVESTIGATOR_SERVICE_BEAN_NAME;
+import static com.cimmyt.utils.Constants.STATUS_SERVICE_BEAN_NAME;
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.cimmyt.dnast.service.FileRepositoryServiceClient;
-import org.cimmyt.dnast.service.imp.FileRepositoryServiceClientImp;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.InputEvent;
-import org.zkoss.zkex.zul.Fisheye;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
@@ -67,7 +66,7 @@ public class ControlWindowShipments extends Window{
 	private Textbox trackingNumber;
 	private Textbox trackingNumberDelivery;
 	
-	private Fisheye idFisheyeAdd;
+	private Image idAdd;
 	
 	private PropertyHelper pro=null;
 	private static ServiceCompany serviceCompany;
@@ -237,7 +236,7 @@ public class ControlWindowShipments extends Window{
 		compAddress = (Textbox)getFellow("compAddress");
 		compEmail = (Textbox)getFellow("compEmail");
 		compName = (Textbox)getFellow("compName");
-		idFisheyeAdd = (Fisheye)getFellow("idFisheyeAdd");
+		idAdd = (Image)getFellow("idAdd");
 	}
 
 	public void validateFields(Event event){
@@ -259,7 +258,7 @@ public class ControlWindowShipments extends Window{
 			valid = false;
 		}
 
-		idFisheyeAdd.setVisible(valid);
+		idAdd.setVisible(valid);
 		
 		if(!valid) return;
 		

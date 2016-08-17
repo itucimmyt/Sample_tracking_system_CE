@@ -148,7 +148,7 @@ use="com.cimmyt.zk.storage_location.ControlWindowSearch" onCreate="idWindowS.loa
 	   	 <label id="idSelectSize">0</label>
 	   	 </hbox>
 	   	 <listbox id="idListS" vflex="true" width="450px" multiple="true" rows="8" height="240px"
-	   	 checkmark="true">
+	   	 checkmark="true">	
 	   	 <listhead id="idListHeadS" sizable="true">
 						  <listheader sort="auto" width="20%">
 						    	<label value="${lblMenuLocat}" sclass="columnForList"/>

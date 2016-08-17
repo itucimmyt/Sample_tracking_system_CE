@@ -16,7 +16,7 @@ import static com.cimmyt.utils.Constants.ATTRIBUTE_NAME_USER_BEAN;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SHIPMENTS_ITEM;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_STUDY_TEMPLATE_ITEM;
 import static com.cimmyt.utils.Constants.INVESTIGATOR_SERVICE_BEAN_NAME;
-import static com.cimmyt.utils.Constants.LOCALE_LANGUAGE;
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -28,6 +28,7 @@ import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
@@ -37,7 +38,6 @@ import com.cimmyt.bean.UserBean;
 import com.cimmyt.model.bean.Investigator;
 import com.cimmyt.model.bean.ShipmentSet;
 import com.cimmyt.service.ServiceInvestigator;
-import com.cimmyt.utils.PropertyHelper;
 
 @SuppressWarnings("serial")
 public class ControlWindowShipment extends Window{
@@ -45,7 +45,7 @@ public class ControlWindowShipment extends Window{
 	private Datebox idDBRegDate;
 	private Combobox idComboInvestigator;
 	private Textbox comments;
-	private Fisheye idFisheyeNext;
+	private Image idAdd;
 	
 	private static ServiceInvestigator serviceInvestigator;
 	private ShipmentSet bean;
@@ -111,7 +111,7 @@ public class ControlWindowShipment extends Window{
 		idDBRegDate = (Datebox)getFellow("idDBRegDate");
 		idComboInvestigator = (Combobox)getFellow("idComboInvestigator");
 		comments = (Textbox)getFellow("comments");
-		idFisheyeNext = (Fisheye)getFellow("idFisheyeNext");
+		idAdd = (Image)getFellow("idAdd");
 	}
 
 	
@@ -148,14 +148,14 @@ public class ControlWindowShipment extends Window{
 			bean.setComments(comments.getText());
 		
 		if(bean.getComments()==null || bean.getComments().isEmpty()){
-			idFisheyeNext.setVisible(false);
+			idAdd.setVisible(false);
 			return;
 		}
 		
 		if(bean.getDatCreated() == null)
 			bean.setDatCreated(idDBRegDate.getValue());
 		
-		idFisheyeNext.setVisible(true);
+		idAdd.setVisible(true);
 	}
 
 	public void nextPag(){

@@ -56,17 +56,56 @@ use="com.cimmyt.zk.studies.ControlTemporalSample" onCreate="idWindowSelectSampTe
 	   <separator/>
 	   <separator/><separator/><separator/><separator/>
 	   <separator/><separator/><separator/><separator/><separator/><separator/><separator/>
-			 <fisheyebar id="idFsPlay" style="margin:15px 5px;" attachEdge="top"
-			 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60" orient="vertical">
-			    <fisheye label="${lblMenTAdd}"
-			        image="${imgPlay}" onClick="idWindowSelectSampTemp.moveSamples()"/>
-			    <fisheye label="${lblMGAAll}" 
-			    image="${imgPlayAll}" onClick="idWindowSelectSampTemp.moveAll()"/>
-			    <fisheye label="${lblMGRem}" 
-			    image="${imgPrev}" onClick="idWindowSelectSampTemp.removeSamples()"/>
-			    <fisheye label="${lblMGRAll}"  	
-			    image="${imgPlayBackAll}" onClick="idWindowSelectSampTemp.removeAll()"/>
-			</fisheyebar>
+	   
+	   <vbox>   
+	  		<image  id="idMenTadd" tooltiptext="${lblMenTAdd}" src="${imgPlay}" onClick="idWindowSelectSampTemp.moveSamples()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMenTadd.setWidth("50px");
+							idMenTadd.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMenTadd.setWidth("40px");
+							idMenTadd.setHeight("40px");
+						</attribute>
+			</image>
+			<separator/>
+			<image  id="idMGAAll" tooltiptext="${lblMGAAll}" src="${imgPlayAll}" onClick="idWindowSelectSampTemp.moveAll()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMGAAll.setWidth("50px");
+							idMGAAll.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMGAAll.setWidth("40px");
+							idMGAAll.setHeight("40px");
+						</attribute>
+			</image>
+			<separator/>
+			<image  id="idMGRem" tooltiptext="${lblMGRem}" src="${imgPrev}" onClick="idWindowSelectSampTemp.removeSamples()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMGRem.setWidth("50px");
+							idMGRem.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMGRem.setWidth("40px");
+							idMGRem.setHeight("40px");
+						</attribute>
+			</image>
+			<separator/>
+			<image  id="idMGRemAll" tooltiptext="${lblMGRAll}" src="${imgPlayBackAll}" onClick="idWindowSelectSampTemp.removeAll()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMGRemAll.setWidth("50px");
+							idMGRemAll.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMGRemAll.setWidth("40px");
+							idMGRemAll.setHeight("40px");
+						</attribute>
+			</image>
+	  	</vbox>	
 	   	</vbox>
 	   	<vbox>
 		   	 <hbox>
@@ -105,14 +144,32 @@ use="com.cimmyt.zk.studies.ControlTemporalSample" onCreate="idWindowSelectSampTe
 		   	</vbox> 	
 	   
    </hbox>
-   <box>
-	    <fisheyebar id="idFsb" style="position:absolute; margin:15px 450px;" 
-	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
-	    <fisheye label="${lblMenTAdd}" 
-	        image="${imgOk}" onClick="idWindowSelectSampTemp.addTemporalySamples()"/>
-	    <fisheye label="${lblMenTCancel}" 
-	    image="${imgClose}" onClick="idWindowSelectSampTemp.closeWindow()"/>
-	</fisheyebar>
-	   </box>
+  
+  <div align="center" width="1000px" >
+	<hbox>
+		<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowSelectSampTemp.addTemporalySamples()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idAdd.setWidth("60px");
+							idAdd.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idAdd.setWidth("40px");
+							idAdd.setHeight("40px");
+						</attribute>
+		</image>
+		<image  id="idClose" tooltiptext="${lblMenTCancel}" src="${imgClose}" onClick="idWindowSelectSampTemp.closeWindow()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idClose.setWidth("60px");
+							idClose.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idClose.setWidth("40px");
+							idClose.setHeight("40px");
+						</attribute>
+		</image>
+	</hbox>
+	</div>
 </window>
 </zk>

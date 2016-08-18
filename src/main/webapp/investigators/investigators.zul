@@ -17,36 +17,43 @@
 		
 		<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
-				<hbox width="100%" hflex="true" style="position:absolute; ">
-					<fisheyebar id="idFsbReseacher" visible="true"
-						attachEdge="top" itemWidth="40" itemHeight="40" itemMaxHeight="60"
-						itemMaxWidth="60">
-						 <fisheye label="${lblMenTAdd}" id="researchers$idAdd"
-							            image="${imgAdd}" onClick ="idWindowInvestigators.add()" />
-							            <fisheye label="${lblMenTEdit}"  id="researchers$idEdit"
-							            image="${imgEdit}" onClick ="idWindowInvestigators.editProject()"/>
-							            <fisheye label="${lblMenTDelete}" id="researchers$idDelete"
-							            image="${imgDeleteItem}" onClick ="idWindowInvestigators.deleteProject()"/>
-									
-					</fisheyebar>
+				<hbox id="idHboxResearcher" width="100%" hflex="true" style="position:absolute; ">
+				
+				<image  id="researchers$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindowInvestigators.add()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							researchers$idAdd.setWidth("60px");
+							researchers$idAdd.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							researchers$idAdd.setWidth("40px");
+							researchers$idAdd.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="researchers$idEdit" tooltiptext="${lblMenTEdit}" src="${imgEdit}" onClick="idWindowInvestigators.editProject()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							researchers$idEdit.setWidth("60px");
+							researchers$idEdit.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							researchers$idEdit.setWidth("40px");
+							researchers$idEdit.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="researchers$idDelete" tooltiptext="${lblMenTDelete}" src="${imgDeleteItem}" onClick="idWindowInvestigators.deleteProject()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							researchers$idDelete.setWidth("60px");
+							researchers$idDelete.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							researchers$idDelete.setWidth("40px");
+							researchers$idDelete.setHeight("40px");
+						</attribute>
+					</image>
 
 					<space width="150px"></space>
-<!--
-						<hbox align="center" hflex="true" width="100%" vflex="true">
-							<label sclass="textNor" value="${lblProSCLF}"></label>
-							<label sclass="textNor" value="${lblInvName}" />
-									<textbox id="idSN" cols="4" maxlength="4" width="120px"></textbox>
-									<separator width="5px"/>
-							<fisheyebar attachEdge="right"
-								labelEdge="bottom" orient="horizontal" itemWidth="32"
-								itemHeight="32" itemMaxHeight="40" itemMaxWidth="40">
-								  <fisheye label="${lblProSB}"
-									image="${imgFind}" onClick="idWindowInvestigators.search()" />
-							</fisheyebar>
-
-						</hbox>
-						-->
-
 				</hbox>
 			</north>
 		

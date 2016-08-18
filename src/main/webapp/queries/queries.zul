@@ -13,34 +13,56 @@
 <zk>
 
 <window id="thiz"  sclass="windowSub" width="100%" height="100%"
-	use="com.cimmyt.zk.query.UseControlQuery" onCreate="thiz.init()"
-	>
-
+	use="com.cimmyt.zk.query.UseControlQuery" onCreate="thiz.init()">
 	<borderlayout width="100%" height="100%">
-	
-
-	
-<north  sclass="borderNort" border="none" 
+	<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
 				<hbox width="100%" hflex="true" style="position:absolute; ">
-					<fisheyebar id="idFsb"
-						attachEdge="top" itemWidth="40" itemHeight="40" itemMaxHeight="60"
-						itemMaxWidth="60">
-						<fisheye id="idAddFilter"
-							label="${lblAddQueryParam}" image="${imgAdd}"
-							onClick="thiz.doAddNewParam()" />
-						<fisheye id="idExportXLS"
-							label="${lblMenTExpXLS}" image="${imgDownloadExcel}"
-							onClick="thiz.doExportReport(com.cimmyt.utils.ConstantsDNA.FILE_TYPE_XLS)" />
-						<fisheye id="idExportCSV"
-							label="${lblMenTExpCSV}" image="${imgDownloadCSV}"
-							onClick="thiz.doExportReport(com.cimmyt.utils.ConstantsDNA.FILE_TYPE_CSV)" />
-						
-						<fisheye id="idFindFiles" style="margin-left:15px"
-							label="${lblSearchFiles}" image="${imgQuery}"
-							onClick="thiz.doFindDataSets()" />
-					</fisheyebar>
-
+				
+				<image  id="idAddFilter" tooltiptext="${lblAddQueryParam}" src="${imgAdd}" onClick="thiz.doAddNewParam()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idAddFilter.setWidth("60px");
+							idAddFilter.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idAddFilter.setWidth("40px");
+							idAddFilter.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="idExportXLS" tooltiptext="${lblMenTExpXLS}" src="${imgDownloadExcel}" onClick="thiz.doExportReport(com.cimmyt.utils.ConstantsDNA.FILE_TYPE_XLS)"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idExportXLS.setWidth("60px");
+							idExportXLS.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idExportXLS.setWidth("40px");
+							idExportXLS.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="idExportCSV" tooltiptext="${lblMenTExpCSV}" src="${imgDownloadCSV}" onClick="thiz.doExportReport(com.cimmyt.utils.ConstantsDNA.FILE_TYPE_CSV)"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idExportCSV.setWidth("60px");
+							idExportCSV.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idExportCSV.setWidth("40px");
+							idExportCSV.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="idFindFiles" tooltiptext="${lblSearchFiles}" src="${imgQuery}" onClick="thiz.doFindDataSets()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idFindFiles.setWidth("60px");
+							idFindFiles.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idFindFiles.setWidth("40px");
+							idFindFiles.setHeight("40px");
+						</attribute>
+					</image>
 					<space width="150px"></space>
 					
 					<hbox align="center" hflex="true" vflex="true" width="100%">

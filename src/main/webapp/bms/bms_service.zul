@@ -8,34 +8,45 @@
 <zk>
 
 <window id="idWindowBMS"  sclass="windowSub" width="100%" height="100%"
-	use="com.cimmyt.zk.bms.ControlAPIListGermplasm" onCreate="idWindowBMS.loadContext()"
-	>
-
+	use="com.cimmyt.zk.bms.ControlAPIListGermplasm" onCreate="idWindowBMS.loadContext()">
 	<borderlayout width="100%" height="100%">
-	
-
-	
-<north  sclass="borderNort" border="none" 
+	<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
 				<hbox width="100%" hflex="true" style="position:absolute; ">
-					<fisheyebar id="idFsb"
-						attachEdge="top" itemWidth="40" itemHeight="40" itemMaxHeight="60"
-						itemMaxWidth="60">
-						<fisheye id="idAddFilter"
-							label="${lblAddQueryParam}" image="${imgAdd}"
-							onClick="" />
-						<fisheye id="idExportXLS"
-							label="${lblMenTExpXLS}" image="${imgDownloadExcel}"
-							onClick="" />
-						<fisheye id="idExportCSV"
-							label="${lblMenTExpCSV}" image="${imgDownloadCSV}"
-							onClick="" />
-						
-						<!--  <fisheye id="idFindFiles" style="margin-left:15px"
-							label="${lblSearchFiles}" image="${imgQuery}"
-							onClick="thiz.doFindDataSets()" />-->
-					</fisheyebar>
-
+				
+				<image  id="idAddFilter" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick=""
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idAddFilter.setWidth("60px");
+							idAddFilter.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idAddFilter.setWidth("40px");
+							idAddFilter.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="idExportXLS" tooltiptext="${lblMenTExpXLS}" src="${imgDownloadExcel}" onClick=""
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idExportXLS.setWidth("60px");
+							idExportXLS.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idExportXLS.setWidth("40px");
+							idExportXLS.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="idExportCSV" tooltiptext="${lblMenTExpCSV}" src="${imgDownloadCSV}" onClick=""
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idExportCSV.setWidth("60px");
+							idExportCSV.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idExportCSV.setWidth("40px");
+							idExportCSV.setHeight("40px");
+						</attribute>
+					</image>
 					<space width="150px"></space>
 				</hbox>
 			</north>
@@ -67,15 +78,18 @@
 			    <label value="${lblMenuSeason}"/>
 			      <combobox id="idComboSeason" readonly="true" maxlength="85" cols="85" width="100%"
 			    onSelect=""></combobox>
-			    	<fisheyebar id="idFBMS_ok" style="position:center;"
-						attachEdge="top" itemWidth="50" itemHeight="50" itemMaxHeight="60"
-						itemMaxWidth="60">
-						
-						<fisheye label="${lblMenTAdd}"
-							id="idFisheyeNext" image="${imgOk}"
-							onClick="idWindowBMS.addInformationToServices()" visible="true" />
-						
-					</fisheyebar>
+			    
+			    <image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowBMS.addInformationToServices()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idAdd.setWidth("60px");
+							idAdd.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idAdd.setWidth("40px");
+							idAdd.setHeight("40px");
+						</attribute>
+				</image>
 		 </hbox>
 		</box>
 		</south>

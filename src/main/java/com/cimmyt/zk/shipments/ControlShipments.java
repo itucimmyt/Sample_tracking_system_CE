@@ -17,49 +17,49 @@ import static com.cimmyt.utils.Constants.ATTRIBUTE_NAME_USER_BEAN;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_PARAM_MAP_FUNTION;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SHIPMENTS_ITEM;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SHIPMENT_ITEM;
-import static com.cimmyt.utils.Constants.SAMPLE_DETAIL_SERVICE_BEAN_NAME;
-import static com.cimmyt.utils.Constants.SHIPMENT_SERVICE_SET_BEAN_NAME;
-import static com.cimmyt.utils.Constants.SHIPMENT_SERVICE_BEAN_NAME;
-import static com.cimmyt.utils.Constants.SHIPMENT_SERVICE_DETAIL_BEAN_NAME;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_DELETE_RECORD;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_DELETE_SUCCESS;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_ERROR;
-import static com.cimmyt.utils.Constants.MSG_SHIPMENT_DELETE_ERROR;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_ERROR_CRITERIAL;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_INFORMATION;
+import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_INVESTIGATOR;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_PLEASE_CONFIRM;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_SELECT_RECORD;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_TITLE_SUB_ADD_T;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_TITLE_SUB_EDIT_T;
-import static com.cimmyt.utils.Constants.URL_IMAGES_ADD_BUTTON;
-import static com.cimmyt.utils.Constants.URL_IMAGES_SEND_BUTTON;
-import static com.cimmyt.utils.Constants.URL_IMAGES_RECE_BUTTON;
-import static com.cimmyt.utils.Constants.URL_IMAGES_CANC_BUTTON;
-import static com.cimmyt.utils.Constants.URL_IMAGES_CSV_BUTTON;
-import static com.cimmyt.utils.Constants.URL_IMAGES_XLS_BUTTON;
-import static com.cimmyt.utils.Constants.LOCALE_LANGUAGE;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STATUS_SENT;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STATUS_RECEIVED;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STATUS_FOR_SEND;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STATUS_NO_SELECT;
-import static com.cimmyt.utils.Constants.LBL_MENU_TOOL_SEND;
-import static com.cimmyt.utils.Constants.LBL_MENU_TOOL_RECEIVED;
 import static com.cimmyt.utils.Constants.LBL_MENU_TOOL_CANCEL;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_PROVIDER_KBIOS;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_PROVIDER_CORNELL;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_PROVIDER_DART;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_PROVIDER_SAGA;
+import static com.cimmyt.utils.Constants.LBL_MENU_TOOL_RECEIVED;
+import static com.cimmyt.utils.Constants.LBL_MENU_TOOL_SEND;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_CORN_REPORT;
 import static com.cimmyt.utils.Constants.LBL_SHIPMENT_DART_REPORT;
 import static com.cimmyt.utils.Constants.LBL_SHIPMENT_KBIO_REPORT;
 import static com.cimmyt.utils.Constants.LBL_SHIPMENT_KBIO_REPORT2;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_CORN_REPORT;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_PROVIDER_CORNELL;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_PROVIDER_DART;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_PROVIDER_KBIOS;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_PROVIDER_SAGA;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STATUS_FOR_SEND;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STATUS_NO_SELECT;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STATUS_RECEIVED;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STATUS_SENT;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STRING_FOR_SEND;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STRING_RECEIVED;
 import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STRING_SENT;
 import static com.cimmyt.utils.Constants.LBL_SHIPMENT_TITLE_SUB_ADD_S;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STRING_RECEIVED;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STRING_FOR_SEND;
-import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_INVESTIGATOR;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_TITLE_SUB_ADD_T;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_TITLE_SUB_EDIT_T;
+import static com.cimmyt.utils.Constants.LOCALE_LANGUAGE;
 import static com.cimmyt.utils.Constants.MSG_SHIPMENT_DELETE_ASSIGNED;
+import static com.cimmyt.utils.Constants.MSG_SHIPMENT_DELETE_ERROR;
 import static com.cimmyt.utils.Constants.MSG_SHIPMENT_DELETE_STATUS;
+import static com.cimmyt.utils.Constants.SAMPLE_DETAIL_SERVICE_BEAN_NAME;
+import static com.cimmyt.utils.Constants.SHIPMENT_SERVICE_BEAN_NAME;
+import static com.cimmyt.utils.Constants.SHIPMENT_SERVICE_DETAIL_BEAN_NAME;
+import static com.cimmyt.utils.Constants.SHIPMENT_SERVICE_SET_BEAN_NAME;
+import static com.cimmyt.utils.Constants.URL_IMAGES_ADD_BUTTON;
+import static com.cimmyt.utils.Constants.URL_IMAGES_CANC_BUTTON;
+import static com.cimmyt.utils.Constants.URL_IMAGES_CSV_BUTTON;
+import static com.cimmyt.utils.Constants.URL_IMAGES_RECE_BUTTON;
+import static com.cimmyt.utils.Constants.URL_IMAGES_SEND_BUTTON;
+import static com.cimmyt.utils.Constants.URL_IMAGES_XLS_BUTTON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,9 +70,10 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.MouseEvent;
-import org.zkoss.zkex.zul.Fisheye;
-import org.zkoss.zkex.zul.Fisheyebar;
+
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listgroup;
@@ -107,7 +108,7 @@ public class ControlShipments extends Window {
     private final String ID_ADD = "shipmentManagment$idAdd";
     private final String ID_EDIT = "shipmentManagment$idEdit";
     private final String ID_DELETE = "shipmentManagment$idDelete";
-    private Fisheyebar fisheyebar;
+    private Hbox idHBoxShipment;
     private UserBean userBean;
 
 	static {
@@ -174,21 +175,21 @@ public class ControlShipments extends Window {
 
 	@SuppressWarnings("unchecked")
 	private void loadFisheye (){
-		fisheyebar = (Fisheyebar)getFellow("idFsbShipments");
+		idHBoxShipment = (Hbox)getFellow("idHBoxShipment");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){
 			mapFuntions = (Map<String, String>) getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION);
 			if (mapFuntions.get(ID_ADD) == null){
-				Fisheye id = (Fisheye)getFellow(ID_ADD);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_ADD);
+				idHBoxShipment.removeChild(id);
 			}
 			if (mapFuntions.get(ID_EDIT) == null){
-				Fisheye id = (Fisheye)getFellow(ID_EDIT);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_EDIT);
+				idHBoxShipment.removeChild(id);
 			}
 			if (mapFuntions.get(ID_DELETE) == null){
-				Fisheye id = (Fisheye)getFellow(ID_DELETE);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_DELETE);
+				idHBoxShipment.removeChild(id);
 			}
 		}
 	}
@@ -216,11 +217,6 @@ public class ControlShipments extends Window {
 	 */
 	private void loadItem (ShipmentSet bean){
 		Listgroup lGp = new Listgroup();
-		Fisheyebar febShipps = new Fisheyebar();
-		febShipps.setItemHeight(32);
-		febShipps.setItemWidth(32);
-		febShipps.setItemMaxHeight(40);
-		febShipps.setItemMaxWidth(40);
 		String groupTitle = pro.getKey(LBL_GENERIC_MESS_INVESTIGATOR)
 				.concat(": ")
 				.concat(bean.getStInvestigator() != null && bean.getStInvestigator().getInvest_name() != null ? bean.getStInvestigator().getInvest_name():"Missing")
@@ -234,10 +230,8 @@ public class ControlShipments extends Window {
 		cell1.setSpan(6);
 		lGp.appendChild(cell1);
 		Listcell cell6 = new Listcell();
-		
-		febShipps.appendChild(createAddBtn(URL_IMAGES_ADD_BUTTON, bean));
 
-		cell6.appendChild(febShipps);
+		cell6.appendChild(createAddBtn(URL_IMAGES_ADD_BUTTON, bean));
 		lGp.appendChild(cell6);
 		lGp.setValue(bean);
 		lGp.setVflex("1");
@@ -249,11 +243,6 @@ public class ControlShipments extends Window {
 			
 			Listitem lIt = new Listitem ();
 
-			Fisheyebar febShipp = new Fisheyebar();
-			febShipp.setItemHeight(32);
-			febShipp.setItemWidth(32);
-			febShipp.setItemMaxHeight(40);
-			febShipp.setItemMaxWidth(40);
 			Listcell cell11 = new Listcell(singleShip.getDatRegister()!=null?singleShip.getDatRegister().toString():"");
 			lIt.appendChild(cell11);
 			Listcell cell12 = new Listcell(singleShip.getDatSend()!=null?singleShip.getDatSend().toString():"");
@@ -269,34 +258,33 @@ public class ControlShipments extends Window {
 			Listcell cell16 = new Listcell();
 			switch (idStatus){
 				case LBL_SHIPMENT_STATUS_FOR_SEND:
-					febShipp.appendChild(createSendBtn(singleShip));
+					cell16.appendChild(createSendBtn(singleShip));
 					break;
 				case LBL_SHIPMENT_STATUS_SENT:
-					febShipp.appendChild(createReceBtn(singleShip));
-					febShipp.appendChild(createCancBtn(singleShip));
+					cell16.appendChild(createReceBtn(singleShip));
+					cell16.appendChild(createCancBtn(singleShip));
 					break;
 				case LBL_SHIPMENT_STATUS_RECEIVED:
-					febShipp.appendChild(createCancBtn(singleShip));
+					cell16.appendChild(createCancBtn(singleShip));
 					break;
 			}
 			switch (singleShip.getStCompany().getIdCompany().intValue()){
 				case LBL_SHIPMENT_PROVIDER_KBIOS:
-					febShipp.appendChild(createKbiosBtn(singleShip, 1));
-					febShipp.appendChild(createKbiosBtn(singleShip, 2));
+					cell16.appendChild(createKbiosBtn(singleShip, 1));
+					cell16.appendChild(createKbiosBtn(singleShip, 2));
 					break;
 				case LBL_SHIPMENT_PROVIDER_CORNELL:
-					febShipp.appendChild(createCornellBtn(singleShip));
+					cell16.appendChild(createCornellBtn(singleShip));
 					break;
 				case LBL_SHIPMENT_PROVIDER_DART:
-					febShipp.appendChild(createDartBtn(singleShip));
+					cell16.appendChild(createDartBtn(singleShip));
 					break;
 				case LBL_SHIPMENT_PROVIDER_SAGA:
-					febShipp.appendChild(createDartBtn(singleShip));
+					cell16.appendChild(createDartBtn(singleShip));
 					break;
 				default :
-					febShipp.appendChild(createDartBtn(singleShip));
+					cell16.appendChild(createDartBtn(singleShip));
 			}
-			cell16.appendChild(febShipp);
 			lIt.appendChild(cell16);
 			lIt.setValue(singleShip);
 			
@@ -337,7 +325,7 @@ public class ControlShipments extends Window {
 	 * Edit Studies load in the window
 	 */
 	public void edit (){
-		
+		try{
 		idLisB = (Listbox)getFellow("idLisB");
 		if (idLisB.getSelectedIndex() != -1){
 			Listitem item =idLisB.getSelectedItem();
@@ -360,8 +348,8 @@ public class ControlShipments extends Window {
 					
 				    getDesktop().setAttribute(ATTRIBUTE_SHIPMENT_ITEM ,idLisB.getSelectedItem().getValue() );
 					
-					Fisheye fe = (Fisheye)idLisB.getSelectedItem()
-							.getListgroup().getLastChild().getFirstChild().getFirstChild();
+					Image fe = (Image)idLisB.getSelectedItem()
+							.getListgroup().getLastChild().getFirstChild();
 					MouseEvent ev = new MouseEvent(Events.ON_CLICK
 							,fe);
 					
@@ -381,6 +369,9 @@ public class ControlShipments extends Window {
 			}else {
 				messageBox(pro.getKey(LBL_GENERIC_MESS_SELECT_RECORD));
 			}
+		}catch (Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	private void messageBox(String mess){
@@ -474,13 +465,15 @@ public class ControlShipments extends Window {
 	 * @param shipSetBean the set/template this shipment will be attached to.
 	 * @return a Fisheye button for creating a new shipment.
 	 */
-	public Fisheye createAddBtn(String urlImg, ShipmentSet shipSetBean){
+	public Image createAddBtn(String urlImg, ShipmentSet shipSetBean){
 		
-		Fisheye fEyeBtn = new Fisheye();
-		fEyeBtn.setId(String.valueOf(shipSetBean.getIdShipmentSet()));
-		fEyeBtn.setImage(urlImg);
-		fEyeBtn.addEventListener("onClick", new ShippmentButton());
-		return fEyeBtn;
+		Image imageBtn = new Image();
+		imageBtn.setId(String.valueOf(shipSetBean.getIdShipmentSet()));
+		imageBtn.setSrc(urlImg);
+		imageBtn.setWidth("32px");
+		imageBtn.setHeight("32px");
+		imageBtn.addEventListener("onClick", new ShippmentButton());
+		return imageBtn;
 	}
 
 	/**
@@ -488,11 +481,13 @@ public class ControlShipments extends Window {
 	 * @param shipBean The shipment to mark as Sent.
 	 * @return a Fisheye button for sending a shipment
 	 */
-	public Fisheye createSendBtn( Shipment shipBean){
+	public Image createSendBtn( Shipment shipBean){
 		
-		Fisheye fEyeBtn = new Fisheye();
+		Image fEyeBtn = new Image();
 		fEyeBtn.setAttribute("shipId",String.valueOf(shipBean.getIdShipment()));
-		fEyeBtn.setImage(URL_IMAGES_SEND_BUTTON);
+		fEyeBtn.setSrc(URL_IMAGES_SEND_BUTTON);
+		fEyeBtn.setWidth("32px");
+		fEyeBtn.setHeight("32px");
 		fEyeBtn.setTooltiptext(pro.getKey(LBL_MENU_TOOL_SEND));
 		fEyeBtn.addEventListener("onClick", new ShipmentEventListener(LBL_SHIPMENT_STRING_SENT, LBL_MENU_TOOL_SEND,LBL_MENU_TOOL_SEND));
 		return fEyeBtn;
@@ -503,11 +498,13 @@ public class ControlShipments extends Window {
 	 * @param shipBean The shipment to mark as Received.
 	 * @return a Fisheye button for receiving a shipment
 	 */
-	public Fisheye createReceBtn( Shipment shipBean){
+	public Image createReceBtn( Shipment shipBean){
 		
-		Fisheye fEyeBtn = new Fisheye();
+		Image fEyeBtn = new Image();
 		fEyeBtn.setAttribute("shipId",String.valueOf(shipBean.getIdShipment()));
-		fEyeBtn.setImage(URL_IMAGES_RECE_BUTTON);
+		fEyeBtn.setSrc(URL_IMAGES_RECE_BUTTON);
+		fEyeBtn.setWidth("32px");
+		fEyeBtn.setHeight("32px");
 		fEyeBtn.addEventListener("onClick",new ShipmentEventListener(LBL_SHIPMENT_STRING_RECEIVED,LBL_MENU_TOOL_RECEIVED,LBL_SHIPMENT_TITLE_SUB_ADD_S));
 		fEyeBtn.setTooltiptext(pro.getKey(LBL_MENU_TOOL_RECEIVED));
 		return fEyeBtn;
@@ -518,11 +515,13 @@ public class ControlShipments extends Window {
 	 * @param shipBean The shipment to cancel.
 	 * @return a Fisheye button for canceling/reversing the status of a shipment
 	 */
-	public Fisheye createCancBtn(Shipment shipBean){
+	public Image createCancBtn(Shipment shipBean){
 		
-		Fisheye fEyeBtn = new Fisheye();
+		Image fEyeBtn = new Image();
 		fEyeBtn.setAttribute("shipId",String.valueOf(shipBean.getIdShipment()));
-		fEyeBtn.setImage(URL_IMAGES_CANC_BUTTON);
+		fEyeBtn.setSrc(URL_IMAGES_CANC_BUTTON);
+		fEyeBtn.setWidth("32px");
+		fEyeBtn.setHeight("32px");
 		fEyeBtn.setTooltiptext(pro.getKey(LBL_MENU_TOOL_CANCEL));
 		
 		String cancelStatus;
@@ -540,12 +539,14 @@ public class ControlShipments extends Window {
 	 * @param shipBean The shipment which its information will be exported.
 	 * @return A Fisheye button for creating a report
 	 */
-	public Fisheye createKbiosBtn(Shipment shipBean,int numReport){
+	public Image createKbiosBtn(Shipment shipBean,int numReport){
 		
-		Fisheye fEyeBtn = new Fisheye();
+		Image fEyeBtn = new Image();
 		fEyeBtn.setAttribute("shipId",String.valueOf(shipBean.getIdShipment()));
 		fEyeBtn.setAttribute("numReport", numReport);
-		fEyeBtn.setImage(URL_IMAGES_XLS_BUTTON);
+		fEyeBtn.setSrc(URL_IMAGES_XLS_BUTTON);
+		fEyeBtn.setWidth("32px");
+		fEyeBtn.setHeight("32px");
 		if(numReport==1){
 			fEyeBtn.setTooltiptext(pro.getKey(LBL_SHIPMENT_KBIO_REPORT));
 		}else{
@@ -560,11 +561,13 @@ public class ControlShipments extends Window {
 	 * @param shipBean The shipment which its information will be exported.
 	 * @return A Fisheye button for creating a report
 	 */
-	public Fisheye createCornellBtn(Shipment shipBean){
+	public Image createCornellBtn(Shipment shipBean){
 		
-		Fisheye fEyeBtn = new Fisheye();
+		Image fEyeBtn = new Image();
 		fEyeBtn.setAttribute("shipId",String.valueOf(shipBean.getIdShipment()));
-		fEyeBtn.setImage(URL_IMAGES_CSV_BUTTON);
+		fEyeBtn.setSrc(URL_IMAGES_CSV_BUTTON);
+		fEyeBtn.setWidth("32px");
+		fEyeBtn.setHeight("32px");
 		fEyeBtn.setTooltiptext(pro.getKey(LBL_SHIPMENT_CORN_REPORT));
 		fEyeBtn.addEventListener("onClick", new ShippmentCornellButton());
 		return fEyeBtn;
@@ -575,11 +578,13 @@ public class ControlShipments extends Window {
 	 * @param shipBean The shipment which its information will be exported.
 	 * @return A Fisheye button for creating a report
 	 */
-	public Fisheye createDartBtn(Shipment shipBean){
+	public Image createDartBtn(Shipment shipBean){
 		
-		Fisheye fEyeBtn = new Fisheye();
+		Image fEyeBtn = new Image();
 		fEyeBtn.setAttribute("shipId",String.valueOf(shipBean.getIdShipment()));
-		fEyeBtn.setImage(URL_IMAGES_CSV_BUTTON);
+		fEyeBtn.setSrc(URL_IMAGES_CSV_BUTTON);
+		fEyeBtn.setWidth("32px");
+		fEyeBtn.setHeight("32px");
 		fEyeBtn.setTooltiptext(pro.getKey(LBL_SHIPMENT_DART_REPORT));
 		fEyeBtn.addEventListener("onClick", new ShippmentDartButton());
 		return fEyeBtn;

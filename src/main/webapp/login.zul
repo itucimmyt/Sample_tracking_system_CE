@@ -26,12 +26,17 @@
 						value="" maxlength="15" cols="15"
 						onOK="idCenter.validateUserPass()" />
 					<cell rowspan="2">
-						<fisheyebar style="margin:5px 5px;"
-							attachEdge="top" itemWidth="50" itemHeight="50"
-							itemMaxHeight="60" itemMaxWidth="60">
-							<fisheye id="idLabFis"
-								onClick="idCenter.validateUserPass()" image="${imgNext}" />
-						</fisheyebar>
+					<image id="idImgLogin"
+								onClick="idCenter.validateUserPass()" src="${imgNext}" width="40px" height="40px">
+								<attribute name="onMouseOver">
+								idImgLogin.setWidth("50px");
+								idImgLogin.setHeight("50px");
+							</attribute>
+							<attribute name="onMouseOut">
+								idImgLogin.setWidth("40px");
+								idImgLogin.setHeight("40px");
+							</attribute>
+						</image>
 					</cell>
 				</row>
 				<row>

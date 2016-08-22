@@ -128,14 +128,32 @@ use="com.cimmyt.zk.shipments.ControlWindowShipments" onCreate="idShipmentAdd.loa
 			</row>
 		</rows>
 	</grid>
-
-	<fisheyebar id="idFsb" attachEdge="top"
-	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
-	    <fisheye label="${lblMenTAdd}" id="idFisheyeAdd"
-	        image="${imgOk}" onClick="idShipmentAdd.add(event)" visible="false"/>
-	    <fisheye label="${lblMenTCancel}" 
-	    image="${imgCancel}" onClick="idShipmentAdd.closeWindow()"/>
-	</fisheyebar>
+	<div align="center" width="700px" >
+	<hbox>
+		<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idShipmentAdd.add(event)"
+					width="40px" height="40px" visible="false">
+						<attribute name="onMouseOver">
+							idAdd.setWidth("60px");
+							idAdd.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idAdd.setWidth("40px");
+							idAdd.setHeight("40px");
+						</attribute>
+		</image>
+		<image  id="idClose" tooltiptext="${lblMenTCancel}" src="${imgClose}" onClick="idShipmentAdd.closeWindow()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idClose.setWidth("60px");
+							idClose.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idClose.setWidth("40px");
+							idClose.setHeight("40px");
+						</attribute>
+		</image>
+	</hbox>
+	</div>
 	</vbox>
 </window>
 </zk>

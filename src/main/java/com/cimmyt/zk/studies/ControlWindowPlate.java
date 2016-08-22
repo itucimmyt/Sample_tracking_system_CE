@@ -50,6 +50,9 @@ import static com.cimmyt.utils.Constants.LBL_STUDIES_PLATE_ITEM_CONTROL;
 import static com.cimmyt.utils.Constants.LBL_STUDIES_RANDOM_NOT_SAMP_ASSIG;
 import static com.cimmyt.utils.Constants.LBL_STUDIES_RANDOM_SIZE_ASSIGNED;
 import static com.cimmyt.utils.Constants.LBL_STUDIES_SAVE_SUCCESS;
+import static com.cimmyt.utils.Constants.LBL_STUDIES_TITLE_SUB_WIN_ADD_LOAD_CIMMYT;
+import static com.cimmyt.utils.Constants.LBL_STUDIES_TITLE_SUB_WIN_ADD_LOAD_COL;
+import static com.cimmyt.utils.Constants.LBL_STUDIES_TITLE_SUB_WIN_ADD_LOAD_ROW;
 import static com.cimmyt.utils.Constants.LBL_STUDIES_TYPE_RACKS;
 import static com.cimmyt.utils.Constants.LBL_STUDIES_TYPE_SEP_TUBES;
 import static com.cimmyt.utils.Constants.LOCALE_LANGUAGE;
@@ -63,9 +66,6 @@ import static com.cimmyt.utils.Constants.URL_IMAGES_KBIO_CONTROL_TUBE;
 import static com.cimmyt.utils.ConstantsDNA.FILE_UP_LOAD_ONLY_SAMPLES;
 import static com.cimmyt.utils.ConstantsDNA.FILE_UP_LOAD_SAMPLES_CONTROL;
 import static com.cimmyt.utils.ConstantsDNA.SIZE_MIN_RANDOM;
-import static com.cimmyt.utils.Constants.LBL_STUDIES_TITLE_SUB_WIN_ADD_LOAD_COL;
-import static com.cimmyt.utils.Constants.LBL_STUDIES_TITLE_SUB_WIN_ADD_LOAD_ROW;
-import static com.cimmyt.utils.Constants.LBL_STUDIES_TITLE_SUB_WIN_ADD_LOAD_CIMMYT;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -80,7 +80,6 @@ import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
 import org.zkoss.zhtml.Filedownload;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Cell;
 import org.zkoss.zul.Checkbox;
@@ -90,8 +89,6 @@ import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
-import org.zkoss.zul.Radio;
-import org.zkoss.zul.Radiogroup;
 import org.zkoss.zul.Spinner;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Tabbox;
@@ -151,7 +148,7 @@ public class ControlWindowPlate extends Window{
 	//Value to default by separate tube
 	private final int valueSepTub = 1;
 	//component to add study at BD
-	private Fisheye idFisheyeNext;
+	private Image idNext;
 	 //radio button load row
 	//private Radio idRBRow;
 	 //radio button load Column
@@ -354,7 +351,7 @@ public class ControlWindowPlate extends Window{
 						indexPlate++;
 				}
 			}
-			idFisheyeNext.setVisible(false);
+			idNext.setVisible(false);
 			//index is idLoadType - 1
 			loadValueForComboLoadWay(bean.getLoadType().getIdLoadType().intValue());
 		}
@@ -420,7 +417,7 @@ public class ControlWindowPlate extends Window{
 		idTabBox = (Tabbox)getFellow("idTabBox");
 		idComPT = (Combobox)getFellow("idComPT");
 		idCBLoadWay = (Combobox)getFellow("idCBLoadWay");
-		idFisheyeNext = (Fisheye)getFellow("idFisheyeNext");
+		idNext = (Image)getFellow("idNext");
 		loadComboTypeLoad();
 	}
 
@@ -823,14 +820,14 @@ public class ControlWindowPlate extends Window{
     		UserBean userBean = (UserBean)getDesktop().getSession().getAttribute(ATTRIBUTE_NAME_USER_BEAN);
     		if(getDesktop().getAttribute(ATTRIBUTE_SAMPLE_REPEAT) != null ){
     		boolean thereAreAnySampleRepeat = (Boolean)getDesktop().getAttribute(ATTRIBUTE_SAMPLE_REPEAT);
-    	  		idFisheyeNext.setVisible(false);
+    			idNext.setVisible(false);
 	    		switch (userBean.getTypeCorp()){
 	    		case ATTRIBUTE_MAIZE :
-	    			idFisheyeNext.setVisible(true);
+	    			idNext.setVisible(true);
 	    			break;
 	    		case ATTRIBUTE_WHEAT :
 	    			if (!thereAreAnySampleRepeat)
-	    				idFisheyeNext.setVisible(true);
+	    				idNext.setVisible(true);
 	    			break;
 	    		}
     		}

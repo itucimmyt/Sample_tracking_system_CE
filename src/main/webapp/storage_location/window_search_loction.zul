@@ -28,11 +28,17 @@ use="com.cimmyt.zk.storage_location.ControlWindowSearch" onCreate="idWindowS.loa
     	  </row>
     	</rows>
     </grid>
-    	    <fisheyebar  style="position:center; " attachEdge="top"
-		   	itemWidth="32" itemHeight="32" itemMaxHeight="40" itemMaxWidth="40">
-		       	<fisheye label="${lblProSB}" 
-		         image="${imgFind}" onClick ="idWindowS.search()" />
-			</fisheyebar>
+    	<image  id="idFind" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindowS.search()"
+					width="32px" height="32px">
+						<attribute name="onMouseOver">
+							idFind.setWidth("40px");
+							idFind.setHeight("40px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idFind.setWidth("32px");
+							idFind.setHeight("32px");
+						</attribute>
+		</image>
    </hbox>
   
   <label value="${lblMGSL}"></label>
@@ -87,25 +93,62 @@ use="com.cimmyt.zk.storage_location.ControlWindowSearch" onCreate="idWindowS.loa
 						</listhead>
 	   	 </listbox>
 	   </vbox>
-	   	 <fisheyebar id="idFsPlay" style="margin:15px 5px;" attachEdge="top"
-	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60" orient="vertical">
-	    <fisheye label="${lblMenTAdd}" style="cursor:pointer"
-	        image="${imgPlay}" onClick="idWindowS.moveSamles()"/>
-	    <fisheye label="${lblMGAAll}" 
-	    image="${imgPlayAll}" onClick="idWindowS.moveAll()"/>
-	    <fisheye label="${lblMGRem}" 
-	    image="${imgPrev}" onClick="idWindowS.removeSamples()"/>
-	    <fisheye label="${lblMGRAll}"  	
-	    image="${imgPlayBackAll}" onClick="idWindowS.removeAll()"/>
-	</fisheyebar>
-	   	
+	  	<vbox>
+	  		<image  id="idMenTadd" tooltiptext="${lblMenTAdd}" src="${imgPlay}" onClick="idWindowS.moveSamles()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMenTadd.setWidth("50px");
+							idMenTadd.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMenTadd.setWidth("40px");
+							idMenTadd.setHeight("40px");
+						</attribute>
+			</image>
+			<separator/>
+			<image  id="idMGAAll" tooltiptext="${lblMGAAll}" src="${imgPlayAll}" onClick="idWindowS.moveAll()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMGAAll.setWidth("50px");
+							idMGAAll.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMGAAll.setWidth("40px");
+							idMGAAll.setHeight("40px");
+						</attribute>
+			</image>
+			<separator/>
+			<image  id="idMGRem" tooltiptext="${lblMGRem}" src="${imgPrev}" onClick="idWindowS.removeSamples()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMGRem.setWidth("50px");
+							idMGRem.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMGRem.setWidth("40px");
+							idMGRem.setHeight("40px");
+						</attribute>
+			</image>
+			<separator/>
+			<image  id="idMGRemAll" tooltiptext="${lblMGRAll}" src="${imgPlayBackAll}" onClick="idWindowS.removeAll()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMGRemAll.setWidth("50px");
+							idMGRemAll.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMGRemAll.setWidth("40px");
+							idMGRemAll.setHeight("40px");
+						</attribute>
+			</image>
+	  	</vbox>	   	
 	   	<vbox>
 	   	 <hbox>
 	   	 <label>${lblSLWSWSSS} :</label>
 	   	 <label id="idSelectSize">0</label>
 	   	 </hbox>
 	   	 <listbox id="idListS" vflex="true" width="450px" multiple="true" rows="8" height="240px"
-	   	 checkmark="true">
+	   	 checkmark="true">	
 	   	 <listhead id="idListHeadS" sizable="true">
 						  <listheader sort="auto" width="20%">
 						    	<label value="${lblMenuLocat}" sclass="columnForList"/>
@@ -129,13 +172,32 @@ use="com.cimmyt.zk.storage_location.ControlWindowSearch" onCreate="idWindowS.loa
    </hlayout>
   </center>
   <south border="none" height="100px">
-  <fisheyebar id="idFsb" style="position:absolute; margin:15px 450px;" attachEdge="top"
-	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
-	    <fisheye label="${lblMenTAdd}" 
-	        image="${imgOk}" onClick="idWindowS.addSampleDetail()"/>
-	    <fisheye label="${lblMenTCancel}" 
-	    image="${imgClose}" onClick="idWindowS.closeWindow()"/>
-	</fisheyebar>
+  <div align="center" width="100%">
+  <hbox>
+  	<image  id="idMGOk" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowS.addSampleDetail()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMGOk.setWidth("50px");
+							idMGOk.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMGOk.setWidth("40px");
+							idMGOk.setHeight("40px");
+						</attribute>
+	</image>
+	  	<image  id="idMGCancel" tooltiptext="${lblMenTCancel}" src="${imgClose}" onClick="idWindowS.closeWindow()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMGCancel.setWidth("50px");
+							idMGCancel.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMGCancel.setWidth("40px");
+							idMGCancel.setHeight("40px");
+						</attribute>
+	</image>
+  </hbox>
+  </div>
   </south>
 </borderlayout>
 </window>

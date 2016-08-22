@@ -52,7 +52,7 @@ public class InvestigatorBean implements Serializable{
 
 	@Override
 	    public String toString() {
-	    	return invest_name;
+	    	return "investigatorid : "+investigatorid+" invest_name : "+invest_name +" invest_abbreviation : "+invest_abbreviation;
 	    }
 	public InvestigatorBean (){
 

@@ -14,11 +14,11 @@ package com.cimmyt.zk.studies;
 
 import static com.cimmyt.utils.Constants.ATTRIBUTE_EDIT_STUDIES;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_LABSTUDY_ITEM;
+import static com.cimmyt.utils.Constants.ATTRIBUTE_LIST_TEMP_SAMPLE;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_MAP_CELL_SAMPLE;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_MAP_NUM_ITEM_SELECT;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_MAP_SAMPLE_DELETE;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_MAP_SAMPLE_EDIT;
-import static com.cimmyt.utils.Constants.ATTRIBUTE_LIST_TEMP_SAMPLE;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SAMPLE_REPEAT;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_TYPE_FILE_CONTROL;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_TYPE_LOAD_FILE;
@@ -94,9 +94,9 @@ import org.apache.log4j.Logger;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Desktop;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Button;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
@@ -132,7 +132,7 @@ public class ControlLoadFile extends Window{
 	private static ServiceLocation serviceLocation = null;
 	private Window idWindow;
 	private Textbox idTextError;
-	private Fisheye idLoadFile;
+	private Image idLoadFile;
 	private PropertyHelper pro=null;
 	private LabStudy beanLabStudy;
 	private static ServiceSeason serviceSeason = null;
@@ -283,7 +283,7 @@ public class ControlLoadFile extends Window{
 	private void loadComponent(){
 		idWindow = (Window)getFellow("idWindowFileUpload");
 		idTextError = (Textbox)getFellow("idTextError");
-		idLoadFile = (Fisheye)getFellow("idLoadFile");
+		idLoadFile = (Image)getFellow("idLoadFile");
 		idButtonLFF = (Button)getFellow("idButtonLFF");
 		idButtonLFS = (Button)getFellow("idButtonLFS");
 	}

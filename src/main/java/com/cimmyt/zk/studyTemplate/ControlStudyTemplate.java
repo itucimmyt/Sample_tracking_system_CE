@@ -38,9 +38,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
-import org.zkoss.zkex.zul.Fisheyebar;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listhead;
@@ -65,7 +65,7 @@ public class ControlStudyTemplate extends Window {
 	private PropertyHelper pro=null;
     private Logger logger= Logger.getLogger(ControlWindowProject.class);
     private Listbox idLisB;
-    private Fisheyebar idFsbStudyTemplate;
+    private Hbox idBoxImages;
     private UserBean userBean;
     private final String ID_STUDY_TEMPLATE_ADD = "studyTemplate$idAdd";
     private final String ID_STUDY_TEMPLATE_EDIT = "studyTemplate$idEdit";
@@ -122,21 +122,21 @@ public class ControlStudyTemplate extends Window {
 
 	@SuppressWarnings("unchecked")
 	private void loadFisheye (){
-		idFsbStudyTemplate = (Fisheyebar)getFellow("idFsbStudyTemplate");
+		idBoxImages = (Hbox)getFellow("idBoxImages");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){
 			mapFuntions = (Map<String, String>) getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION);
 			if (mapFuntions.get(ID_STUDY_TEMPLATE_ADD) == null){
-				Fisheye idAdd = (Fisheye)getFellow(ID_STUDY_TEMPLATE_ADD);
-				idFsbStudyTemplate.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(ID_STUDY_TEMPLATE_ADD);
+				idBoxImages.removeChild(idAdd);
 			}
 			if (mapFuntions.get(ID_STUDY_TEMPLATE_EDIT) == null){
-				Fisheye idAdd = (Fisheye)getFellow(ID_STUDY_TEMPLATE_EDIT);
-				idFsbStudyTemplate.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(ID_STUDY_TEMPLATE_EDIT);
+				idBoxImages.removeChild(idAdd);
 			}
 			if (mapFuntions.get(ID_STUDY_TEMPLATE_DELETE) == null){
-				Fisheye idAdd = (Fisheye)getFellow(ID_STUDY_TEMPLATE_DELETE);
-				idFsbStudyTemplate.removeChild(idAdd);
+				Image idAdd = (Image)getFellow(ID_STUDY_TEMPLATE_DELETE);
+				idBoxImages.removeChild(idAdd);
 			}
 		}
 	}

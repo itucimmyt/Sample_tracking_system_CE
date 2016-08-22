@@ -147,10 +147,29 @@ use="com.cimmyt.zk.register.ControlRegister" id="idWindowRegister" onCreate="idW
 	  </rows>
 	   
 	</grid>
-	<fisheyebar  style="margin:5px 300px;" attachEdge="top"
-			itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
-	<fisheye id="idLabFis"  onClick="idWindowRegister.add()" image="${imgNext}"/>
-	<fisheye label="${lblMenTCancel}" image="${imgClose}" onClick="idWindowRegister.closeWindow()"/>
-				 		</fisheyebar>
+	<div align="center">
+		<image  id="idNext" tooltiptext="${lblNext}" src="${imgNext}" onClick="idWindowRegister.add()"
+		width="40px" height="40px">
+			<attribute name="onMouseOver">
+				idNext.setWidth("60px");
+				idNext.setHeight("60px");
+			</attribute>
+			<attribute name="onMouseOut">
+				idNext.setWidth("40px");
+				idNext.setHeight("40px");
+			</attribute>
+		</image>
+		 <image  id="idCancel" tooltiptext="${lblMenTCancel}" src="${imgClose}" onClick="idWindowRegister.closeWindow()"
+		 width="40px" height="40px">
+			<attribute name="onMouseOver">
+				idCancel.setWidth("60px");
+				idCancel.setHeight("60px");
+			</attribute>
+			<attribute name="onMouseOut">
+				idCancel.setWidth("40px");
+				idCancel.setHeight("40px");
+			</attribute>
+		</image>
+	</div>
 </window>
 </zk>

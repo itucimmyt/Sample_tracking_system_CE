@@ -24,22 +24,16 @@
 		]]>
     </zscript>
 	<style src="/style/welcome.css" dynamic="true" >
-
 	</style>
-
 	<div id="idDiv" use="com.cimmyt.zk.ControlSetWidth"
 		onClientInfo="idDiv.loadDiv((ClientInfoEvent)event)">
 	</div>
 	<borderlayout id="intro" use="com.cimmyt.zk.welcome.ControlWelcome"
 		sclass="borderLayout" onCreate="intro.init()">
-
 		<north height="80px" maxsize="100" minsize="100" style="overflow:visible; ">
-		
 			<hbox width="100%" pack="center" align="center" vflex="true">
 					<image src="${imgBannerTop}" width="250px" style="position:absolute; left:10px; top:10px"/>
-					
 					<label height="60px" id="idSelectedAction" sclass="headerWelcome" style="padding-top:35px"/>
-					
 					<vbox width="200px" height="60px" align="end" pack="end"
 						style="position:absolute; right:10px; top:10px">
 						<label sclass="titleUnitC" id="idLabelSIU" hflex="true"
@@ -52,117 +46,61 @@
 							<a onClick="intro.loadWindowPreferences()" id="idPreference"
 								label="${lblMPreferens}"/>
 						</hbox>
-						<fisheyebar	attachEdge="right" style="position:absolute; right:0px; top:70px"
-							itemWidth="40" itemHeight="40" itemMaxHeight="60"	itemMaxWidth="60">
-							<fisheye id="idHome" label="${lblMenuHome}" image="${imgHome}"	onClick='execution.sendRedirect("/")' />
-							<fisheye id="idLogout" label="${lblMenuExit}"	image="${imgExit}" onClick="intro.showLogout()" />
-						</fisheyebar>
+						<hbox>
+						<image id="idHome" tooltiptext="${lblMenuHome}" tooltip="${lblMenuHome}" src="${imgHome}"	onClick='execution.sendRedirect("/")' width="40px" height="40px" >
+							<attribute name="onMouseOver">
+								idHome.setWidth("60px");
+								idHome.setHeight("60px");
+							</attribute>
+							<attribute name="onMouseOut">
+								idHome.setWidth("40px");
+								idHome.setHeight("40px");
+							</attribute>
+						</image>
 						
+						<image id="idLogout" tooltiptext="${lblMenuExit}" src="${imgExit}"	onClick="intro.showLogout()" width="40px" height="40px" >
+							<attribute name="onMouseOver">
+								idLogout.setWidth("60px");
+								idLogout.setHeight("60px");
+							</attribute>
+							<attribute name="onMouseOut">
+								idLogout.setWidth("40px");
+								idLogout.setHeight("40px");
+							</attribute>
+						</image>
+						</hbox>
 					</vbox>
 			</hbox>
-
 		</north>
 
 		<west style="overflow:visible;" id="idWest"
 		 sclass="westMenu" minsize="50" maxsize="50" width="50px">
-
-			<fisheyebar id="idFsb" style="position:absolute;"
-				labelEdge="right" attachEdge="left" orient="vertical" vflex="true"
-				itemWidth="40" itemHeight="40" itemMaxHeight="70"
-				itemMaxWidth="70">
-				<fisheye id="studyTemplate"
-					onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.StudyTemplate,idCenterMenu, self)"
-					label="${lblMenuStudyTemp}" image="${imgStudyTemplate}" />
-				<fisheye label="${lblMenuStoreLoc}" id="storeLocations"
-					image="${imgStoreLocation}">
-					<attribute name="onClick">
-	ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.StoreLocation,
-			idCenterMenu, self);
-</attribute>
-				</fisheye>
-
-				<fisheye label="${lblMenuStudies}" id="studies"
-					image="${imgLabStudy}">
-					<attribute name="onClick">
-	ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Studies,
-			idCenterMenu, self);
-</attribute>
-				</fisheye>
-
-				<fisheye label="${lblMenuCompanie}" id="serviceProvider"
-					image="${imgCompany}">
-					<attribute name="onClick">
-	ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Companies,
-			idCenterMenu, self);
-</attribute>
-				</fisheye>
-
-				<fisheye label="${lblMenuShipManag}" id="shipmentManagment"
-					image="${imgShipment}">
-					<attribute name="onClick">
-	ControlMenuAndTool.selectMenu2(
-			ControlMenuAndTool.ListMenu.ShipmentManagment, idCenterMenu, self);
-</attribute>
-				</fisheye>
-
-				<fisheye label="${lblMenuProject}" id="projects"
-					image="${imgProject}">
-					<attribute name="onClick">
-	ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Proyects,
-			idCenterMenu, self);
-</attribute>
-				</fisheye>
-
-				<fisheye label="${lblMenuInvest}" id="researchers"
-					image="${imgInvestigator}">
-					<attribute name="onClick">
-	ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Investigators,
-			idCenterMenu, self);
-</attribute>
-				</fisheye>
-
-				<fisheye label="${lblMenuTiss}" image="${imgTissue}" id="tissues">
-					<attribute name="onClick">
-	ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Tissues,
-			idCenterMenu, self);
-</attribute>
-				</fisheye>
-
-				<fisheye label="${lblMenuLocat}" id="location"
-					image="${imgLocation}">
-					<attribute name="onClick">
-	ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Location,
-			idCenterMenu, self);
-</attribute>
-				</fisheye>
-
-				<fisheye label="${lblMenuSeason}" id="season"
-					image="${imgSeason}">
-					<attribute name="onClick">
-	ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Seasons,
-			idCenterMenu, self);
-</attribute>
-				</fisheye>
-
-				<fisheye label="${lblMenuQuerie}" image="${imgQuery}">
-					<attribute name="onClick">
-	ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Queries,
-			idCenterMenu, self);
-</attribute>
-				</fisheye>
-				<fisheye label="${lblBMSModule}" image="${imgBMSModule}" visible="false">
-					<attribute name="onClick">
-	ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.BMS,
-			idCenterMenu, self);
-</attribute>
-				</fisheye>	
-<!-- 				<fisheye label='${lblHST}  ${lblNotAvailable}' image="${imgHistory}"> -->
-<!-- 					<attribute name="onClick"> -->
-<!-- 	/*ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.History, -->
-<!-- 			idCenterMenu, self);*/ -->
-<!-- </attribute> -->
-<!-- 				</fisheye> -->
-			</fisheyebar>
+		  <vbox id="idContainerImages">
+		    <image id="studyTemplate" tooltiptext="${lblMenuStudyTemp}" src="${imgStudyTemplate}"	
+			    onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.StudyTemplate,idCenterMenu, self);" 
+			    width="40px" height="35px"/>
+			<image id="storeLocations" tooltiptext="${lblMenuStoreLoc}" src="${imgStoreLocation}"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.StoreLocation,idCenterMenu, self)"
+				width="40px" height="35px" />
+			<image id="studies" tooltiptext="${lblMenuStudies}" src="${imgLabStudy}"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Studies,idCenterMenu, self)" 
+				width="40px" height="35px" />
+			<image id="serviceProvider" tooltiptext="${lblMenuCompanie}" src="${imgCompany}"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Companies,idCenterMenu, self)" 
+				width="40px" height="35px" />
+			<image id="shipmentManagment" tooltiptext="${lblMenuShipManag}" src="${imgShipment}"	
+				onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.ShipmentManagment,idCenterMenu, self)" 
+				width="40px" height="35px" />
+			<image id="projects" tooltiptext="${lblMenuProject}" src="${imgProject}" onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Proyects,idCenterMenu, self)" 
+				width="40px" height="35px" />
+			<image id="researchers" tooltiptext="${lblMenuInvest}" src="${imgInvestigator}"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Investigators, idCenterMenu, self)"
+				 width="40px" height="35px" />
+			<image id="tissues" tooltiptext="${lblMenuTiss}" src="${imgTissue}"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Tissues,idCenterMenu, self)" 
+				width="40px" height="35px" />
+			<image id="location" tooltiptext="${lblMenuLocat}" src="${imgLocation}"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Location,idCenterMenu, self)" 
+				width="40px" height="35px" />
+			<image id="season" tooltiptext="${lblMenuSeason}" src="${imgSeason}"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Seasons, idCenterMenu, self)" 
+				width="40px" height="35px" />
+			<image id="query" tooltiptext="${lblMenuQuerie}" src="${imgQuery}"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Queries,idCenterMenu, self)" 
+				width="40px" height="35px" />		
+		    </vbox>
 		</west>
 		<center id="idCenterMenu" autoscroll="true">
 			<hbox width="100%" height="20%" align="center">

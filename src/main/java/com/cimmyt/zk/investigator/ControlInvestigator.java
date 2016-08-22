@@ -37,9 +37,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
-import org.zkoss.zkex.zul.Fisheyebar;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listhead;
@@ -68,7 +68,7 @@ public class ControlInvestigator extends Window{
     private final String ID_ADD = "researchers$idAdd";
     private final String ID_EDIT = "researchers$idEdit";
     private final String ID_DELETE = "researchers$idDelete";
-    private Fisheyebar fisheyebar;
+    private Hbox idHboxResearcher;
     private UserBean userBean;
 	static {
 		if(serviceInvestigator == null)
@@ -121,21 +121,21 @@ public class ControlInvestigator extends Window{
 
 	@SuppressWarnings("unchecked")
 	private void loadFisheye (){
-		fisheyebar = (Fisheyebar)getFellow("idFsbReseacher");
+		idHboxResearcher = (Hbox)getFellow("idHboxResearcher");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){
 			mapFuntions = (Map<String, String>) getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION);
 			if (mapFuntions.get(ID_ADD) == null){
-				Fisheye id = (Fisheye)getFellow(ID_ADD);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_ADD);
+				idHboxResearcher.removeChild(id);
 			}
 			if (mapFuntions.get(ID_EDIT) == null){
-				Fisheye id = (Fisheye)getFellow(ID_EDIT);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_EDIT);
+				idHboxResearcher.removeChild(id);
 			}
 			if (mapFuntions.get(ID_DELETE) == null){
-				Fisheye id = (Fisheye)getFellow(ID_DELETE);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_DELETE);
+				idHboxResearcher.removeChild(id);
 			}
 		}
 	}

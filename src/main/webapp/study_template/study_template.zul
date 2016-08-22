@@ -19,21 +19,41 @@
 			<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
 				<hbox width="100%" hflex="true" style="position:absolute; ">
-					<fisheyebar id="idFsbStudyTemplate" 
-						attachEdge="top" itemWidth="40" itemHeight="40" itemMaxHeight="60"
-						itemMaxWidth="60">
-							<fisheye label="${lblMenTAdd}" id="studyTemplate$idAdd"
-								tooltiptext="${lblMenTAdd}" image="${imgAdd}"
-								onClick="idWindow.add()" />
-							<fisheye label="${lblMenTEdit}" id="studyTemplate$idEdit"
-								tooltiptext="${lblMenTEdit}" image="${imgEdit}"
-								onClick="idWindow.edit()" />
-							<fisheye label="${lblMenTDelete}" id="studyTemplate$idDelete"
-								tooltiptext="${lblMenTDelete}" image="${imgDeleteItem}"
-								onClick="idWindow.delete()" />
-
-						</fisheyebar>
-			
+				<hbox id="idBoxImages">
+					<image  id="studyTemplate$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.add()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							studyTemplate$idAdd.setWidth("60px");
+							studyTemplate$idAdd.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							studyTemplate$idAdd.setWidth("40px");
+							studyTemplate$idAdd.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="studyTemplate$idEdit" tooltiptext="${lblMenTEdit}" src="${imgEdit}" onClick="idWindow.edit()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							studyTemplate$idEdit.setWidth("60px");
+							studyTemplate$idEdit.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							studyTemplate$idEdit.setWidth("40px");
+							studyTemplate$idEdit.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="studyTemplate$idDelete" tooltiptext="${lblMenTDelete}" src="${imgDeleteItem}" onClick="idWindow.delete()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							studyTemplate$idDelete.setWidth("60px");
+							studyTemplate$idDelete.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							studyTemplate$idDelete.setWidth("40px");
+							studyTemplate$idDelete.setHeight("40px");
+						</attribute>
+					</image>
+				</hbox>			
 					<space width="150px"></space>
 						<hbox align="center" width="100%" hflex="true">
 							<label sclass="textNor" value="${lblProSCLF}"></label>
@@ -43,12 +63,17 @@
 								width="120px">
 							</textbox>
 							
-							<fisheyebar attachEdge="right"
-								 labelEdge="bottom" orient="horizontal" itemWidth="32"
-								itemHeight="32" itemMaxHeight="40" itemMaxWidth="40">
-								<fisheye label="${lblProSB}"
-									image="${imgFind}" onClick="idWindow.search()" />
-							</fisheyebar>
+							<image  id="studyTemplate$idFind" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindow.search()"
+							width="30px" height="30px">
+								<attribute name="onMouseOver">
+									studyTemplate$idFind.setWidth("40px");
+									studyTemplate$idFind.setHeight("40px");
+								</attribute>
+								<attribute name="onMouseOut">
+									studyTemplate$idFind.setWidth("30px");
+									studyTemplate$idFind.setHeight("30px");
+								</attribute>
+							</image>
 						</hbox>
 
 				</hbox>

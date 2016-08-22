@@ -36,10 +36,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.zkoss.zkex.zul.Fisheye;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Comboitem;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Listbox;
@@ -64,8 +64,8 @@ public class ControlWindowStudyTemplate extends Window{
 	private Textbox idDes;
 	private Label idL1;
 	private Label idL2;
-	private Fisheye idFieldDelete;
-	private Fisheye idFieldAdd;
+	private Image idFieldDelete;
+	private Image idFieldAdd;
 	private PropertyHelper pro=null;
 	private List<String> nameList = new ArrayList<String>();
 	private static SeriviceStudyTemplate seriviceStudyTemplate = null;
@@ -274,8 +274,8 @@ public class ControlWindowStudyTemplate extends Window{
 		idDes = (Textbox)getFellow("idDes");
 		idL1 = (Label)getFellow("idL1");
 		idL2 = (Label)getFellow("idL2");
-		idFieldDelete = (Fisheye)getFellow("idFieldDelete");
-		idFieldAdd = (Fisheye)getFellow("idFieldAdd");
+		idFieldDelete = (Image)getFellow("idFieldDelete");
+		idFieldAdd = (Image)getFellow("idFieldAdd");
 		idLisB = (Listbox)getFellow("idLisB");
 	}
 

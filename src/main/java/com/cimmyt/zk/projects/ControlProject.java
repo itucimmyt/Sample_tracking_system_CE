@@ -36,9 +36,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
-import org.zkoss.zkex.zul.Fisheyebar;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listhead;
@@ -62,7 +62,7 @@ public class ControlProject extends Window{
     private final String ID_ADD = "projects$idAdd";
     private final String ID_EDIT = "projects$idEdit";
     private final String ID_DELETE = "projects$idDelete";
-    private Fisheyebar fisheyebar;
+    private Hbox idHboxProjects;
 	static {
 		if(serviceProject == null)
         {
@@ -86,9 +86,9 @@ public class ControlProject extends Window{
 			listBean = serviceProject.getProject(new ProjectBean());	
 		}
 		Listhead idListHead = (Listhead)getFellow("idListHead");
+		idLisBProjects = (Listbox)getFellow("idLisBProjects");
 		clearList(idLisBProjects);
 		if (listBean != null && !listBean.isEmpty()) {
-			idLisBProjects = (Listbox)getFellow("idLisBProjects");
 			int index = 0;
 			for (ProjectBean projectBean : listBean){
 				if (size == 0){
@@ -106,26 +106,26 @@ public class ControlProject extends Window{
 			}
 		}
 		idLisBProjects.appendChild(idListHead);
-		loadFisheye ();
+		loadImage ();
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadFisheye (){
-		fisheyebar = (Fisheyebar)getFellow("idFsbProject");
+	private void loadImage (){
+		idHboxProjects = (Hbox)getFellow("idHboxProjects");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){
 			mapFuntions = (Map<String, String>) getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION);
 			if (mapFuntions.get(ID_ADD) == null){
-				Fisheye id = (Fisheye)getFellow(ID_ADD);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_ADD);
+				idHboxProjects.removeChild(id);
 			}
 			if (mapFuntions.get(ID_EDIT) == null){
-				Fisheye id = (Fisheye)getFellow(ID_EDIT);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_EDIT);
+				idHboxProjects.removeChild(id);
 			}
 			if (mapFuntions.get(ID_DELETE) == null){
-				Fisheye id = (Fisheye)getFellow(ID_DELETE);
-				fisheyebar.removeChild(id);
+				Image id = (Image)getFellow(ID_DELETE);
+				idHboxProjects.removeChild(id);
 			}
 		}
 	}

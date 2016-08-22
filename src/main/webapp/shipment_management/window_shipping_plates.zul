@@ -21,12 +21,18 @@ use="com.cimmyt.zk.shipments.ControlWindowPlates" onCreate="idWindowS.loadContex
 			    <space width="20px"></space>
 			    <label value="${lblMGSL} ${lblProSCLF} ${lblMGSTitle}"></label>
 			    <textbox id="idTeSearh" maxlength="39" cols="39" onOK="idWindowS.searchLabStudies(0,true)"></textbox>
-			   
-			 	<fisheyebar  style="position:top; " attachEdge="top"
-			  		itemWidth="32" itemHeight="32" itemMaxHeight="40" itemMaxWidth="40">
-			      	<fisheye label="${lblProSB}" 
-			        image="${imgFind}" onClick ="idWindowS.searchLabStudies(0,true)" />
-				</fisheyebar>
+			   <image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindowS.searchLabStudies(0,true)"
+								width="32px" height="32px">
+									<attribute name="onMouseOver">
+									idFindP.setWidth("40px");
+									idFindP.setHeight("40px");
+									</attribute>
+									<attribute name="onMouseOut">
+									idFindP.setWidth("32px");
+									idFindP.setHeight("32px");
+									</attribute>
+				</image>
+							
 		   </hbox>
 		<listbox id="idListBS" width="100%" multiple="false" height="190px"
 			onSelect="idWindowS.loadAvailablePlates(true)">
@@ -58,19 +64,57 @@ use="com.cimmyt.zk.shipments.ControlWindowPlates" onCreate="idWindowS.loadContex
 			</listhead>
 	   	 </listbox>
 	 </vbox>
-	 <fisheyebar id="idFsPlay" style="margin:15px 5px;" attachEdge="top"
-	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60" orient="vertical">
-	    <fisheye label="${lblMenTAdd}"
-	        image="${imgPlay}" onClick="idWindowS.movePlates(true,false)"/>
-	    <fisheye label="${lblMGAAll}" 
-	    image="${imgPlayAll}" onClick="idWindowS.movePlates(true,true)"/>
-	    <fisheye label="${lblMGRem}" 
-	    image="${imgPrev}" onClick="idWindowS.movePlates(false,false)"/>
-	    <fisheye label="${lblMGRAll}"  	
-	    image="${imgPlayBackAll}" onClick="idWindowS.movePlates(false,true)"/>
-	</fisheyebar>
-	   	
-	   	<vbox>
+
+	<vbox>   
+	  		<image  id="idMenTadd" tooltiptext="${lblMenTAdd}" src="${imgPlay}" onClick="idWindowS.movePlates(true,false)"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMenTadd.setWidth("50px");
+							idMenTadd.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMenTadd.setWidth("40px");
+							idMenTadd.setHeight("40px");
+						</attribute>
+			</image>
+			<separator/>
+			<image  id="idMGAAll" tooltiptext="${lblMGAAll}" src="${imgPlayAll}" onClick="idWindowS.movePlates(true,true)"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMGAAll.setWidth("50px");
+							idMGAAll.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMGAAll.setWidth("40px");
+							idMGAAll.setHeight("40px");
+						</attribute>
+			</image>
+			<separator/>
+			<image  id="idMGRem" tooltiptext="${lblMGRem}" src="${imgPrev}" onClick="idWindowS.movePlates(false,false)"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMGRem.setWidth("50px");
+							idMGRem.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMGRem.setWidth("40px");
+							idMGRem.setHeight("40px");
+						</attribute>
+			</image>
+			<separator/>
+			<image  id="idMGRemAll" tooltiptext="${lblMGRAll}" src="${imgPlayBackAll}" onClick="idWindowS.movePlates(false,true)"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idMGRemAll.setWidth("50px");
+							idMGRemAll.setHeight("50px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idMGRemAll.setWidth("40px");
+							idMGRemAll.setHeight("40px");
+						</attribute>
+			</image>
+	  	</vbox>	
+		<vbox>
 		   	 <hbox>
 			   	 <label value="${lblShipPlateSel} :"/>
 			   	 <label id="idSelectSize">0</label>
@@ -85,15 +129,32 @@ use="com.cimmyt.zk.shipments.ControlWindowPlates" onCreate="idWindowS.loadContex
    </hbox>
   </center>
   <south border="none" height="80px">
-  <hbox width="100%" pack="center">
-  <fisheyebar id="idFsb"  attachEdge="top"
-	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
-	    <fisheye label="${lblMenTAdd}" 
-	        image="${imgOk}" onClick="idWindowS.addShipmentSet(event)"/>
-	    <fisheye label="${lblMenTCancel}" 
-	    image="${imgClose}" onClick="idWindowS.closeWindow()"/>
-	</fisheyebar>
+	<div align="center" width="1000px" >
+	<hbox>
+		<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowS.addShipmentSet(event)"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idAdd.setWidth("60px");
+							idAdd.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idAdd.setWidth("40px");
+							idAdd.setHeight("40px");
+						</attribute>
+		</image>
+		<image  id="idClose" tooltiptext="${lblMenTCancel}" src="${imgClose}" onClick="idWindowS.closeWindow()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idClose.setWidth("60px");
+							idClose.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idClose.setWidth("40px");
+							idClose.setHeight("40px");
+						</attribute>
+		</image>
 	</hbox>
+	</div>
   </south>
 </borderlayout>
 </window>

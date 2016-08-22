@@ -23,9 +23,11 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 import org.cimmyt.dnast.dto.AuthUserBean;
 
 import com.cimmyt.service.ServiceEmail;
+import com.cimmyt.service.impl.ServiceUserImpl;
 
 public class ManageEmail implements ServiceEmail{
 
@@ -36,6 +38,7 @@ public class ManageEmail implements ServiceEmail{
 	private Address [] address;
 	private String cropStr;
 	private String url;
+	private Logger logger= Logger.getLogger(ManageEmail.class);
 	public void sendEmailCreationUser (int crop, String emailApplicant, String userName) {
 		setProperties();
 		   Session session = Session.getInstance(props,
@@ -104,8 +107,9 @@ public class ManageEmail implements ServiceEmail{
 	            // Send message
 	            Transport.send(message);
 	        } catch (MessagingException e) {
-	        	e.printStackTrace();
-	            throw new RuntimeException(e);
+	        	logger.error(e.getMessage(), e);
+	        }catch (Exception ex){
+	        	logger.error(ex.getMessage(), ex);
 	        }
 	}
 
@@ -178,8 +182,9 @@ public class ManageEmail implements ServiceEmail{
 	            // Send message
 	            Transport.send(message);
 	        } catch (MessagingException e) {
-	        	e.printStackTrace();
-	            throw new RuntimeException(e);
+	        	logger.error(e.getMessage(), e);
+	        }catch (Exception ex){
+	        	logger.error(ex.getMessage(), ex);
 	        }
 	}
 	private void setListMailByCrop(int crop){

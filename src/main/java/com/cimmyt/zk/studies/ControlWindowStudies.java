@@ -26,8 +26,8 @@ import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_PURPOSE;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_STUDY_NAME;
 import static com.cimmyt.utils.Constants.LOCALE_LANGUAGE;
 import static com.cimmyt.utils.Constants.LOCATION_SERVICE_BEAN_NAME;
-import static com.cimmyt.utils.Constants.MIX_SEASON_DEFAULT;
 import static com.cimmyt.utils.Constants.MIX_LOCATION_DEFAULT;
+import static com.cimmyt.utils.Constants.MIX_SEASON_DEFAULT;
 import static com.cimmyt.utils.Constants.ORGANISM_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.PROJECT_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.SEASON_SERVICE_BEAN_NAME;
@@ -40,11 +40,11 @@ import static com.cimmyt.utils.ConstantsDNA.LBL_TEMPORAL_SAMPLE_MESSAGE_ERR_SEAS
 import java.util.List;
 
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkex.zul.Fisheye;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
@@ -88,7 +88,7 @@ public class ControlWindowStudies extends Window{
 	private Textbox objetive;
 	private Datebox idDBRegDate;
 	private Datebox idDBRegDateEnd;
-	private Fisheye idFisheyeNext;
+	private Image idFisheyeNext;
 	
 	private PropertyHelper pro=null;
 	private static SeriviceStudyTemplate seriviceStudyTemplate = null;
@@ -452,7 +452,7 @@ public class ControlWindowStudies extends Window{
 		objetive = (Textbox)getFellow("objetive");
 		idDBRegDate = (Datebox)getFellow("idDBRegDate");
 		idDBRegDateEnd = (Datebox)getFellow("idDBRegDateEnd");
-		idFisheyeNext = (Fisheye)getFellow("idFisheyeNext");
+		idFisheyeNext = (Image)getFellow("idFisheyeNext");
 	}
 
 	public void validateFields(){

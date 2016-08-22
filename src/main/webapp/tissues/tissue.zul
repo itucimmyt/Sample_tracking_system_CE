@@ -18,19 +18,40 @@
 		
 			<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
-				<hbox width="100%" hflex="true" style="position:absolute; ">	
-					<fisheyebar id="idFsbTissue" 
-						attachEdge="top" itemWidth="40" itemHeight="40" itemMaxHeight="60"
-						itemMaxWidth="60">
-						<fisheye label="${lblMenTAdd}" image="${imgAdd}" id="tissues$idAdd"
-							onClick="idWindow.add()" />
-						<fisheye label="${lblMenTEdit}" id="tissues$idEdit"
-							image="${imgEdit}" onClick="idWindow.edit()" />
-						<fisheye label="${lblMenTDelete}" id="tissues$idDelete"
-							image="${imgDeleteItem}" onClick="idWindow.deleteProject()" />
-
-					</fisheyebar>
-
+				<hbox id="idHboxTissue" width="100%" hflex="true" style="position:absolute; ">
+				<image  id="tissues$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.add()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							tissues$idAdd.setWidth("60px");
+							tissues$idAdd.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							tissues$idAdd.setWidth("40px");
+							tissues$idAdd.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="tissues$idEdit" tooltiptext="${lblMenTEdit}" src="${imgEdit}" onClick="idWindow.edit()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							tissues$idEdit.setWidth("60px");
+							tissues$idEdit.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							tissues$idEdit.setWidth("40px");
+							tissues$idEdit.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="tissues$idDelete" tooltiptext="${lblMenTDelete}" src="${imgDeleteItem}" onClick="idWindow.delete()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							tissues$idDelete.setWidth("60px");
+							tissues$idDelete.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							tissues$idDelete.setWidth("40px");
+							tissues$idDelete.setHeight("40px");
+						</attribute>
+					</image>	
 					<space width="150px"></space>
 
 						<hbox align="center" hflex="true" width="100%" vflex="true">
@@ -42,12 +63,17 @@
 							</textbox>
 							<separator width="5px" />
 	
-							<fisheyebar attachEdge="right" labelEdge="bottom"
-								orient="horizontal" itemWidth="32" itemHeight="32"
-								itemMaxHeight="40" itemMaxWidth="40">
-								<fisheye label="${lblProSB}"
-									image="${imgFind}" onClick="idWindow.search()" />
-							</fisheyebar>
+							<image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindow.search()"
+								width="32px" height="32px">
+									<attribute name="onMouseOver">
+									idFindP.setWidth("40px");
+									idFindP.setHeight("40px");
+									</attribute>
+									<attribute name="onMouseOut">
+									idFindP.setWidth("32px");
+									idFindP.setHeight("32px");
+									</attribute>
+							</image>
 						</hbox>
 
 				</hbox>

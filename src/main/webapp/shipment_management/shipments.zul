@@ -19,17 +19,41 @@
 		
 			<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
-				<hbox width="100%" hflex="true" style="position:absolute; ">
-					<fisheyebar id="idFsbShipments" 
-						attachEdge="top" itemWidth="40" itemHeight="40" itemMaxHeight="60"
-						itemMaxWidth="60">
-						<fisheye label="${lblMenTAdd}" id="shipmentManagment$idAdd"
-								image="${imgAdd}" onClick="idWindow.add()" />
-							<fisheye label="${lblMenTEdit}" id="shipmentManagment$idEdit"
-								image="${imgEdit}" onClick="idWindow.edit()" />
-							<fisheye label="${lblMenTDelete}" id="shipmentManagment$idDelete"
-								image="${imgDelete}" onClick="idWindow.delete()" />
-					</fisheyebar>
+				<hbox id="idHBoxShipment" width="100%" hflex="true" style="position:absolute; ">
+				
+					<image  id="shipmentManagment$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.add()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							shipmentManagment$idAdd.setWidth("60px");
+							shipmentManagment$idAdd.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							shipmentManagment$idAdd.setWidth("40px");
+							shipmentManagment$idAdd.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="shipmentManagment$idEdit" tooltiptext="${lblMenTEdit}" src="${imgEdit}" onClick="idWindow.edit()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							shipmentManagment$idEdit.setWidth("60px");
+							shipmentManagment$idEdit.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							shipmentManagment$idEdit.setWidth("40px");
+							shipmentManagment$idEdit.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="shipmentManagment$idDelete" tooltiptext="${lblMenTDelete}" src="${imgDeleteItem}" onClick="idWindow.delete()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							shipmentManagment$idDelete.setWidth("60px");
+							shipmentManagment$idDelete.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							shipmentManagment$idDelete.setWidth("40px");
+							shipmentManagment$idDelete.setHeight("40px");
+						</attribute>
+					</image>
 
 					<space width="150px"></space>
 
@@ -41,13 +65,17 @@
 								maxlength="50">
 							</textbox>
 							<separator width="5px"></separator>
-
-							<fisheyebar attachEdge="right"
-								labelEdge="bottom" orient="horizontal" itemWidth="32"
-								itemHeight="32" itemMaxHeight="40" itemMaxWidth="40">
-								<fisheye label="${lblProSB}"
-									image="${imgFind}" onClick="idWindow.search()" />
-							</fisheyebar>
+							<image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindow.search()"
+								width="32px" height="32px">
+									<attribute name="onMouseOver">
+									idFindP.setWidth("40px");
+									idFindP.setHeight("40px");
+									</attribute>
+									<attribute name="onMouseOut">
+									idFindP.setWidth("32px");
+									idFindP.setHeight("32px");
+									</attribute>
+							</image>
 						</hbox>
 				</hbox>
 			</north>

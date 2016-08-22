@@ -48,15 +48,17 @@ public class ServiceUserImpl implements ServiceUser{
 				autUser.setPassword(userBean.getPassword());
 				autUser.setStatus(true);
 				StInvestigator investigatorSt = new StInvestigator();
-				if (userBean.getInvestigatorBean()!= null ){
-					Investigator investigator = new Investigator();
-					investigator.setInvest_abbreviation(userBean.getInvestigatorBean().getInvest_abbreviation());
-					investigator.setInvest_name(userBean.getInvestigatorBean().getInvest_name());
-					if (userBean.getInvestigatorBean().getInvestigatorid() != null && userBean.getInvestigatorBean().getInvestigatorid().intValue() > 0)
-						investigator.setInvestigatorid(userBean.getInvestigatorBean().getInvestigatorid());
-					int idResearcher = investigatorDAO.saveOrUpdate(investigator);
-					if (idResearcher > 0 ){
-						userBean.getInvestigatorBean().setInvestigatorid(idResearcher);
+				if (userBean.getRole().getIdstRol() != ConstantsDNA.ROLE_ADMINISTRATOR){
+					if (userBean.getInvestigatorBean()!= null ){
+						Investigator investigator = new Investigator();
+						investigator.setInvest_abbreviation(userBean.getInvestigatorBean().getInvest_abbreviation());
+						investigator.setInvest_name(userBean.getInvestigatorBean().getInvest_name());
+						if (userBean.getInvestigatorBean().getInvestigatorid() != null && userBean.getInvestigatorBean().getInvestigatorid().intValue() > 0)
+							investigator.setInvestigatorid(userBean.getInvestigatorBean().getInvestigatorid());
+						int idResearcher = investigatorDAO.saveOrUpdate(investigator);
+						if (idResearcher > 0 ){
+							userBean.getInvestigatorBean().setInvestigatorid(idResearcher);
+						}
 					}
 				}
 				investigatorSt.setInvestigatorid(userBean.getInvestigatorBean().getInvestigatorid());
@@ -70,12 +72,12 @@ public class ServiceUserImpl implements ServiceUser{
 					}
 					Organism stOrganism = new Organism();
 					stOrganism.setOrganismid(userBean.getOrganism().getOrganismid());
-					
 					autUser.setStOrganism(stOrganism);
 				autUser.setUserFuntionses(getListFuntions(listFuntions, autUser));
 				int idUser = userDAO.saveOrUpdate(autUser);
 				autUser.setIdUser(idUser);
 				userFunctionsDAO.saveSetUserFunctions(getListFuntions(listFuntions, autUser));
+				if (userBean.getRole().getIdstRol() != ConstantsDNA.ROLE_ADMINISTRATOR)
 				serviceEmail.sendEmailWithCredencial(autUser);
 				logger.info("Saving user ...");
 			}catch (Exception ex){

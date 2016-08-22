@@ -39,15 +39,31 @@
 				</row>
 			</rows>
 		</grid>
-		<box width="100%" pack="center" align="center">
-			<fisheyebar id="idFsb" attachEdge="top" itemWidth="50"
-				itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
-				<fisheye label="${lblMenTAdd}" image="${imgOk}"
-					onClick="idWindowRandom.createControlRandom()" />
-				<fisheye label="${lblMenTCancel}" image="${imgClose}"
-					onClick="idWindowRandom.closeWindow()" />
-			</fisheyebar>
-
-		</box>
+		<div align="center" width="100%">
+		<hbox>
+		<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowRandom.createControlRandom()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idAdd.setWidth("60px");
+							idAdd.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idAdd.setWidth("40px");
+							idAdd.setHeight("40px");
+						</attribute>
+					</image>
+		<image  id="idClose" tooltiptext="${lblMenTCancel}" src="${imgClose}" onClick="idWindowRandom.closeWindow()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idClose.setWidth("60px");
+							idClose.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idClose.setWidth("40px");
+							idClose.setHeight("40px");
+						</attribute>
+					</image>
+		</hbox>
+		</div>
 	</window>
 </zk>

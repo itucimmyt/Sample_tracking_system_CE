@@ -49,11 +49,17 @@
 									<label sclass="textNor" value="${lblMenGR}"/>
 									<intbox id="idRL" maxlength="2" cols="2"></intbox>
 									<separator width="10px"/>
-									<fisheyebar  style="position:center; " attachEdge="top"
-						        	itemWidth="32" itemHeight="32" itemMaxHeight="40" itemMaxWidth="40">
-						        	<fisheye label="${lblProSB}" 
-							            image="${imgFind}" onClick ="idWindow.search()" />
-									</fisheyebar>
+										<image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindow.search()"
+										width="32px" height="32px">
+											<attribute name="onMouseOver">
+											idFindP.setWidth("40px");
+											idFindP.setHeight("40px");
+											</attribute>
+											<attribute name="onMouseOut">
+											idFindP.setWidth("32px");
+											idFindP.setHeight("32px");
+											</attribute>
+									</image>
 								</hbox>
 								
 							</vbox>
@@ -61,16 +67,41 @@
 							<box  width="20%" >
 							<vbox>
 								<div align="center" width="100%">
-								<fisheyebar id="idFsb" style="position:center; " attachEdge="top"
-						        itemWidth="60" itemHeight="60" itemMaxHeight="80" itemMaxWidth="80">
-							        <fisheye label="${lblMenTAdd}" 
-							            image="${imgAdd}" onClick ="idWindow.add()" />
-							            <fisheye label="${lblMenTEdit}" 
-							            image="${imgEdit}" onClick ="idWindow.edit()"/>
-							            <fisheye label="${lblMenTDelete}" 
-							            image="${imgDeleteItem}" onClick ="idWindow.delete()"/>
-									
-									</fisheyebar>
+								<hbox>
+										<image  id="idShipmentHistory$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.add()"
+										width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idShipmentHistory$idAdd.setWidth("60px");
+											idShipmentHistory$idAdd.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idShipmentHistory$idAdd.setWidth("40px");
+											idShipmentHistory$idAdd.setHeight("40px");
+										</attribute>
+									</image>
+									<image  id="idShipmentHistory$idEdit" tooltiptext="${lblMenTEdit}" src="${imgEdit}" onClick="idWindow.edit()"
+									width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idShipmentHistory$idEdit.setWidth("60px");
+											idShipmentHistory$idEdit.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idShipmentHistory$idEdit.setWidth("40px");
+											idShipmentHistory$idEdit.setHeight("40px");
+										</attribute>
+									</image>
+									<image  id="idShipmentHistory$idDelete" tooltiptext="${lblMenTDelete}" src="${imgDeleteItem}" onClick="idWindow.delete()"
+									width="40px" height="40px">
+										<attribute name="onMouseOver">
+											idShipmentHistory$idDelete.setWidth("60px");
+											idShipmentHistory$idDelete.setHeight("60px");
+										</attribute>
+										<attribute name="onMouseOut">
+											idShipmentHistory$idDelete.setWidth("40px");
+											idShipmentHistory$idDelete.setHeight("40px");
+										</attribute>
+									</image>
+								</hbox>
 								</div>
 							 </vbox>
 							</box>

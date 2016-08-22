@@ -77,17 +77,32 @@ use="com.cimmyt.zk.storage_location.ControlWindowSample" onCreate="idWindow.load
 		   </tabpanel>
 		</tabpanels>
 	</tabbox>
-	<vbox>
+	<hbox>
 	<separator></separator>
-		<fisheyebar  style="position:center; " attachEdge="top"
-						        	itemWidth="32" itemHeight="32" itemMaxHeight="40" itemMaxWidth="40">
-						        	<fisheye label="${lblProSB}" 
-							            image="${imgFind}" onClick ="" />
-							            
-							            <fisheye label="${lblSLWSWTBS}" 
-							            image="${imgLabStudy}" onClick ="idWindow.loadWindoeSearch()" />
-									</fisheyebar>
-	</vbox>
+	<image  id="idFind" tooltiptext="${lblProSB}" src="${imgFind}" onClick=""
+					width="32px" height="32px">
+						<attribute name="onMouseOver">
+							idFind.setWidth("40px");
+							idFind.setHeight("40px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idFind.setWidth("32px");
+							idFind.setHeight("32px");
+						</attribute>
+		</image>
+		
+	  <image  id="idFindStudy" tooltiptext="${lblSLWSWTBS}" src="${imgLabStudy}" onClick="idWindow.loadWindoeSearch()"
+					width="32px" height="32px">
+						<attribute name="onMouseOver">
+							idFindStudy.setWidth("40px");
+							idFindStudy.setHeight("40px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idFindStudy.setWidth("32px");
+							idFindStudy.setHeight("32px");
+						</attribute>
+		</image>
+	</hbox>
 	</hbox>
 	<listbox id="idLisB" multiple="false" width="100%" height="300px"
 				 sizedByContent="true"  >
@@ -125,16 +140,29 @@ use="com.cimmyt.zk.storage_location.ControlWindowSample" onCreate="idWindow.load
 	  </rows>
 	</grid>	
 	
-	
-	<box> 
-	<fisheyebar id="idFsb" style="position:absolute; margin:15px 320px;" attachEdge="top"
-	 itemWidth="50" itemHeight="50" itemMaxHeight="60" itemMaxWidth="60">
-	    <fisheye label="${lblMenTAdd}" 
-	        image="${imgOk}" onClick="idWindow.add()"/>
-	    <fisheye label="${lblMenTCancel}" 
-	    image="${imgClose}" onClick="idWindow.closeWindow()"/>
-	</fisheyebar>
-	
-	</box>
+	<div align="center">
+	<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindow.add()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idAdd.setWidth("60px");
+							idAdd.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idAdd.setWidth("40px");
+							idAdd.setHeight("40px");
+						</attribute>
+		</image>
+			<image  id="idClose" tooltiptext="${lblMenTCancel}" src="${imgClose}" onClick="idWindow.closeWindow()"
+					width="40px" height="40px">
+						<attribute name="onMouseOver">
+							idClose.setWidth("60px");
+							idClose.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							idClose.setWidth("40px");
+							idClose.setHeight("40px");
+						</attribute>
+		</image>
+	</div>
 </window>
 </zk>

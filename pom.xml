@@ -2,13 +2,26 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.cimmyt</groupId>
-  <artifactId>dna_sample_trackingw</artifactId>
+  <artifactId>dna_sample_tracking_ce</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>      
   <name>dna_sample_tracking_mvn Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
+	  <properties>
+        <!-- please change the version accordingly -->
+        <zk.version>6.5.5</zk.version>
+        <commons-io>1.3.1</commons-io>
+        <zktimeline.version>2.3.1_50</zktimeline.version>
+    </properties
+    >
+	
   <repositories>
+   		<repository>
+            <id>ZK CE</id>
+            <name>ZK CE Repository</name>
+            <url>http://mavensync.zkoss.org/maven2</url>
+        </repository>
  </repositories>
   
   <dependencies>
@@ -149,37 +162,38 @@
 <scope>test</scope>
 </dependency>
 <!--###########################33 ZK  -->
-          <dependency>
+          <!--  <dependency>
             <groupId>org.zkoss.zk</groupId>
             <artifactId>zkex</artifactId>
-            <version>6.5.5</version>
+            <version>${zk.version}</version>
         </dependency>
-        
+        -->
       <dependency>
 	      <groupId>org.zkoss.zk</groupId>
 	      <artifactId>zk</artifactId>
-	      <version>6.5.5</version>
+	      <version>${zk.version}</version>
     	</dependency>
     	      <dependency>
 	      <groupId>org.zkoss.zk</groupId>
 	      <artifactId>zul</artifactId>
-	      <version>6.5.5</version>
+	      <version>${zk.version}</version>
     	</dependency>
     	<dependency>
       <groupId>org.zkoss.zk</groupId>
       <artifactId>zhtml</artifactId>
-      <version>6.5.5</version>
+      <version>${zk.version}</version>
     </dependency>
   
  	<dependency>
       <groupId>org.zkoss.zk</groupId>
       <artifactId>zkplus</artifactId>
-      <version>6.5.5</version>
+      <version>${zk.version}</version>
     </dependency>
+      
 	<dependency>
       <groupId>org.zkoss.zk</groupId>
       <artifactId>zcommon</artifactId>
-      <version>6.5.5</version>
+      <version>${zk.version}</version>
     </dependency>
 	
     	<!-- Spring 3 dependencies -->
@@ -249,7 +263,7 @@
   
   </dependencies>
   <build>
-    <finalName>dna_sample_trackingw</finalName>
+    <finalName>dna_sample_tracking_ce</finalName>
         <plugins>
 			<!-- Maven Tomcat Plugin -->
 			<plugin>
@@ -263,7 +277,7 @@
 				<configuration>
 					<url>http://127.0.0.1:8080/manager/text</url>
 					<server>TomcatServer</server>
-					<path>/dna_sample_trackingw</path>
+					<path>/dna_sample_tracking_ce</path>
 				</configuration>
 			</plugin>
 				<plugin>

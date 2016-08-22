@@ -129,7 +129,7 @@ public class ControlWindowInvestigator extends Window {
 	 * Close Window
 	 */
 	public void closeWindow(){
-		getDesktop().setAttribute(ATTRIBUTE_INVESTIGATOR_ITEM, null);
+		getDesktop().removeAttribute(ATTRIBUTE_INVESTIGATOR_ITEM);
 		deleteAttributes();
 		idWindow.onClose();
 	}
@@ -137,6 +137,7 @@ public class ControlWindowInvestigator extends Window {
 	private void deleteAttributes(){
 		getDesktop().getSession().removeAttribute(Constants.ATTRIBUTE_RESEARCHER_ROLE_MAP_FUNCTION);
 		getDesktop().getSession().removeAttribute(Constants.ATTRIBUTE_RESEARCHER_ROLE_FUNCTION);
+		getDesktop().removeAttribute(ATTRIBUTE_INVESTIGATOR_ITEM);
 	}
 	public void loadContextAttribute(){
 		loadComponents();
@@ -507,14 +508,18 @@ public class ControlWindowInvestigator extends Window {
 		List<InvestigatorBean> listBean = serviceInvestigator.getInvestigator(new InvestigatorBean());
 		if (listBean != null && !listBean.isEmpty()){
 			for (InvestigatorBean bean : listBean){
-				Comboitem item = new Comboitem(bean.getInvest_name());
-				item.setValue(bean);
-				idComResearcher.appendChild(item);
-				if (userBean != null && userBean.getRole() != null && 
-						userBean.getRole().getIdstRol().intValue() == ConstantsDNA.ROLE_RESEARCHER){
-					if (userBean.getInvestigatorBean() != null && userBean.getInvestigatorBean().getInvestigatorid().intValue() == bean.getInvestigatorid().intValue()){
-						idComResearcher.setSelectedItem(item);
-						idComResearcher.setDisabled(true);
+				if (bean.getInvestigatorid() != null && bean.getInvest_abbreviation() != null
+						&& !bean.getInvest_abbreviation().equals("") && bean.getInvest_name() != null
+						&& !bean.getInvest_name().equals("")){
+					Comboitem item = new Comboitem(bean.getInvest_name());
+					item.setValue(bean);
+					idComResearcher.appendChild(item);
+					if (userBean != null && userBean.getRole() != null && 
+							userBean.getRole().getIdstRol().intValue() == ConstantsDNA.ROLE_RESEARCHER){
+						if (userBean.getInvestigatorBean() != null && userBean.getInvestigatorBean().getInvestigatorid().intValue() == bean.getInvestigatorid().intValue()){
+							idComResearcher.setSelectedItem(item);
+							idComResearcher.setDisabled(true);
+						}
 					}
 				}
 			}
@@ -685,7 +690,8 @@ public class ControlWindowInvestigator extends Window {
 					researcher.setInvest_abbreviation(idTxtResearcherAbreviation.getText().toUpperCase());
 					researcher.setInvest_name(idTxtResearcherName.getText());
 					if (beanEdit != null && beanEdit.getInvestigatorBean() != null && beanEdit.getInvestigatorBean().getInvestigatorid()!= null && 
-							beanEdit.getInvestigatorBean().getInvestigatorid().intValue() > 0 && beanEdit.getInvestigatorBean().getInvest_name().equals(researcher.getInvest_name())){
+							beanEdit.getInvestigatorBean().getInvestigatorid().intValue() > 0 &&beanEdit.getInvestigatorBean().getInvest_name() != null 
+							&& beanEdit.getInvestigatorBean().getInvest_name().equals(researcher.getInvest_name())){
 						researcher.setInvestigatorid(beanEdit.getInvestigatorBean().getInvestigatorid());
 					}
 				}else {

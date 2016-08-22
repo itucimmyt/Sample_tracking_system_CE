@@ -86,9 +86,9 @@ public class ControlProject extends Window{
 			listBean = serviceProject.getProject(new ProjectBean());	
 		}
 		Listhead idListHead = (Listhead)getFellow("idListHead");
+		idLisBProjects = (Listbox)getFellow("idLisBProjects");
 		clearList(idLisBProjects);
 		if (listBean != null && !listBean.isEmpty()) {
-			idLisBProjects = (Listbox)getFellow("idLisBProjects");
 			int index = 0;
 			for (ProjectBean projectBean : listBean){
 				if (size == 0){

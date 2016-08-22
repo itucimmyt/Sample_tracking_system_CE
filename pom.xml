@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.cimmyt</groupId>
-  <artifactId>dna_sample_trackingw</artifactId>
+  <artifactId>dna_sample_tracking_ce</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>      
   <name>dna_sample_tracking_mvn Maven Webapp</name>
@@ -263,7 +263,7 @@
   
   </dependencies>
   <build>
-    <finalName>dna_sample_trackingw</finalName>
+    <finalName>dna_sample_tracking_ce</finalName>
         <plugins>
 			<!-- Maven Tomcat Plugin -->
 			<plugin>
@@ -277,7 +277,7 @@
 				<configuration>
 					<url>http://127.0.0.1:8080/manager/text</url>
 					<server>TomcatServer</server>
-					<path>/dna_sample_trackingw</path>
+					<path>/dna_sample_tracking_ce</path>
 				</configuration>
 			</plugin>
 				<plugin>

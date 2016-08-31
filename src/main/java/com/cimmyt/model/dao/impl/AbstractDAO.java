@@ -103,7 +103,10 @@ public abstract class AbstractDAO <T,PK extends Serializable> extends HibernateD
 	 */
 	@Override
 	public void update(T transientObject) {
+		getHibernateTemplate().flush();
 		getHibernateTemplate().saveOrUpdate(transientObject);
+		getHibernateTemplate().flush();
+ 		
 	}
 	
 

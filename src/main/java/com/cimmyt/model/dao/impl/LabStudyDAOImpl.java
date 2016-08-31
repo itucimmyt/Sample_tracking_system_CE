@@ -340,8 +340,11 @@ public class LabStudyDAOImpl extends AbstractDAO<LabStudy, Integer> implements L
 	}
 
 	@Override
-	public void createStudy(LabStudy newInstance){
-		super.update(newInstance);
+	public void createStudy(LabStudy newInstance, boolean edit){
+		if (edit)
+			super.update(newInstance);
+		else 
+			super.create(newInstance);
 	}
 
 	@Override

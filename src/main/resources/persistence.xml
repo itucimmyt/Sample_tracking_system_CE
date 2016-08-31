@@ -25,8 +25,14 @@
 		<property name="connection.pool_size">10</property>
 		<property name="show_sql">false</property>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-		<property name="hibernate.jdbc.batch_size">30</property>
-		<property name="hibernate.cache.use_second_level_cache">false</property>
+				<property name="hibernate.jdbc.batch_size">1000</property>
+		
+		<property name="hibernate.order_inserts">true</property>
+		<property name="hibernate.order_updates">true</property>
+		<property name="hibernate.jdbc.batch_versioned_data">true</property>
+		
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+
 		<property name="hibernate.max_fetch_depth">10</property> 
 
 		<!-- Mapping files -->

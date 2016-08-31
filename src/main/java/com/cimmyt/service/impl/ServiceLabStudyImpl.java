@@ -12,16 +12,16 @@ Copyright 2013 International Maize and Wheat Improvement Center
 */
 package com.cimmyt.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.cimmyt.dnast.dto.DsSearchParam;
@@ -112,7 +112,7 @@ public class ServiceLabStudyImpl implements ServiceLabStudy {
 	public void addLabStudy(LabStudy labStudy, boolean isEdit, 
 			Map <Integer , SampleDetail> mapSamplesDelete, Map <Integer , SampleDetail> mapSamplesUpdate,
 			List<TemporalSample> listTempsample) {
-		logger.debug("Init add laboratory study");
+		logger.info("Init add laboratory study save project : "+ (new SimpleDateFormat("mm:ss:SSS")).format(new Date()));
 		LastPlateProject lastpp = new LastPlateProject();
 		lastpp = lastPlateProjectDAO.getLastPlateNumberOfStudyLab(
 				labStudy);
@@ -141,8 +141,9 @@ public class ServiceLabStudyImpl implements ServiceLabStudy {
 			deleteSampleDetID(mapSamplesDelete, labStudy.getProject().getProjectid());
 		}
 		deleteSamplesTemporaly(listTempsample);
-		labStudyDAO.createStudy(labStudy);
-		saveLastSamples(labStudy);
+		labStudyDAO.createStudy(labStudy, isEdit);
+		if (isEdit)
+			saveLastSamples(labStudy);
 	}
 	private void deleteSamplesTemporaly(List<TemporalSample> listTempsample){
 		if (listTempsample != null && !listTempsample.isEmpty()){
@@ -197,6 +198,7 @@ public class ServiceLabStudyImpl implements ServiceLabStudy {
 	 * method that save the last sample in table st_project
 	 * @param lastPlateProjectDAO
 	 */
+	@SuppressWarnings("unused")
 	private void saveLastSamples(LabStudy labStudy){
 		for (SampleDetail detail : labStudy.getSampleDetailCollection()){
 			if (detail.getNplanta() != null && detail.getBreedergid() != null){

@@ -63,7 +63,6 @@ use="com.cimmyt.zk.shipments.ControlWindowShipment" onCreate="idShipmentsAdd.loa
 			</row>
 		</rows>
 	</grid>
-
 	<div align="center" width="500px" >
 	<hbox>
 		<image  id="idAdd" tooltiptext="${lblNext}" src="${imgNext}" onClick="idShipmentsAdd.nextPag()"

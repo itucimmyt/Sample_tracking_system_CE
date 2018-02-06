@@ -14,13 +14,19 @@ package com.cimmyt.model.bean;
 
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.cimmyt.dnast.dto.AuthUserBean;
 /**
  * 
  * @author 
@@ -45,7 +51,21 @@ public class Investigator implements Serializable{
 	
 	@Column(name = "invest_name")
 	private String invest_name;
+
+	@Column(name = "status")
+	private boolean status = true;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "investigator")
+	private Set<AuthUserBean> setAuthUserBean = new HashSet<AuthUserBean>(0);
+	
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	public Integer getInvestigatorid() {
 		return investigatorid;
 	}
@@ -70,6 +90,14 @@ public class Investigator implements Serializable{
 		invest_name = investName;
 	}
 	
+
+	public Set<AuthUserBean> getSetAuthUserBean() {
+		return setAuthUserBean;
+	}
+
+	public void setSetAuthUserBean(Set<AuthUserBean> setAuthUserBean) {
+		this.setAuthUserBean = setAuthUserBean;
+	}
 
 	@Override
 	    public String toString() {

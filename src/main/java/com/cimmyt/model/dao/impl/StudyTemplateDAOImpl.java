@@ -33,7 +33,9 @@ package com.cimmyt.model.dao.impl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -44,6 +46,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cimmyt.model.bean.StudyTemplate;
 import com.cimmyt.model.bean.StudyTemplateParams;
+import com.cimmyt.model.dao.MyQLProcedureDAO;
 import com.cimmyt.model.dao.StudyTemplateDAO;
 import com.cimmyt.model.dao.StudyTemplateParamsDAO;
 import com.cimmyt.utils.StrUtils;
@@ -57,6 +60,7 @@ import com.cimmyt.utils.StrUtils;
 public class StudyTemplateDAOImpl extends AbstractDAO<StudyTemplate, Integer> implements StudyTemplateDAO{
 
 	private StudyTemplateParamsDAO studyTemplateParamsDAO;
+	private MyQLProcedureDAO mySqlProcedure;
 	public StudyTemplateDAOImpl() {
 		super(StudyTemplate.class);
 	}
@@ -95,7 +99,8 @@ public class StudyTemplateDAOImpl extends AbstractDAO<StudyTemplate, Integer> im
 						result = (StudyTemplate)session.get(StudyTemplate.class, id);
 						for (StudyTemplateParams params : result
 								.getImsStudyTemplateParamsCollection()) {
-							params.getDescription();
+							params.getTemplateparamid();
+							
 						}
 						return result;
 					}
@@ -125,9 +130,26 @@ public class StudyTemplateDAOImpl extends AbstractDAO<StudyTemplate, Integer> im
 	 * Add new Study Template
 	 * @param Study template
 	 */
+	@Transactional(rollbackFor=Exception.class)
 	@Override
-	public void add (StudyTemplate bean){
+	public void add (StudyTemplate bean,boolean hasStudies){
+		Set<StudyTemplateParams>  newImsStudyTemplateParamsCollection = new HashSet<StudyTemplateParams>(0);
+		if (hasStudies){
+			for (StudyTemplateParams param : bean.getImsStudyTemplateParamsCollection()){
+				if (param.getTemplateparamid() == null ){
+					newImsStudyTemplateParamsCollection.add(param);
+				}
+			}
+		}
 		super.update(bean);
+		if (newImsStudyTemplateParamsCollection.size() > 0){
+			for (StudyTemplateParams param : newImsStudyTemplateParamsCollection){
+				if (param.getTemplateparamid() != null && param.getTemplateparamid().intValue() > 0){
+					mySqlProcedure.executespAddFieldsTemplateResult(param.getTemplateparamid(), bean.getStudytemplateid());
+				}
+			}
+		}
+		
 	}
 
 	/**
@@ -165,5 +187,24 @@ public class StudyTemplateDAOImpl extends AbstractDAO<StudyTemplate, Integer> im
 		
 	}
 
+	@Transactional
+	@Override
+	public void deleteStudyTemplateParamas(Set<StudyTemplateParams> set, boolean hasStudies) {
+		for (StudyTemplateParams param : set){
+			if (hasStudies)
+			mySqlProcedure.executeDeleteFieldTemplate(param.getTemplateparamid(), param.getStudytemplateid().getStudytemplateid());
+			else
+			studyTemplateParamsDAO.delete(param);
+			
+		
+		}
+		
+	}
+
+	public void setMySqlProcedure(MyQLProcedureDAO mySqlProcedure) {
+		this.mySqlProcedure = mySqlProcedure;
+	}
+
+	
 	
 }

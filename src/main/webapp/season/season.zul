@@ -19,7 +19,7 @@
 			<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
 				<hbox  id="idHboxSeason" width="100%" hflex="true" style="position:absolute; ">
-				<image  id="season$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.add()"
+					<image  id="season$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.add()"
 					width="40px" height="40px">
 						<attribute name="onMouseOver">
 							season$idAdd.setWidth("60px");
@@ -52,6 +52,7 @@
 							season$idDelete.setHeight("40px");
 						</attribute>
 					</image>
+
 					<space width="150px"></space>
 
 						<hbox align="center" hflex="true" width="100%" vflex="true">
@@ -62,7 +63,6 @@
 								width="120px">
 							</textbox>
 							<separator width="5px" />
-							
 							<image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindow.search()"
 								width="32px" height="32px">
 									<attribute name="onMouseOver">

@@ -16,6 +16,8 @@ package com.cimmyt.model.bean;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -29,6 +31,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Sort;
+import org.hibernate.annotations.SortType;
 
 /**
  *
@@ -50,7 +55,8 @@ public class StudyTemplate implements Serializable {
     @Column(name = "comments")
     private String comments;    
     @OneToMany(cascade = CascadeType.ALL, fetch= FetchType.LAZY, mappedBy = "studytemplateid")
-    private Set<StudyTemplateParams> imsStudyTemplateParamsCollection = new HashSet<StudyTemplateParams>(0);
+    @Sort(type=SortType.COMPARATOR, comparator=TemplateComparator.class)
+    private SortedSet<StudyTemplateParams> imsStudyTemplateParamsCollection = new TreeSet<StudyTemplateParams>();
     @OneToMany(cascade = CascadeType.ALL,fetch= FetchType.LAZY, mappedBy = "studytemplateid")
     private Set<LabStudy> imsLabStudyCollection = new HashSet<LabStudy>();
 
@@ -85,7 +91,7 @@ public class StudyTemplate implements Serializable {
         this.templatename = templatename;
     }
 
-    public Set<StudyTemplateParams> getImsStudyTemplateParamsCollection() {
+    public SortedSet<StudyTemplateParams> getImsStudyTemplateParamsCollection() {
         return imsStudyTemplateParamsCollection;
     }
 
@@ -100,7 +106,7 @@ public class StudyTemplate implements Serializable {
 	}
 
 	public void setImsStudyTemplateParamsCollection(
-			Set<StudyTemplateParams> imsStudyTemplateParamsCollection) {
+			SortedSet<StudyTemplateParams> imsStudyTemplateParamsCollection) {
 		this.imsStudyTemplateParamsCollection = imsStudyTemplateParamsCollection;
 	}
 

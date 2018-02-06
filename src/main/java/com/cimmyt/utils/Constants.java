@@ -32,6 +32,7 @@ public class Constants {
 	public final static String ATTRIBUTE_PARAM_MAP_FUNTION = "attribute.param.map.funtion.by.user";
 	public final static String [] ARR_DART_CONTROL = propertyHelper.getKey("dart.controls",conf).trim().split(",");
 	public final static String [] ARR_KBIOS_CONTROL = propertyHelper.getKey("kbioscience.controls",conf).trim().split(",");
+	public final static String [] ARR_INTERTEK_CONTROL = propertyHelper.getKey("intertek.controls",conf).trim().split(",");
 	public final static String [] ARR_CIMMYT_CONTROL_EMPTY_96 = propertyHelper.getKey("cimmyt.controls.empty.96",conf).trim().split(",");
 	public final static String [] ARR_CIMMYT_CONTROL_EMPTY_384 = propertyHelper.getKey("cimmyt.controls.empty.384",conf).trim().split(",");
 	public final static short ATTRIBUTE_MAIZE = 1;
@@ -42,7 +43,8 @@ public class Constants {
 	public final static String REPORT_PATH_KBIO = "report.path.kbio";
 	public final static String REPORT_PATH_KBIO_G96 = "report.path.kbio.grid.96";
 	public final static String REPORT_PATH_KBIO_G384 = "report.path.kbio.grid.384";
-	
+	public final static String REPORT_PATH_INTERTEK_G96 = "report.path.intertek.format.96";
+	public final static String REPORT_PATH_GENOTYPING_SERVICES_96 = "report.path.genotyping.services.format.96";
 	
 	//images 
 	public final static String URL_IMAGES_BLANK_TUBE = propertyHelper.getKey("img.url.tube.blank",Bundle.img);
@@ -60,6 +62,10 @@ public class Constants {
 	public final static String URL_IMAGES_CANC_BUTTON = propertyHelper.getKey("img.url.button.cancel",Bundle.img);
 	public final static String URL_IMAGES_CSV_BUTTON = propertyHelper.getKey("img.url.download.csv",Bundle.img);
 	public final static String URL_IMAGES_XLS_BUTTON = propertyHelper.getKey("img.url.download.excel",Bundle.img);
+	public final static String URL_IMAGES_OK_BUTTON = propertyHelper.getKey("img.url.ok",Bundle.img);
+
+	public final static String URL_IMAGES_PROGRAM = propertyHelper.getKey("img.url.project.program",Bundle.img);
+	public final static String URL_IMAGES_PURPOSE = propertyHelper.getKey("img.url.project.purpose",Bundle.img);
 	
 	//bean spring
 	public static final String PROJECT_SERVICE_BEAN_NAME = "serviceProject";
@@ -92,6 +98,8 @@ public class Constants {
 	public static final String BMS_SERVICE_CLIENT = "serviceBMSClient";
 	public static final String SERVICE_LOGIN = "serviceLogin";
 	public static final String REGISTER_SERVICE_BEAN = "serviceRegister";
+	public static final String LOG_SERVICE_BEAN = "serviceLog";
+	public static final String MYSQLPROCEDURE_SERVICE_BEAN_NAME = "mySqlProcedure";
 	
 	//Constants Generic
 	public static final String LBL_GENERIC_MESS_FILL_FIELD = "lbl.generic.message.fill.fields";
@@ -99,6 +107,8 @@ public class Constants {
 	public static final String LBL_GENERIC_MESS_PLEASE_CONFIRM = "lbl.generic.message.please.confirm";
 	public static final String LBL_GENERIC_MESS_DELETE_RECORD = "lbl.generic.message.delete.record";
 	public static final String LBL_GENERIC_MESS_DELETE_SUCCESS = "lbl.generic.message.delete.success";
+	public static final String LBL_GENERIC_MESS_CHANGED_STATUS_SUCCESS = "lbl.generic.message.changes.status.success";
+	
 	public static final String LBL_GENERIC_MESS_DELETE_ERROR = "lbl.generic.message.delete.error";
 	public static final String LBL_GENERIC_MESS_INFORMATION = "lbl.generic.message.information";
 	public static final String LBL_GENERIC_MESS_LOGIN = "lbl.generic.message.login";
@@ -169,6 +179,7 @@ public class Constants {
 	public static final String LBL_GENERIC_MESS_STUDY_NAME ="lbl.generic.message.study.name";
 	public static final String LBL_GENERIC_WINDOW_QUESTION = "lbl.generic.window.question";
 	public static final String LBL_GENERIC_WINDOW_ERROR_FILL_FILDS="lbl.generic.window.error.fields";
+	public static final String LBL_GENERIC_WINDOW_CONFIRM_CONTINUE ="lbl.generic.window.confirm.continue";
 		
 	//Constants to welcome
 	public static final String LBL_WELCOME_DNAST = "lbl.welcome.dnast";
@@ -188,6 +199,7 @@ public class Constants {
 	public static final String LBL_WELCOME_NA_AP = "lbl.welcome.name.aplication";
 	public static final String LBL_WELCOME_MES_ERROR = "lbl.welcome.mess.error.user.pass";
 	public static final String LBL_WELCOME_PASS_INCORRECT = "lbl.welcome.mess.error.user.pass.incorrect";
+	public static final String LBL_WELCOME_PASS_DISABLED = "lbl.welcome.mess.error.user.disabled";
 	public static final String LBL_WELCOME_REGISTER = "lbl.welcome.register";
 	public static final String LBL_WELCOME_FORGOT_PASS = "lbl.welcome.forgot.pass";
 	public static final String LBL_WELCOME_HEADER = "lbl.welcome.header";
@@ -217,6 +229,9 @@ public class Constants {
 	public static final String ATTRIBUTE_PROJECT_ENABLED = "attribute.project.item.enabled";
 	public static final String LBL_PROJECT_TITLE_ADD = "lbl.projects.sub.window.add.new.project";
 	public static final String LBL_PROJECT_TITLE_EDIT = "lbl.projects.sub.window.add.edit.project";
+	public static final String ATTRIBUTE_TYPE_OBJECT = "attribute.type.object.program.purpose";
+	public static final String ATTRIBUTE_RELOAD_OBJECT = "attribute.reload.program.purpose";
+	public static final String ATTRIBUTE_EDIT_OBJECT = "attribute.edit.object.program.purpose";
 	
 	// Investigators
 	public static final String LBL_INVESTIGATORS_WIN_ADD = "lbl.investigators.sub.window.add.new.investigator";
@@ -257,10 +272,13 @@ public class Constants {
 	public static final String LBL_STUDY_TEMPLATE_WIN_ADD = "lbl.study.template.title.sub.win.add.new.title";
 	public static final String LBL_STUDY_TEMPLATE_WIN_EDIT = "lbl.study.template.title.sub.win.edit.new.title";
 	public static final String ATTRIBUTE_STUDY_TEMPLATE_ITEM = "attribute.study.template.item";
+	public static final String ATTRIBUTE_STUDY_TEMPLATE_ITEM_DELETE = "attribute.study.template.item.delete";
 	public static final String ATTRIBUTE_INDEX_FIELD = "attribute.idex.list.field";
 	public static final String LBL_STUDY_TEMPLATE_NEED_FIELD = "lbl.study.template.need.fields";
 	public static final String LBL_STUDY_TEMPLATE_FILL_FIELDS= "lbl.study.template.fill.fields";
 	public static final String LBL_STUDY_TEMPLATE_FIELDS_NOT_EQUALS="lbl.study.template.fields.name.not.equals";
+	public static final String LBL_STUDY_TEMPLATE_FIELDS_HAS_INFORMATION="lbl.study.template.fields.has.information";
+	
 	
 	// Companies
 	public static final String ATTRIBUTE_COMPANY_ITEM = "attribute.company.item";
@@ -299,6 +317,7 @@ public class Constants {
 	public static final String LBL_STUDIES_PLATE_ITEM_CONTROL = "lbl.studies.plate.item.control";
 	public static final String ATTRIBUTE_SAMPLE_ITEM = "attribute.sample.item";
 	public static final String ATTRIBUTE_SAMPLE_ITEM_BEAN = "attribute.sample.item.bean";
+	public static final String ATTRIBUTE_SAMPLE_ITEM_BEAN_EDIT = "attribute.sample.item.bean.edit";
 	public static final String LBL_STUDIES_PLATE_EMTY_SELECT = "lbl.studies.plate.error.emty.plate";
 	public static final String ATTRIBUTE_CONTROL_LAB = "attribute.control.lab";
 	public static final String LBL_STUDIES_CONTROL_KBIOSCIENCES = "lbl.studies.control.kbiosciences";
@@ -315,7 +334,9 @@ public class Constants {
 	public static final String ATTRIBUTE_MAP_SAMPLE_EDIT = "attribute.sample.detail.edit";
 	public static final String ATTRIBUTE_LIST_TEMP_SAMPLE = "attribute.sample.list.temp";
 	public static final String ATTRIBUTE_TYPE_FILE_CONTROL = "attribute.type.file.control";
+	public static final String ATTRIBUTE_USE_PADDED_CEROS = "attribute.use.padded.ceros";
 	public static final String ATTRIBUTE_LIST_FIELD_REPORT = "attribute.list.fields.report";
+	public static final String ATTRIBUTE_USE_PREFIX_REPORT = "attribute.use.prefix.report";
 	public static final String ATTRIBUTE_LIST_FIELD_REPORT_TEMPLATE = "attribute.list.fields.report.temp";
 	public static final String ATTRIBUTE_FIELD_TEMPLATE = "attribute.fields.template";
 	public static final String LBL_STUDIES_RANDOM_SIZE_ASSIGNED = "lbl.studies.random.size.assgined";
@@ -362,7 +383,11 @@ public class Constants {
 	public static final String LBL_STUDIES_SAVE_SUCCESS = "lbl.studies.save.success";
 	public static final String ATTRIBUTE_EDIT_STUDIES = "attribute.edit.studies";
 	public static final String LBL_STUDIES_FILE_EXP_NUM_CON_ERR =  "lbl.studies.file.export.num.control.error";
-
+	public static final String LBL_STUDIES_EDIT_SAMPLE_ERROR_DUPLICATE =  "lbl.studies.window.edit.sample.error.sample.duplicate";
+	public static final String LBL_STUDIES_EDIT_SAMPLE_ERROR_DUPLICATE_STOP =  "lbl.studies.window.edit.sample.error.sample.duplicate.stop";
+	public static final String LBL_STUDIES_SAMPLES_QUESTION_DUPLICATE =  "lbl.studies.window.edit.sample.error.samples.duplicates";
+	public static final String LBL_STUDIES_SAMPLES_TITLE_DUPLICATE =  "lbl.studies.window.edit.sample.error.samples.duplicates.title";
+	
 	//TIMEOUT
 	public static final String LBL_TIMEOUT_MSG = "lbl.timeout.window.message";
 
@@ -472,6 +497,7 @@ public class Constants {
 	public static final String LBL_SHIPMENT_STRING_SENT = "S";
 	public static final String LBL_SHIPMENT_STRING_RECEIVED = "R";
 	public static final String LBL_SHIPMENT_STRING_FOR_SEND = "F";
+	public static final String LBL_SHIPMENT_INTERTEK_REPORT = "lbl.shipment.intertek.report";
 	public static final String LBL_SHIPMENT_KBIO_REPORT = "lbl.shipment.kbio.report";
 	public static final String LBL_SHIPMENT_KBIO_REPORT2 = "lbl.shipment.kbio.report2";
 	public static final String LBL_SHIPMENT_CORN_REPORT = "lbl.shipment.corn.report";
@@ -479,8 +505,10 @@ public class Constants {
 	public static final short LBL_SHIPMENT_PROVIDER_KBIOS = 1;
 	public static final short LBL_SHIPMENT_PROVIDER_CORNELL = 2;
 	public static final short LBL_SHIPMENT_PROVIDER_DART = 3;
-	public static final short LBL_SHIPMENT_PROVIDER_MACROGEN = 4;
-	public static final short LBL_SHIPMENT_PROVIDER_SAGA = 5;
+	//public static final short LBL_SHIPMENT_PROVIDER_MACROGEN = 4;
+	public static final short LBL_SHIPMENT_PROVIDER_SAGA = 4;
+	public static final short LBL_SHIPMENT_PROVIDER_INTERTEK_FORMAT_1 = 5;
+	public static final short LBL_SHIPMENT_PROVIDER_INTERTEK_FORMAT_2 = 6;
 	public static final String MSG_SHIPMENT_DELETE_CONFIRM ="lbl.shipment.delete.shipment.confirm";
 	public static final String MSG_SHIPMENTSET_DELETE_CONFIRM="lbl.shipment.delete.shipmentset.confirm";
 	public static final String MSG_SHIPMENT_DELETE_ERROR="lbl.shipment.delete.error.generic";

@@ -12,6 +12,7 @@ Copyright 2013 International Maize and Wheat Improvement Center
 */
 package com.cimmyt.zk.projects;
 
+import static com.cimmyt.utils.Constants.ATTRIBUTE_NAME_USER_BEAN;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_PARAM_MAP_FUNTION;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_PROJECT_ENABLED;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_PROJECT_ITEM;
@@ -35,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.zkoss.zk.ui.ComponentNotFoundException;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Hbox;
@@ -48,9 +50,12 @@ import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 import com.cimmyt.bean.ProjectBean;
+import com.cimmyt.bean.UserBean;
 import com.cimmyt.service.ServiceLabStudy;
 import com.cimmyt.service.ServiceProject;
+import com.cimmyt.utils.Constants;
 import com.cimmyt.utils.PropertyHelper;
+import com.cimmyt.utils.StrUtils;
 @SuppressWarnings("serial")
 public class ControlProject extends Window{
 	
@@ -62,7 +67,10 @@ public class ControlProject extends Window{
     private final String ID_ADD = "projects$idAdd";
     private final String ID_EDIT = "projects$idEdit";
     private final String ID_DELETE = "projects$idDelete";
+    private final String ID_PROGRAM = "projects$idProgram";
+    private final String ID_PURPOSE = "projects$idPurpose";
     private Hbox idHboxProjects;
+    private UserBean userBean;
 	static {
 		if(serviceProject == null)
         {
@@ -79,6 +87,10 @@ public class ControlProject extends Window{
 	 * Create components of window 
 	 */
 	public void doAfterCompose (int size, ProjectBean bean ){
+		pro = (PropertyHelper)getDesktop().getSession().getAttribute(LOCALE_LANGUAGE);
+		if (getDesktop().getSession().getAttribute(ATTRIBUTE_NAME_USER_BEAN) != null){
+			userBean = (UserBean)getDesktop().getSession().getAttribute(ATTRIBUTE_NAME_USER_BEAN);
+		}
 		List<ProjectBean> listBean = null;
 		if (bean != null ){
 			listBean = serviceProject.getProject(bean);
@@ -86,9 +98,9 @@ public class ControlProject extends Window{
 			listBean = serviceProject.getProject(new ProjectBean());	
 		}
 		Listhead idListHead = (Listhead)getFellow("idListHead");
-		idLisBProjects = (Listbox)getFellow("idLisBProjects");
 		clearList(idLisBProjects);
 		if (listBean != null && !listBean.isEmpty()) {
+			idLisBProjects = (Listbox)getFellow("idLisBProjects");
 			int index = 0;
 			for (ProjectBean projectBean : listBean){
 				if (size == 0){
@@ -106,11 +118,11 @@ public class ControlProject extends Window{
 			}
 		}
 		idLisBProjects.appendChild(idListHead);
-		loadImage ();
+		loadFisheye ();
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadImage (){
+	private void loadFisheye (){
 		idHboxProjects = (Hbox)getFellow("idHboxProjects");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){
@@ -126,6 +138,20 @@ public class ControlProject extends Window{
 			if (mapFuntions.get(ID_DELETE) == null){
 				Image id = (Image)getFellow(ID_DELETE);
 				idHboxProjects.removeChild(id);
+			}
+		}
+		if (!StrUtils.isRoleAdminOrDataManager(userBean.getRole().getIdstRol())){
+			try{
+			if (getFellow(ID_PROGRAM) != null){
+				Image id = (Image)getFellow(ID_PROGRAM);
+				idHboxProjects.removeChild(id);
+			}
+			if (getFellow(ID_PURPOSE) != null ){
+				Image id_purpose = (Image)getFellow(ID_PURPOSE);
+				idHboxProjects.removeChild(id_purpose);
+			}
+			}catch (ComponentNotFoundException ex){
+				logger.error(ex.getMessage());	
 			}
 		}
 	}
@@ -260,4 +286,14 @@ public class ControlProject extends Window{
 			messageBox(pro.getKey(LBL_GENERIC_MESS_ERROR_CRITERIAL));
 		}
 	}
+
+	public void loadWindowProgramPurpose(boolean type){
+		
+		getDesktop().setAttribute(Constants.ATTRIBUTE_TYPE_OBJECT, type);
+		final Window win = (Window) Executions.createComponents(
+    			"/projects/list_generic.zul", null, null);
+    			win.doModal();
+    	getDesktop().removeAttribute(Constants.ATTRIBUTE_TYPE_OBJECT);
+	}
+	
 }

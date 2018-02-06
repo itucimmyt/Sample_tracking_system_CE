@@ -51,6 +51,7 @@
 							serviceProvider$idDelete.setHeight("40px");
 						</attribute>
 					</image>
+				
 					<space width="150px"></space>
 				<hbox align="center" hflex="true" width="100%" vflex="true">
 						<label sclass="textNor" value="${lblProSCLF}"/>
@@ -71,7 +72,6 @@
 													idFindC.setHeight("32px");
 												</attribute>
 							</image>
-
 						</hbox>
 						
 				</hbox>

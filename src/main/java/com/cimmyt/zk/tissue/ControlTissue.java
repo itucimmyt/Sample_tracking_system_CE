@@ -115,11 +115,11 @@ public class ControlTissue extends Window {
 			}
 		}
 		idLisB.appendChild(idListHead);
-		loadImage();
+		loadFisheye();
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadImage (){
+	private void loadFisheye (){
 		idHboxTissue = (Hbox)getFellow("idHboxTissue");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){

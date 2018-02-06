@@ -13,8 +13,8 @@ Copyright 2013 International Maize and Wheat Improvement Center
 package com.cimmyt.bean;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import com.cimmyt.model.bean.SampleDetResult;
 import com.cimmyt.model.bean.StudyTemplateParams;
@@ -87,7 +87,7 @@ public class StudyTemplateParamsBean {
 			obj.setDatatype(bean.getDatatype());
 			obj.setDescription(bean.getDescription());
 
-			Set<SampleDetResult> list = new HashSet<SampleDetResult>();
+			SortedSet<SampleDetResult> list = new TreeSet<SampleDetResult>();
 			for (SampleDetResultBean obj1 : bean.getImsSampleDetResultCollection()){
 				list.add(obj1.getSampleDetResult(obj1));
 			}

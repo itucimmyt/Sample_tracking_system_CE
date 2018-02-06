@@ -31,16 +31,20 @@ public class StInvestigator implements java.io.Serializable {
 	private Integer investigatorid;
 	private String investAbbreviation;
 	private String investName;
+	private boolean status = true;
+
+	private Set<AuthUserBean> setAuthUserBean = new HashSet<AuthUserBean>(0);
 
 	private Set<StLabStudy> stLabStudies = new HashSet<StLabStudy>(0);
 	public StInvestigator() {
 	}
 
 	public StInvestigator(String investAbbreviation, String investName,
-			Set<StLabStudy> stLabStudies) {
+			Set<StLabStudy> stLabStudies, Set<AuthUserBean> stAuthUserBean) {
 		this.investAbbreviation = investAbbreviation;
 		this.investName = investName;
 		this.stLabStudies = stLabStudies;
+		this.setAuthUserBean = stAuthUserBean;
 	}
 
 	public Integer getInvestigatorid() {
@@ -74,6 +78,22 @@ public class StInvestigator implements java.io.Serializable {
 
 	public void setStLabStudies(Set<StLabStudy> stLabStudies) {
 		this.stLabStudies = stLabStudies;
+	}
+
+	public Set<AuthUserBean> getSetAuthUserBean() {
+		return setAuthUserBean;
+	}
+
+	public void setSetAuthUserBean(Set<AuthUserBean> setAuthUserBean) {
+		this.setAuthUserBean = setAuthUserBean;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }

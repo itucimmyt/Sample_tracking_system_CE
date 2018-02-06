@@ -114,7 +114,7 @@ public class ControlLocation extends Window{
 			}
 		}
 		idLisB.appendChild(idListHead);
-		loadImage();
+		loadFisheye();
 	}
 
 	private void loatItem (LocationBean bean){
@@ -130,7 +130,7 @@ public class ControlLocation extends Window{
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadImage (){
+	private void loadFisheye (){
 		idHboxLocation = (Hbox)getFellow("idHboxLocation");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){

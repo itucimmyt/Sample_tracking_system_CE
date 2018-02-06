@@ -105,8 +105,6 @@ import com.cimmyt.utils.ConstantsDNA;
 import com.cimmyt.utils.PropertyHelper;
 import com.cimmyt.utils.PropertyHelper.Bundle;
 import com.cimmyt.utils.StrUtils;
-import com.sun.istack.logging.Logger;
-
 
 public class UseControlQuery extends Window{
 
@@ -581,7 +579,6 @@ public class UseControlQuery extends Window{
 			}
 			String str = textValue.getText().replaceAll(pro.getKey(REG_EXP_PEDIGREE,Bundle.conf), "").trim();//removes non word chars, except /, (, ), -, and blanks
 			if (comparator != null &&  comparator == Operator.TypeNumber.IN){
-				System.out.println("In comparator IN .....");
 				if (str.startsWith(",") || str.endsWith(",")){
 					StrUtils.messageBoxError(pro.getKey(Constants.MESSAGE_CHARACTER_NOT_VALID), pro);
 					isCorrecForConsitionIN = false;
@@ -609,7 +606,6 @@ public class UseControlQuery extends Window{
 			    	return null;
 			    }
 			}
-			System.out.println("STR::::::"+str);
 			searchParam.setValue( str); 
 			Combobox cboxOper = (Combobox)textValue.getNextSibling();//combo operator
 			if(cboxOper.getSelectedIndex() < 0){
@@ -889,7 +885,9 @@ public class UseControlQuery extends Window{
 	 * */
 	private Row createResultRowDNASample(SampleDetail sample){
 		AbstractSequentialList<String> rowLabels = new LinkedList<String>();
-		rowLabels.add(sample.getLabstudyid().getPrefix()+sample.getSamplegid());
+		rowLabels.add(sample.getLabstudyid().getPrefix()+
+				(sample.getLabstudyid().isUsePadded() ? StrUtils.getPaddingCeros(sample.getSamplegid()) :
+					sample.getSamplegid() != null? String.valueOf(sample.getSamplegid()) : ""));
 		rowLabels.add(sample.getBreedergid() == null ? "" : sample.getBreedergid().toString());
 		rowLabels.add(sample.getPlatename());
 		rowLabels.add(sample.getPlateloc());

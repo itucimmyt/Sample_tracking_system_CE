@@ -167,7 +167,8 @@ public class ControlWindowSearch extends Window {
 		if (bean.getSamplegid() !=null){
 			Listcell cell5 = new Listcell(bean.getLabstudyid().getProject().getProjectname()+
 					bean.getLabstudyid().getProject().getPurposename()+
-					String.valueOf(bean.getSamplegid()));
+					(bean.getLabstudyid().isUsePadded() ? StrUtils.getPaddingCeros(bean.getSamplegid()) :
+						String.valueOf(bean.getSamplegid())));
 			lIt.appendChild(cell5);
 		}else {
 			lIt.appendChild(new Listcell());

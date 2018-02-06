@@ -46,6 +46,7 @@ import com.cimmyt.reports.ServiceReportLaboratory;
 import com.cimmyt.service.SeriviceStudyTemplate;
 import com.cimmyt.utils.ConstantsDNA;
 import com.cimmyt.utils.PropertyHelper;
+import com.cimmyt.utils.StrUtils;
 import com.cimmyt.zk.studies.ControlWindowSelectField;
 
 public class ServiceReportLaboratoryImpl implements ServiceReportLaboratory{
@@ -65,12 +66,14 @@ public class ServiceReportLaboratoryImpl implements ServiceReportLaboratory{
 	private List<Object> listFieldsObjets;
 	private List<StudyTemplateParams> listStudyTemParams;
 	private SeriviceStudyTemplate seriviceStudyTemplate;
+	private boolean isPrefix = false;
 	
 	@Override
 	public byte[] getBytesReportLaboratoryPlate(StudyLabReportBean beanReport,List<Object> _listFieldsObjets, 
-			List<StudyTemplateParams> _listStudyTemParams) {
+			List<StudyTemplateParams> _listStudyTemParams, boolean isprefix) {
 		this.listFieldsObjets = _listFieldsObjets;
 		this.listStudyTemParams = _listStudyTemParams;
+		isPrefix = isprefix;
 		HSSFWorkbook objWB = createBookPlateExcel(beanReport);
 		return getArryByte(objWB);
 	}
@@ -129,13 +132,16 @@ public class ServiceReportLaboratoryImpl implements ServiceReportLaboratory{
 		styleCellBlank = getStyleCeldSolidForeground(book,cellBlankForegroundColor );
 		if (beanReport.getMapPlateSamples().size() > 0){
 			Iterator iteratorMapFirst = beanReport.getMapPlateSamples().entrySet().iterator();
-			int rowCounter = 3;
+			int rowCounter = 1;
 			while (iteratorMapFirst.hasNext()){
 				Map.Entry entry = (Map.Entry)iteratorMapFirst.next();
 				Map<String , SampleDetail> mapInner = (Map<String , SampleDetail>)entry.getValue();
 				Integer key = (Integer)entry.getKey();
+				sheet.createRow(rowCounter);
+				rowCounter++;
 				rowCounter = createHeaderPlate(sheet, rowCounter, beanReport.getNumberColumn(), styleCellNormallyHeader, beanReport.getPatternPlate()+key.toString());
 				int rowCounterLabel = 0;
+				
 				for (int sizeRow  =0 ; sizeRow < beanReport.getNameRow().length; sizeRow++){
 					HSSFRow rowData = sheet.createRow(rowCounter);
 					
@@ -167,7 +173,6 @@ public class ServiceReportLaboratoryImpl implements ServiceReportLaboratory{
 					}
 					rowCounter++;
 				}
-				
 			}
 			return book;
 		}
@@ -180,8 +185,10 @@ public class ServiceReportLaboratoryImpl implements ServiceReportLaboratory{
 			for (StudyTemplateParams studyTemplateParams: listStudyTemParams){
 				SampleDetResult sampleDetResult = seriviceStudyTemplate.getSampleDetResultByGIDAndIDTemplate(detail.getStudysampleid(), studyTemplateParams.getTemplateparamid());
 				if (sampleDetResult != null){
+					if (isPrefix)
 					fields.append(studyTemplateParams.getFactorname() + " : ");
 					fields.append(sampleDetResult.getResult());
+					fields.append(" ");
 					fields.append("\n");
 				}
 			}
@@ -198,27 +205,32 @@ public class ServiceReportLaboratoryImpl implements ServiceReportLaboratory{
 				ControlWindowSelectField.Fields fields = (ControlWindowSelectField.Fields)obj;
 				switch (fields){
 				case SAMPLEID :
-					fieldString.append(beanReport.getPrefix().toUpperCase()+detail.getSamplegid());
+					fieldString.append(beanReport.getPrefix().toUpperCase()+ 
+							(beanReport.isPadded() ? StrUtils.getPaddingCeros(detail.getSamplegid()): Integer.toString(detail.getSamplegid())));
 					break;
 				case GID :
-					fieldString.append("GID : "+ detail.getBreedergid());
+					fieldString.append(isPrefix ?"GID : "+""+ detail.getBreedergid() : "" + detail.getBreedergid());
 					break;
 				case ACC:
-					fieldString.append("ACC : "+ detail.getNval());
+					fieldString.append(isPrefix ? "Pedigree: "+  ""+ detail.getNval() : ""+ detail.getNval());
 					break;
 				case ENTRY_NUMBER:
 				    int entryN = 1;
 				    if (detail != null && detail.getEntryNo() != null){
 				    	entryN = detail.getEntryNo();
 				    }
-					fieldString.append("Entry number : "+ entryN);
+					fieldString.append(isPrefix ? "Entry number : "+""+ entryN : ""+ entryN);
 					break;
 				case PLANT_NUMBER:
 					int plantN = 1;
 					if (detail != null && detail.getNplanta() != null ){
 						plantN = detail.getNplanta();
 					}
-					fieldString.append("Plant Number : "+ plantN);
+					fieldString.append(isPrefix ? "Plant Number : "+""+ plantN : ""+ plantN);
+					break;
+				case COMMENTS:
+					if (detail != null && detail.getPriority() != null  && !detail.getPriority().trim().equals(""))
+					fieldString.append(isPrefix ? "Comments : "+"" + detail.getPriority().trim() : "" + detail.getPriority().trim());
 					break;
 				default:
 					break;
@@ -231,7 +243,7 @@ public class ServiceReportLaboratoryImpl implements ServiceReportLaboratory{
 
 	private String getReturnCharacter(StringBuilder fieldString){
 		if (!fieldString.toString().trim().equals("")){
-			return "\n";
+			return  " " + "\n" ;
 		}else return "";
 	}
 	private void writeCell(HSSFRow rowData, int sizeColumn, String strValue, HSSFCellStyle style){

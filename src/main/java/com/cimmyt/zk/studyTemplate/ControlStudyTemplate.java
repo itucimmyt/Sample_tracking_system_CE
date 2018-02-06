@@ -35,6 +35,7 @@ import static com.cimmyt.utils.Constants.STUDY_TEMPLATE_SERVICE_BEAN_NAME;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
@@ -51,10 +52,13 @@ import org.zkoss.zul.Window;
 
 import com.cimmyt.bean.UserBean;
 import com.cimmyt.model.bean.StudyTemplate;
+import com.cimmyt.model.bean.StudyTemplateParams;
+import com.cimmyt.model.dao.MyQLProcedureDAO;
 import com.cimmyt.service.SeriviceStudyTemplate;
 import com.cimmyt.service.ServiceLabStudy;
-import com.cimmyt.utils.ConstantsDNA;
+import com.cimmyt.utils.Constants;
 import com.cimmyt.utils.PropertyHelper;
+import com.cimmyt.utils.StrUtils;
 import com.cimmyt.zk.projects.ControlWindowProject;
 
 @SuppressWarnings("serial")
@@ -67,6 +71,7 @@ public class ControlStudyTemplate extends Window {
     private Listbox idLisB;
     private Hbox idBoxImages;
     private UserBean userBean;
+    private static MyQLProcedureDAO mySqlProcedure;
     private final String ID_STUDY_TEMPLATE_ADD = "studyTemplate$idAdd";
     private final String ID_STUDY_TEMPLATE_EDIT = "studyTemplate$idEdit";
     private final String ID_STUDY_TEMPLATE_DELETE = "studyTemplate$idDelete";
@@ -79,8 +84,14 @@ public class ControlStudyTemplate extends Window {
 			}catch (Exception e){
 				e.printStackTrace();
 			}
+			
         }
-		
+		if (mySqlProcedure == null )
+			try{
+				mySqlProcedure = (MyQLProcedureDAO)SpringUtil.getBean(Constants.MYSQLPROCEDURE_SERVICE_BEAN_NAME);
+			}catch (Exception e){
+				e.printStackTrace();
+			}
 	}
 	/**
 	 * Create components of window 
@@ -116,7 +127,7 @@ public class ControlStudyTemplate extends Window {
 			}
 		}
 		idLisB.appendChild(idListHead);
-		 if (userBean!= null && userBean.getRole()!= null && !userBean.getRole().getIdstRol().equals(ConstantsDNA.ROLE_ADMINISTRATOR))
+		 if (!StrUtils.isRoleAdminOrDataManager(userBean.getRole().getIdstRol()))
 		loadFisheye();
 	}
 
@@ -163,7 +174,7 @@ public class ControlStudyTemplate extends Window {
 			showWindow(pro.getKey(LBL_STUDY_TEMPLATE_WIN_ADD));
 			StudyTemplate bean = (StudyTemplate)getDesktop().getAttribute(ATTRIBUTE_STUDY_TEMPLATE_ITEM);
 			if (bean != null){
-				seriviceStudyTemplate.add(bean);
+				seriviceStudyTemplate.add(bean, false);
 				getDesktop().setAttribute(ATTRIBUTE_STUDY_TEMPLATE_ITEM, null);
 				doAfterCompose(0,null);
 			}
@@ -189,16 +200,21 @@ public class ControlStudyTemplate extends Window {
 				getDesktop().setAttribute(ATTRIBUTE_PROJECT_ENABLED,enabled);
 				showWindow(pro.getKey(LBL_STUDY_TEMPLATE_WIN_EDIT));
 				StudyTemplate bean = (StudyTemplate)getDesktop().getAttribute(ATTRIBUTE_STUDY_TEMPLATE_ITEM);
+				if (getDesktop().getSession().getAttribute(Constants.ATTRIBUTE_STUDY_TEMPLATE_ITEM_DELETE) != null){
+					@SuppressWarnings("unchecked")
+					Set<StudyTemplateParams> set = (Set<StudyTemplateParams>)getDesktop().getSession().getAttribute(Constants.ATTRIBUTE_STUDY_TEMPLATE_ITEM_DELETE);
+					if (set != null && !set.isEmpty())
+					seriviceStudyTemplate.deleteStudyTemplateParams(set, enabled);
+				}				
 				if (bean != null){
-					seriviceStudyTemplate.add(bean);
+					seriviceStudyTemplate.add(bean, enabled);
 					getDesktop().removeAttribute(ATTRIBUTE_SEASON_ITEM);
 					doAfterCompose(0,null);
 				}
-
-				
 			}else {
 				messageBox(pro.getKey(LBL_GENERIC_MESS_SELECT_RECORD));
 			}
+		getDesktop().getSession().removeAttribute(Constants.ATTRIBUTE_STUDY_TEMPLATE_ITEM_DELETE);
 		getDesktop().removeAttribute(ATTRIBUTE_PROJECT_ENABLED);
 	}
 

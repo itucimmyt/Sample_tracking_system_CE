@@ -46,6 +46,9 @@ public class InvestigatorDAOImpl extends AbstractDAO<Investigator, Integer> impl
 		if (filter.getInvest_name()!= null && ! filter.getInvest_name().isEmpty()) {
 			criteria.add(Restrictions.like("invest_name", "%"+filter.getInvest_name()+"%"));
 		}
+
+		if ( filter.isStatus())
+				criteria.add(Restrictions.eq("status", filter.isStatus() ));
 	}
 	/**
 	 * Get List Investigator

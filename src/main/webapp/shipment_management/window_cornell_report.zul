@@ -81,7 +81,6 @@ use="com.cimmyt.zk.shipments.ControlWindowCornell" onCreate="idCornellAdd.loadCo
 			</row>
 		</rows>
 	</grid>
-
 	<div align="center" width="500px" >
 	<hbox>
 		<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idCornellAdd.nextPag()"

@@ -15,7 +15,6 @@ package com.cimmyt.zk.welcome;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_MAIZE;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_NAME_USER_BEAN;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_PARAM_MAP_FUNTION;
-import static com.cimmyt.utils.Constants.LBL_BMS_MENU;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_COMPANIES;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_COMPANIES_DESC;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_INVESTIGATORS;
@@ -97,6 +96,7 @@ public class ControlWelcome extends Borderlayout{
 	private final String TISSUES = "tissues";
 	private final String LOCATION = "location";
 	private final String SEASON = "season";
+	private final String LOG = "logFunction";
 
 	private void changeLabel(){
 		idLabelSIU.setValue(prop.getKey(LBL_WELCOME_CIU));
@@ -113,7 +113,6 @@ public class ControlWelcome extends Borderlayout{
 		 
 		loadContext();
 
-		
 		EventListener<Event> rolloverEvt = new EventListener<Event>() {
 			@Override
 			public void onEvent(Event evt) throws Exception {
@@ -151,8 +150,8 @@ public class ControlWelcome extends Borderlayout{
 				case 10: labelTitle.setValue(prop.getKey(LBL_GENERIC_QUERIES));
 						 labelText.setValue(prop.getKey(LBL_GENERIC_QUERIES_DESC));
 					break;
-				case 11: labelTitle.setValue(prop.getKey(LBL_BMS_MENU));
-						 labelText.setValue(prop.getKey(LBL_BMS_MENU));
+				case 11: labelTitle.setValue("LOG");
+						 labelText.setValue("LOG");
 					break;
 				}
 				Image image =  (Image)evt.getTarget();
@@ -174,11 +173,12 @@ public class ControlWelcome extends Borderlayout{
 		};
 		
 		
-		for(Component image : idContainerImages.getChildren()){
+		for(Component component : idContainerImages.getChildren()){
 			
-			image.addEventListener("onMouseOver", rolloverEvt);
-			image.addEventListener("onMouseOut", rolloutEvt);
+			component.addEventListener("onMouseOver", rolloverEvt);
+			component.addEventListener("onMouseOut", rolloutEvt);
 		}
+		
 		
 	
 		getDesktop().getSession().setAttribute(LOCALE_LANGUAGE, prop);
@@ -205,9 +205,13 @@ public class ControlWelcome extends Borderlayout{
 			idLabelSIU2.setValue(prop.getKey(LBL_PREFS_CROP)+": "+userBean.getCorp());
 			this.getPage().setTitle(prop.getKey(LBL_WELCOME_DNAST));
 			loadComponentsByFuntionMap();
+			if (userBean.getRole().getIdstRol().intValue() == 1 || userBean.getRole().getIdstRol().intValue() == 2
+					|| userBean.getRole().getIdstRol().intValue() == 3){
+				idContainerImages.getFellow(LOG).setVisible(true);
+			}
 		}
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	private void loadComponentsByFuntionMap (){
 		Map <String, String> mapFuntions;
@@ -260,7 +264,7 @@ public class ControlWelcome extends Borderlayout{
 		idLabelSIU = (Label)getFellow("idLabelSIU");
 		idLblProfile = (Label)getFellow("idLblProfile");
 		idLabelSIU2 = (Label)getFellow("idLabelSIU2");
-		idContainerImages = (Vbox)getFellow("idContainerImages");
+		idContainerImages     = (Vbox)getFellow("idContainerImages");
 		labelTitle     = (Label)getFellow("idHeader");
 		labelText     = (Label)getFellow("idText");
 		idWest = (West)getFellow("idWest");

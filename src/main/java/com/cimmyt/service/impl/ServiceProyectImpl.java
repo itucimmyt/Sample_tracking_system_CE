@@ -17,13 +17,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cimmyt.bean.ProjectBean;
+import com.cimmyt.model.bean.Program;
 import com.cimmyt.model.bean.Project;
+import com.cimmyt.model.bean.Purpose;
+import com.cimmyt.model.dao.ProgramDAO;
 import com.cimmyt.model.dao.ProjectDAO;
+import com.cimmyt.model.dao.PurposeDAO;
 import com.cimmyt.service.ServiceProject;
 
 public class ServiceProyectImpl implements ServiceProject {
 
+	//Bean project DAO
 	private ProjectDAO projectDAO;
+	//Bean program DAO	
+	private ProgramDAO programDAO;
+	//Bean purpose DAO
+	private PurposeDAO purposeDAO;
 
 	/**
 	 * Get List Projects exist in the table
@@ -82,4 +91,28 @@ public class ServiceProyectImpl implements ServiceProject {
 		}
 		return null; 
 	}
+	@Override
+	public void saveOrUpdateProgram(Program filter) {
+		programDAO.saveOrUpdate(filter);
+	}
+	@Override
+	public List<Program> getListProgram(Program filter, boolean areAll) {
+		return programDAO.getListProgram(filter, areAll);
+	}
+	@Override
+	public void saveOrUpdatePurpose(Purpose filter) {
+		purposeDAO.saveOrUpdate(filter);
+	}
+	@Override
+	public List<Purpose> getListPurpose(Purpose filter, boolean areAll) {
+		return purposeDAO.getListPurpose(filter, areAll);
+	}
+
+	public void setProgramDAO(ProgramDAO programDAO) {
+		this.programDAO = programDAO;
+	}
+	public void setPurposeDAO(PurposeDAO purposeDAO) {
+		this.purposeDAO = purposeDAO;
+	}
+	
 }

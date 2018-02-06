@@ -17,6 +17,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import com.cimmyt.model.bean.LabStudy;
 import com.cimmyt.model.bean.StudyTemplate;
@@ -106,7 +108,7 @@ public class StudyTemplateBean {
 		 if(bean!= null && 
 				 bean.getImsStudyTemplateParamsCollectionBean() != null &&
 				 !bean.getImsStudyTemplateParamsCollectionBean().isEmpty()){
-			 Set<StudyTemplateParams> list2 = new HashSet<StudyTemplateParams>();
+			 SortedSet<StudyTemplateParams> list2 = new TreeSet<StudyTemplateParams>();
 			 for (StudyTemplateParamsBean obj2 : bean.getImsStudyTemplateParamsCollectionBean()){
 				 list2.add(obj2.getStudyTemplateParams(obj2));
 			 }

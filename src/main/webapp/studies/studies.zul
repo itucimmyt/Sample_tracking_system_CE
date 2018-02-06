@@ -86,7 +86,6 @@
 							studies$idUpdateResult.setHeight("40px");
 						</attribute>
 					</image>
-
 					<space width="l150px"></space>
 
 						<hbox align="center" hflex="true" width="100%" vflex="true">
@@ -97,6 +96,7 @@
 								maxlength="50" onOK="idWindow.search()">
 							</textbox>
 							<separator width="10px"></separator>
+
 							<image  id="idFindS" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindow.search()"
 											width="32px" height="32px">
 												<attribute name="onMouseOver">

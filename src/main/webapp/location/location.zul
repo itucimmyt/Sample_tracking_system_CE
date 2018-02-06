@@ -20,8 +20,7 @@
 		<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
 				<hbox id="idHboxLocation" width="100%" hflex="true" style="position:absolute; ">
-				
-				<image  id="location$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.add()"
+					<image  id="location$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.add()"
 					width="40px" height="40px">
 						<attribute name="onMouseOver">
 							location$idAdd.setWidth("60px");
@@ -54,6 +53,7 @@
 							location$idDelete.setHeight("40px");
 						</attribute>
 					</image>
+
 					<space width="150px"></space>
 					
 						
@@ -75,7 +75,6 @@
 									idFindP.setHeight("32px");
 									</attribute>
 							</image>
-
 						</hbox>
 				</hbox>
 			</north>

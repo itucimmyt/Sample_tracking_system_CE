@@ -146,7 +146,7 @@ public class StorageLocation implements Serializable {
 
     @Override
     public String toString() {
-        return lname;
+        return " id : "+imslocid+" lname "+ lname + " imslocidparent : "+imslocidparent;
     }
 
 	/**

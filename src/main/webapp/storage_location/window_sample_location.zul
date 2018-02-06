@@ -139,7 +139,6 @@ use="com.cimmyt.zk.storage_location.ControlWindowSample" onCreate="idWindow.load
 		</row>	  
 	  </rows>
 	</grid>	
-	
 	<div align="center">
 	<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindow.add()"
 					width="40px" height="40px">

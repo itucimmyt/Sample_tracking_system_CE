@@ -32,7 +32,7 @@ public class ControlMenuAndTool {
 	
 	public static enum ListMenu{StudyTemplate, StoreLocation,Studies,Companies,
 		ShipmentManagment, Proyects, Investigators, Tissues,Location,Seasons, Queries,History
-		,Home, Exit, BMS}
+		,Home, Exit, BMS, LOG}
 	@SuppressWarnings("unused")
 	private enum listToots {Add, Edit, Delete,Storesamples, Report,ViewResults,Update,
 		Barcode,Barcode2d, Send,Goback,Received,DefQuery,ExportsXLs, ExportCSV}
@@ -92,6 +92,9 @@ public class ControlMenuAndTool {
 						break;
 					case BMS:
 						includeOption("/bms/bms_service.zul",border );
+						break;
+					case LOG:
+						includeOption("/log/log.zul",border );
 						break;
 	                default:
 	            }

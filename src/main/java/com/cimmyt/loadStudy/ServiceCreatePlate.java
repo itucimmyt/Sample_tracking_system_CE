@@ -28,5 +28,5 @@ public interface ServiceCreatePlate {
 	public Grid addLoadGridByPlate(int numColum, PlateContentList plateContent, 
 			Map<String, Object> mapCellSample, PropertyHelper pro, LabStudy _beanLabStudy, boolean isNewStudy,
 			Map<String, Object> mapSampleEdit,String plateName, Tabpanel tabPanelj, List <String> listSampleRepeat
-			, Map<String, Object> mapAssignSample, Map<String, Integer> mapSizePlate, ControlPlateBean controlPlateBean);
+			, Map<String, Object> mapAssignSample, Map<String, Integer> mapSizePlate, ControlPlateBean controlPlateBean, boolean isEdit);
 }

@@ -48,6 +48,8 @@ public class ConstantsDNA {
 	public final static int COLUMN_POSITION_LOCATION = 6; // Integer.parseInt( propertyHelper.getKey( "column.position.file.location", conf ).trim());
 	//variable to indicate the position in the file to Season
 	public final static int COLUMN_POSITION_SEASON = 7; //Integer.parseInt( propertyHelper.getKey( "column.position.file.season", conf ).trim());
+	//variable to indicate the position in the file to control type C or B
+	public final static int COLUMN_POSITION_CONTROL_TYPE = 8;
 	
 	public final static int NUMBER_BY_DEFAULT_PLANT_NUMBER = 1 ;
 	//variable to up load file control 
@@ -170,6 +172,40 @@ public class ConstantsDNA {
 	public static final String LBL_USER_MODULE_PASSWORD = "lbl.register.user.password";
 	public static final String LBL_USER_MODULE_EMAIL = "lbl.generic.message.email";
 	public static final String LBL_USER_ERROR_ALREADY_RECORDED = "lbl.investigators.sub.window.user.already.record";
+
+	//Log system
+	public static final int ALL_ITEM = 0;
+	public static final int LOG_ADD = 1;
+	public static final int LOG_EDIT = 2;
+	public static final int LOG_DELETE = 3;
+	public static final int LOG_ENTITY_STUDY = 1;
+	public static final String LBL_LOG_OPERATION_ADD = "lbl.menu.tool.add";
+	public static final String LBL_LOG_OPERATION_EDIT = "lbl.menu.tool.edit";
+	public static final String LBL_LOG_OPERATION_DELETE = "lbl.menu.tool.delete";
+	public static final String LBL_LOG_SELECT_ALL = "lbl.log.module.all";
+	public static final String LBL_LOG_ENTITY_STUDY = "lbl.log.module.all";
+	public static final String LBL_LOG_NOT_INFORMATION = "lbl.log.module.not.imformation";
+	public static final String LBL_LOG_OPERATION_LABEL = "lbl.log.module.operation.label";
+	public static final String LBL_LOG_OPERATION_DATE = "lbl.log.module.operation.date";
+	public static final String LBL_LOG_DESCRPTION = "lbl.log.module.description";
+	
+	public static final String LBL_INVESTIGATOR_SUB_USER_NAME ="lbl.investigators.sub.window.user.name";
+	
+	public static final String LBL_ROLE_DESCRIPTION_RESEARCHER = "lbl.role.description.researcher";
+	
+	public static final String LBL_GENERIC_MESSAGE_SAMPLE_ID = "lbl.generic.message.sample.id";
+	
+	// Program
+	public static final String LBL_PROJECT_WINDOW_TITLE_PROGRAM = "lbl.program.title";
+	public static final String LBL_PROJECT_WINDOW_TITLE_PURPOSE = "lbl.prurpose.title";
+	public static final String LBL_PROJECT_PROGRAMPURPOSE_DISABLE = "lbl.programpurpose.disable";
+	public static final String LBL_PROJECT_PROGRAMPURPOSE_AVAILABLE = "lbl.programpurpose.available";
+	public static final String LBL_PROJECT_PROGRAMPURPOSE_MSN_CHANGE_STATUS = "lbl.programpurpose.message.confirme.change.status";
+
+	//Users 
+	public static final String LBL_USERS_GRID_INACTIVE = "lbl.investigators.grid.window.user.inactive";
+	public static final String LBL_USERS_GRID_ACTIVE = "lbl.investigators.grid.window.user.active";
+	
 	
 }
 

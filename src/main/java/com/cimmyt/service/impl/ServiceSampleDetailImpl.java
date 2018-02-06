@@ -129,4 +129,9 @@ public class ServiceSampleDetailImpl implements ServiceSampleDetail{
 		return sampleDetailDAO.getPlatesInShipmentSet(shipSet);
 	}
 
+	@Override
+	public void updateSampleDetail(SampleDetail detail) {
+		sampleDetailDAO.update(detail);
+	}
+
 }

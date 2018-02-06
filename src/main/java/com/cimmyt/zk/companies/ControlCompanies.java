@@ -119,11 +119,11 @@ public class ControlCompanies extends Window{
 		}
 		idLisB.appendChild(idListHead);
 		 if (userBean!= null && userBean.getRole()!= null && !userBean.getRole().getIdstRol().equals(ConstantsDNA.ROLE_ADMINISTRATOR))
-			 loadImage();
+			 loadFisheye();
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadImage (){
+	private void loadFisheye (){
 		idHboxCompanies = (Hbox)getFellow("idHboxCompanies");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){

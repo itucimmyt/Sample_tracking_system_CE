@@ -28,7 +28,7 @@ use="com.cimmyt.zk.storage_location.ControlWindowSearch" onCreate="idWindowS.loa
     	  </row>
     	</rows>
     </grid>
-    	<image  id="idFind" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindowS.search()"
+    	    <image  id="idFind" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindowS.search()"
 					width="32px" height="32px">
 						<attribute name="onMouseOver">
 							idFind.setWidth("40px");
@@ -38,7 +38,7 @@ use="com.cimmyt.zk.storage_location.ControlWindowSearch" onCreate="idWindowS.loa
 							idFind.setWidth("32px");
 							idFind.setHeight("32px");
 						</attribute>
-		</image>
+			</image>
    </hbox>
   
   <label value="${lblMGSL}"></label>
@@ -93,7 +93,7 @@ use="com.cimmyt.zk.storage_location.ControlWindowSearch" onCreate="idWindowS.loa
 						</listhead>
 	   	 </listbox>
 	   </vbox>
-	  	<vbox>
+	   <vbox>
 	  		<image  id="idMenTadd" tooltiptext="${lblMenTAdd}" src="${imgPlay}" onClick="idWindowS.moveSamles()"
 					width="40px" height="40px">
 						<attribute name="onMouseOver">
@@ -141,14 +141,15 @@ use="com.cimmyt.zk.storage_location.ControlWindowSearch" onCreate="idWindowS.loa
 							idMGRemAll.setHeight("40px");
 						</attribute>
 			</image>
-	  	</vbox>	   	
+	  	</vbox>	 
+	   	
 	   	<vbox>
 	   	 <hbox>
 	   	 <label>${lblSLWSWSSS} :</label>
 	   	 <label id="idSelectSize">0</label>
 	   	 </hbox>
 	   	 <listbox id="idListS" vflex="true" width="450px" multiple="true" rows="8" height="240px"
-	   	 checkmark="true">	
+	   	 checkmark="true">
 	   	 <listhead id="idListHeadS" sizable="true">
 						  <listheader sort="auto" width="20%">
 						    	<label value="${lblMenuLocat}" sclass="columnForList"/>

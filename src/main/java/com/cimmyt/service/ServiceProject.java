@@ -15,6 +15,8 @@ package com.cimmyt.service;
 import java.util.List;
 
 import com.cimmyt.bean.ProjectBean;
+import com.cimmyt.model.bean.Program;
+import com.cimmyt.model.bean.Purpose;
 
 public interface ServiceProject {
 
@@ -23,4 +25,8 @@ public interface ServiceProject {
 	public void deleteProject (ProjectBean projectBean);
 	public ProjectBean getProjectWithName(final String name);
 	public Integer getLastSampleID(final ProjectBean project);
+	public void saveOrUpdateProgram (Program filter);
+	public List<Program> getListProgram(Program filter, boolean areAll);
+	public void saveOrUpdatePurpose (Purpose filter);
+	public List<Purpose> getListPurpose(Purpose filter, boolean areAll);
 }

@@ -58,10 +58,10 @@ public class CommonUtils {
 			else
 				sampleDetail.setNval(beanSample.getAcc().toString());
 			if(beanSample.getComment() != null && !beanSample.getComment().toString().equals("")
-					&& beanSample.getComment().toString().length() > 255)
+					&& beanSample.getComment().toString().length() < 255)
 				sampleDetail.setPriority(beanSample.getComment().toString());
 			if (beanSample.getSpecie() != null && !beanSample.getSpecie().toString().equals("")
-					&& beanSample.getSpecie().toString().length() > 99){
+					&& beanSample.getSpecie().toString().length() < 99){
 				sampleDetail.setSpecie(beanSample.getSpecie().toString());
 			}
 			if (beanSample.getSampleID() > 0){

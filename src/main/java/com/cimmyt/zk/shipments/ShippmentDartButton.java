@@ -30,6 +30,7 @@ import com.cimmyt.model.bean.ShipmentSet;
 import com.cimmyt.servlet.RedirectServletReport;
 import com.cimmyt.servlet.SessionReport;
 import com.cimmyt.utils.ConstantsDNA;
+import com.cimmyt.utils.StrUtils;
 
 public class ShippmentDartButton extends ShipmentEventListener{
 	
@@ -62,7 +63,7 @@ public class ShippmentDartButton extends ShipmentEventListener{
 		listHeaders.add(1,new StringBuilder("Row"));
 		listHeaders.add(2,new StringBuilder("Column"));
 		listHeaders.add(3,new StringBuilder("Organism"));
-		listHeaders.add(4,new StringBuilder("Species"));
+		listHeaders.add(4,new StringBuilder("Crop"));
 		listHeaders.add(5,new StringBuilder("Genotype"));
 		listHeaders.add(6,new StringBuilder("Tissue"));
 		listHeaders.add(7,new StringBuilder("Comments"));
@@ -88,7 +89,9 @@ public class ShippmentDartButton extends ShipmentEventListener{
 				}else{
 					listRow.add(new StringBuilder(sampleDet.getLabstudyid().getOrganismid().getOrganismname()));
 					listRow.add(new StringBuilder(sampleDet.getSpecie()==null?"":sampleDet.getSpecie()));
-					listRow.add(new StringBuilder(sampleDet.getLabstudyid().getPrefix()+String.valueOf(sampleDet.getSamplegid())));
+					listRow.add(new StringBuilder(sampleDet.getLabstudyid().getPrefix()+
+							(sampleDet.getLabstudyid().isUsePadded() ? StrUtils.getPaddingCeros(sampleDet.getSamplegid()) :
+								String.valueOf(sampleDet.getSamplegid()))));
 					listRow.add(new StringBuilder(sampleDet.getLabstudyid().getTissue().getTissueName()));
 					listRow.add(new StringBuilder(sampleDet.getPriority()==null?sampleDet.getBreedergid().toString():sampleDet.getPriority()));
 				}

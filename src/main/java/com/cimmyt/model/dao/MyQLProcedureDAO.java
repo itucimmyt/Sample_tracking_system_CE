@@ -12,6 +12,7 @@ Copyright 2013 International Maize and Wheat Improvement Center
 */
 package com.cimmyt.model.dao;
 
+
 /**
  * @author CIMMYT
  */
@@ -21,4 +22,11 @@ public interface MyQLProcedureDAO {
 	 * @param idStudy
 	 */
 	public void exceuteDeleteStudySP (int idStudy);
+	public void exceuteInsertTemplateStudySP(int idStudy, int idTemplate);
+
+	public int getExecuteCountParamData (int idTemplateParam);
+
+	public void executeDeleteFieldTemplate (int idTemplateParams, int studytemplateid);
+
+	public void executespAddFieldsTemplateResult (int idTemplateParams, int studytemplateid);
 }

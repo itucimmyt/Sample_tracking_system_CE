@@ -142,8 +142,9 @@ public class ServiceResultDataImpl implements ServiceResultData{
 							break;
 						case (int) 'D':
 							try {
-									result = String.valueOf(df
-											.format(row.getListRow().get(indexColumn).toString()));
+									//result = String.valueOf(df
+											//.format(row.getListRow().get(indexColumn).toString()));
+									result = StrUtils.getDateFormat(StrUtils.getDateStandarFromStr(row.getListRow().get(indexColumn).toString()));
 							} catch (Exception e) {
 								result = null;
 							}

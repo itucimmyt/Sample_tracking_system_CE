@@ -12,7 +12,7 @@
 
 <zk>
 
-
+	
 	<window border="normal" width="850px" height="650px"
 		id="idWindowPlate" 
 		maximizable="true" closable="true"
@@ -41,8 +41,11 @@
 									<spinner value="1" disabled="true"
 										width="70px" />
 								</cell>
-								<cell valign="bottom" width="200px">
+								<cell valign="bottom" width="120px">
 									<label value="${lblSWNL}" />
+								</cell>
+								<cell >
+								<combobox id="idCBLoadWay" width="75px"></combobox>
 								</cell>
 							</row>
 							<row>
@@ -63,15 +66,8 @@
 										step="288" width="70px" />
 								</cell>
 								<cell >
-								<combobox id="idCBLoadWay"></combobox>
-									<!--  <radiogroup id="idRGTC" 
-										orient="horizontal">
-										<radio id="idRBColumn"
-											label="${lblSWNLC}" checked="true">
-										</radio>
-										<radio disabled="false" id="idRBRow"
-											label="${lblSWNLR}" />
-									</radiogroup>-->
+								<checkbox id="idChckBPadded" label="${lblSWFPC}" width="120px" tooltiptext="${lblSWFPCT}"
+								checked="true"/>
 								</cell>
 							</row>
 						</rows>
@@ -140,73 +136,31 @@
 										</attribute>
 								</image>
 								</hbox>
+							
+
+							
 						</vbox>
 
 						<separator bar="true" height="100%" spacing="20px;" orient="vertical"/>
 						<vbox sclass="fish-eye-custom" align="center">
 							<label value="${lblStdGroup2}"  style="font-weight:bold;"/>
-							<hbox>
-							<image  id="idSelControl" tooltiptext="${lblSWPSC}" src="${imgSelControl}" onClick="idWindowPlate.selectControl()"
-									width="40px" height="40px">
-										<attribute name="onMouseOver">
-											idSelControl.setWidth("60px");
-											idSelControl.setHeight("60px");
-										</attribute>
-										<attribute name="onMouseOut">
-											idSelControl.setWidth("40px");
-											idSelControl.setHeight("40px");
-										</attribute>
-								</image>
-								<image  id="idRandControl" tooltiptext="${lblSWPRC}" src="${imgRandomControl}" onClick="idWindowPlate.randomControl()"
-										width="40px" height="40px">
-										<attribute name="onMouseOver">
-											idRandControl.setWidth("60px");
-											idRandControl.setHeight("60px");
-										</attribute>
-										<attribute name="onMouseOut">
-											idRandControl.setWidth("40px");
-											idRandControl.setHeight("40px");
-										</attribute>
-								</image>
-								<image  id="idDartControl" tooltiptext="${lblSWPDarC}" src="${imgDartControl}" onClick="idWindowPlate.loadControlDartAndKbios(true)"
-										width="40px" height="40px">
-										<attribute name="onMouseOver">
-											idDartControl.setWidth("60px");
-											idDartControl.setHeight("60px");
-										</attribute>
-										<attribute name="onMouseOut">
-											idDartControl.setWidth("40px");
-											idDartControl.setHeight("40px");
-										</attribute>
-								</image>
-								<image  id="idKBControl" tooltiptext="${lblSWPKBC}" src="${imgKbioscience}" onClick="idWindowPlate.loadControlDartAndKbios(false)"
-										width="40px" height="40px">
-										<attribute name="onMouseOver">
-											idKBControl.setWidth("60px");
-											idKBControl.setHeight("60px");
-										</attribute>
-										<attribute name="onMouseOut">
-											idKBControl.setWidth("40px");
-											idKBControl.setHeight("40px");
-										</attribute>
-								</image>
-								<image  id="idCimmytControl" tooltiptext="${lblSWPBlankCimmyt}" src="${imgControlCIMMYT}" onClick="idWindowPlate.loadControlCIMMYTEmpty()"
-										width="40px" height="40px">
-										<attribute name="onMouseOver">
-											idCimmytControl.setWidth("60px");
-											idCimmytControl.setHeight("60px");
-										</attribute>
-										<attribute name="onMouseOut">
-											idCimmytControl.setWidth("40px");
-											idCimmytControl.setHeight("40px");
-										</attribute>
-								</image>
-							</hbox>
+							<combobox id="idCmboxControls" autocomplete="true" onSelect="idWindowPlate.selectControlType(self.getSelectedItem().getValue().toString())">
+						
+								<comboitem value="1" image="${imgSelControl32}" label="${lblSWPSC}" />
+								<comboitem value="2" image="${imgRandomControl32}" label="${lblSWPRC}" />
+								<comboitem value="3" image="${imgDartControl32}" label="${lblSWPDarC}" />
+								<comboitem value="4" image="${imgKbioscience32}" label="LGC" />
+								<comboitem value="5" image="${imgControlCIMMYT}" label="${lblSWPBlankCimmyt}"/>
+								<comboitem value="6" image="${imgControlIntertek}" label="Intertek" />
+								
+							</combobox>
+						
 						</vbox>
 						<separator bar="true" height="100%" spacing="20px;" orient="vertical"/>
 
 						<vbox sclass="fish-eye-custom" align="center">
 							<label value="${lblStdGroup3}"  style="font-weight:bold;"/>
+							
 							<hbox>
 							<image  id="idLoadFromFile" tooltiptext="${lblSWPLDFF}" src="${imgLoadCsv}" onClick="idWindowPlate.loadDataFromFile()"
 										width="40px" height="40px">
@@ -259,43 +213,44 @@
 				<tabbox id="idTabBox" vflex="1" hflex="1"/>
 			</vbox>
 			</center>
+
 			<south height="80px">
 			<div align="center" width="100%">
-			<hbox width="100%" pack="center">
-				<image  id="idPrevious" tooltiptext="${lblPrevious}" src="${imgPrev}" onClick="idWindowPlate.setVisible(false)"
-											width="40px" height="40px">
-											<attribute name="onMouseOver">
-												idPrevious.setWidth("60px");
-												idPrevious.setHeight("60px");
-											</attribute>
-											<attribute name="onMouseOut">
-												idPrevious.setWidth("40px");
-												idPrevious.setHeight("40px");
-											</attribute>
-				</image>
-				<image  id="idNext" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowPlate.saveSamples()"
-											width="40px" height="40px" visible="false">
-											<attribute name="onMouseOver">
-												idNext.setWidth("60px");
-												idNext.setHeight("60px");
-											</attribute>
-											<attribute name="onMouseOut">
-												idNext.setWidth("40px");
-												idNext.setHeight("40px");
-											</attribute>
-				</image>
-				<image  id="idCancel" tooltiptext="${lblMenTCancel}" src="${imgCancel}" onClick="idWindowPlate.closeWindow()"
-											width="40px" height="40px" >
-											<attribute name="onMouseOver">
-												idCancel.setWidth("60px");
-												idCancel.setHeight("60px");
-											</attribute>
-											<attribute name="onMouseOut">
-												idCancel.setWidth("40px");
-												idCancel.setHeight("40px");
-											</attribute>
-				</image>
-			</hbox>
+				<hbox width="100%" pack="center">
+					<image  id="idPrevious" tooltiptext="${lblPrevious}" src="${imgPrev}" onClick="idWindowPlate.setVisible(false)"
+												width="40px" height="40px">
+												<attribute name="onMouseOver">
+													idPrevious.setWidth("60px");
+													idPrevious.setHeight("60px");
+												</attribute>
+												<attribute name="onMouseOut">
+													idPrevious.setWidth("40px");
+													idPrevious.setHeight("40px");
+												</attribute>
+					</image>
+					<image  id="idNext" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowPlate.saveSamples()"
+												width="40px" height="40px" visible="false">
+												<attribute name="onMouseOver">
+													idNext.setWidth("60px");
+													idNext.setHeight("60px");
+												</attribute>
+												<attribute name="onMouseOut">
+													idNext.setWidth("40px");
+													idNext.setHeight("40px");
+												</attribute>
+					</image>
+					<image  id="idCancel" tooltiptext="${lblMenTCancel}" src="${imgCancel}" onClick="idWindowPlate.closeWindow()"
+												width="40px" height="40px" >
+												<attribute name="onMouseOver">
+													idCancel.setWidth("60px");
+													idCancel.setHeight("60px");
+												</attribute>
+												<attribute name="onMouseOut">
+													idCancel.setWidth("40px");
+													idCancel.setHeight("40px");
+												</attribute>
+					</image>
+				</hbox>
 			</div>
 			</south>
 

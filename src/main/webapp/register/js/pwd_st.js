@@ -54,5 +54,5 @@ function strengthMeasure(text) {
  
     if (text.length == 0)
         score = 0;
- 
+}
     return score;

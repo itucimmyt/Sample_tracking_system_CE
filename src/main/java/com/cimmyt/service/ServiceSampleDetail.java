@@ -47,4 +47,5 @@ public interface ServiceSampleDetail {
 	public List<SampleDetail> getSamplesByShipmentSet(ShipmentSet shipmentSet);
 	public List<String> getPlatesNotInShipmentSet(Integer idLabStudy,  List<String> excludingPlates);
 	public List<String> getPlatesInShipmentSet(ShipmentSet shipSet);
+	public void updateSampleDetail (SampleDetail detail);
 }

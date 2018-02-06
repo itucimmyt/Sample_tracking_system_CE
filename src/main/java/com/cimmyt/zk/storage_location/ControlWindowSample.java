@@ -44,6 +44,7 @@ import com.cimmyt.model.bean.SampleDetail;
 import com.cimmyt.model.bean.StorageLocation;
 import com.cimmyt.service.ServiceLocation;
 import com.cimmyt.utils.PropertyHelper;
+import com.cimmyt.utils.StrUtils;
 
 @SuppressWarnings("serial")
 public class ControlWindowSample extends Window{
@@ -185,7 +186,9 @@ public class ControlWindowSample extends Window{
 		if (bean.getSamplegid() !=null){
 			Listcell cell5 = new Listcell(bean.getLabstudyid().getProject().getProjectname()+
 					bean.getLabstudyid().getProject().getPurposename()+
-					String.valueOf(bean.getSamplegid()));
+					(bean.getLabstudyid().isUsePadded() ? StrUtils.getPaddingCeros(bean.getSamplegid()) :
+						String.valueOf(bean.getSamplegid())));
+					
 			lIt.appendChild(cell5);
 		}else {
 			lIt.appendChild(new Listcell());

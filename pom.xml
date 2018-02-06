@@ -2,34 +2,44 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.cimmyt</groupId>
-  <artifactId>dna_sample_tracking_ce</artifactId>
+  <artifactId>dna_sample_tracking</artifactId>
+  
+  <properties>
+        <zk.version>6.5.5</zk.version>
+   </properties>
+  
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>      
   <name>dna_sample_tracking_mvn Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
-	  <properties>
-        <!-- please change the version accordingly -->
-        <zk.version>6.5.5</zk.version>
-        <commons-io>1.3.1</commons-io>
-        <zktimeline.version>2.3.1_50</zktimeline.version>
-    </properties
-    >
-	
-  <repositories>
-   		<repository>
+	<repositories>
+        <repository>
             <id>ZK CE</id>
             <name>ZK CE Repository</name>
             <url>http://mavensync.zkoss.org/maven2</url>
         </repository>
- </repositories>
+        <!--  <repository>
+                 <id>ZK EE</id>
+                 <url>https://maven.zkoss.org/repo/zk/ee</url>
+           </repository>-->
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>zkmaven</id>
+            <name>ZK Maven Plugin Repository</name>
+            <url>http://mavensync.zkoss.org/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
   
   <dependencies>
   
+    
+    
     <dependency>
 	<groupId>log4j</groupId>
 	<artifactId>log4j</artifactId>
-	<version>1.2.15</version>
+	<version>1.2.17</version>
 	<exclusions>
     <exclusion>
         <groupId>com.sun.jmx</groupId>
@@ -45,12 +55,27 @@
     </exclusion>
 </exclusions>
 </dependency>
+
+
+	
+<dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>mail</artifactId>
+    <version>1.4</version>
+</dependency>
+
   
    <dependency>
 	<groupId>org.hibernate</groupId>
 	<artifactId>hibernate-core</artifactId>
 	<version>3.6.6.Final</version>
 </dependency>
+<dependency>
+ <groupId>org.hibernate</groupId>
+ <artifactId>hibernate-annotations</artifactId>
+ <version>3.4.0.GA</version>
+ <scope>provided</scope>
+   </dependency>
 <dependency>
  <groupId>org.hibernate</groupId>
  <artifactId>hibernate-annotations</artifactId>
@@ -151,7 +176,7 @@
 </dependency>
 <dependency>
 <groupId>org.mockito</groupId>
-<artifactId>mockito-core</artifactId>
+<artifactId>mockito-all</artifactId>
 <version>1.10.8</version>
 <scope>test</scope>
 </dependency>
@@ -165,9 +190,9 @@
           <!--  <dependency>
             <groupId>org.zkoss.zk</groupId>
             <artifactId>zkex</artifactId>
-            <version>${zk.version}</version>
-        </dependency>
-        -->
+            <version>6.5.5</version>
+        </dependency>-->
+        
       <dependency>
 	      <groupId>org.zkoss.zk</groupId>
 	      <artifactId>zk</artifactId>
@@ -181,7 +206,7 @@
     	<dependency>
       <groupId>org.zkoss.zk</groupId>
       <artifactId>zhtml</artifactId>
-      <version>${zk.version}</version>
+      <version>6.5.5</version>
     </dependency>
   
  	<dependency>
@@ -189,11 +214,10 @@
       <artifactId>zkplus</artifactId>
       <version>${zk.version}</version>
     </dependency>
-      
 	<dependency>
       <groupId>org.zkoss.zk</groupId>
       <artifactId>zcommon</artifactId>
-      <version>${zk.version}</version>
+      <version>6.5.5</version>
     </dependency>
 	
     	<!-- Spring 3 dependencies -->
@@ -263,7 +287,7 @@
   
   </dependencies>
   <build>
-    <finalName>dna_sample_tracking_ce</finalName>
+    <finalName>dna_sample_tracking</finalName>
         <plugins>
 			<!-- Maven Tomcat Plugin -->
 			<plugin>
@@ -277,7 +301,7 @@
 				<configuration>
 					<url>http://127.0.0.1:8080/manager/text</url>
 					<server>TomcatServer</server>
-					<path>/dna_sample_tracking_ce</path>
+					<path>/dna_sample_tracking</path>
 				</configuration>
 			</plugin>
 				<plugin>
@@ -330,6 +354,43 @@
 					</execution>
 				</executions>			
 			</plugin>
+
+
+
+     <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.7</version>
+          <dependencies>
+           <dependency>
+            <groupId>net.sourceforge.cobertura</groupId>
+            <artifactId>cobertura-runtime</artifactId>
+            <version>2.1.1</version>
+            <type>pom</type>
+             <exclusions>
+             <exclusion>
+              <groupId>ch.qos.logback</groupId>
+              <artifactId>logback-classic</artifactId>
+             </exclusion>
+            </exclusions>  
+           </dependency>
+           <dependency>
+            <groupId>net.sourceforge.cobertura</groupId>
+            <artifactId>cobertura</artifactId>
+            <version>2.1.1</version>
+            <!--  <exclusions>
+             <exclusion>
+              <groupId>ch.qos.logback</groupId>
+              <artifactId>logback-classic</artifactId>
+             </exclusion>
+            </exclusions>
+            -->  
+           </dependency>
+          </dependencies>
+         </plugin>
+
+
+
 		</plugins>
 
     

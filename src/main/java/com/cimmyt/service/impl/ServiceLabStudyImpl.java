@@ -13,7 +13,6 @@ Copyright 2013 International Maize and Wheat Improvement Center
 package com.cimmyt.service.impl;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,6 +24,7 @@ import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 import org.cimmyt.dnast.dto.DsSearchParam;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cimmyt.bean.ProjectBean;
 import com.cimmyt.bean.StudyLabReportBean;
@@ -46,6 +46,7 @@ import com.cimmyt.model.dao.StudyTemplateDAO;
 import com.cimmyt.model.dao.TempSampleDAO;
 import com.cimmyt.reports.ServiceReportLaboratory;
 import com.cimmyt.service.ServiceLabStudy;
+import com.cimmyt.service.ServiceLog;
 import com.cimmyt.study.PlateContentList;
 import com.cimmyt.study.PlateRow;
 import com.cimmyt.utils.ConstantsDNA;
@@ -61,6 +62,8 @@ public class ServiceLabStudyImpl implements ServiceLabStudy {
 	private MyQLProcedureDAO mySqlProcedure;
 	private ServiceReportLaboratory serviceReportLaboratory;
 	private TempSampleDAO tempSampleDAO;
+	private ServiceLog serviceLog;
+
 	private Logger logger= Logger.getLogger(ServiceLabStudyImpl.class);
     
 	@Override
@@ -108,43 +111,37 @@ public class ServiceLabStudyImpl implements ServiceLabStudy {
 	 * Method that save the samples with these are new, take the last number of plate for study, and save these in data base
 	 * @param LabStudy is the object that save.
 	 */
+	@Transactional(rollbackForClassName={"Exception"})
 	@Override
 	public void addLabStudy(LabStudy labStudy, boolean isEdit, 
 			Map <Integer , SampleDetail> mapSamplesDelete, Map <Integer , SampleDetail> mapSamplesUpdate,
-			List<TemporalSample> listTempsample) {
+			List<TemporalSample> listTempsample, int idUserBean) {
 		logger.info("Init add laboratory study save project : "+ (new SimpleDateFormat("mm:ss:SSS")).format(new Date()));
-		LastPlateProject lastpp = new LastPlateProject();
-		lastpp = lastPlateProjectDAO.getLastPlateNumberOfStudyLab(
-				labStudy);
-		lastpp.setPlatenumber(lastpp.getPlatenumber()
-				+ labStudy.getNumofplates());
-		lastPlateProjectDAO.addOrUpdateLastPlateProjectNumber(lastpp);
 		if (!isEdit){
-			StudyTemplate template = studyTemplateDAO.read(labStudy.getStudytemplateid().getStudytemplateid());
-			for (SampleDetail sampleDetail : labStudy.getSampleDetailCollection()) {
-				sampleDetail.setLabstudyid(labStudy);
-				Collection<SampleDetResult> imsSampleDetResultCollection = new ArrayList<SampleDetResult>();
-				for (StudyTemplateParams params : template
-						.getImsStudyTemplateParamsCollection()) {
-					SampleDetResult detResult = new SampleDetResult();
-					detResult.setResult("");
-					detResult.setTemplateparamid(params);
-					detResult.setStudysampleid(sampleDetail);
-					imsSampleDetResultCollection.add(detResult);
-				}
-				sampleDetail
-						.setImsSampleDetResultCollection(imsSampleDetResultCollection);
-			}
-		}else {
+			LastPlateProject lastpp = new LastPlateProject();
+			lastpp = lastPlateProjectDAO.getLastPlateNumberOfStudyLab(
+					labStudy);
+			lastpp.setPlatenumber(lastpp.getPlatenumber()
+					+ labStudy.getNumofplates());
+			lastPlateProjectDAO.addOrUpdateLastPlateProjectNumber(lastpp);
+			logger.info("Size plate : "+lastpp.getPlatenumber());
+		}
+		if (isEdit){
 			updateSampleDetResult(mapSamplesDelete);
 			updateSampleDetResult(mapSamplesUpdate);
 			deleteSampleDetID(mapSamplesDelete, labStudy.getProject().getProjectid());
 		}
 		deleteSamplesTemporaly(listTempsample);
-		labStudyDAO.createStudy(labStudy, isEdit);
+		int idStudy = labStudyDAO.createStudy(labStudy, isEdit);
+		logger.info("Study id : "+idStudy +" Template ID : "+labStudy.getStudytemplateid().getStudytemplateid());
+		if (!isEdit)
+		mySqlProcedure.exceuteInsertTemplateStudySP(idStudy, labStudy.getStudytemplateid().getStudytemplateid());
 		if (isEdit)
 			saveLastSamples(labStudy);
+			serviceLog.persistLog(ConstantsDNA.LOG_ENTITY_STUDY, labStudy.getLabstudyid() != null ? labStudy.getLabstudyid() : 0
+					, isEdit ? ConstantsDNA.LOG_EDIT : ConstantsDNA.LOG_ADD, idUserBean, labStudy.getTitle());
 	}
+
 	private void deleteSamplesTemporaly(List<TemporalSample> listTempsample){
 		if (listTempsample != null && !listTempsample.isEmpty()){
 		for (TemporalSample temp : listTempsample){
@@ -198,7 +195,6 @@ public class ServiceLabStudyImpl implements ServiceLabStudy {
 	 * method that save the last sample in table st_project
 	 * @param lastPlateProjectDAO
 	 */
-	@SuppressWarnings("unused")
 	private void saveLastSamples(LabStudy labStudy){
 		for (SampleDetail detail : labStudy.getSampleDetailCollection()){
 			if (detail.getNplanta() != null && detail.getBreedergid() != null){
@@ -224,8 +220,10 @@ public class ServiceLabStudyImpl implements ServiceLabStudy {
 	 * Method that delete a study by id
 	 * @param idStudy
 	 */
-	public void deleteStudy(Integer idStudy){
-		mySqlProcedure.exceuteDeleteStudySP(idStudy);		
+	public void deleteStudy(Integer idStudy,  int idUserBean, String description){
+		mySqlProcedure.exceuteDeleteStudySP(idStudy);
+		serviceLog.persistLog(ConstantsDNA.LOG_ENTITY_STUDY, idStudy
+				,ConstantsDNA.LOG_DELETE, idUserBean, description );
 	}
 
 	public void setMySqlProcedure(MyQLProcedureDAO mySqlProcedure) {
@@ -253,7 +251,7 @@ public class ServiceLabStudyImpl implements ServiceLabStudy {
 	 * @param Bean study 
 	 * @return byte [] of object to will be put in report XLS
 	 */
-	public byte[] getReportPlate (LabStudy beanStudy, List<Object> _listFieldsObjets,List<StudyTemplateParams> listStudyTemParams){
+	public byte[] getReportPlate (LabStudy beanStudy, List<Object> _listFieldsObjets,List<StudyTemplateParams> listStudyTemParams, boolean isprefix){
 		if (beanStudy.getSampleDetailCollection() != null 
 				&& beanStudy.getSampleDetailCollection().size() > 0){
 			SortedMap <Integer, Map<String , SampleDetail>> mapPlate = new TreeMap <Integer, Map<String , SampleDetail>>();
@@ -283,6 +281,7 @@ public class ServiceLabStudyImpl implements ServiceLabStudy {
 			beanReport.setMapPlateSamples(mapPlate);
 			beanReport.setPrefix(beanStudy.getPrefix());
 			beanReport.setPatternPlate(prefixPlate);
+			beanReport.setPadded(beanStudy.isUsePadded());
 			if (beanStudy.getPlatesize().intValue() == ConstantsDNA.SIZE_PLATE_96){
 				beanReport.setNameRow(PlateContentList.letters96);
 				beanReport.setNumberColumn(PlateRow.COLS_PLATE_96);
@@ -291,7 +290,7 @@ public class ServiceLabStudyImpl implements ServiceLabStudy {
 				beanReport.setNameRow(PlateContentList.letters384);
 				beanReport.setNumberColumn(PlateRow.COLS_PLATE_384);
 			}
-			return serviceReportLaboratory.getBytesReportLaboratoryPlate(beanReport, _listFieldsObjets, listStudyTemParams);
+			return serviceReportLaboratory.getBytesReportLaboratoryPlate(beanReport, _listFieldsObjets, listStudyTemParams, isprefix);
 		}else {
 			return null;
 		}
@@ -307,13 +306,13 @@ public class ServiceLabStudyImpl implements ServiceLabStudy {
 	}
 
 	@Override
-	public Integer getTotalRowsByIdResearch(LabStudy filter, Integer idResearch) {
-		return labStudyDAO.getTotalRowsByIdResearch(filter, idResearch);
+	public Integer getTotalRowsByIdResearch(LabStudy filter, Integer idResearch, Integer idstRol) {
+		return labStudyDAO.getTotalRowsByIdResearch(filter, idResearch, idstRol);
 	}
 
 	public List<LabStudy> getLabStudysByIdResearch(LabStudy filter, Integer idResearch, int firstResult, int maxResults
-			, String sortColumn, boolean ascending) {
-		return labStudyDAO.getLabStudysByIdResearch(filter, idResearch, firstResult, maxResults, sortColumn, ascending);
+			, String sortColumn, boolean ascending, Integer idstRol) {
+		return labStudyDAO.getLabStudysByIdResearch(filter, idResearch, firstResult, maxResults, sortColumn, ascending, idstRol);
 	}
 	public SampleDetResult getSampleDetResultBySampleDetailIdAndTemplateParamId(
 			Integer sampleId, Integer paramId){
@@ -342,5 +341,13 @@ public class ServiceLabStudyImpl implements ServiceLabStudy {
 		this.tempSampleDAO = tempSampleDAO;
 	}
 
-	
+	public void setServiceLog(ServiceLog serviceLog) {
+		this.serviceLog = serviceLog;
+	}
+
+	@Override
+	public void addLabStudy(LabStudy newInstance,boolean isEdit) {
+		labStudyDAO.createStudy(newInstance, isEdit);
+		
+	}
 }

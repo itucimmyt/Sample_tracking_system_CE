@@ -49,6 +49,8 @@ public class ItemSampleBean {
     private int column;
     //variable to id temp sample
     private int idSampleTemp;
+    //variable to load if the sample is a control "C" or is empty "B"
+    private StringBuilder typeControl;
     
     private int idOrder = 0;
 
@@ -206,6 +208,12 @@ public class ItemSampleBean {
 	public void setPlateName(StringBuilder plateName) {
 		this.plateName = plateName;
 	}
+	public StringBuilder getTypeControl() {
+		return typeControl;
+	}
+	public void setTypeControl(StringBuilder typeControl) {
+		this.typeControl = typeControl;
+	}
 	public StringBuilder getRow() {
 		return row;
 	}
@@ -225,5 +233,8 @@ public class ItemSampleBean {
 		this.idSampleTemp = idSampleTemp;
 	}
 
-	
+	public String toString (){
+		return "idOrder "+idOrder+" gid : "+gid+ " acc : "+acc + " plantNo : "+plantNo + " specie : "+specie +" comment : "+comment +" entryNo : "+entryNo +
+				" locationidBean :"+ locationidBean + " seasonidBean : "+seasonidBean +" typeControl : "+typeControl;
+	}
 }

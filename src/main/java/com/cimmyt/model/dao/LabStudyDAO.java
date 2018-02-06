@@ -33,9 +33,9 @@ public interface LabStudyDAO {
 	public List<LabStudy> getLabStudysByIdResearch(LabStudy filter, Integer idResearch);
 	public Integer getLabStudysByIdResearchTotal(LabStudy filter, Integer idResearch);
 	public List<LabStudy> getLabStudysByIdResearch(LabStudy filter, Integer idResearch, int firstResult, int maxResults
-			, String sortColumn, boolean ascending);
-	public void createStudy(LabStudy newInstance, boolean edit);
+			, String sortColumn, boolean ascending, Integer idstRol);
+	public int createStudy(LabStudy newInstance, boolean edit);
 	public List<LabStudy> getCustomQuery (List<DsSearchParam> params, final int firstResult, final int maxResults);
 	public Integer getTotalRowsCustomQuery(final List<DsSearchParam> params);
-	public Integer getTotalRowsByIdResearch(LabStudy filter, Integer idResearch);
+	public Integer getTotalRowsByIdResearch(LabStudy filter, Integer idResearch, Integer idstRol);
 }

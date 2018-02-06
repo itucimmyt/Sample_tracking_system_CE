@@ -23,6 +23,7 @@ import static com.cimmyt.utils.Constants.ATTRIBUTE_SAMPLE_REPEAT;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_TYPE_FILE_CONTROL;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_TYPE_LOAD_FILE;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_TYPE_SAMPLE_MIXTURE;
+import static com.cimmyt.utils.Constants.ATTRIBUTE_USE_PADDED_CEROS;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_ERROR;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_INFORMATION;
 import static com.cimmyt.utils.Constants.LBL_STUDIES_CONTROL_DART;
@@ -118,6 +119,7 @@ import com.cimmyt.service.ServiceSample;
 import com.cimmyt.service.ServiceSeason;
 import com.cimmyt.study.PlateContentList;
 import com.cimmyt.study.PlateRow;
+import com.cimmyt.utils.ConstantsDNA;
 import com.cimmyt.utils.PropertyHelper;
 import com.cimmyt.utils.StrUtils;
 
@@ -154,6 +156,7 @@ public class ControlLoadFile extends Window{
 	private int columSize = 0;
 	//variable to specific the type of file to up load
 	private int typeFile = 1;
+	private boolean isPadded;
 	//copy of study original
 	//private LabStudy beanOriginal;
 	// variable to samples delete
@@ -223,6 +226,7 @@ public class ControlLoadFile extends Window{
 		isStudyEdit = getDesktop().getAttribute(ATTRIBUTE_EDIT_STUDIES) != null ? true :false;
 		beanLabStudy = (LabStudy)getDesktop().getAttribute(ATTRIBUTE_LABSTUDY_ITEM);
 		typeFile = (Integer)getDesktop().getAttribute(ATTRIBUTE_TYPE_FILE_CONTROL );
+		isPadded = (Boolean)getDesktop().getAttribute(ATTRIBUTE_USE_PADDED_CEROS);
 		if (isStudyEdit)
 			loadMapSamplesToEdit();
 		loadComponent();
@@ -244,6 +248,7 @@ public class ControlLoadFile extends Window{
 					Messagebox.OK, Messagebox.ERROR);
 			return;
 		}
+		beanLabStudy.setUsePadded(isPadded);
 		serviceLoadStudy.loadStudyInGrid(mapCellSample, typeLoad, getDesktop(), mapItemSampleBean, beanLabStudy,
 				isStudyEdit, mapSamplesDelete, mapSamplesEdit,listTempsample);
 		getDesktop().setAttribute(ATTRIBUTE_MAP_SAMPLE_DELETE,mapSamplesDelete);
@@ -360,7 +365,10 @@ public class ControlLoadFile extends Window{
 						}
 					}
 					bean.setIdOrder(sizeOfListSamples);
+					if (bean.getTypeControl() == null )
 					lastSample = validateRepeatSamples(bean , numberBeginingRow, lastSample);
+					else 
+						mapItemSampleBean.put(Integer.toString(numberBeginingRow),bean );
 					numberBeginingRow++;
 				}
 				if (listErrorLoadFileBean.isAnyListNotEmpty()){
@@ -461,6 +469,8 @@ public class ControlLoadFile extends Window{
 					if (mapItemSampleBean.containsKey(keyDo)){
 						bean.setRepeatSample(true);
 						bean.setSampleID(mapItemSampleBean.get(keyDo).getSampleID());
+						//bean.setSampleID(sampleID);
+						//++sampleID;
 						mapItemSampleBean.get(keyDo).setRepeatSample(true);
 						mapItemSampleBean.put(keyDo+"|"+numRow,bean );
 						thereAreAnySampleRepeat = true;
@@ -471,6 +481,8 @@ public class ControlLoadFile extends Window{
 					if (mapItemSampleBean.containsKey(keyDo)){
 						bean.setRepeatSample(true);
 						bean.setSampleID(mapItemSampleBean.get(keyDo).getSampleID());
+						//bean.setSampleID(sampleID);
+						//++sampleID;
 						mapItemSampleBean.get(keyDo).setRepeatSample(true);
 						mapItemSampleBean.put(keyDo+"|"+numRow,bean );
 						thereAreAnySampleRepeat = true;
@@ -481,6 +493,8 @@ public class ControlLoadFile extends Window{
 								bean.getLocationidBean().getLocationid(), bean.getSeasonidBean().getSeasonid());
 						if (sampleIDSearch != null && sampleIDSearch.intValue() > 0){
 							bean.setSampleID(sampleIDSearch);
+							//bean.setSampleID(sampleID);
+							//++sampleID;
 							bean.setRepeatSample(true);
 							thereAreAnySampleRepeat = true;
 						}else{
@@ -495,6 +509,8 @@ public class ControlLoadFile extends Window{
 				if (mapItemSampleBean.containsKey(keyDo)){
 					bean.setRepeatSample(true);
 					bean.setSampleID(mapItemSampleBean.get(keyDo).getSampleID());
+					//bean.setSampleID(sampleID);
+					//++sampleID;
 					mapItemSampleBean.get(keyDo).setRepeatSample(true);
 					mapItemSampleBean.put(keyDo+"|"+numRow,bean );
 					thereAreAnySampleRepeat = true;
@@ -505,6 +521,8 @@ public class ControlLoadFile extends Window{
 							bean.getLocationidBean().getLocationid(), bean.getSeasonidBean().getSeasonid());
 					if (sampleIDSearch != null && sampleIDSearch.intValue() > 0){
 						bean.setSampleID(sampleIDSearch);
+						//bean.setSampleID(sampleID);
+						//++sampleID;
 						bean.setRepeatSample(true);
 						thereAreAnySampleRepeat = true;
 					}else{
@@ -649,10 +667,42 @@ public class ControlLoadFile extends Window{
 			case COLUMN_POSITION_SEASON :
 				setSeasonInItemSampleBean(numberBeginingRow, strBuilder, bean);
 				break ;
+			case ConstantsDNA.COLUMN_POSITION_CONTROL_TYPE:
+				setControlTypeHistoricalInf(strBuilder, bean, numberBeginingRow);
+				break;
 			default :
 					break;
 		}
 		return bean;
+	}
+
+	private void setControlTypeHistoricalInf(StringBuilder strBuilder, ItemSampleBean  bean, int numberBeginingRow){
+		if ((bean.getGid().intValue() == 0 && bean.getAcc().toString().equals("") &&
+				bean.getPlantNo().intValue() == 1 && bean.getComment().toString().equals("")
+				&& bean.getEntryNo().intValue() == 0
+				)  &&  (strBuilder != null && !strBuilder.toString().equals(""))){
+			if(StrUtils.isNotEmpty(strBuilder)){
+				if (strBuilder.toString().equals(String.valueOf(ConstantsDNA.BANK_CONTROL)) || strBuilder.toString().equals(String.valueOf(ConstantsDNA.INDIVIDUAL_CONTROL))){
+					bean.setTypeControl(strBuilder);
+					removeItemsampleInListErroGID(numberBeginingRow);
+				}else
+					listErrorLoadFileBean.getListControlTypeError().add(strBuilder.toString());
+			}else
+				listErrorLoadFileBean.getListControlTypeError().add("Emty");
+		}
+	}
+
+	private void removeItemsampleInListErroGID(int numberBeginingRow){
+		if (listErrorLoadFileBean.getListGidErrorEmpty() != null && !listErrorLoadFileBean.getListGidErrorEmpty().isEmpty()){
+			for (Integer integer : listErrorLoadFileBean.getListGidErrorEmpty()){
+				int i = 0;
+				if (integer.intValue() == numberBeginingRow){
+					listErrorLoadFileBean.getListGidErrorEmpty().remove(i);
+					break;
+				}
+				i++;
+			}	
+		}
 	}
 	private void setGID (int numberBeginingRow,StringBuilder strBuilder, ItemSampleBean  bean){
 		if (StrUtils.isEmpty(strBuilder))

@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import org.junit.Assert;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -33,7 +35,7 @@ public class TestAuthenticateServlet {
 	
 	@Test
 	public void validateAuthentication() throws BackException{
-		UserBean bean = authDAO.validateUser("Sukhwinder Sing", "SSdnast2013", 2);
+		UserBean bean = authDAO.validateUser("Administrator", "Admin2012", 1);
 		System.out.println(bean.getOrganism().getOrganismname());
 		System.out.println("validate " +bean);
 		/*System.out.println("User Funtions :: "+ bean.getUserFuntionses());
@@ -41,6 +43,8 @@ public class TestAuthenticateServlet {
 			System.out.println("Funtion "+ funtion.getStFuntions().getFuntionKey());
 		}
 		*/
+		
+		Assert.assertTrue(true);
 	}
 	
 	public void validateAuth(){

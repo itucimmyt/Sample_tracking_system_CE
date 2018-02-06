@@ -46,7 +46,7 @@ use="com.cimmyt.zk.season.ControlWindowSeason" onCreate="idWindow.loadContextAtt
 			</row>
 		</rows>
 	</grid>
-		<div align="center" width="500px" >
+	<div align="center" width="500px" >
 	<hbox>
 		<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindow.add()"
 					width="40px" height="40px">

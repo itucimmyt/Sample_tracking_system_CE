@@ -20,28 +20,32 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
     
-     <!--   <jee:jndi-lookup id="dataSource" jndi-name="jdbc/MyDBwheatCimmyt" />-->
-     <!--   
+     <!--   <jee:jndi-lookup id="dataSource" jndi-name="jdbc/MyDBwheatCimmyt" />-->   
+
+<!--
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
-		<property name="url" value="jdbc:mysql://localhost:3306/sampletrackingw">
+		<property name="url" value="jdbc:mysql://172.17.61.5:43306/sampletrackingm">
 		</property>
-  		<property name="username" value="lpuebla"></property>
-        <property name="password" value="dnast2015"></property>
+  		 <property name="username" value="DNASTuser"></property>
+        <property name="password" value="2017!dnast"></property>
  		</bean>
-	-->
+	
+	-->	
 	  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
-		<property name="url" value="jdbc:mysql://localhost:3306/sampletracking_web_ce">
+		<property name="url" value="jdbc:mysql://localhost:3306/sampletrackingTest">
 		
 		</property>
   		<property name="username" value="root"></property>
         <property name="password" value="cimmyt"></property>
  		</bean>
-	
-	 <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+ 		
+ 	
+	<!--
+	  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
 		<property name="url" value="jdbc:mysql://crilsoft.cimmyt.org:3306/sampletrackingw">
@@ -62,6 +66,13 @@
   	</bean>
   	<bean id="mySqlProcedure" class="com.cimmyt.model.dao.impl.MySQLProcedureDAOImpl">
   	   <property name="dataSource" ref="dataSource"/>	
+  	   <property name="hibernateTemplate" ref="hibernateTemplate"/>  
   	</bean>
+
+ 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+ 		<property name="dataSource" ref="dataSource" />
+ 	</bean>
+ 	<tx:annotation-driven transaction-manager="transactionManager"/> 
+ 
   <import resource="classpath:service.xml"/>
 </beans>

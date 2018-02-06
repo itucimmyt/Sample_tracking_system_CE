@@ -19,7 +19,8 @@
 			
 			<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
-				<hbox id="idHboxProjects" width="100%" hflex="true" style="position:absolute; ">
+				<hbox  id="idHboxProjects" width="100%" hflex="true" style="position:absolute; ">
+				
 				<image  id="projects$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindowProject.addProject()"
 					width="40px" height="40px">
 						<attribute name="onMouseOver">
@@ -53,6 +54,31 @@
 							projects$idDelete.setHeight("40px");
 						</attribute>
 					</image>
+				
+					<image  id="projects$idProgram" tooltiptext="${lblProgram}" src="${imgProgram}" onClick="idWindowProject.loadWindowProgramPurpose(true)"
+						width="40px" height="40px">
+						<attribute name="onMouseOver">
+							projects$idProgram.setWidth("60px");
+							projects$idProgram.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							projects$idProgram.setWidth("40px");
+							projects$idProgram.setHeight("40px");
+						</attribute>
+					</image>
+					<image  id="projects$idPurpose" tooltiptext="${lblPurpose}" src="${imgPurpose}" onClick="idWindowProject.loadWindowProgramPurpose(false)"
+						width="40px" height="40px">
+						<attribute name="onMouseOver">
+							projects$idPurpose.setWidth("60px");
+							projects$idPurpose.setHeight("60px");
+						</attribute>
+						<attribute name="onMouseOut">
+							projects$idPurpose.setWidth("40px");
+							projects$idPurpose.setHeight("40px");
+						</attribute>
+					</image>
+
+
 					<space width="40px"></space>
 
 						<hbox align="center" width="100%" vflex="true" >
@@ -88,6 +114,7 @@
 													idFindP.setHeight("32px");
 												</attribute>
 							</image>
+
 						</hbox>
 				</hbox>
 			</north>

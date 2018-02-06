@@ -58,6 +58,7 @@ import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 import com.cimmyt.bean.UserBean;
+import com.cimmyt.exception.BackException;
 import com.cimmyt.service.ServiceLogin;
 import com.cimmyt.utils.Constants;
 import com.cimmyt.utils.PropertyHelper;
@@ -67,6 +68,10 @@ import com.cimmyt.utils.StrUtils;
 @SuppressWarnings("serial")
 public class LoginWelcome extends Window{
 
+	private final String ERROR_1 = "error1"; //invalid User
+	private final String ERROR_2 = "error2"; //invalid password
+	private final String ERROR_3 = "error3"; //invalid crop
+	private final String ERROR_4 = "error4"; //User disabled
 	
 	private Label idLblSelLan;
 	private Label idLNUCI;
@@ -161,12 +166,12 @@ public class LoginWelcome extends Window{
 			UserBean userBean;
 			
 			loadContext();
-			PropertyHelper pro = (PropertyHelper)getDesktop().getSession().getAttribute(LOCALE_LANGUAGE);
+			prop = (PropertyHelper)getDesktop().getSession().getAttribute(LOCALE_LANGUAGE);
 			if(user.equals("") || password.equals("")){
-				StrUtils.messageBox(pro.getKey(LBL_WELCOME_MES_ERROR), pro);
-			}else if (( userBean = serviceLogin.validateUserBySystem(user, password, Integer.valueOf(idRGCorn.getSelectedItem().getValue().toString()),pro)) == null){
+				StrUtils.messageBox(prop.getKey(LBL_WELCOME_MES_ERROR), prop);
+			}else if (( userBean = serviceLogin.validateUserBySystem(user, password, Integer.valueOf(idRGCorn.getSelectedItem().getValue().toString()),prop)) == null){
 			//else if (( userBean = validateUserBD(user, password, (String)idRGCorn.getSelectedItem().getValue().toString())) == null){
-				StrUtils.messageBox(pro.getKey(LBL_WELCOME_PASS_INCORRECT),pro);
+				StrUtils.messageBox(prop.getKey(LBL_WELCOME_PASS_INCORRECT),prop);
 			}else {
 				
 				userBean.setTypeCorp(Integer.parseInt(idRGCorn.getSelectedItem().getValue().toString()));
@@ -175,8 +180,24 @@ public class LoginWelcome extends Window{
 				loadMapFuntions(userBean);
 				Executions.sendRedirect("/");
 			}
-		}catch (Exception e){
-			e.printStackTrace();
+	
+		}catch (BackException backException){
+			switch (backException.getMessage()){
+			case ERROR_1 : 
+				StrUtils.messageBox(prop.getKey(LBL_WELCOME_PASS_INCORRECT),prop);
+				break;
+			case ERROR_2:
+				StrUtils.messageBox(prop.getKey(LBL_WELCOME_PASS_INCORRECT),prop);
+				break;
+			case ERROR_3:
+				StrUtils.messageBox(prop.getKey(LBL_WELCOME_PASS_INCORRECT),prop);
+				break;
+			case ERROR_4:
+				StrUtils.messageBox(prop.getKey(Constants.LBL_WELCOME_PASS_DISABLED),prop);
+				break;
+			default :
+				
+			}
 		}
 	}
 

@@ -35,6 +35,7 @@ import com.cimmyt.model.dao.StudyTemplateDAO;
 import com.cimmyt.reports.ServiceReportLaboratory;
 import com.cimmyt.service.ServiceResultPreference;
 import com.cimmyt.utils.PropertyHelper;
+import com.cimmyt.utils.StrUtils;
 public class ServiceResultPreferenceImpl implements ServiceResultPreference{
 
 	private ResultsPreferencesDAO resultsPreferencesDAO;
@@ -151,7 +152,8 @@ public class ServiceResultPreferenceImpl implements ServiceResultPreference{
 		case 3:
 			if (sampledet.getSamplegid() != null)
 				res = sampledet.getLabstudyid().getPrefix()
-						+ sampledet.getSamplegid();
+						+ ( sampledet.getLabstudyid().isUsePadded() ? StrUtils.getPaddingCeros(sampledet.getSamplegid()): 
+							String.valueOf(sampledet.getSamplegid()));
 			break;
 		case 4:
 			if (sampledet.getPlatename() != null)

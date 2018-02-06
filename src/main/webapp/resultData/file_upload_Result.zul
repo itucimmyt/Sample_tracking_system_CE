@@ -30,10 +30,9 @@ use="com.cimmyt.zk.studies.ControlLoadFileResult" onCreate="idWindowFileUpload.l
 				  <textbox id="idTextError" readonly="true" width="410px" height="60px" multiline="true" tabindex = "11" ></textbox>
 				</vbox>
 			</box>
-
 	<div align="center" width="100%">
 	<hbox>
-	<image  id="idLoadFile" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowFileUpload.closeWindow()"
+					<image  id="idLoadFile" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowFileUpload.closeWindow()"
 					width="50px" height="50px" visible="false" >
 						<attribute name="onMouseOver">
 							idLoadFile.setWidth("60px");
@@ -55,7 +54,7 @@ use="com.cimmyt.zk.studies.ControlLoadFileResult" onCreate="idWindowFileUpload.l
 							idCancel.setHeight("50px");
 						</attribute>
 					</image>
-	</hbox>
+		</hbox>
 	</div>
 </window>
 </zk>

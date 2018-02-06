@@ -10,9 +10,9 @@
 <!--    See the License for the specific language governing permissions and -->
 <!--    limitations under the License. -->
 
-<zk>
+<zk xmlns:w="client">
 
-<window border="normal" width="500px" height="350px" id="idWindow"
+<window border="normal" width="600px" height="500px" id="idWindow"
 style="overflow:visible"
 use="com.cimmyt.zk.projects.ControlWindowProject" onCreate="idWindow.loadContextAttribute()" >
 	<caption image="${imgProject2}" label="" sclass="titleWindow" />
@@ -33,17 +33,56 @@ use="com.cimmyt.zk.projects.ControlWindowProject" onCreate="idWindow.loadContext
 				<label >${lblPCPN}</label>
 			</cell>
 			<cell>
-				<textbox id="idProjNam" sclass="textIpnput" cols="4" maxlength="4" width="95%"/>
-				</cell>
+			<grid style="overflow:visible">
+				<columns>
+					<column width="60px"/>
+				</columns>
+				<rows>
+					<row>
+						<label width="60px">${lblProgram}</label>
+						<combobox id="idCombProgram" value="${lblMGSelect}" autodrop="true" onSelect="idWindow.onSelectComboProgram()"/>
+					</row>
+					<row>
+						<label width="60px">${lblProgramPurposeYear}</label>
+						<combobox  id="idCombYear" value="${lblMGSelect}" width="80px" disabled="true" onSelect="idWindow.onSelectComboYear()"/>
+					</row>
+					<row>
+						<cell></cell>
+						<textbox id="idProjNam" sclass="textIpnput" cols="4" maxlength="4" width="50px">
+						<attribute w:name="doKeyPress_">
+												      function(evt){
+												           if (!this._shallIgnore(evt, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789- "))
+												              this.$doKeyPress_(evt);
+												      }
+												    </attribute>
+						</textbox>
+					</row>
+					<row>
+						<cell></cell>
+						
+					</row>
+				</rows>
+			</grid>
+			</cell>
 			</row>
 			<row>
 			<cell>
-				<label sclass="labelWindow" value="*"/>
 				<label>${lblPCD}</label>
 			</cell>
 			<cell>
-				<textbox id="idProjDes" sclass="textIpnput" cols="100" maxlength="250" width="95%"/>
-				</cell>
+				<grid style="overflow:visible">
+				<columns>
+					<column width="60px"/>
+					
+				</columns>
+					<rows>
+						<row>
+							<cell></cell>
+							<textbox id="idProjDes" sclass="textIpnput" cols="100" maxlength="250" width="95%"/>
+						</row>
+					</rows>
+				</grid>
+			</cell>
 			</row>
 			<row>
 			<cell>
@@ -51,16 +90,67 @@ use="com.cimmyt.zk.projects.ControlWindowProject" onCreate="idWindow.loadContext
 				<label>${lblPCN}</label>
 			</cell>
 				<cell>
-					<textbox id="idPurNam" sclass="textIpnput" cols="4" maxlength="4" width="95%"/>
+				 <grid style="overflow:visible">
+				 	<columns>
+				 		<column width="60px"/>
+				 	</columns>
+				 	<rows>
+				 		<row>
+					 		<label>${lblPurpose}</label>
+					 		<combobox id="idCombPurpose" value="${lblMGSelect}" autodrop="true" onSelect="idWindow.onSelectComboPurpose()"/>
+				 		</row>
+				 		<row>
+				 			<label>${lblProgramPurposePIScientist}</label> 
+					  		<combobox  id="idCombScientist" value="${lblMGSelect}" width="250px" disabled="true" onSelect="idWindow.onSelctComboScientist()"/>
+				 		</row>
+				 		<row>
+				 			<cell></cell>
+				 			<textbox id="idPurNam" sclass="textIpnput" cols="4" maxlength="4" width="50px">
+				 			<attribute w:name="doKeyPress_">
+												      function(evt){
+												           if (!this._shallIgnore(evt, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789- "))
+												              this.$doKeyPress_(evt);
+												      }
+												    </attribute>
+						</textbox>
+				 		</row>
+				 	</rows>
+				 
+				 </grid>
+				<!--  <vbox>
+				<vbox>
+					<hbox>
+					  <label>${lblPurpose}</label> 
+					  <separator/>
+					  <combobox id="idCombPurpose" value="${lblMGSelect}" autodrop="true" onSelect="idWindow.onSelectComboPurpose()"/>
+					</hbox>
+					<hbox>
+					  <label>${lblProgramPurposePIScientist}</label> 
+					  <separator/>
+					  <combobox  id="idCombScientist" value="${lblMGSelect}" width="250px" disabled="true" onSelect="idWindow.onSelctComboScientist()"/>
+					</hbox>
+				</vbox>
+					<textbox id="idPurNam" sclass="textIpnput" cols="4" maxlength="4" width="50px"/>
+				</vbox>-->
 				</cell>
 			</row>
 			<row>
 			<cell>
-				<label sclass="labelWindow" value="*"/>
 				<label>${lblPCPD}</label>
 			</cell>
 				<cell>
-				<textbox id="idPurNamD" sclass="textIpnput" cols="100" maxlength="250" width="95%"/>
+				<grid style="overflow:visible">
+				<columns>
+					<column width="60px"/>
+					
+				</columns>
+					<rows>
+						<row>
+							<cell></cell>
+							<textbox id="idPurNamD" sclass="textIpnput" cols="100" maxlength="250" width="95%"/>
+					</row>
+					</rows>
+				</grid>
 			</cell>
 			</row>
 		</rows>

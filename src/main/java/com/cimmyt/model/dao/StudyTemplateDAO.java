@@ -13,14 +13,17 @@ Copyright 2013 International Maize and Wheat Improvement Center
 package com.cimmyt.model.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import com.cimmyt.model.bean.StudyTemplate;
+import com.cimmyt.model.bean.StudyTemplateParams;
 
 public interface StudyTemplateDAO {
 
 	public List<StudyTemplate> getStudyTemplate (StudyTemplate bean);
-	public void add (StudyTemplate bean);
+	public void add (StudyTemplate bean,boolean hasStudies);
 	public void delete (StudyTemplate bean);
 	public StudyTemplate getStudyTemplateByNameregistred( String name);
 	public StudyTemplate read( Integer id);
+	public void deleteStudyTemplateParamas (Set<StudyTemplateParams> set, boolean hasStudies);
 }

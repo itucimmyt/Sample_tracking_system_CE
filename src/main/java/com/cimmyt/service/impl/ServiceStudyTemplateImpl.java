@@ -13,12 +13,14 @@ Copyright 2013 International Maize and Wheat Improvement Center
 package com.cimmyt.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cimmyt.model.bean.SampleDetResult;
 import com.cimmyt.model.bean.StudyTemplate;
+import com.cimmyt.model.bean.StudyTemplateParams;
 import com.cimmyt.model.dao.SampleDetResultDAO;
 import com.cimmyt.model.dao.StudyTemplateDAO;
 import com.cimmyt.service.SeriviceStudyTemplate;
@@ -51,8 +53,8 @@ public class ServiceStudyTemplateImpl implements SeriviceStudyTemplate{
 	 * @param bean
 	 */
 	@Override
-	public void add (StudyTemplate bean){
-		studyTemplateDAO.add(bean);
+	public void add (StudyTemplate bean,boolean hasStudies){
+		studyTemplateDAO.add(bean, hasStudies);
 	}
 	/**
 	 * Delete Study TemplateBean
@@ -76,6 +78,8 @@ public class ServiceStudyTemplateImpl implements SeriviceStudyTemplate{
 	public void setSampleDetResultDAO(SampleDetResultDAO sampleDetResultDAO) {
 		this.sampleDetResultDAO = sampleDetResultDAO;
 	}
-
-	
+	@Override
+	public void deleteStudyTemplateParams(Set<StudyTemplateParams> set, boolean hasStudies) {
+		studyTemplateDAO.deleteStudyTemplateParamas(set, hasStudies);
+	}
 }

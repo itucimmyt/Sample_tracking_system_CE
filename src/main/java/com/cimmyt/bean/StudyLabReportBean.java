@@ -30,6 +30,8 @@ public class StudyLabReportBean {
 	// pattern to plate
 	private String patternPlate;
 
+	private boolean isPadded;
+
 	public String[] getNameRow() {
 		return nameRow;
 	}
@@ -59,5 +61,11 @@ public class StudyLabReportBean {
 	}
 	public void setPatternPlate(String patternPlate) {
 		this.patternPlate = patternPlate;
+	}
+	public boolean isPadded() {
+		return isPadded;
+	}
+	public void setPadded(boolean isPadded) {
+		this.isPadded = isPadded;
 	}
 }

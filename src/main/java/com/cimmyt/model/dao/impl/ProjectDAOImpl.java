@@ -20,6 +20,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
@@ -53,6 +54,7 @@ public class ProjectDAOImpl  extends AbstractDAO<Project, Integer> implements Pr
 		if (filter.getPurposedescription()!= null && ! filter.getPurposedescription().isEmpty()) {
 			criteria.add(Restrictions.like("purposedescription", "%"+filter.getPurposedescription()+"%"));
 		}
+		criteria.addOrder(Order.desc("projectid"));
 	}
 	
 	public Integer getLastSampleID(final Project project){

@@ -25,7 +25,7 @@ import com.cimmyt.utils.PropertyHelper;
 
 public interface ServiceReportLaboratory {
 
-	public byte [] getBytesReportLaboratoryPlate (StudyLabReportBean beanReport, List<Object> listFieldsObjets, List<StudyTemplateParams> listStudyTemParams);
+	public byte [] getBytesReportLaboratoryPlate (StudyLabReportBean beanReport, List<Object> listFieldsObjets, List<StudyTemplateParams> listStudyTemParams, boolean isprefix);
 	public byte [] getReportResultData (ResultDataExportDataBean resultDataExport, PropertyHelper pro
 			, SortedMap<Integer, ResultsPreferencesDetail> sortedMap);
 	public CSVReportGenericBean getReportCSVReuslData (ResultDataExportDataBean resultDataExport, PropertyHelper pro

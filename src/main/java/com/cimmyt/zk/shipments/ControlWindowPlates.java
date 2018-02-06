@@ -12,21 +12,21 @@ Copyright 2013 International Maize and Wheat Improvement Center
 */
 package com.cimmyt.zk.shipments;
 
+import static com.cimmyt.utils.Constants.ATTRIBUTE_EDIT_SHIPMENT;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_NAME_USER_BEAN;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SAMPLE_LOCATION_LIST;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SHIPMENTS_ITEM;
 import static com.cimmyt.utils.Constants.LABSTUDY_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MEN_NOT_INF_M;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_INFORMATION;
-import static com.cimmyt.utils.Constants.LBL_SHIPMENT_SAVE_SUCCESS;
 import static com.cimmyt.utils.Constants.LBL_SHIPMENT_NO_SELECTION;
+import static com.cimmyt.utils.Constants.LBL_SHIPMENT_SAVE_SUCCESS;
 import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STATUS_FOR_SEND;
 import static com.cimmyt.utils.Constants.LBL_SHIPMENT_STATUS_NO_SELECT;
 import static com.cimmyt.utils.Constants.LOCALE_LANGUAGE;
 import static com.cimmyt.utils.Constants.SAMPLE_DETAIL_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.SHIPMENT_SERVICE_DETAIL_BEAN_NAME;
 import static com.cimmyt.utils.Constants.SHIPMENT_SERVICE_SET_BEAN_NAME;
-import static com.cimmyt.utils.Constants.ATTRIBUTE_EDIT_SHIPMENT;
 import static com.cimmyt.utils.Constants.SHOW_ROWS_LIST;
 
 import java.util.ArrayList;
@@ -196,7 +196,7 @@ public class ControlWindowPlates extends Window {
 		}
 		List<LabStudy> listStudies = serviceLabStudy.getLabStudysByIdResearch(labStudyFilter,
 				userBean.getInvestigatorBean().getInvestigatorid(), 
-				firstResult, SHOW_ROWS_LIST, lastColumnSorted, ascending);
+				firstResult, SHOW_ROWS_LIST, lastColumnSorted, ascending, userBean.getRole().getIdstRol());
 		loadItemLabStudies(listStudies);
 	}
 
@@ -366,7 +366,8 @@ public class ControlWindowPlates extends Window {
 		List<LabStudy> listBean;
 		
 		if(recountTotal){
-			int rows = serviceLabStudy.getTotalRowsByIdResearch(study,userBean.getInvestigatorBean().getInvestigatorid());
+			int rows = serviceLabStudy.getTotalRowsByIdResearch(study,userBean.getInvestigatorBean().getInvestigatorid(),
+					userBean.getRole().getIdstRol());
 			idPaging.setPageSize(SHOW_ROWS_LIST);
 			idPaging.setActivePage(0);
 			idPaging.setTotalSize(rows);
@@ -377,7 +378,7 @@ public class ControlWindowPlates extends Window {
 
 			listBean = serviceLabStudy.getLabStudysByIdResearch( (study == null ? new LabStudy() : study), 
 					userBean.getInvestigatorBean().getInvestigatorid(),page * SHOW_ROWS_LIST,
-					SHOW_ROWS_LIST, lastColumnSorted, ascending);
+					SHOW_ROWS_LIST, lastColumnSorted, ascending, userBean.getRole().getIdstRol());
 
 		loadItemLabStudies(listBean);
 

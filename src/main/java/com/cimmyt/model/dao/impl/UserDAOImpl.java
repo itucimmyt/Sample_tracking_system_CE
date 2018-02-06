@@ -47,11 +47,11 @@ public class UserDAOImpl extends AbstractDAO<AuthUserBean, Integer>  implements 
 	public List<AuthUserBean> getListAuthUserBeanByIDRole (AuthUserBean authUser){
 		switch (authUser.getStRole().getIdstRol()){
 		case ConstantsDNA.ROLE_DATA_MANAGER:{
-				String sql= "FROM AuthUserBean where stRole.idstRol in ("+ConstantsDNA.ROLE_RESEARCHER +" ,"+ConstantsDNA.ROLE_DATA_MANAGER+","+ConstantsDNA.ROLE_RESEARCHER_ASSISTENT+","+ConstantsDNA.ROLE_ASSISTENT+") and status = true";
+				String sql= "FROM AuthUserBean where stRole.idstRol in ("+ConstantsDNA.ROLE_RESEARCHER +" ,"+ConstantsDNA.ROLE_DATA_MANAGER+","+ConstantsDNA.ROLE_RESEARCHER_ASSISTENT+","+ConstantsDNA.ROLE_ASSISTENT+")";
 				return (List<AuthUserBean>)super.findListByQuery(new AuthUserBean(), sql);
 			}
 		case ConstantsDNA.ROLE_RESEARCHER:{
-				String sql= "FROM AuthUserBean where investigator.investigatorid ="+authUser.getInvestigator().getInvestigatorid()+ " and stRole.idstRol <> 1 and status = true";
+				String sql= "FROM AuthUserBean where investigator.investigatorid ="+authUser.getInvestigator().getInvestigatorid()+ " and stRole.idstRol <> 1";
 				return (List<AuthUserBean>)super.findListByQuery(new AuthUserBean(), sql);
 			}
 		}
@@ -59,7 +59,7 @@ public class UserDAOImpl extends AbstractDAO<AuthUserBean, Integer>  implements 
 		
 	}
 	public AuthUserBean getAuthUserBeanByUserNameOrEmailOrName(AuthUserBean authUser){
-		String sql= "FROM AuthUserBean where userName ='"+authUser.getUserName()+"' or email ='"+authUser.getEmail()+"' or investName ='"+authUser.getInvestName()+"' and status = true";
+		String sql= "FROM AuthUserBean where userName ='"+authUser.getUserName()+"' or email ='"+authUser.getEmail()+"' or investName ='"+authUser.getInvestName()+"'";
 		return (AuthUserBean) super.findGenericByQuery(new AuthUserBean(), sql);
 	}
 

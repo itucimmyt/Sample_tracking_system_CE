@@ -12,6 +12,8 @@ Copyright 2013 International Maize and Wheat Improvement Center
 */
 package com.cimmyt.service;
 
+import com.cimmyt.model.bean.SampleID;
+
 public interface ServiceSample {
 
 	public Integer searchSampleIDProjectInSt_SampleID(final Integer idproject, 
@@ -22,4 +24,5 @@ public interface ServiceSample {
 			final Integer locationid, final Integer seasonid);
 	public boolean searchSampleIDforLocation(final Integer locationid);
 	public boolean searchSampleIDforSeason(final Integer seasonid );
+	public void saveOrUpdateSample(SampleID sampleid);
 }

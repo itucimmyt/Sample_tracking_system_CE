@@ -13,7 +13,8 @@
 <zk>
 
 <window id="thiz"  sclass="windowSub" width="100%" height="100%"
-	use="com.cimmyt.zk.query.UseControlQuery" onCreate="thiz.init()">
+	use="com.cimmyt.zk.query.UseControlQuery" onCreate="thiz.init()"
+	>
 	<borderlayout width="100%" height="100%">
 	<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">

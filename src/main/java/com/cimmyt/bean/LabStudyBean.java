@@ -42,7 +42,8 @@ public class LabStudyBean {
 	private TissueBean tissueBean;
 	private LocationBean locationBean;
 	private SeasonBean seasonBean;
-	
+	private boolean usePadded;
+
 	public Integer getLabstudyid() {
 		return labstudyid;
 	}
@@ -221,6 +222,14 @@ public class LabStudyBean {
 	public LabStudyBean(){
 
 	}
+	
+	public boolean isUsePadded() {
+		return usePadded;
+	}
+
+	public void setUsePadded(boolean usePadded) {
+		this.usePadded = usePadded;
+	}
 
 	public LabStudyBean(LabStudy bean){
 		this.enddate = bean.getEnddate();
@@ -246,7 +255,8 @@ public class LabStudyBean {
 		this.startdate = bean.getStartdate();
 		this.studytemplateidBean = new StudyTemplateBean(bean.getStudytemplateid());
 		this.tissueBean = new TissueBean (bean.getTissue());
-		this.title = bean.getTitle();								
+		this.title = bean.getTitle();
+		this.usePadded = bean.isUsePadded();
 	}
 
 	public LabStudy getLabStudy(LabStudyBean bean){
@@ -281,6 +291,7 @@ public class LabStudyBean {
 		obj.setTissue(bean.getTissueBean()
 				.getTissue(bean.getTissueBean()));
 		obj.setTitle(bean.getTitle());
+		obj.setUsePadded(bean.isUsePadded());
 		
 		return obj;
 	}

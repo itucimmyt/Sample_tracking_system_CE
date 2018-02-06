@@ -38,14 +38,16 @@ public interface ServiceLabStudy {
 	public List<LabStudy> getLabStudysByIdResearch(LabStudy filter, Integer idResearch);
 	public Integer getLabStudysByIdResearchTotal(LabStudy filter, Integer idResearch);
 	public List<LabStudy> getLabStudysByIdResearch(LabStudy filter, Integer idResearch, int firstResult, int maxResults
-			, String sortColumn, boolean ascending);
-	public void addLabStudy(LabStudy imsLabStudy, boolean isEdit, Map <Integer , SampleDetail> mapSamplesDelete, Map <Integer , SampleDetail> mapSamplesUpdate, List<TemporalSample> listTempsample);
-	public void deleteStudy(Integer idStudy);
-	public byte[] getReportPlate (LabStudy beanStudy, List<Object> listFieldsObjets, List<StudyTemplateParams> listStudyTemParams);
-	public Integer getTotalRowsByIdResearch(LabStudy filter, Integer idResearch);
+			, String sortColumn, boolean ascending, Integer idstRol);
+	public void addLabStudy(LabStudy imsLabStudy, boolean isEdit, Map <Integer , SampleDetail> mapSamplesDelete, Map <Integer , SampleDetail> mapSamplesUpdate, List<TemporalSample> listTempsample
+			, int idUserBean);
+	public void deleteStudy(Integer idStudy,  int idUserBean, String description);
+	public byte[] getReportPlate (LabStudy beanStudy, List<Object> listFieldsObjets, List<StudyTemplateParams> listStudyTemParams, boolean isprefix);
+	public Integer getTotalRowsByIdResearch(LabStudy filter, Integer idResearch, Integer idstRol);
 	public SampleDetResult getSampleDetResultBySampleDetailIdAndTemplateParamId(
 			Integer sampleId, Integer paramId);
 	public void updateSampleDetResult(SampleDetResult sampleDetResult);
 	public Integer getTotalRowsCustomQuery(List<DsSearchParam> params);
 	public List<LabStudy> getCustomQuery(List<DsSearchParam> params, int firstResult, int maxResults);
+	public void addLabStudy(LabStudy imsLabStudy, boolean isEdit);
 }

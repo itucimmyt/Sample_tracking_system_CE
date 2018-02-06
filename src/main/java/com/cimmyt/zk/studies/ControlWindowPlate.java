@@ -31,6 +31,7 @@ import static com.cimmyt.utils.Constants.ATTRIBUTE_TYPE_FILE_CONTROL;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_TYPE_LOAD_FILE;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_TYPE_LOAD_PLATE;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_TYPE_SAMPLE_MIXTURE;
+import static com.cimmyt.utils.Constants.ATTRIBUTE_USE_PADDED_CEROS;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_WHEAT;
 import static com.cimmyt.utils.Constants.CONTROL_FILE_SERVICE_MANAGEMENT;
 import static com.cimmyt.utils.Constants.CREATE_PLATE_SERVICE_BEAN_NAME;
@@ -118,6 +119,7 @@ import com.cimmyt.study.PlateContentList;
 import com.cimmyt.study.PlateList;
 import com.cimmyt.study.PlateRow;
 import com.cimmyt.utils.CommonUtils;
+import com.cimmyt.utils.Constants;
 import com.cimmyt.utils.ConstantsDNA;
 import com.cimmyt.utils.PropertyHelper;
 import com.cimmyt.utils.StrUtils;
@@ -133,6 +135,7 @@ public class ControlWindowPlate extends Window{
 	private Spinner idSNP;
 	private Tabbox idTabBox;
 	private Combobox idComPT;
+	private Combobox idCmboxControls;
 	//private Radiogroup idRGTC;
 	//Object represent the cells create where string is name of plate plus cell
 	private Map<String, Object> mapCellSample = new HashMap<String, Object>();
@@ -183,7 +186,10 @@ public class ControlWindowPlate extends Window{
 	// Boolean variable to know if is a study to edit
 	private Combobox idCBLoadWay;
 	private boolean isEdit = false;
-	
+
+	private Checkbox idChckBPadded;
+	private UserBean userBean;
+
 	static {
 		if(serviceLabStudy == null)
 			try{
@@ -241,6 +247,8 @@ public class ControlWindowPlate extends Window{
 		pro = (PropertyHelper)getDesktop().getSession().getAttribute(LOCALE_LANGUAGE);
 		loadContext();
 		loadComboBoxTypePlate();
+		if (getDesktop().getSession().getAttribute(ATTRIBUTE_NAME_USER_BEAN) != null)
+			userBean = (UserBean)getDesktop().getSession().getAttribute(ATTRIBUTE_NAME_USER_BEAN);
 		bean = (LabStudy)getDesktop().getAttribute(ATTRIBUTE_LABSTUDY_ITEM);
 		if (getDesktop().getAttribute(ATTRIBUTE_EDIT_STUDIES) != null){
 			plateList = new PlateList(bean.getPlatesize(), 
@@ -268,9 +276,16 @@ public class ControlWindowPlate extends Window{
 	 * Method that create the plate 
 	 */
 	public void generatePlates(){
-		if (Messagebox.show(pro.getKey(LBL_STUDIES_CREATE_PLATE_LAYOUT_QUESTION), 
-				pro.getKey(LBL_STUDIES_CREATE_PLATE_LAYOUT), 
-				Messagebox.YES | Messagebox.NO, Messagebox.QUESTION) == Messagebox.YES) {
+		if (bean != null && bean.getLabstudyid()!= null && bean.getLabstudyid().intValue() > 0){
+			if (Messagebox.show(pro.getKey(LBL_STUDIES_CREATE_PLATE_LAYOUT_QUESTION), 
+					pro.getKey(LBL_STUDIES_CREATE_PLATE_LAYOUT), 
+					Messagebox.YES | Messagebox.NO, Messagebox.QUESTION) == Messagebox.YES) {
+				clearObjects();
+				plateList = new PlateList(idSPS.getValue(), idSNP.getValue(), bean,getPrefix());
+				loadTabbox(true);
+			}
+		}
+		else{
 			clearObjects();
 			plateList = new PlateList(idSPS.getValue(), idSNP.getValue(), bean,getPrefix());
 			loadTabbox(true);
@@ -312,7 +327,7 @@ public class ControlWindowPlate extends Window{
 				ControlPlateBean controlPlateBean = new ControlPlateBean();
 				tabPanelj.appendChild(serviceCreatePlate.addLoadGridByPlate(plateList.getPlatesContents().get(0).
 						getPlateRows().get(0).getColsPerRow(), plateContent,mapCellSample ,pro, bean, isNewStudy,
-						mapSampleEdit, "", tabPanelj, null, mapAssignSample, mapSizePlate, controlPlateBean));
+						mapSampleEdit, "", tabPanelj, null, mapAssignSample, mapSizePlate, controlPlateBean, false));
 				upDateControlPlate(controlPlateBean);
 				tabPanels.appendChild(tabPanelj);
 				idTabBox.appendChild(tabPanels);
@@ -322,6 +337,7 @@ public class ControlWindowPlate extends Window{
 			if (bean.getSampleDetailCollection().size() > 0){
 				idSNP.setValue(bean.getNumofplates());
 				idSPS.setValue(bean.getPlatesize());
+				idChckBPadded.setChecked(bean.isUsePadded());
 				int indexPlate = 0;
 				
 				bubbleShort();
@@ -338,7 +354,7 @@ public class ControlWindowPlate extends Window{
 							ControlPlateBean controlPlateBean = new ControlPlateBean();
 						tabPanelj.appendChild(serviceCreatePlate.addLoadGridByPlate(plateList.getPlatesContents().get(0).
 								getPlateRows().get(0).getColsPerRow(), plateList.getPlatesContents().get(0),mapCellSample ,pro, bean, isNewStudy,
-								mapSampleEdit, namePlate, tabPanelj, listSampleRepeat, mapAssignSample, mapSizePlate,controlPlateBean));
+								mapSampleEdit, namePlate, tabPanelj, listSampleRepeat, mapAssignSample, mapSizePlate,controlPlateBean, true));
 						upDateControlPlate(controlPlateBean);
 						}catch (Exception ex){
 							ex.printStackTrace();
@@ -354,6 +370,7 @@ public class ControlWindowPlate extends Window{
 			idNext.setVisible(false);
 			//index is idLoadType - 1
 			loadValueForComboLoadWay(bean.getLoadType().getIdLoadType().intValue());
+			idChckBPadded.setDisabled(isEdit);
 		}
 	}
 
@@ -418,6 +435,8 @@ public class ControlWindowPlate extends Window{
 		idComPT = (Combobox)getFellow("idComPT");
 		idCBLoadWay = (Combobox)getFellow("idCBLoadWay");
 		idNext = (Image)getFellow("idNext");
+		idChckBPadded = (Checkbox)getFellow("idChckBPadded");
+		idCmboxControls  = (Combobox)getFellow("idCmboxControls");
 		loadComboTypeLoad();
 	}
 
@@ -562,8 +581,6 @@ public class ControlWindowPlate extends Window{
 	}
 	@SuppressWarnings("rawtypes")
 	public void selectControl(){
-		if (thereAreInformation())
-			return;
 		Set s=mapCellSample.entrySet();
         Iterator it=s.iterator();
         while(it.hasNext())
@@ -582,6 +599,32 @@ public class ControlWindowPlate extends Window{
             }
         }
 	}
+
+	public void selectControlType(String id){
+		if (thereAreInformation())
+			return;
+		switch (id){
+		case "1":
+			selectControl();
+			break;
+		case "2":
+			randomControl();
+			break;
+		case "3":
+			loadControlDartAndKbios(true);
+			break;
+		case "4":
+			loadControlDartAndKbios(false);
+			break;
+		case "5":
+			loadControlCIMMYTEmpty();
+			break;
+		case "6":
+			loadIntertekControls();
+			break;
+		}
+		idCmboxControls.setSelectedIndex(-1);
+	}
 	private boolean thereAreInformation(){
 		if (mapCellSample.isEmpty()){
 			getMessageEmtyList();
@@ -594,31 +637,28 @@ public class ControlWindowPlate extends Window{
 		Messagebox.show(pro.getKey(LBL_STUDIES_PLATE_EMTY_SELECT),pro.getKey(LBL_GENERIC_MESS_INFORMATION), 
 				Messagebox.OK, Messagebox.INFORMATION);
 	}
-	@SuppressWarnings("rawtypes")
+
 	public void loadControlDartAndKbios(boolean typeControl){
-		if (thereAreInformation())
-			return;
-		Set s=mapCellSample.entrySet();
-        Iterator it=s.iterator();
-        while(it.hasNext())
-        {
-            Map.Entry m =(Map.Entry)it.next();
-            Cell value=(Cell)m.getValue();
-            if (value.getAttribute(ATTRIBUTE_CONTROL_LAB) != null){
-            	int index = (Integer)value.getAttribute(ATTRIBUTE_CONTROL_LAB);
-            	if (typeControl){
-            		if (index == PlateRow.DART_CONTROL_ITEM_NUM ){
-            			value.setAttribute(ATTRIBUTE_SAMPLE_ITEM, index);
-            		loadComponentControl(value, PlateRow.DART_CONTROL_ITEM_NUM,(String)m.getKey());
-            		}
-            	}else {
-            		if (index == PlateRow.KBIO_CONTROL_ITEM_NUM ){
-            			value.setAttribute(ATTRIBUTE_SAMPLE_ITEM, index);
-            			loadComponentControl(value, PlateRow.KBIO_CONTROL_ITEM_NUM,(String)m.getKey());	
-            		}
-            	}
-            }
-        }
+	
+		
+		if (plateList != null && plateList.getPlatesContents()!= null && !plateList.getPlatesContents().isEmpty()){
+				for (PlateContentList plateContent : plateList.getPlatesContents()){
+					 
+					if (typeControl){
+						for (String str : Constants.ARR_DART_CONTROL){
+							String key = plateContent.getPlateName()+"|"+str;
+							Cell cell = (Cell)mapCellSample.get(key);
+							loadComponentControl(cell, PlateRow.DART_CONTROL_ITEM_NUM,str);
+						}
+					}else{
+						for (String str : Constants.ARR_KBIOS_CONTROL){
+							String key = plateContent.getPlateName()+"|"+str;
+							Cell cell = (Cell)mapCellSample.get(key);
+							loadComponentControl(cell, PlateRow.KBIO_CONTROL_ITEM_NUM,str);
+					}
+				}
+			}
+		}
         if (typeControl){
         isFirstClickDart = !isFirstClickDart;
         }else {
@@ -627,8 +667,7 @@ public class ControlWindowPlate extends Window{
 	}
 
 	public void loadControlCIMMYTEmpty(){
-		if (thereAreInformation())
-			return;
+		
 		Set s=mapCellSample.entrySet();
         Iterator it=s.iterator();
         while(it.hasNext())
@@ -654,6 +693,28 @@ public class ControlWindowPlate extends Window{
             }
         }
 	}
+
+	public void loadIntertekControls(){
+		
+		
+		if (plateList != null && plateList.getPlatesContents()!= null && !plateList.getPlatesContents().isEmpty()){
+				for (PlateContentList plateContent : plateList.getPlatesContents()){
+						for (String str : Constants.ARR_INTERTEK_CONTROL){
+							String key = plateContent.getPlateName()+"|"+str;
+							Cell cell = (Cell)mapCellSample.get(key);
+							 Checkbox checkBox = getCheckbox(cell);
+		                       	clearMapAssign(cell.getAttribute(ATTRIBUTE_SAMPLE_ITEM), key);
+		                     	cell.setAttribute(ATTRIBUTE_SAMPLE_ITEM, PlateRow.BLANK_ITEM_NUM);
+		                     	checkBox.setChecked(false);
+		                     	Image image = (Image)cell.getChildren().get(0).getChildren().get(1);
+		                     	image.setSrc(URL_IMAGES_BLANK_TUBE);
+		                     	Label label = (Label)cell.getChildren().get(0).getChildren().get(2);
+		                     	label.setValue(pro.getKey(LBL_STUDIES_PLATE_ITEM_BLANK));
+						}
+					}
+			}
+	}
+
 	private void clearSelecctionControlDartAndKbios(){
 		isFirstClickDart = true;
 		isFirstClickKBios = true;
@@ -725,8 +786,7 @@ public class ControlWindowPlate extends Window{
  * Create the controls random 
  */
 	public void randomControl(){
-		if (thereAreInformation())
-			return;
+		
 		if (mapSizePlate.size() == 0){
 			Messagebox.show(pro.getKey(LBL_STUDIES_RANDOM_NOT_SAMP_ASSIG), 
  					pro.getKey(LBL_GENERIC_MESS_INFORMATION), 
@@ -814,20 +874,28 @@ public class ControlWindowPlate extends Window{
 		getDesktop().setAttribute(ATTRIBUTE_TYPE_LOAD_PLATE, plateList);
 		getDesktop().setAttribute(ATTRIBUTE_MAP_NUM_ITEM_SELECT, mapSizePlate);
 		getDesktop().setAttribute(ATTRIBUTE_TYPE_FILE_CONTROL, typeFile);
+		getDesktop().setAttribute(ATTRIBUTE_USE_PADDED_CEROS, idChckBPadded.isChecked());
 		final Window win = (Window) Executions.createComponents(
     			"/studies/file_upload.zul", null, null);
     		win.doModal();
     		UserBean userBean = (UserBean)getDesktop().getSession().getAttribute(ATTRIBUTE_NAME_USER_BEAN);
     		if(getDesktop().getAttribute(ATTRIBUTE_SAMPLE_REPEAT) != null ){
     		boolean thereAreAnySampleRepeat = (Boolean)getDesktop().getAttribute(ATTRIBUTE_SAMPLE_REPEAT);
-    			idNext.setVisible(false);
+    	  		idNext.setVisible(false);
 	    		switch (userBean.getTypeCorp()){
 	    		case ATTRIBUTE_MAIZE :
 	    			idNext.setVisible(true);
 	    			break;
 	    		case ATTRIBUTE_WHEAT :
-	    			if (!thereAreAnySampleRepeat)
+	    			if (thereAreAnySampleRepeat){
+	    				if (Messagebox.show(pro.getKey(Constants.LBL_STUDIES_SAMPLES_QUESTION_DUPLICATE), 
+	    						pro.getKey(Constants.LBL_STUDIES_SAMPLES_TITLE_DUPLICATE), 
+	    						Messagebox.YES | Messagebox.NO, Messagebox.QUESTION) == Messagebox.YES) {
+	    					idNext.setVisible(true);
+	    				}
+	    			}else {
 	    				idNext.setVisible(true);
+	    			}
 	    			break;
 	    		}
     		}
@@ -876,25 +944,34 @@ public class ControlWindowPlate extends Window{
 		bean.setNumcontrols(numberControlRandom+getNumberControl()+numberControlProvider);
 		bean.setLoadType(new LoadType( (Integer)(idCBLoadWay.getSelectedItem().getValue()))) ;
 		bean.setPrefix(bean.getProject().getProjectname()+bean.getProject().getPurposename());
+		bean.setUsePadded(idChckBPadded.isChecked());
+		@SuppressWarnings("rawtypes")
+		Map mapDelete = null;
+		Map<Integer, SampleDetail> mapSampleDetResultEdit = null;
+		List<TemporalSample> listTempsample = null;
 		if (bean.getStatus() == null)
 			bean.setStatus(CommonUtils.getStatusNew());
 		try {
-			@SuppressWarnings("rawtypes")
-			Map mapDelete = null;
 			if (getDesktop().getAttribute(ATTRIBUTE_MAP_SAMPLE_DELETE)!= null)
 				mapDelete = (Map <Integer , SampleDetail>)getDesktop().getAttribute(ATTRIBUTE_MAP_SAMPLE_DELETE);
-			Map<Integer, SampleDetail> mapSampleDetResultEdit = null;
 			if (getDesktop().getAttribute(ATTRIBUTE_MAP_SAMPLE_EDIT)!= null)
 				mapSampleDetResultEdit = (Map <Integer , SampleDetail>)getDesktop().getAttribute(ATTRIBUTE_MAP_SAMPLE_EDIT);
-			List<TemporalSample> listTempsample = null;
+			
 			if (getDesktop().getAttribute(ATTRIBUTE_LIST_TEMP_SAMPLE) != null )
 			listTempsample = (List<TemporalSample>)getDesktop().getAttribute(ATTRIBUTE_LIST_TEMP_SAMPLE);
-			
-		serviceLabStudy.addLabStudy(bean, isEdit,mapDelete, mapSampleDetResultEdit,listTempsample);
+
+		serviceLabStudy.addLabStudy(bean, isEdit,mapDelete, mapSampleDetResultEdit,listTempsample
+				,userBean != null && userBean.getIdUser() != null ? userBean.getIdUser() : 0 );
 		Integer idSampleLast = serviceSample.getLastSampleIDFromProject(bean.getProject().getProjectid());
 		Project projectToUpdate = bean.getProject();
 		projectToUpdate.setLastsampleid(idSampleLast);
 		serviceProject.saveOrUpdateProject(new ProjectBean(projectToUpdate));
+		if (getDesktop().getAttribute(ATTRIBUTE_MAP_SAMPLE_DELETE)!= null)
+			getDesktop().removeAttribute(ATTRIBUTE_MAP_SAMPLE_DELETE);
+		if (getDesktop().getAttribute(ATTRIBUTE_MAP_SAMPLE_EDIT)!= null)
+			getDesktop().removeAttribute(ATTRIBUTE_MAP_SAMPLE_EDIT);
+		if (getDesktop().getAttribute(ATTRIBUTE_LIST_TEMP_SAMPLE) != null )
+			getDesktop().removeAttribute(ATTRIBUTE_LIST_TEMP_SAMPLE);
 		closeWindow();
 		Messagebox.show(pro.getKey(LBL_STUDIES_SAVE_SUCCESS), 
 					pro.getKey(LBL_GENERIC_MESS_INFORMATION), 
@@ -902,6 +979,17 @@ public class ControlWindowPlate extends Window{
 		}catch (Exception exG){
 			exG.printStackTrace();
 			logger.error(exG.getMessage());
+		}finally {
+			mapDelete = null;
+			mapSampleDetResultEdit = null;
+			listTempsample = null;
+			mapCellSample = null;
+			mapAssignSample = null;
+			mapSizePlate = null;
+			listStr = null;
+			listSampleNotRepeat = null;
+			listSampleRepeat = null;
+			System.gc();
 		}
 	}
 

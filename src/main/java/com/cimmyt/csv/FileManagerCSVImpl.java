@@ -42,7 +42,6 @@ public class FileManagerCSVImpl implements FileManagerCSV {
 		logger.info("Into the methos class FileManagerCSVImpl.....");
 		Reader reader = getReader(media);
 			try {
-				
 				csvReader = new CsvReader (reader);
 				//Read the first line of the file
 				csvReader.readRecord();
@@ -66,9 +65,11 @@ public class FileManagerCSVImpl implements FileManagerCSV {
 				return fileSampleCSV;
 			} catch (FileNotFoundException e) {
 				logger.error(e.getMessage());
+				return null;
 			}catch(Exception ex){
 				ex.printStackTrace();
 				logger.error(ex.getMessage());
+				return null;
 			}
 			finally {
 					if(csvReader != null)csvReader.close();
@@ -80,13 +81,13 @@ public class FileManagerCSVImpl implements FileManagerCSV {
 					}
 					media = null;
 			}
-		return null;
+		//return null;
 	}
 
 	private boolean validateTypeFile(int numberColum, int typeFile){
 		switch (typeFile){
 		case 1:
-			if (numberColum == 8)
+			if (numberColum == 8 || numberColum == 9)
 			return true;
 		case 2:
 			if (numberColum == 12)

@@ -39,7 +39,7 @@ public class ShippmentButton extends ShipmentEventListener{
 	@Override
 	public void onEvent(Event event) throws Exception {
 		setPro( (PropertyHelper)event.getTarget().getDesktop().getSession().getAttribute(LOCALE_LANGUAGE));
-		//event.getTarget().getDesktop().setAttribute(ATTRIBUTE_SHIPMENTS_ITEM, getBean());
+		event.getTarget().getDesktop().setAttribute(ATTRIBUTE_SHIPMENTS_ITEM, getBean());
 		String idShipment = event.getTarget().getId();
 		ShipmentSet shipment = getServiceShipmentSet().read(Integer.valueOf(idShipment));
 		event.getTarget().getDesktop().setAttribute(ATTRIBUTE_SHIPMENTS_ITEM, shipment);

@@ -373,7 +373,6 @@ use="com.cimmyt.zk.investigator.ControlFuntionsUser" onCreate="idWindowFuntions.
 
 		</treechildren>
 	</tree>
-	
 	<div align="center" width="400px" >
 	<hbox>
 		<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowFuntions.add()"

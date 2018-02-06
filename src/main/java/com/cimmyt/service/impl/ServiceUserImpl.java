@@ -107,15 +107,30 @@ public class ServiceUserImpl implements ServiceUser{
 		autUser.setInvestName(userBean.getResearcherName());
 		autUser.setVersion("2.0");
 		autUser.setPassword(userBean.getPassword());
-		StInvestigator investigator = new StInvestigator();
+		StInvestigator investigatorST = new StInvestigator();
+		investigatorST.setInvestigatorid(userBean.getInvestigatorBean().getInvestigatorid());
+		if (userBean.getRole().getIdstRol() == ConstantsDNA.ROLE_RESEARCHER) {
+			
+			investigatorST.setStatus(userBean.isStatus());
+			}
+
+		if (userBean.getRole().getIdstRol() == ConstantsDNA.ROLE_RESEARCHER) {
+		Investigator investigator = new Investigator();
+		investigator.setInvest_abbreviation(userBean.getInvestigatorBean().getInvest_abbreviation());
+		investigator.setInvest_name(userBean.getInvestigatorBean().getInvest_name());
 		investigator.setInvestigatorid(userBean.getInvestigatorBean().getInvestigatorid());
-		autUser.setInvestigator(investigator);
+		investigator.setStatus(userBean.isStatus());
+		investigatorDAO.saveOrUpdate(investigator);
+		}
+		
+		autUser.setInvestigator(investigatorST);
 		Role role  = new Role();
 		role.setIdstRol(userBean.getRole().getIdstRol());
 		autUser.setStRole(role);
 		Organism stOrganism = new Organism();
 		stOrganism.setOrganismid(userBean.getOrganism().getOrganismid());
 		autUser.setStOrganism(stOrganism);
+		autUser.setStatus(userBean.isStatus());
 		userDAO.saveOrUpdate(autUser);
 	}
 

@@ -51,7 +51,7 @@ public class ExportReport {
 			String rutaResumen="/com/cimmyt/reports/src/location_barcodes.jasper";
 			InputStream isReportStream =getClass().getResourceAsStream(rutaResumen);
 			if (isReportStream!=null){
-				System.out.println("Objects ....... "+isReportStream+" params "+hmpParams+" List "+ list);
+				//System.out.println("Objects ....... "+isReportStream+" params "+hmpParams+" List "+ list);
 				JasperPrint jasperPrint = JasperFillManager.fillReport(isReportStream,hmpParams, new JRBeanCollectionDataSource(list));
 				
 				

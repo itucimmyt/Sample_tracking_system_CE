@@ -22,7 +22,7 @@ use="com.cimmyt.zk.shipments.ControlWindowSearch" onCreate="idWindowS.loadContex
 			    <label value="${lblMGSL}"></label>
 			    <label value="${lblProSCLF}"></label>
 			    <textbox id="idTeSearh" maxlength="39" cols="39" onOK="idWindowS.searchLabStudies(0,true)"></textbox>
-			     <image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindowS.searchLabStudies(0,true)"
+ 				<image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindowS.searchLabStudies(0,true)"
 								width="32px" height="32px">
 									<attribute name="onMouseOver">
 									idFindP.setWidth("40px");
@@ -32,7 +32,8 @@ use="com.cimmyt.zk.shipments.ControlWindowSearch" onCreate="idWindowS.loadContex
 									idFindP.setWidth("32px");
 									idFindP.setHeight("32px");
 									</attribute>
-				</image>
+				</image>gFind}" onClick ="idWindowS.searchLabStudies(0,true)" />
+				
 		   </hbox>
 		<listbox id="idListBS" width="100%" multiple="false" height="190px"
 			onSelect="idWindowS.loadListLeft(0,true)">
@@ -84,9 +85,7 @@ use="com.cimmyt.zk.shipments.ControlWindowSearch" onCreate="idWindowS.loadContex
 	   	 </listbox>
 	   	 <paging id="idPagingSample1" detailed="true"></paging>
 	 </vbox>
-	
-	
-	<vbox>   
+<vbox>   
 	  		<image  id="idMenTadd" tooltiptext="${lblMenTAdd}" src="${imgPlay}" onClick="idWindowS.moveSamles()"
 					width="40px" height="40px">
 						<attribute name="onMouseOver">
@@ -135,6 +134,7 @@ use="com.cimmyt.zk.shipments.ControlWindowSearch" onCreate="idWindowS.loadContex
 						</attribute>
 			</image>
 	  	</vbox>	
+	   	
 	   	<vbox>
 		   	 <hbox>
 			   	 <label>${lblSLWSWSSS} :</label>
@@ -165,7 +165,7 @@ use="com.cimmyt.zk.shipments.ControlWindowSearch" onCreate="idWindowS.loadContex
    </hbox>
   </center>
   <south border="none" height="80px">
-  <div align="center" width="1000px" >
+ <div align="center" width="1000px" >
 	<hbox>
 		<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowS.addSampleDetail(event)"
 					width="40px" height="40px">

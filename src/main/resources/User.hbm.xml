@@ -62,6 +62,13 @@
             </key>
             <one-to-many class="com.cimmyt.model.bean.UserFuntions" />
         </set>
+
+         <set name="stLogs" table="st_log" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_version_id" not-null="true" />
+            </key>
+            <one-to-many class="com.cimmyt.model.bean.Log" />
+        </set>
     </class>
 
 </hibernate-mapping>

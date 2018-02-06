@@ -25,7 +25,17 @@
         <property name="investName" type="string">
             <column name="invest_name" />
         </property>
+        
+        <property name="status" type="boolean">
+            <column name="status" />
+        </property>
 
+ 		<set name="setAuthUserBean" table="st_user_version" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="investigator_id" not-null="true" />
+            </key>
+            <one-to-many class="org.cimmyt.dnast.dto.AuthUserBean" />
+        </set>
         <!--set name="stLabStudies" table="st_lab_study" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="investigatorid">

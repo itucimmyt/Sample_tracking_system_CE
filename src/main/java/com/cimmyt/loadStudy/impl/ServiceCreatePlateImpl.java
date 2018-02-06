@@ -12,10 +12,10 @@ Copyright 2013 International Maize and Wheat Improvement Center
 */
 package com.cimmyt.loadStudy.impl;
 
+import static com.cimmyt.utils.Constants.ARR_CIMMYT_CONTROL_EMPTY_384;
+import static com.cimmyt.utils.Constants.ARR_CIMMYT_CONTROL_EMPTY_96;
 import static com.cimmyt.utils.Constants.ARR_DART_CONTROL;
 import static com.cimmyt.utils.Constants.ARR_KBIOS_CONTROL;
-import static com.cimmyt.utils.Constants.ARR_CIMMYT_CONTROL_EMPTY_96;
-import static com.cimmyt.utils.Constants.ARR_CIMMYT_CONTROL_EMPTY_384;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_CONTROL_LAB;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SAMPLE_ITEM;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SAMPLE_ITEM_BEAN;
@@ -44,6 +44,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Cell;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Column;
@@ -57,6 +61,7 @@ import org.zkoss.zul.Popup;
 import org.zkoss.zul.Row;
 import org.zkoss.zul.Rows;
 import org.zkoss.zul.Tabpanel;
+import org.zkoss.zul.Window;
 
 import com.cimmyt.bean.ControlPlateBean;
 import com.cimmyt.bean.ItemSampleBean;
@@ -66,6 +71,7 @@ import com.cimmyt.model.bean.LabStudy;
 import com.cimmyt.model.bean.SampleDetail;
 import com.cimmyt.study.PlateContentList;
 import com.cimmyt.study.PlateRow;
+import com.cimmyt.utils.Constants;
 import com.cimmyt.utils.PropertyHelper;
 import com.cimmyt.utils.StrUtils;
 
@@ -88,6 +94,7 @@ public class ServiceCreatePlateImpl  implements ServiceCreatePlate{
 	private Integer numberControlRandom = new Integer(0);
 	private Integer numberControlBlank = new Integer(0);
 	private ControlPlateBean controlPlateBean;
+	private boolean isEdit;
 
 	/**
 	 * Load blank samples in the Grid
@@ -100,7 +107,7 @@ public class ServiceCreatePlateImpl  implements ServiceCreatePlate{
 			Map<String, Object> mapCellSample, PropertyHelper pro, LabStudy _beanLabStudy,
 			boolean _isNewStudy,Map<String, Object> _mapSampleEdit, String _plateName, 
 			Tabpanel tabPanelj,List <String> _listSampleRepeat, Map<String, Object> _mapAssignSample,
-			Map<String, Integer> _mapSizePlate, ControlPlateBean _controlPlateBean) {
+			Map<String, Integer> _mapSizePlate, ControlPlateBean _controlPlateBean, boolean _isEdit) {
 		this.mapCellSample = mapCellSample;
 		this.plateContent = plateContent;
 		this.pro = pro;
@@ -112,6 +119,7 @@ public class ServiceCreatePlateImpl  implements ServiceCreatePlate{
 		this.mapAssignSample = _mapAssignSample;
 		this.mapSizePlate = _mapSizePlate;
 		this.controlPlateBean = _controlPlateBean;
+		this.isEdit = _isEdit;
 		Grid grid = loadGridByPlate(numColum, plateContent, tabPanelj);
 		controlPlateBean.setNumberControlBlank(controlPlateBean.getNumberControlBlank()+ numberControlBlank);
 		controlPlateBean.setNumberControlProvider(controlPlateBean.getNumberControlProvider()+ numberControlProvider);
@@ -195,20 +203,20 @@ public class ServiceCreatePlateImpl  implements ServiceCreatePlate{
 	 * @param plateName
 	 * @return
 	 */
-	private Cell getCellPlate(int index, int idRow, String letter, 
+	private Cell getCellPlate(final int index, final int idRow,final String letter, 
 			String plateName, SampleDetail sampleDetail, Component component){
-		Cell cell = new Cell();
+		final Cell cell = new Cell();
 		cell.setParent(component);
-		String keyItem = plateName+"|"+letter+idRow;
+		final String keyItem = plateName+"|"+letter+idRow;
 		//System.out.println("keyyyyyy ::: "+keyItem + "id indexxxx : "+index);
 		boolean isSampleAssigned = false;
 		Hbox hbox = new Hbox();
 		Checkbox checkBox = new Checkbox();
 		checkBox.setId(keyItem+PREFIX_CHECK);
 		checkBox.setDisabled(false);
-		Image image = new Image ();
+		final Image image = new Image ();
 		image.setId(keyItem+PREFIX_IMAGE);
-		Label label = new Label();
+		final Label label = new Label();
 		label.setId(keyItem+PREFIX_LABEL);
 		switch (index){
 		case PlateRow.BLANK_ITEM_NUM :
@@ -291,8 +299,117 @@ public class ServiceCreatePlateImpl  implements ServiceCreatePlate{
 		
 		validateControlDartOrKbios(cell, letter+idRow);
 		mapCellSample.put(keyItem,cell);
+		if (isEdit && 
+				(sampleDetail != null && sampleDetail.getSelforsend() != null && 
+						sampleDetail.getSelforsend().equals(ShipmentStatus.NO_SELECTED.getId() )
+				))
+		cell.addEventListener(Events.ON_DOUBLE_CLICK, new EventListener<Event>() {
+            public void onEvent(Event event) throws Exception {
+            	event.getTarget().getDesktop().getSession().setAttribute(ATTRIBUTE_SAMPLE_ITEM, cell.getAttribute(ATTRIBUTE_SAMPLE_ITEM));	
+            	if (event.getTarget().getAttribute(ATTRIBUTE_SAMPLE_ITEM_BEAN) != null){
+            		event.getTarget().getDesktop().getSession().setAttribute(ATTRIBUTE_SAMPLE_ITEM_BEAN, event.getTarget().getAttribute(ATTRIBUTE_SAMPLE_ITEM_BEAN));
+            	}
+            	final Window win = (Window) Executions.createComponents(
+            			"/studies/edit_sample.zul", null, null);
+            		win.doModal();
+            		if (event.getTarget().getDesktop().getSession().getAttribute(Constants.ATTRIBUTE_SAMPLE_ITEM) != null){
+            			int index = (Integer)event.getTarget().getDesktop().getSession().getAttribute(Constants.ATTRIBUTE_SAMPLE_ITEM);
+            			cell.setAttribute(ATTRIBUTE_SAMPLE_ITEM, index);
+            			if (index == PlateRow.ASSIGNED_NUM){
+	            		if (event.getTarget().getDesktop().getSession().getAttribute(ATTRIBUTE_SAMPLE_ITEM_BEAN) != null
+	            				&& event.getTarget().getDesktop().getSession().getAttribute(Constants.ATTRIBUTE_SAMPLE_ITEM_BEAN_EDIT) != null){
+		            			ItemSampleBean itemSampleBean = (ItemSampleBean)event.getTarget().getDesktop().getSession().getAttribute(ATTRIBUTE_SAMPLE_ITEM_BEAN);
+		            			SampleDetail detail = (SampleDetail)event.getTarget().getDesktop().getSession().getAttribute(Constants.ATTRIBUTE_SAMPLE_ITEM_BEAN_EDIT);
+		            			String sampleId = StrUtils.getSampleIDKey(beanLabStudy, detail.getSamplegid());
+		            			createToolTip(detail, sampleId, (Cell)event.getTarget(), itemSampleBean.isRepeatSample());
+		            			if (itemSampleBean.isRepeatSample()){
+		            				image.setSrc(URL_IMAGES_REPEAT_SAMPLE);
+		        					cell.setAttribute(ATTRIBUTE_SAMPLE_ITEM, PlateRow.ASSIGNED_NUM);
+		        					label.setValue(sampleId.toUpperCase());
+		        					loadMapAssigned(keyItem);
+		            			}else{
+		            				image.setSrc(URL_IMAGES_ASSIGNED_TUBE);
+		            				label.setValue(sampleId.toUpperCase());
+		            				loadMapAssigned(keyItem);
+		            			}
+		            			cleanDesktop(event);
+		            			cell.setAttribute(ATTRIBUTE_SAMPLE_ITEM_BEAN, itemSampleBean);
+	            			}
+            			}else {
+            				for (Component component : cell.getChildren()){
+            					if (component instanceof Popup){
+            						cell.getChildren().remove(component);
+            						break;
+            					}
+            				}
+	            			setTypeControl(idRow, letter, cell, image, label, index);
+	            			ItemSampleBean itemSampleBean = (ItemSampleBean)event.getTarget().getDesktop().getSession().getAttribute(ATTRIBUTE_SAMPLE_ITEM_BEAN);
+	            			cell.setAttribute(ATTRIBUTE_SAMPLE_ITEM_BEAN, itemSampleBean);
+	            			cleanDesktop(event);
+	            			
+	            			
+	            		
+	            		}
+            		}
+            }
+
+        });
 		return cell;
 	}
+
+	private void cleanDesktop (Event event){
+		if (event.getTarget().getDesktop().getSession().getAttribute(Constants.ATTRIBUTE_SAMPLE_ITEM) != null){
+			event.getTarget().getDesktop().getSession().removeAttribute(Constants.ATTRIBUTE_SAMPLE_ITEM);
+		}
+		if (event.getTarget().getDesktop().getSession().getAttribute(ATTRIBUTE_SAMPLE_ITEM_BEAN) != null){
+			event.getTarget().getDesktop().getSession().removeAttribute(Constants.ATTRIBUTE_SAMPLE_ITEM_BEAN);
+		}
+		if (event.getTarget().getDesktop().getSession().getAttribute(Constants.ATTRIBUTE_SAMPLE_ITEM_BEAN_EDIT) != null){
+			event.getTarget().getDesktop().getSession().removeAttribute(Constants.ATTRIBUTE_SAMPLE_ITEM_BEAN_EDIT);
+		}
+	}
+
+	private void setTypeControl(int idRow, String letter, Cell cell, Image image, Label label, int index){
+		switch (index){
+		case PlateRow.BLANK_ITEM_NUM :
+			image.setSrc(URL_IMAGES_BLANK_TUBE);
+			label.setValue(pro.getKey(LBL_STUDIES_PLATE_ITEM_BLANK));
+			cell.setTooltiptext("("+letter+","+idRow+")");
+			break;
+		case PlateRow.BLANK_CONTROL_NUM :
+			image.setSrc(URL_IMAGES_CONTROL_TUBE);
+			label.setValue(pro.getKey(LBL_STUDIES_PLATE_ITEM_CONTROL));
+			cell.setTooltiptext("("+letter+","+idRow+")");
+			numberControlBlank  = numberControlBlank +1;
+			break;
+		case PlateRow.DART_CONTROL_ITEM_NUM :
+			image.setSrc(URL_IMAGES_DART_CONTROL_TUBE);
+			label.setValue(pro.getKey(LBL_STUDIES_CONTROL_DART));
+			cell.setTooltiptext("("+letter+","+idRow+")");
+			numberControlProvider = numberControlProvider + 1;
+			break;
+		case PlateRow.KBIO_CONTROL_ITEM_NUM :
+			image.setSrc(URL_IMAGES_KBIO_CONTROL_TUBE);
+			label.setValue(pro.getKey(LBL_STUDIES_CONTROL_KBIOSCIENCES));
+			cell.setTooltiptext("("+letter+","+idRow+")");
+			numberControlProvider = numberControlProvider + 1;
+			break;
+		case PlateRow.RANDOM_CONTROL_ITEM_NUM :
+			image.setSrc(URL_IMAGES_CONTROL_RANDOM_TUBE);
+			label.setValue(pro.getKey(LBL_STUDIES_RANDOM_TUBE));
+			numberControlRandom = numberControlRandom + 1;
+			cell.setTooltiptext("("+letter+","+idRow+")");
+			break;
+		case PlateRow.NOT_CONTROL :
+			image.setSrc(URL_IMAGES_BLANK_TUBE);
+			label.setValue(pro.getKey(LBL_STUDIES_PLATE_ITEM_BLANK));
+			cell.setTooltiptext("("+letter+","+idRow+")");
+			break;
+		default :
+			break;
+		}
+	}
+	
 	/**
 	 * Method that load in map the samples assigned in the plate 
 	 * @param key

@@ -39,8 +39,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "st_study_template_params")
 @NamedQueries({
-    @NamedQuery(name = "StudyTemplateParams.findAll", query = "SELECT i FROM StudyTemplateParams i")})
-public class StudyTemplateParams implements Serializable {
+    @NamedQuery(name = "StudyTemplateParams.findAll", query = "SELECT i FROM StudyTemplateParams i ORDER BY i.templateparamid DESC")})
+public class StudyTemplateParams implements Serializable, Comparable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -163,6 +163,19 @@ public class StudyTemplateParams implements Serializable {
     public String toString() {
     	return parametername;
     }
+
+	@Override
+	public int compareTo(Object obj) {
+		/*StudyTemplateParams stTpa = (StudyTemplateParams)obj;
+		
+		if (stTpa.getTemplateparamid() != null && this.templateparamid != null)
+		
+		return this.templateparamid.compareTo(((StudyTemplateParams)obj).getTemplateparamid());
+		else 
+			return 0;*/
+		
+		return this.getFactorname().compareTo(((StudyTemplateParams)obj).getFactorname());
+	}
 
 }
 

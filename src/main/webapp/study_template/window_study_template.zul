@@ -12,7 +12,7 @@
 
 <zk>
 
-<window border="normal" width="830px" height="580px" id="idWindow" sclass="myWindow"
+<window border="normal" width="830px" height="780px" id="idWindow" sclass="myWindow"
 use="com.cimmyt.zk.studyTemplate.ControlWindowStudyTemplate" onCreate="idWindow.loadContextAttribute()" >
 	<caption image="${imgStudyTemplate2}" sclass="myCaption" />
 	<grid >
@@ -77,7 +77,7 @@ use="com.cimmyt.zk.studyTemplate.ControlWindowStudyTemplate" onCreate="idWindow.
 		</image>
      </div>
 	</box>
-		<listbox id="idLisB" multiple="false" width="800px" height="200px"
+		<listbox id="idLisB" multiple="false" width="800px" height="400px"
 				checkmark="true" sizedByContent="false" >
 					<listhead id="idListHead">
 					  <listheader sort="auto" width="30%">
@@ -93,8 +93,7 @@ use="com.cimmyt.zk.studyTemplate.ControlWindowStudyTemplate" onCreate="idWindow.
 					</listhead>
 				</listbox>
 	</vbox>
-	
-	
+
 	<box width="830px" > 
 	<div align="center" width="830px">
 	 <image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindow.add()"

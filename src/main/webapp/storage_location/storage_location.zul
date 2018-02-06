@@ -83,7 +83,7 @@
 			</north>
 			<center  sclass="borderNort"  autoscroll="true"
 				style="overflow:visible; padding: 0px,0px,0px,0px;">
-	<vbox height="98%" width="100%">
+			<vbox height="98%" width="100%">
 				<tree id="tree" width="99.7%" height="40%" vflex="true"
 					>
 				</tree>

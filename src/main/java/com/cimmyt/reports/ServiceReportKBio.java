@@ -26,4 +26,9 @@ public interface ServiceReportKBio {
 
 	public byte[] getBytesReportKBiosGrid(List<ShipmentDetail> setShipmentDetail, PropertyHelper property, UserBean userBean
 			, Shipment shipment);
+	public byte[] getBytesReportIntertekGrid(List<ShipmentDetail> setShipmentDetail, PropertyHelper property, UserBean userBean
+			, Shipment shipment);
+	
+	public byte [] getBytesReportGnotypingServices(List<ShipmentDetail> setShipmentDetail, PropertyHelper property, UserBean userBean
+			, Shipment shipment);
 }

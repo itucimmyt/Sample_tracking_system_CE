@@ -42,8 +42,6 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
-import org.zkoss.zk.ui.event.Events;
-import org.zkoss.zk.ui.event.MouseEvent;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Cell;
 import org.zkoss.zul.Checkbox;
@@ -70,7 +68,6 @@ import com.cimmyt.utils.PropertyHelper;
 @SuppressWarnings("serial")
 public class ControlPlateInformation extends Window{
 
-	
 	private Window idWindowR;
 	private LabStudy beanStudy;
 	private Combobox idCPlate;

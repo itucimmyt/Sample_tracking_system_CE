@@ -12,7 +12,11 @@
 
 <?page title="DNA Sample Tracking" contentType="text/html;charset=UTF-8"?>
 <?link rel="icon" type="image/x-icon" href="/images/stampletrackingico24.png"?>
-<zk xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<zk xmlns:xsi="http://www.w3.MPLATE) == null){
+				Fisheye idAdd = (Fisheye)getFellow(STUDY_TEMPLATE);
+				eyeBar.removeChild(idAdd);
+			}
+			if (mapFuntions.get(STORE_LOCATION) == norg/2001/XMLSchema-instance"
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xsi:schemaLocation="http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
 
@@ -24,16 +28,22 @@
 		]]>
     </zscript>
 	<style src="/style/welcome.css" dynamic="true" >
+
 	</style>
+
 	<div id="idDiv" use="com.cimmyt.zk.ControlSetWidth"
 		onClientInfo="idDiv.loadDiv((ClientInfoEvent)event)">
 	</div>
 	<borderlayout id="intro" use="com.cimmyt.zk.welcome.ControlWelcome"
 		sclass="borderLayout" onCreate="intro.init()">
+
 		<north height="80px" maxsize="100" minsize="100" style="overflow:visible; ">
+		
 			<hbox width="100%" pack="center" align="center" vflex="true">
 					<image src="${imgBannerTop}" width="250px" style="position:absolute; left:10px; top:10px"/>
+					
 					<label height="60px" id="idSelectedAction" sclass="headerWelcome" style="padding-top:35px"/>
+					
 					<vbox width="200px" height="60px" align="end" pack="end"
 						style="position:absolute; right:10px; top:10px">
 						<label sclass="titleUnitC" id="idLabelSIU" hflex="true"
@@ -71,11 +81,13 @@
 						</hbox>
 					</vbox>
 			</hbox>
+
 		</north>
 
 		<west style="overflow:visible;" id="idWest"
 		 sclass="westMenu" minsize="50" maxsize="50" width="50px">
-		  <vbox id="idContainerImages">
+
+ 		<vbox id="idContainerImages">
 		    <image id="studyTemplate" tooltiptext="${lblMenuStudyTemp}" src="${imgStudyTemplate}"	
 			    onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.StudyTemplate,idCenterMenu, self);" 
 			    width="40px" height="35px"/>
@@ -99,8 +111,20 @@
 			<image id="season" tooltiptext="${lblMenuSeason}" src="${imgSeason}"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Seasons, idCenterMenu, self)" 
 				width="40px" height="35px" />
 			<image id="query" tooltiptext="${lblMenuQuerie}" src="${imgQuery}"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.Queries,idCenterMenu, self)" 
-				width="40px" height="35px" />		
+				width="40px" height="35px" />	
+			<image id="logFunction" tooltiptext="${lblLogModule}" src="${imgLOGModule}" visible="false"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.LOG,idCenterMenu, self)" 
+				width="40px" height="35px" />	
 		    </vbox>
+
+
+<!--        < label="${lblBMSModule}" image="${imgBMSModule}" visible="false">
+					<attribute name="onClick">
+						ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.BMS,
+								idCenterMenu, self);
+					</attribute>
+				</>-->
+	
+
 		</west>
 		<center id="idCenterMenu" autoscroll="true">
 			<hbox width="100%" height="20%" align="center">

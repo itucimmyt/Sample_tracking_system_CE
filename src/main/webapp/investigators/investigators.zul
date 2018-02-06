@@ -18,8 +18,7 @@
 		<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
 				<hbox id="idHboxResearcher" width="100%" hflex="true" style="position:absolute; ">
-				
-				<image  id="researchers$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindowInvestigators.add()"
+					<image  id="researchers$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindowInvestigators.add()"
 					width="40px" height="40px">
 						<attribute name="onMouseOver">
 							researchers$idAdd.setWidth("60px");
@@ -56,13 +55,9 @@
 					<space width="150px"></space>
 				</hbox>
 			</north>
-		
-			
-			
-			
 			<center autoscroll="false" sclass="borderNort" flex="true">
 				<listbox id="idLisB"  multiple="false" width="100%" sclass="myRows"
-					height="100%" checkmark="true" sizedByContent="false"  
+					height="100%" checkmark="true" sizedByContent="true"  
 					autopaging="true" pagingPosition="bottom" mold="paging">
 					<listhead id="idListHead">
 					  <!--  <listheader sort="auto" width="10%">
@@ -72,20 +67,23 @@
 					  <listheader sort="auto" width="150px">
 					    	<label value="${lblInvUserName}" sclass="columnForList"/>
 					  </listheader>
-					  <listheader sort="auto" width="19%">
+					  <listheader sort="auto" width="18%">
 					    	<label value="${lblInvName}" sclass="columnForList"/>
 					  </listheader>
-					  <listheader sort="auto" width="19%">
+					  <listheader sort="auto" width="18%">
 					    	<label value="${lblInvE}" sclass="columnForList"/>
 					  </listheader>
-					  <listheader sort="auto" width="19%">
+					  <listheader sort="auto" width="18%">
 					    	<label value="${lblInvRole}" sclass="columnForList"/>
 					  </listheader>
-					  <listheader sort="auto" width="19%">
+					  <listheader sort="auto" width="18%">
 					    	<label value="${lblInvResearcherName}" sclass="columnForList"/>
 					  </listheader>
-					   <listheader sort="auto" width="4%">
+					   <listheader sort="auto" width="100px">
 					    	<label value="${lblInvAN}" sclass="columnForList"/>
+					  </listheader>
+					   <listheader sort="auto" width="100px">
+					    	<label value="${lblInvResChangeSta}" sclass="columnForList"/>
 					  </listheader>
 					</listhead>
 				</listbox>	 

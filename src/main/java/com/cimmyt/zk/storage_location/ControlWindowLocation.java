@@ -52,7 +52,7 @@ public class ControlWindowLocation extends Window{
         }
 		
 	}
-	Logger logger= Logger.getLogger(ControlWindowInvestigator.class);
+	Logger logger= Logger.getLogger(ControlWindowLocation.class);
 	/** 
 	 * Close Window
 	 */
@@ -98,6 +98,7 @@ public class ControlWindowLocation extends Window{
 			messageBox(pro.getKey(LBL_GENERIC_MESS_FIELD_REQUIRED));	
 		}else {
 			StorageLocation bean = (StorageLocation)getDesktop().getAttribute(ATTRIBUTE_STORAGE_LOCATION_ITEM);
+			System.out.println("Storage loation .. "+bean);
 			if (bean == null){
 				bean = new StorageLocation();
 			}

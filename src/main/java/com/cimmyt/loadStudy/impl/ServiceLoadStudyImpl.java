@@ -21,9 +21,12 @@ import static com.cimmyt.utils.Constants.LBL_STUDIES_FILE_UP_CELL_PLANT_N;
 import static com.cimmyt.utils.Constants.LBL_STUDIES_FILE_UP_CELL_SEASON;
 import static com.cimmyt.utils.Constants.LBL_STUDIES_FILE_UP_CELL_T_GID;
 import static com.cimmyt.utils.Constants.LBL_STUDIES_FILE_UP_CELL_T_SAMP;
+import static com.cimmyt.utils.Constants.LBL_STUDIES_PLATE_ITEM_BLANK;
+import static com.cimmyt.utils.Constants.LBL_STUDIES_PLATE_ITEM_CONTROL;
 import static com.cimmyt.utils.Constants.LOCALE_LANGUAGE;
 import static com.cimmyt.utils.Constants.URL_IMAGES_ASSIGNED_TUBE;
 import static com.cimmyt.utils.Constants.URL_IMAGES_BLANK_TUBE;
+import static com.cimmyt.utils.Constants.URL_IMAGES_CONTROL_TUBE;
 import static com.cimmyt.utils.Constants.URL_IMAGES_REPEAT_SAMPLE;
 import static com.cimmyt.utils.ConstantsDNA.FILE_UP_LOAD_ONLY_SAMPLES;
 import static com.cimmyt.utils.ConstantsDNA.FILE_UP_LOAD_SAMPLES_CONTROL;
@@ -40,10 +43,14 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Desktop;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Cell;
 import org.zkoss.zul.Html;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Popup;
 
 import com.cimmyt.bean.ItemSampleBean;
@@ -269,7 +276,7 @@ public class ServiceLoadStudyImpl implements ServiceLoadStudy{
 	 */
 	private void setSamplesInPlateGrid (int index, ItemSampleBean itemEdit, ItemSampleBean item, PlateContentList plateContent
 			,int sizeLetter, Integer sizeRow, Label label,Image image, Cell cell, Collection<SampleDetail> imsSampleDetailCollection){
-		if (index != PlateRow.ASSIGNED_NUM)
+		if ( index != PlateRow.ASSIGNED_NUM )
 			item = null;
 		//conditional for load samples New
 		if (!isEdit){
@@ -278,8 +285,9 @@ public class ServiceLoadStudyImpl implements ServiceLoadStudy{
 			//Validate if the cell is assigned by the variable  Index
 			if (index == PlateRow.ASSIGNED_NUM){
 				//validate if the new item is different that null to continue
-				if(item != null){
-				String sampleId = beanLabStudy.getProject().getProjectname()+beanLabStudy.getProject().getPurposename()+item.getSampleID();
+				if(item != null  && item.getTypeControl() == null){
+				String sampleId = beanLabStudy.getProject().getProjectname()+beanLabStudy.getProject().getPurposename()+
+						(!beanLabStudy.isUsePadded()?Integer.toString(item.getSampleID()):StrUtils.getPaddingCeros(item.getSampleID()));
 				label.setValue(sampleId);
 				createToolTip(item, sampleId.toUpperCase(), cell);
 				image.setSrc(URL_IMAGES_ASSIGNED_TUBE);
@@ -288,6 +296,12 @@ public class ServiceLoadStudyImpl implements ServiceLoadStudy{
 						image.setSrc(URL_IMAGES_REPEAT_SAMPLE);
 				sizeRowSamples++;
 				}else {
+					//validating samples for historical information
+					if (item != null && item.getTypeControl() != null && !item.getTypeControl().equals("")){
+						loadCellControlHistorical(label, image, item);
+						sampleDetail.setControltype(item.getTypeControl().toString());
+						setDefaultValueForHistoricalControlSample(sampleDetail);
+					}else
 					// if is null item then put the cell blank
 					sampleDetail.setControltype(StrUtils.getTypeOfControl(PlateRow.BLANK_ITEM_NUM));
 				}
@@ -300,7 +314,6 @@ public class ServiceLoadStudyImpl implements ServiceLoadStudy{
 				// add to collection the sample detail
 				imsSampleDetailCollection.add(sampleDetail);
 			}
-			
 		}else {
 			// if you want to edit the item assigned
 			if (index == PlateRow.ASSIGNED_NUM){
@@ -321,7 +334,7 @@ public class ServiceLoadStudyImpl implements ServiceLoadStudy{
 						// add to collection the sample detail
 						imsSampleDetailCollection.add(detail);
 						String sampleId = beanLabStudy.getProject().getProjectname()+beanLabStudy.getProject().getPurposename()
-								+detail.getSamplegid();
+								+(!beanLabStudy.isUsePadded()?Integer.toString(item.getSampleID()):StrUtils.getPaddingCeros(item.getSampleID()));
 						label.setValue(sampleId.toUpperCase());
 						image.setSrc(URL_IMAGES_ASSIGNED_TUBE);
 						if(item.isRepeatSample()){
@@ -339,7 +352,7 @@ public class ServiceLoadStudyImpl implements ServiceLoadStudy{
 						
 						SampleDetail detail = changeValueOfItemSample(item, index, itemEdit.getStudysampleid());
 						String sampleId = beanLabStudy.getProject().getProjectname()+beanLabStudy.getProject().getPurposename()
-								+item.getSampleID();
+								+(!beanLabStudy.isUsePadded()?Integer.toString(item.getSampleID()):StrUtils.getPaddingCeros(item.getSampleID()));
 						label.setValue(sampleId.toUpperCase());
 						
 						createToolTip(item, sampleId.toUpperCase(), cell);
@@ -356,8 +369,15 @@ public class ServiceLoadStudyImpl implements ServiceLoadStudy{
 				}else if (item != null){
 					//conditional for load new item in the cell assigned 
 					SampleDetail sampleDetail = CommonUtils.getSampleDetdail(plateContent.getPlateName(), plateContent.letters[sizeLetter]+(sizeRow+1), item, index, beanLabStudy);
+					if (item.getTypeControl() != null && !item.getTypeControl().equals("")){
+						loadCellControlHistorical(label, image, item);
+						sampleDetail.setControltype(item.getTypeControl().toString());
+						setDefaultValueForHistoricalControlSample(sampleDetail);
+					}else
+					// if is null item then put the cell blank
 					sampleDetail.setControltype(StrUtils.getTypeOfControl(index));
-						String sampleId = beanLabStudy.getProject().getProjectname()+beanLabStudy.getProject().getPurposename()+item.getSampleID();
+						String sampleId = beanLabStudy.getProject().getProjectname()+beanLabStudy.getProject().getPurposename()+
+								(!beanLabStudy.isUsePadded()?Integer.toString(item.getSampleID()):StrUtils.getPaddingCeros(item.getSampleID()));
 						label.setValue(sampleId);
 						createToolTip(item, sampleId.toUpperCase(), cell);
 						image.setSrc(URL_IMAGES_ASSIGNED_TUBE);
@@ -398,6 +418,12 @@ public class ServiceLoadStudyImpl implements ServiceLoadStudy{
 					clearCellPopup(cell);
 				}else {
 					SampleDetail sampleDetail = CommonUtils.getSampleDetdail(plateContent.getPlateName(), plateContent.letters[sizeLetter]+(sizeRow+1), item, index, beanLabStudy);
+					if (item.getTypeControl() != null && !item.getTypeControl().equals("")){
+						loadCellControlHistorical(label, image, item);
+						sampleDetail.setControltype(item.getTypeControl().toString());
+						setDefaultValueForHistoricalControlSample(sampleDetail);
+					}else
+					// if is null item then put the cell blank
 					sampleDetail.setControltype(StrUtils.getTypeOfControl(index));
 					//add samples from service
 					loadToListTemporalySample(item);
@@ -405,9 +431,26 @@ public class ServiceLoadStudyImpl implements ServiceLoadStudy{
 				}
 			}
 		}
-		
 	}
 
+	private void setDefaultValueForHistoricalControlSample(SampleDetail sampleDetail){
+		sampleDetail.setBreedergid(null);
+		sampleDetail.setEntryNo(null);
+		sampleDetail.setNplanta(null);
+		sampleDetail.setNval(null);
+		sampleDetail.setLocationid(null);
+		sampleDetail.setSeasonid(null);
+	}
+	private void loadCellControlHistorical(Label label,Image image, ItemSampleBean item){
+		if (item.getTypeControl().toString().equals(String.valueOf(ConstantsDNA.BANK_CONTROL))){
+			image.setSrc(URL_IMAGES_BLANK_TUBE);
+			label.setValue(pro.getKey(LBL_STUDIES_PLATE_ITEM_BLANK));
+		}else{
+			image.setSrc(URL_IMAGES_CONTROL_TUBE);
+			label.setValue(pro.getKey(LBL_STUDIES_PLATE_ITEM_CONTROL));
+		}
+		sizeRowSamples++;
+	}
 	private void loadToListTemporalySample( ItemSampleBean item){
 		if ( item != null &&item.getIdSampleTemp() > 0){
 			TemporalSample temp = new TemporalSample();
@@ -451,6 +494,9 @@ public class ServiceLoadStudyImpl implements ServiceLoadStudy{
 		detailResult.setSeasonid(item.getSeasonidBean().
 				getSeason(item.getSeasonidBean()));
 		detailResult.setControltype(StrUtils.getTypeOfControl(index));
+		detailResult.setPriority(item.getComment()!= null && 
+				!item.getComment().toString().trim().equals("") ?item.getComment().toString(): 
+					detailResult.getPriority() != null ? detailResult.getPriority().toString(): detailResult.getPriority());
 		return detailResult;
 	}
 	/**

@@ -10,29 +10,32 @@
 <!--    See the License for the specific language governing permissions and -->
 <!--    limitations under the License. -->
 <zk>
-<window border="normal" width="300px" id="idWindowSelectField" height="240px"
+
+
+<window border="normal" width="500px" id="idWindowSelectField" height="560px"
 		title="${lblSTTSWF}" use="com.cimmyt.zk.studies.ControlWindowSelectField"
 		onCreate="idWindowSelectField.oncreation()">
 <box>
+	<checkbox label="${lblSRPrefix}" onCheck="idWindowSelectField.setUsePrefix(self)" style ="color: blue; font-style: oblique; font-size:16px"/>
 	<hbox>	
-	<vlayout>
+	<vlayout width="160px">
 	<checkbox label="SampleID" value="0" onCheck="idWindowSelectField.loadListField(self)"/>
 	 <checkbox id="idGID" label="${lblMGColGID}" value="1" onCheck="idWindowSelectField.loadListField(self)"/>
 	 <checkbox id="idACC" label="${lblMGColACC}" value="2" onCheck="idWindowSelectField.loadListField(self)"/>
 	 <checkbox id="idColPlantNo" label="${lblMGColPlantNo}" value="3" onCheck="idWindowSelectField.loadListField(self)"/>
 	 <checkbox id="idColEntNo" label="${lblMGColEntNo}" value="4" onCheck="idWindowSelectField.loadListField(self)"/>
+	 <checkbox id="idColComments" label="${lblGCommnets}" value="5" onCheck="idWindowSelectField.loadListField(self)"/>
 	</vlayout>
 	<separator/>
 	<separator/>
 	<separator/>
-	<hlayout height="90px" style="padding:10px">
-		<listbox id="idListBoxTemplate" height="100px" width="150px" autopaging="true" checkmark="true" multiple="true" maxlength="10"></listbox>
+	<hlayout height="400px" style="padding:10px">
+		<listbox id="idListBoxTemplate" height="400px" width="340px" autopaging="true" checkmark="true" multiple="true" maxlength="10"></listbox>
 	</hlayout>
 	</hbox>
-</box>		
-
-<box width="100%" pack="center" align="center">
-	<div align="center" width="100%">
+	</box>		
+	<box width="100%" pack="center" align="center">
+			<div align="center" width="100%">
 		<hbox>
 		<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowSelectField.addFields()"
 					width="40px" height="40px">
@@ -58,6 +61,7 @@
 					</image>
 		</hbox>
 		</div>
+
 		</box>
 </window>
 </zk>

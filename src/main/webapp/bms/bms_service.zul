@@ -8,13 +8,18 @@
 <zk>
 
 <window id="idWindowBMS"  sclass="windowSub" width="100%" height="100%"
-	use="com.cimmyt.zk.bms.ControlAPIListGermplasm" onCreate="idWindowBMS.loadContext()">
+	use="com.cimmyt.zk.bms.ControlAPIListGermplasm" onCreate="idWindowBMS.loadContext()"
+	>
+
 	<borderlayout width="100%" height="100%">
-	<north  sclass="borderNort" border="none" 
+	
+
+	
+<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
 				<hbox width="100%" hflex="true" style="position:absolute; ">
-				
-				<image  id="idAddFilter" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick=""
+					
+				<image id="idAddFilter" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick=""
 					width="40px" height="40px">
 						<attribute name="onMouseOver">
 							idAddFilter.setWidth("60px");
@@ -47,6 +52,7 @@
 							idExportCSV.setHeight("40px");
 						</attribute>
 					</image>
+
 					<space width="150px"></space>
 				</hbox>
 			</north>
@@ -78,8 +84,8 @@
 			    <label value="${lblMenuSeason}"/>
 			      <combobox id="idComboSeason" readonly="true" maxlength="85" cols="85" width="100%"
 			    onSelect=""></combobox>
-			    
-			    <image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowBMS.addInformationToServices()"
+			   
+			   <image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowBMS.addInformationToServices()"
 					width="40px" height="40px">
 						<attribute name="onMouseOver">
 							idAdd.setWidth("60px");

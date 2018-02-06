@@ -34,6 +34,7 @@ import com.cimmyt.model.bean.ShipmentSet;
 import com.cimmyt.servlet.RedirectServletReport;
 import com.cimmyt.servlet.SessionReport;
 import com.cimmyt.utils.ConstantsDNA;
+import com.cimmyt.utils.StrUtils;
 
 /**
  * @author CIMMYT
@@ -134,7 +135,9 @@ public class ShippmentCornellButton extends ShipmentEventListener{
 				listRow.add(new StringBuilder(sampleDet.getPlateloc()));
 				if (sampleDet.getSamplegid() != null){
 					listRow.add(new StringBuilder(sampleDet.getLabstudyid().getPrefix()+
-					String.valueOf(sampleDet.getSamplegid())));
+							(sampleDet.getLabstudyid().isUsePadded() ? StrUtils.getPaddingCeros(sampleDet.getSamplegid()) :
+								String.valueOf(sampleDet.getSamplegid()))));
+					
 					listRow.add(new StringBuilder(sampleDet.getNval()));
 					listRow.add(new StringBuilder());
 					listRow.add(new StringBuilder());

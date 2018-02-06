@@ -12,7 +12,11 @@ Copyright 2013 International Maize and Wheat Improvement Center
 */
 package com.cimmyt.utils;
 
+import static com.cimmyt.utils.Constants.ATTRIBUTE_MAIZE;
+import static com.cimmyt.utils.Constants.ATTRIBUTE_WHEAT;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_INFORMATION;
+import static com.cimmyt.utils.Constants.LBL_SEL_iTE_CORN;
+import static com.cimmyt.utils.Constants.LBL_SEL_iTE_WHEAT;
 import static com.cimmyt.utils.Constants.LBL_STUDIES_CONTROL_DART;
 import static com.cimmyt.utils.Constants.LBL_STUDIES_CONTROL_KBIOSCIENCES;
 import static com.cimmyt.utils.Constants.LBL_STUDIES_PLATE_ITEM_BLANK;
@@ -21,7 +25,9 @@ import static com.cimmyt.utils.Constants.LBL_STUDIES_RANDOM_TUBE;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,6 +45,7 @@ public class StrUtils {
 
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 				            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private static final String PATTERN_SAMPLE = "(\\d+)$";
 	/**
 	 * 
 	 */
@@ -94,6 +101,11 @@ public class StrUtils {
 	public static Date getDateStandar(Date date) throws ParseException{
 		return dateFormatStandar.parse(dateFormatStandar.format(date));
 	}
+
+	public static Date getDateStandarFromStr(String date) throws ParseException{
+		return dateFormatStandar.parse(date);
+	}
+
 	public static boolean isNumeric (StringBuilder strBuilder){
 		try{
 			Integer.parseInt(strBuilder.toString().trim());
@@ -188,7 +200,7 @@ public class StrUtils {
 
 	public static String getSampleIDKey(LabStudy labStudy, Integer sampleId){
 		String strSampleId = labStudy.getProject().getProjectname()
-				+labStudy.getProject().getPurposename()+sampleId;
+				+labStudy.getProject().getPurposename()+ (labStudy.isUsePadded() ? getPaddingCeros(sampleId) : sampleId);
 				return strSampleId.toUpperCase();			
 	}
 	
@@ -237,5 +249,74 @@ public class StrUtils {
 			return "W";
 		else 
 			return "M";
+	}
+
+	public static String getPaddingCeros(Integer value){
+		final int Totalsize = 6;
+		if (value == null || value.intValue() == 0)
+			return "";
+		int size = value.toString().length();
+		StringBuffer strBuffer = new StringBuffer();
+		for (int index = size; index < Totalsize; index++){
+			strBuffer.append("0");
+		}
+		strBuffer.append(value.intValue());
+		return strBuffer.toString();
+	}
+
+	/**
+	 * Method that look for sample id in a string
+	 * @param input
+	 * @return
+	 */
+	public static int getSampleIDFindString(String input){
+		 pattern = Pattern.compile( PATTERN_SAMPLE);
+		 matcher = pattern.matcher(input);
+		if (matcher.find())
+			return Integer.parseInt(matcher.group());
+		return 0;
+	}
+
+	/**
+	 * Method that return a string look at pattern 
+	 * @param input
+	 * @return
+	 */
+	public static String getPrefixSampleFindString(String input){
+		pattern = Pattern.compile( PATTERN_SAMPLE);
+		matcher = pattern.matcher(input);
+		if (matcher.find())
+			return input.substring(0, input.indexOf(matcher.group()));
+		return "";
+	}
+
+	public static int getYear(){
+		Date date = new Date ();
+		Calendar calendar = new GregorianCalendar();
+		calendar.setTime(date);
+		int year = calendar.get(Calendar.YEAR);
+		year =year- 2010;
+		return year;
+	}
+
+	public static boolean isRoleAdminOrDataManager(int idRole){
+		switch (idRole){
+		case ConstantsDNA.ROLE_ADMINISTRATOR:
+		case ConstantsDNA.ROLE_DATA_MANAGER:
+			return true;
+			default :
+				return false;
+		}
+	}
+
+	public static String getCrop(int typeCorp, PropertyHelper prop){
+		switch (typeCorp){
+			case ATTRIBUTE_MAIZE:
+				return prop.getKey(LBL_SEL_iTE_CORN);	
+			case ATTRIBUTE_WHEAT:
+				return prop.getKey(LBL_SEL_iTE_WHEAT);
+			default :
+				return prop.getKey(LBL_SEL_iTE_WHEAT);
+		}
 	}
 }

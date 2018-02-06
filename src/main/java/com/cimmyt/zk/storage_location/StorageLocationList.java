@@ -71,7 +71,7 @@ public class StorageLocationList {
 			for (StorageLocation s :storageList ){
 
 				if (s.getLsname() != null && !s.getLsname().equals("")){
-					s.setImslocidparent(s.getImslocid());
+					s.setImslocidparent(s.getImslocidparent());
 					
 					storage =new StorageLocationTreeNode(s,getListItemStorageLocation(s),true);
 					s.setSampleDetailCollection(null);

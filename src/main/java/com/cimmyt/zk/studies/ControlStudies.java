@@ -133,7 +133,7 @@ public class ControlStudies extends Window {
 				public void onEvent(PagingEvent event) throws Exception {
 
 					List<LabStudy> listBean = serviceLabStudy.getLabStudysByIdResearch(new LabStudy(), userBean.getInvestigatorBean().getInvestigatorid()
-									,event.getActivePage() * SHOW_ROWS_LIST, SHOW_ROWS_LIST, lastColumnSorted, ascending);
+									,event.getActivePage() * SHOW_ROWS_LIST, SHOW_ROWS_LIST, lastColumnSorted, ascending, userBean.getRole().getIdstRol());
 					clearList(idLisB);
 	
 					for(LabStudy study : listBean){
@@ -202,7 +202,8 @@ public class ControlStudies extends Window {
 		List<LabStudy> listBean;
 		
 		if(recountTotal){
-			int rows = serviceLabStudy.getTotalRowsByIdResearch(study,userBean.getInvestigatorBean().getInvestigatorid());
+			int rows = serviceLabStudy.getTotalRowsByIdResearch(study,userBean.getInvestigatorBean().getInvestigatorid(),
+					userBean.getRole().getIdstRol());
 			idPaging.setPageSize(SHOW_ROWS_LIST);
 			idPaging.setActivePage(0);
 			idPaging.setTotalSize(rows);
@@ -214,11 +215,11 @@ public class ControlStudies extends Window {
 		if (study != null ){
 			listBean = serviceLabStudy.getLabStudysByIdResearch(study, 
 					userBean.getInvestigatorBean().getInvestigatorid(),page * SHOW_ROWS_LIST,
-					SHOW_ROWS_LIST, lastColumnSorted, ascending);
+					SHOW_ROWS_LIST, lastColumnSorted, ascending, userBean.getRole().getIdstRol());
 		}else {
 			listBean = serviceLabStudy.getLabStudysByIdResearch(new LabStudy(), 
 					userBean.getInvestigatorBean().getInvestigatorid(),page * SHOW_ROWS_LIST,
-					SHOW_ROWS_LIST, lastColumnSorted, ascending);	
+					SHOW_ROWS_LIST, lastColumnSorted, ascending, userBean.getRole().getIdstRol());	
 		}
 
 		idLisB = (Listbox)getFellow("idLisB");
@@ -418,7 +419,7 @@ public class ControlStudies extends Window {
 							pro.getKey(LBL_GENERIC_MESS_PLEASE_CONFIRM), 
 							Messagebox.YES | Messagebox.NO, Messagebox.QUESTION) == Messagebox.YES) {
 							try {
-								serviceLabStudy.deleteStudy(beanI.getLabstudyid());
+								serviceLabStudy.deleteStudy(beanI.getLabstudyid(), userBean.getIdUser(), beanI.getTitle());
 								Messagebox.show(pro.getKey(LBL_GENERIC_MESS_DELETE_SUCCESS), 
 										pro.getKey(LBL_GENERIC_MESS_INFORMATION), 
 										Messagebox.OK, Messagebox.INFORMATION);
@@ -477,14 +478,16 @@ public class ControlStudies extends Window {
 					messageBox(pro.getKey(Constants.LBL_GENERIC_WINDOW_ERR_SELECT_FIELD));
 					return;
 				}
+				boolean isprefix = getDesktop().getAttribute(Constants.ATTRIBUTE_USE_PREFIX_REPORT) != null ? true : false;
 				SessionReport sessionReport = new SessionReport();
-				sessionReport.setB(serviceLabStudy.getReportPlate(beanStudy, listFieldsObjets,listStudyTemParams));
+				sessionReport.setB(serviceLabStudy.getReportPlate(beanStudy, listFieldsObjets,listStudyTemParams, isprefix));
 				sessionReport.setType(ConstantsDNA.FILE_TYPE_XLS);
 				sessionReport.setName(beanStudy.getTitle());
 	
 				RedirectServletReport.export(sessionReport);
 				getDesktop().removeAttribute(ATTRIBUTE_LIST_FIELD_REPORT);
 				getDesktop().removeAttribute(Constants.ATTRIBUTE_FIELD_TEMPLATE);
+				getDesktop().removeAttribute(Constants.ATTRIBUTE_USE_PREFIX_REPORT);
 			}
 		}else {
 			messageBox(pro.getKey(LBL_GENERIC_MESS_SELECT_RECORD));
@@ -505,5 +508,6 @@ public class ControlStudies extends Window {
 	}
 
 }
+
 
 

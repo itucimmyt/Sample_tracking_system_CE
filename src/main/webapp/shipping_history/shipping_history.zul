@@ -49,7 +49,7 @@
 									<label sclass="textNor" value="${lblMenGR}"/>
 									<intbox id="idRL" maxlength="2" cols="2"></intbox>
 									<separator width="10px"/>
-										<image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindow.search()"
+									<image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindow.search()"
 										width="32px" height="32px">
 											<attribute name="onMouseOver">
 											idFindP.setWidth("40px");

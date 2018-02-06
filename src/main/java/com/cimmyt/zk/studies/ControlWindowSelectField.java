@@ -58,7 +58,7 @@ public class ControlWindowSelectField extends Window{
 	}
 
 	public enum Fields {
-		SAMPLEID, GID, ACC, PLANT_NUMBER, ENTRY_NUMBER
+		SAMPLEID, GID, ACC, PLANT_NUMBER, ENTRY_NUMBER , COMMENTS
 	} 
 
 	public void loadListField(Checkbox check){
@@ -79,6 +79,9 @@ public class ControlWindowSelectField extends Window{
 			case (4):
 				loadList(Fields.ENTRY_NUMBER, check.isChecked());
 			break;
+			case (5):
+				loadList(Fields.COMMENTS, check.isChecked());
+			break;
 		}
 	}
 
@@ -92,6 +95,7 @@ public class ControlWindowSelectField extends Window{
 	public void closeWindow(){
 		getDesktop().removeAttribute(ATTRIBUTE_LIST_FIELD_REPORT);
 		getDesktop().removeAttribute(Constants.ATTRIBUTE_LIST_FIELD_REPORT_TEMPLATE);
+		getDesktop().removeAttribute(Constants.ATTRIBUTE_USE_PREFIX_REPORT);
 		Window idWindow = (Window)getFellow("idWindowSelectField");
 		idWindow.onClose();
 	}
@@ -112,5 +116,12 @@ public class ControlWindowSelectField extends Window{
 				listStudyTemParams.add((StudyTemplateParams)item.getValue());
 			}
 		}
+	}
+
+	public void setUsePrefix(Checkbox check) {
+		if (check.isChecked())
+			getDesktop().setAttribute(Constants.ATTRIBUTE_USE_PREFIX_REPORT, true);
+			else
+				getDesktop().removeAttribute(Constants.ATTRIBUTE_USE_PREFIX_REPORT);
 	}
 }

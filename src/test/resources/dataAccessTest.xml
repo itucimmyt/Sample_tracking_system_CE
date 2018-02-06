@@ -12,17 +12,66 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	  xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:jee="http://www.springframework.org/schema/jee"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
-		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		  http://www.springframework.org/schema/jdbc
+        http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		">
     
   <!--     <jee:jndi-lookup id="dataSource" jndi-name="jdbc/MyDBwheatCimmyt" />  --> 
 
+	
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<!--  <property name="url" value="jdbc:mysql://localhost:3306/">-->
+		 <property name="url" value="jdbc:mysql://172.17.61.5:43306/">
+		
+		</property>
+  		<property name="username" value="root"></property>
+        <!--<property name="password" value="cimmyt"></property>-->
+        <property name="password" value="siu*2016"></property>
+ 		</bean>
+ 		
+ 		 <bean id="dbInit" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+        <property name="scripts">
+            <list>
+                <value>script_create_schema_test.sql</value> 
+                <value>script_insert_test.sql</value>    
+              
+            </list>
+        </property>
+        <!--  <property name="continueOnError" value="false"/>-->
+    </bean>
+
+    <bean id="dbCleanup" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+        <property name="scripts">
+            <list>
+                <value>Drop-schema.sql</value>
+            </list>
+        </property>
+    </bean>
+     
+    <bean id="startupScripts" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+        <property name="dataSource"><ref bean="dataSource"/></property>
+        <property name="databasePopulator"><ref bean="dbInit"/></property>
+        <property name="databaseCleaner"><ref bean="dbCleanup"/></property>
+    </bean>
+ 
+ <!--  
+ <jdbc:initialize-database data-source="dataSource" enabled="true">
+    <jdbc:script location="classpath:db-schema.sql" />
+    <jdbc:script location="classpath:db-test-data.sql" />
+</jdbc:initialize-database>		-->
+ 		
+<!--	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
 		<property name="url" value="jdbc:mysql://localhost:3306/sampletrackingwcimmyt">
@@ -31,20 +80,49 @@
   		<property name="username" value="root"></property>
         <property name="password" value="cimmyt"></property>
  		</bean>
+-->
 
 
+   <jdbc:initialize-database data-source="dataSource">
+    <jdbc:script location="sp_add_fields_template_result.sql" separator="$$"/>
+    <jdbc:script location="sp_count_params_data.sql" separator="$$"/>
+    <jdbc:script location="sp_delete_fields_template.sql" separator="$$"/>
+    <jdbc:script location="sp_delete_study.sql" separator="$$"/>
+    <jdbc:script location="sp_study_template_add.sql" separator="$$"/>
+    <jdbc:script location="Insert_sampleID.sql" separator="$$"/>
+    <jdbc:script location="Update_sampleID.sql" separator="$$"/>
+   </jdbc:initialize-database>   
+ 
+ 		<bean id="dataSourceTest" class="org.apache.commons.dbcp2.BasicDataSource">
+	
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<!-- <property name="url" value="jdbc:mysql://localhost:3306/sampletrackingTest">-->
+		 <property name="url" value="jdbc:mysql://172.17.61.5:43306/sampletrackingTest">
+		
+		</property>
+  		<property name="username" value="root"></property>
+        <!--<property name="password" value="cimmyt"></property>-->
+        <property name="password" value="siu*2016"></property>
+ 		</bean>
+ 		
+  	<bean id="mySqlProcedure" class="com.cimmyt.model.dao.impl.MySQLProcedureDAOImpl">
+  	   <property name="dataSource" ref="dataSourceTest"/>
+  	   <property name="hibernateTemplate" ref="hibernateTemplate"/> 	
+  	</bean>
     <bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="dataSourceTest" />
 		<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
 		<property name="configLocation" value="classpath:persistence.xml"/>
-	</bean>
-
-	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+	</bean>	  
+  	  	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
     	<property name="sessionFactory" ref="sessionFactory" />
   	</bean>
-  	<bean id="mySqlProcedure" class="com.cimmyt.model.dao.impl.MySQLProcedureDAOImpl">
-  	   <property name="dataSource" ref="dataSource"/>	
-  	</bean>
+  	   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+ <property name="dataSource" ref="dataSourceTest" />
+ </bean>
+ <tx:annotation-driven transaction-manager="transactionManager"/>
+          
   <import resource="classpath:service.xml"/>
 </beans>

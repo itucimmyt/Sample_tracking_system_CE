@@ -45,6 +45,7 @@ import com.cimmyt.model.bean.LabStudy;
 import com.cimmyt.model.bean.SampleDetail;
 import com.cimmyt.model.bean.StorageLocation;
 import com.cimmyt.service.ServiceSampleDetail;
+import com.cimmyt.utils.StrUtils;
 
 @SuppressWarnings("serial")
 public class TreeStorageLocation extends SelectorComposer<Component> {
@@ -164,7 +165,8 @@ public class TreeStorageLocation extends SelectorComposer<Component> {
       			if (sampleD.getSamplegid() != null){
       			Listcell cell5 = new Listcell(sampleD.getLabstudyid().getProject().getProjectname()+
       					sampleD.getLabstudyid().getProject().getPurposename() +
-      					String.valueOf(sampleD.getSamplegid()));
+      					(sampleD.getLabstudyid().isUsePadded() ? StrUtils.getPaddingCeros(sampleD.getSamplegid()) :
+						String.valueOf(sampleD.getSamplegid())));
       			lIt.appendChild(cell5);
 
       			}

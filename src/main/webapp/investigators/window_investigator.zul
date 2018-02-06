@@ -40,7 +40,6 @@ use="com.cimmyt.zk.investigator.ControlWindowInvestigator" onCreate="idWindow.lo
 		<rows id="idRowsUser">				
 		</rows>
 	</grid>
-
 	<div align="center" width="650px" >
 	<hbox>
 		<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindow.add()"

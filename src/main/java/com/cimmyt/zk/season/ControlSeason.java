@@ -69,7 +69,7 @@ public class ControlSeason extends Window {
 	private PropertyHelper pro=null;
     private Logger logger= Logger.getLogger(ControlWindowProject.class);
     private Listbox idLisB;
-    private Hbox idHboxSeason ;
+    private Hbox idHboxSeason;
 	static {
 		if(serviceSeason == null)
         {
@@ -113,11 +113,11 @@ public class ControlSeason extends Window {
 			}
 		}
 		idLisB.appendChild(idListHead);
-		loadImage();
+		loadFisheye();
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadImage(){
+	private void loadFisheye(){
 		idHboxSeason = (Hbox)getFellow("idHboxSeason");
 		Map <String, String> mapFuntions;
 		if (getDesktop().getSession().getAttribute(ATTRIBUTE_PARAM_MAP_FUNTION) != null){

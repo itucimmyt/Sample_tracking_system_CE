@@ -19,8 +19,7 @@
 		
 			<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
-				<hbox id="idHBoxShipment" width="100%" hflex="true" style="position:absolute; ">
-				
+				<hbox  id="idHBoxShipment" width="100%" hflex="true" style="position:absolute; ">
 					<image  id="shipmentManagment$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.add()"
 					width="40px" height="40px">
 						<attribute name="onMouseOver">
@@ -65,6 +64,7 @@
 								maxlength="50">
 							</textbox>
 							<separator width="5px"></separator>
+
 							<image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindow.search()"
 								width="32px" height="32px">
 									<attribute name="onMouseOver">

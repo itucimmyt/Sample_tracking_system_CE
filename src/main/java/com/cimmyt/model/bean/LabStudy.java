@@ -120,6 +120,9 @@ public class LabStudy implements Serializable, Cloneable {
 	@ManyToOne(optional = false)
 	private LoadType loadType;
 
+	@Column(name = "uses_padded")
+	private boolean usePadded;
+
 	public LabStudy() {
 		title = new String();
 		objective = new String();
@@ -379,7 +382,14 @@ public class LabStudy implements Serializable, Cloneable {
 
 	public void setLoadType(LoadType loadType) {
 		this.loadType = loadType;
+	}
+
+	public boolean isUsePadded() {
+		return usePadded;
+	}
+
+	public void setUsePadded(boolean usePadded) {
+		this.usePadded = usePadded;
 	}	
-	
 }
 

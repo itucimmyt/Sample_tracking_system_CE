@@ -210,6 +210,7 @@ public class ControlStorageLocation extends Window {
 			StorageLocation storage = (StorageLocation) storageLocationTreeNode.getData();
 			if (!isRulsEdit(storage))
 				return;
+			System.out.println("Storage :: "+ storage.toString());
 			getDesktop().setAttribute(ATTRIBUTE_STORAGE_LOCATION_ITEM,storage);
 			showWindow(pro.getKey(LBL_STORAGE_LOCATION_WIN_EDIT));
 			StorageLocation bean = (StorageLocation)getDesktop().getAttribute(ATTRIBUTE_STORAGE_LOCATION_ITEM);

@@ -18,8 +18,8 @@
 		
 			<north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
-				<hbox id="idHboxTissue" width="100%" hflex="true" style="position:absolute; ">
-				<image  id="tissues$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.add()"
+				<hbox id="idHboxTissue" width="100%" hflex="true" style="position:absolute; ">	
+					<image  id="tissues$idAdd" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick="idWindow.add()"
 					width="40px" height="40px">
 						<attribute name="onMouseOver">
 							tissues$idAdd.setWidth("60px");
@@ -51,7 +51,8 @@
 							tissues$idDelete.setWidth("40px");
 							tissues$idDelete.setHeight("40px");
 						</attribute>
-					</image>	
+					</image>
+
 					<space width="150px"></space>
 
 						<hbox align="center" hflex="true" width="100%" vflex="true">

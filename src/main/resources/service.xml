@@ -51,6 +51,7 @@
     <bean id="studyTemplateDAO" class="com.cimmyt.model.dao.impl.StudyTemplateDAOImpl">
     	<property name="hibernateTemplate" ref="hibernateTemplate" />
     	<property name="studyTemplateParamsDAO" ref="studyTemplateParamsDAO"></property>
+    	<property name="mySqlProcedure" ref="mySqlProcedure"></property>
     </bean> 
     <bean id="storageLocationDAO" class="com.cimmyt.model.dao.impl.StorageLocationDAOImpl">
     	<property name="hibernateTemplate" ref="hibernateTemplate" />
@@ -105,8 +106,21 @@
      <bean id="userFunctionsDAO" class="com.cimmyt.model.dao.impl.UserFunctionsDAOImpl">
     	<property name="hibernateTemplate" ref="hibernateTemplate" />
     </bean>
+
+	 <bean id="logDAO" class="com.cimmyt.model.dao.impl.LogDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="programDAO" class="com.cimmyt.model.dao.impl.ProgramDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="purposeDAO" class="com.cimmyt.model.dao.impl.PurposeDAOImpl">
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+
     <bean id="serviceProject" class="com.cimmyt.service.impl.ServiceProyectImpl">
-        <property name="projectDAO" ref="projectDAO"/>         
+        <property name="projectDAO" ref="projectDAO"/>
+        <property name="programDAO" ref="programDAO"/>
+        <property name="purposeDAO" ref="purposeDAO"/>         
     </bean>
     <bean id="serviceReportLaboratory" class="com.cimmyt.reports.impl.ServiceReportLaboratoryImpl">
        <property name="seriviceStudyTemplate" ref="seriviceStudyTemplate" />
@@ -120,6 +134,7 @@
         <property name="mySqlProcedure" ref="mySqlProcedure"/>
         <property name="serviceReportLaboratory" ref="serviceReportLaboratory"/>
         <property name="tempSampleDAO" ref="temporalSampleDAO"/>
+        <property name="serviceLog" ref="serviceLog"/>   
     </bean>
     
      <bean id="serviceClientContry" class="com.cimmyt.rest.client.impl.ClientCatalogContryImpl">      
@@ -197,10 +212,11 @@
     	<aop:include name="serviceTemporalSample"/>
     </aop:aspectj-autoproxy>
     	<!-- Serch annotated classes, web services and xml bean definitions -->
+	<!--  
 	<context:component-scan base-package="org.cimmyt.dnast.dto" />
 	<context:component-scan base-package="org.cimmyt.dnast.service.imp" />
 	<context:component-scan base-package="com.cimmyt.zk.query" />
-	
+	-->
 	
 	<bean id="projectHome" class="org.cimmyt.dnast.dao.imp.StProjectHome">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -259,6 +275,10 @@
           <property name="userFunctionsDAO" ref ="userFunctionsDAO"/>
           <property name="investigatorDAO" ref ="investigatorDAO"/>
           
+    </bean>
+
+	<bean id="serviceLog" class="com.cimmyt.service.impl.ServiceLogImpl">           
+          <property name="logDAO" ref="logDAO"/>
     </bean>
 
 	<bean class ="com.cimmyt.rest.context.SpringApplicationContext"/>

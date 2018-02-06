@@ -128,7 +128,7 @@ use="com.cimmyt.zk.shipments.ControlWindowShipments" onCreate="idShipmentAdd.loa
 			</row>
 		</rows>
 	</grid>
-	<div align="center" width="700px" >
+<div align="center" width="700px" >
 	<hbox>
 		<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idShipmentAdd.add(event)"
 					width="40px" height="40px" visible="false">

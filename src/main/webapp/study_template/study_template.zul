@@ -53,7 +53,7 @@
 							studyTemplate$idDelete.setHeight("40px");
 						</attribute>
 					</image>
-				</hbox>			
+				</hbox>	
 					<space width="150px"></space>
 						<hbox align="center" width="100%" hflex="true">
 							<label sclass="textNor" value="${lblProSCLF}"></label>

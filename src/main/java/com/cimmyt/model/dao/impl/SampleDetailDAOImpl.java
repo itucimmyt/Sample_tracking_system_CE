@@ -731,9 +731,6 @@ public class SampleDetailDAOImpl extends AbstractDAO<SampleDetail, Integer> impl
 					@Override
 					public List<SampleDetail> doInHibernate(Session session) throws HibernateException, SQLException {
 						DetachedCriteria criteria = DetachedCriteria.forClass(SampleDetail.class,VALUE_SAMPLE);
-						for (DsSearchParam param : paramsTmp){
-							System.out.println("Param :: "+ param.toString());
-						}
 						addCriteria(criteria, paramsTmp);
 						return (List<SampleDetail>) getHibernateTemplate().findByCriteria(criteria, firstResult, maxResults);
 					}
@@ -752,7 +749,7 @@ public class SampleDetailDAOImpl extends AbstractDAO<SampleDetail, Integer> impl
 					public Integer doInHibernate(Session session) throws HibernateException, SQLException {
 						DetachedCriteria criteria = DetachedCriteria.forClass(SampleDetail.class,VALUE_SAMPLE);
 						addCriteria(criteria, paramsTmp);
-						criteria.setProjection(Projections.rowCount()); 
+						criteria.setProjection(Projections.rowCount());
 						return (Integer)getHibernateTemplate().findByCriteria(criteria).get(0);
 					}
 				});
@@ -793,7 +790,6 @@ public class SampleDetailDAOImpl extends AbstractDAO<SampleDetail, Integer> impl
 			qualifiedParam = param.getQualifier();
 			DataType dataType = OperatorImp.getType(param.getElement(), param.getQualifier());
 			Operator condition = OperatorImp.valueOf(param.getCondition());
-
 			addDynamicCriterion(conjunction, condition, dataType, qualifiedParam, param.getValue());
 
 		}

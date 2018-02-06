@@ -37,7 +37,11 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.A;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Listbox;
@@ -55,6 +59,7 @@ import com.cimmyt.service.ServiceInvestigator;
 import com.cimmyt.service.ServiceLabStudy;
 import com.cimmyt.service.ServiceUser;
 import com.cimmyt.utils.Constants;
+import com.cimmyt.utils.ConstantsDNA;
 import com.cimmyt.utils.PropertyHelper;
 @SuppressWarnings("serial")
 public class ControlInvestigator extends Window{
@@ -88,6 +93,7 @@ public class ControlInvestigator extends Window{
 	 * @throws BackException 
 	 */
 	public void doAfterCompose (int size, InvestigatorBean bean ) throws BackException{
+		pro = (PropertyHelper)getDesktop().getSession().getAttribute(LOCALE_LANGUAGE);
 				if (getDesktop().getSession().getAttribute(ATTRIBUTE_NAME_USER_BEAN) != null){
 					userBean = (UserBean)getDesktop().getSession().getAttribute(ATTRIBUTE_NAME_USER_BEAN);
 				}
@@ -154,6 +160,17 @@ public class ControlInvestigator extends Window{
 		lIt.appendChild(cell6);
 		Listcell cell7 = new Listcell(bean.getInvestigatorBean().getInvest_abbreviation());
 		lIt.appendChild(cell7);
+		
+		String active = bean.isStatus() ? pro.getKey(ConstantsDNA.LBL_USERS_GRID_INACTIVE) : 
+			pro.getKey(ConstantsDNA.LBL_USERS_GRID_ACTIVE);
+		A link = new A();
+		link.setLabel(active);
+		link.setStyle("color : blue; cursor:pointer;text-decoration: underline;");
+		link.addEventListener(Events.ON_CLICK, new DisableObject(bean));
+		Listcell cell10 = new Listcell ();
+		cell10.appendChild(link);
+		lIt.appendChild(cell10);
+
 		lIt.setValue(bean);
 		idLisB.appendChild(lIt);
 	}
@@ -170,7 +187,6 @@ public class ControlInvestigator extends Window{
 	 * @throws BackException 
 	 */
 	public void add () throws BackException {
-			pro = (PropertyHelper)getDesktop().getSession().getAttribute(LOCALE_LANGUAGE);
 			showWindow(pro.getKey(LBL_INVESTIGATORS_WIN_ADD));
 				doAfterCompose(0,null);
 	}
@@ -253,4 +269,35 @@ public class ControlInvestigator extends Window{
 			messageBox(pro.getKey(LBL_GENERIC_MESS_ERROR_CRITERIAL));
 		}
 	}
+
+	class DisableObject implements EventListener<Event>{
+
+		private UserBean bean;
+		public DisableObject(UserBean _bean){
+			this.bean = _bean;
+		}
+		@Override
+		public void onEvent(Event component) throws Exception {
+			if (Messagebox.show(pro.getKey(ConstantsDNA.LBL_PROJECT_PROGRAMPURPOSE_MSN_CHANGE_STATUS), 
+					pro.getKey(LBL_GENERIC_MESS_PLEASE_CONFIRM), 
+					Messagebox.YES | Messagebox.NO, Messagebox.QUESTION) == Messagebox.YES) {
+				try {
+					bean.setStatus(!bean.isStatus());
+					serviceUser.deleteUser(bean);
+					Messagebox.show(pro.getKey(Constants.LBL_GENERIC_MESS_CHANGED_STATUS_SUCCESS), 
+							pro.getKey(LBL_GENERIC_MESS_INFORMATION), 
+							Messagebox.OK, Messagebox.INFORMATION);
+					doAfterCompose(0,null);
+				}catch (Exception sql){
+					Messagebox.show(pro.getKey(LBL_GENERIC_MESS_DELETE_ERROR,new String []{pro.getKey(LBL_GENERIC_MESS_INVESTIGATOR)}), 
+							pro.getKey(LBL_GENERIC_MESS_ERROR), 
+							Messagebox.OK, Messagebox.ERROR);
+					logger.info(sql.getMessage());
+				 }
+			}
+			
+		}
+		
+	}
+	
 }

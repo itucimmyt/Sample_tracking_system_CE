@@ -12,6 +12,7 @@ Copyright 2013 International Maize and Wheat Improvement Center
 */
 package com.cimmyt.service.impl;
 
+import com.cimmyt.model.bean.SampleID;
 import com.cimmyt.model.dao.SampleIDDAO;
 import com.cimmyt.service.ServiceSample;
 
@@ -51,5 +52,8 @@ public class ServiceSampleImpl implements ServiceSample{
 	public void setSampleIDDAO(SampleIDDAO sampleIDDAO) {
 		this.sampleIDDAO = sampleIDDAO;
 	}
-	
+
+	public void saveOrUpdateSample(SampleID sampleid){
+		this.sampleIDDAO.saveOrUpdateSamplesId(sampleid);
+	}
 }

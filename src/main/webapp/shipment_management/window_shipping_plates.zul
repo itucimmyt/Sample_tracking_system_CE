@@ -21,7 +21,7 @@ use="com.cimmyt.zk.shipments.ControlWindowPlates" onCreate="idWindowS.loadContex
 			    <space width="20px"></space>
 			    <label value="${lblMGSL} ${lblProSCLF} ${lblMGSTitle}"></label>
 			    <textbox id="idTeSearh" maxlength="39" cols="39" onOK="idWindowS.searchLabStudies(0,true)"></textbox>
-			   <image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindowS.searchLabStudies(0,true)"
+			  	<image  id="idFindP" tooltiptext="${lblProSB}" src="${imgFind}" onClick="idWindowS.searchLabStudies(0,true)"
 								width="32px" height="32px">
 									<attribute name="onMouseOver">
 									idFindP.setWidth("40px");
@@ -32,7 +32,6 @@ use="com.cimmyt.zk.shipments.ControlWindowPlates" onCreate="idWindowS.loadContex
 									idFindP.setHeight("32px");
 									</attribute>
 				</image>
-							
 		   </hbox>
 		<listbox id="idListBS" width="100%" multiple="false" height="190px"
 			onSelect="idWindowS.loadAvailablePlates(true)">
@@ -64,8 +63,7 @@ use="com.cimmyt.zk.shipments.ControlWindowPlates" onCreate="idWindowS.loadContex
 			</listhead>
 	   	 </listbox>
 	 </vbox>
-
-	<vbox>   
+<vbox>   
 	  		<image  id="idMenTadd" tooltiptext="${lblMenTAdd}" src="${imgPlay}" onClick="idWindowS.movePlates(true,false)"
 					width="40px" height="40px">
 						<attribute name="onMouseOver">
@@ -114,7 +112,8 @@ use="com.cimmyt.zk.shipments.ControlWindowPlates" onCreate="idWindowS.loadContex
 						</attribute>
 			</image>
 	  	</vbox>	
-		<vbox>
+	   	
+	   	<vbox>
 		   	 <hbox>
 			   	 <label value="${lblShipPlateSel} :"/>
 			   	 <label id="idSelectSize">0</label>
@@ -129,7 +128,7 @@ use="com.cimmyt.zk.shipments.ControlWindowPlates" onCreate="idWindowS.loadContex
    </hbox>
   </center>
   <south border="none" height="80px">
-	<div align="center" width="1000px" >
+ <div align="center" width="1000px" >
 	<hbox>
 		<image  id="idAdd" tooltiptext="${lblMenTAdd}" src="${imgOk}" onClick="idWindowS.addShipmentSet(event)"
 					width="40px" height="40px">

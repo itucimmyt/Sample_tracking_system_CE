@@ -24,6 +24,7 @@ import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_ERROR;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_ER_DIF_REG;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_PURPOSE;
 import static com.cimmyt.utils.Constants.LBL_GENERIC_MESS_STUDY_NAME;
+import static com.cimmyt.utils.Constants.LBL_MENU_TOOL_ADD;
 import static com.cimmyt.utils.Constants.LOCALE_LANGUAGE;
 import static com.cimmyt.utils.Constants.LOCATION_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.MIX_LOCATION_DEFAULT;
@@ -33,6 +34,7 @@ import static com.cimmyt.utils.Constants.PROJECT_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.SEASON_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.STUDY_TEMPLATE_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.TISSUE_SERVICE_BEAN_NAME;
+import static com.cimmyt.utils.Constants.URL_IMAGES_OK_BUTTON;
 import static com.cimmyt.utils.ConstantsDNA.ATTRIBUTE_SAMPLE_TEMPORAL;
 import static com.cimmyt.utils.ConstantsDNA.LBL_TEMPORAL_SAMPLE_MESSAGE_ERR_LOCATION;
 import static com.cimmyt.utils.ConstantsDNA.LBL_TEMPORAL_SAMPLE_MESSAGE_ERR_SEASON;
@@ -40,10 +42,14 @@ import static com.cimmyt.utils.ConstantsDNA.LBL_TEMPORAL_SAMPLE_MESSAGE_ERR_SEAS
 import java.util.List;
 
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Messagebox;
@@ -89,7 +95,8 @@ public class ControlWindowStudies extends Window{
 	private Datebox idDBRegDate;
 	private Datebox idDBRegDateEnd;
 	private Image idFisheyeNext;
-	
+	private Hbox idHboxButtons;
+	private Image idCancel;
 	private PropertyHelper pro=null;
 	private static SeriviceStudyTemplate seriviceStudyTemplate = null;
 	private static ServiceProject seriviceProject;
@@ -203,6 +210,7 @@ public class ControlWindowStudies extends Window{
 	/**
 	 * Load Window Components
 	 */
+	@SuppressWarnings("unchecked")
 	public void loadContextAttribute(){
 		pro = (PropertyHelper)getDesktop().getSession().getAttribute(LOCALE_LANGUAGE);
 		getIdInvestigator();
@@ -223,6 +231,26 @@ public class ControlWindowStudies extends Window{
 				idOrganism = bean.getOrganismid() != null ? bean.getOrganismid().getOrganismid():0;
 				loadComboInvestigator(idInvestigator, disabled);
 				loadComboOrganism(idOrganism, disabled);
+				Image saveImage = new Image();
+				saveImage.setTooltiptext(pro.getKey(LBL_MENU_TOOL_ADD));
+				saveImage.setSrc(URL_IMAGES_OK_BUTTON);
+				saveImage.addEventListener(Events.ON_CLICK, new SaveOrUpdateStudyEvenListener());
+				saveImage.addEventListener(Events.ON_MOUSE_OVER, new EventListener(){
+					public void onEvent(Event event) throws Exception{
+						Image img = (Image)event.getTarget();
+						img.setWidth("60px");
+						img.setHeight("60px");
+					}
+				});
+				saveImage.addEventListener(Events.ON_MOUSE_OUT, new EventListener(){
+					public void onEvent(Event event) throws Exception{
+						Image img = (Image)event.getTarget();
+						img.setWidth("50px");
+						img.setHeight("50px");
+					}
+				});
+				
+				idHboxButtons.insertBefore(saveImage,idCancel);
 			}else { 
 					idInvestigator = userBean.getInvestigatorBean().getInvestigatorid();
 					idOrganism = userBean.getTypeCorp();
@@ -240,10 +268,9 @@ public class ControlWindowStudies extends Window{
 						bean.getStudytemplateid().getStudytemplateid():0 : 0;
 		loadComboStudyTem(idStudyTem, disabled);
 		idTTitle.setText(bean.getTitle());
-		idTTitle.setDisabled(disabled);
 		objetive.setText(bean.getObjective());
 		idDBRegDate.setValue(bean.getStartdate());
-		idDBRegDateEnd.setValue(bean.getStartdate());
+		idDBRegDateEnd.setValue(bean.getEnddate());
 		if(bean.getLabstudyid()!= null){
 			id.setValue(bean.getLabstudyid());
 			validateFields();
@@ -453,6 +480,8 @@ public class ControlWindowStudies extends Window{
 		idDBRegDate = (Datebox)getFellow("idDBRegDate");
 		idDBRegDateEnd = (Datebox)getFellow("idDBRegDateEnd");
 		idFisheyeNext = (Image)getFellow("idFisheyeNext");
+		idCancel = (Image)getFellow("idCancel");
+		idHboxButtons = (Hbox)getFellow("idHboxButtons");
 	}
 
 	public void validateFields(){
@@ -489,23 +518,34 @@ public class ControlWindowStudies extends Window{
 	}
 
 	public void nextPag(){
-		if (!disabled){
 			bean.setTitle(idTTitle.getText().trim());
 			bean.setObjective(objetive.getText().trim());
-		List<LabStudy> listStudies = serviceLabStudy.getLabStudys(bean);
-			if (listStudies != null && !listStudies.isEmpty()){
+			LabStudy study = new LabStudy();
+			study.setTitle(idTTitle.getText().trim());
+			List<LabStudy> listStudies = serviceLabStudy.getLabStudys(study);
+			if ((bean == null || bean.getLabstudyid() == null ) && listStudies.size() > 0) {
 				Messagebox.show(pro.getKey(LBL_GENERIC_MESS_ER_DIF_REG,new String []{pro.getKey(LBL_GENERIC_MESS_STUDY_NAME)+" + "+
 						pro.getKey(LBL_GENERIC_MESS_PURPOSE)}), 
 						pro.getKey(LBL_GENERIC_MESS_ERROR), 
 						Messagebox.OK, Messagebox.ERROR);
 				return;
 			}
-		}
+					
+			if (listStudies != null && !listStudies.isEmpty()){
+				for (LabStudy studyIn: listStudies){
+					if (bean != null && bean.getLabstudyid() != null && !bean.getLabstudyid().equals(studyIn.getLabstudyid())){
+					Messagebox.show(pro.getKey(LBL_GENERIC_MESS_ER_DIF_REG,new String []{pro.getKey(LBL_GENERIC_MESS_STUDY_NAME)+" + "+
+							pro.getKey(LBL_GENERIC_MESS_PURPOSE)}), 
+							pro.getKey(LBL_GENERIC_MESS_ERROR), 
+							Messagebox.OK, Messagebox.ERROR);
+					return;
+					}
+				}
+			}
 		if (getDesktop().getAttribute(ATTRIBUTE_EDIT_STUDIES) != null){
 			getDesktop().setAttribute(ATTRIBUTE_LABSTUDY_ITEM_ORIGINAL, beanOriginal);
 		}
 		getDesktop().setAttribute(ATTRIBUTE_LABSTUDY_ITEM, bean);
-		
 		if(this.hasFellow("idWindowPlate")){
 			((Window)this.getFellow("idWindowPlate")).doModal();
 		}else{
@@ -513,6 +553,33 @@ public class ControlWindowStudies extends Window{
 	    			"/studies/window_add_plate_information.zul", this, null);
     		win.doModal();
 		}
+	}
+
+	class SaveOrUpdateStudyEvenListener implements EventListener<Event>{
+		@Override
+		public void onEvent(Event arg0) throws Exception {
+			bean.setTitle(idTTitle.getText().trim());
+			bean.setObjective(objetive.getText().trim());
+			bean.setStartdate(idDBRegDate.getValue());
+			bean.setEnddate(idDBRegDateEnd.getValue());
+			LabStudy study = new LabStudy();
+			study.setTitle(idTTitle.getText().trim());
+			List<LabStudy> listStudies = serviceLabStudy.getLabStudys(study);
+			if (listStudies != null && !listStudies.isEmpty()){
+				for (LabStudy studyIn: listStudies){
+					if (!bean.getLabstudyid().equals(studyIn.getLabstudyid())){
+					Messagebox.show(pro.getKey(LBL_GENERIC_MESS_ER_DIF_REG,new String []{pro.getKey(LBL_GENERIC_MESS_STUDY_NAME)+" + "+
+							pro.getKey(LBL_GENERIC_MESS_PURPOSE)}), 
+							pro.getKey(LBL_GENERIC_MESS_ERROR), 
+							Messagebox.OK, Messagebox.ERROR);
+					return;
+					}
+				}
+			}
+			serviceLabStudy.addLabStudy(bean, true);
+			closeWindow();
+		}
+		
 	}
 }
 

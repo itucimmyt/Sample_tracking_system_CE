@@ -22,10 +22,11 @@ use="com.cimmyt.zk.studies.ControlListResultData" onCreate="idWindowRL.loadConte
 					autopaging="true" pagingPosition="bottom" mold="paging">
 	 	</listbox>
 	 	</center>
-	 	<south height="120px"> 
-	 		<hbox width="100%">
-	 		<label id="idLblRN" value="${lblResultLRN} "/>
-	 		<div align="center" width="800px">
+	 	<south height="120px">
+	 		<box>
+	 		<hbox>
+	 		<label id="idLblRN" value="${lblResultLRN} "/> 
+				<div align="center" width="800px">
 	 		<hbox>
 	 		<image  id="idExXLS" tooltiptext="${lblMenTExpXLS}" src="${imgExportXLS}" onClick="idWindowRL.createReportListResultXLS()"
 											width="40px" height="40px" >
@@ -63,6 +64,8 @@ use="com.cimmyt.zk.studies.ControlListResultData" onCreate="idWindowRL.loadConte
 					</hbox>
 				</div>
 			</hbox>
+			</box>
+	 	
 	 	</south>
 	</borderlayout>
 </window>

@@ -58,7 +58,6 @@ import static com.cimmyt.utils.Constants.URL_IMAGES_ADD_BUTTON;
 import static com.cimmyt.utils.Constants.URL_IMAGES_CANC_BUTTON;
 import static com.cimmyt.utils.Constants.URL_IMAGES_CSV_BUTTON;
 import static com.cimmyt.utils.Constants.URL_IMAGES_RECE_BUTTON;
-import static com.cimmyt.utils.Constants.URL_IMAGES_SEND_BUTTON;
 import static com.cimmyt.utils.Constants.URL_IMAGES_XLS_BUTTON;
 
 import java.util.ArrayList;
@@ -70,7 +69,6 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.MouseEvent;
-
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Image;
@@ -91,6 +89,7 @@ import com.cimmyt.service.ServiceSampleDetail;
 import com.cimmyt.service.ServiceShipment;
 import com.cimmyt.service.ServiceShipmentDetail;
 import com.cimmyt.service.ServiceShipmentSet;
+import com.cimmyt.utils.Constants;
 import com.cimmyt.utils.PropertyHelper;
 import com.cimmyt.utils.StrUtils;
 
@@ -230,7 +229,6 @@ public class ControlShipments extends Window {
 		cell1.setSpan(6);
 		lGp.appendChild(cell1);
 		Listcell cell6 = new Listcell();
-
 		cell6.appendChild(createAddBtn(URL_IMAGES_ADD_BUTTON, bean));
 		lGp.appendChild(cell6);
 		lGp.setValue(bean);
@@ -242,7 +240,6 @@ public class ControlShipments extends Window {
 			char idStatus=singleShip.getStStatus().getIdStatus().toCharArray()[0];
 			
 			Listitem lIt = new Listitem ();
-
 			Listcell cell11 = new Listcell(singleShip.getDatRegister()!=null?singleShip.getDatRegister().toString():"");
 			lIt.appendChild(cell11);
 			Listcell cell12 = new Listcell(singleShip.getDatSend()!=null?singleShip.getDatSend().toString():"");
@@ -281,6 +278,12 @@ public class ControlShipments extends Window {
 					break;
 				case LBL_SHIPMENT_PROVIDER_SAGA:
 					cell16.appendChild(createDartBtn(singleShip));
+					break;
+				case Constants.LBL_SHIPMENT_PROVIDER_INTERTEK_FORMAT_1:
+					cell16.appendChild(createIntertekBtn(singleShip));
+					break;
+				case Constants.LBL_SHIPMENT_PROVIDER_INTERTEK_FORMAT_2:
+					cell16.appendChild(createIntertekBtn(singleShip));
 					break;
 				default :
 					cell16.appendChild(createDartBtn(singleShip));
@@ -325,7 +328,7 @@ public class ControlShipments extends Window {
 	 * Edit Studies load in the window
 	 */
 	public void edit (){
-		try{
+		
 		idLisB = (Listbox)getFellow("idLisB");
 		if (idLisB.getSelectedIndex() != -1){
 			Listitem item =idLisB.getSelectedItem();
@@ -369,9 +372,6 @@ public class ControlShipments extends Window {
 			}else {
 				messageBox(pro.getKey(LBL_GENERIC_MESS_SELECT_RECORD));
 			}
-		}catch (Exception ex){
-			ex.printStackTrace();
-		}
 	}
 
 	private void messageBox(String mess){
@@ -466,7 +466,6 @@ public class ControlShipments extends Window {
 	 * @return a Fisheye button for creating a new shipment.
 	 */
 	public Image createAddBtn(String urlImg, ShipmentSet shipSetBean){
-		
 		Image imageBtn = new Image();
 		imageBtn.setId(String.valueOf(shipSetBean.getIdShipmentSet()));
 		imageBtn.setSrc(urlImg);
@@ -485,11 +484,12 @@ public class ControlShipments extends Window {
 		
 		Image fEyeBtn = new Image();
 		fEyeBtn.setAttribute("shipId",String.valueOf(shipBean.getIdShipment()));
-		fEyeBtn.setSrc(URL_IMAGES_SEND_BUTTON);
+		fEyeBtn.setSrc(Constants.URL_IMAGES_SEND_BUTTON);
 		fEyeBtn.setWidth("32px");
 		fEyeBtn.setHeight("32px");
 		fEyeBtn.setTooltiptext(pro.getKey(LBL_MENU_TOOL_SEND));
-		fEyeBtn.addEventListener("onClick", new ShipmentEventListener(LBL_SHIPMENT_STRING_SENT, LBL_MENU_TOOL_SEND,LBL_MENU_TOOL_SEND));
+		fEyeBtn.addEventListener("onClick",new ShipmentEventListener(LBL_SHIPMENT_STRING_SENT, LBL_MENU_TOOL_SEND,LBL_MENU_TOOL_SEND));
+		fEyeBtn.setTooltiptext(pro.getKey(LBL_MENU_TOOL_RECEIVED));
 		return fEyeBtn;
 	}
 
@@ -555,6 +555,23 @@ public class ControlShipments extends Window {
 		fEyeBtn.addEventListener("onClick", new ShippmentKbiosButton());
 		return fEyeBtn;
 	}
+	
+
+	/**
+	 * Create a .csv file with the format of K-Bioscience.
+	 * @param shipBean The shipment which its information will be exported.
+	 * @return A Fisheye button for creating a report
+	 */
+	public Image createIntertekBtn(Shipment shipBean){
+		Image fEyeBtn = new Image();
+		fEyeBtn.setAttribute("shipId",String.valueOf(shipBean.getIdShipment()));
+		fEyeBtn.setSrc(URL_IMAGES_XLS_BUTTON);
+		fEyeBtn.setWidth("32px");
+		fEyeBtn.setHeight("32px");
+		fEyeBtn.setTooltiptext(pro.getKey(Constants.LBL_SHIPMENT_INTERTEK_REPORT));
+		fEyeBtn.addEventListener("onClick", new ShipmentGenotypingService());
+		return fEyeBtn;
+	}
 
 	/**
 	 * Create a .csv file with the format of Cornell.
@@ -562,7 +579,6 @@ public class ControlShipments extends Window {
 	 * @return A Fisheye button for creating a report
 	 */
 	public Image createCornellBtn(Shipment shipBean){
-		
 		Image fEyeBtn = new Image();
 		fEyeBtn.setAttribute("shipId",String.valueOf(shipBean.getIdShipment()));
 		fEyeBtn.setSrc(URL_IMAGES_CSV_BUTTON);

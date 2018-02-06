@@ -26,7 +26,7 @@
 						value="" maxlength="15" cols="15"
 						onOK="idCenter.validateUserPass()" />
 					<cell rowspan="2">
-					<image id="idImgLogin"
+					<image id="idImgLogin" tooltiptext="${lblWelLogin}"
 								onClick="idCenter.validateUserPass()" src="${imgNext}" width="40px" height="40px">
 								<attribute name="onMouseOver">
 								idImgLogin.setWidth("50px");

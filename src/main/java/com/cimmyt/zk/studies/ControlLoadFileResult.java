@@ -76,7 +76,6 @@ public class ControlLoadFileResult extends Window{
 			}
 		}
 	/** Method that load the component of web page */
-	@SuppressWarnings("unchecked")
 	public void loadContext(){
 		pro = (PropertyHelper)getDesktop().getSession().getAttribute(LOCALE_LANGUAGE);
 		loadComponent();

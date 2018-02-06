@@ -13,15 +13,18 @@ Copyright 2013 International Maize and Wheat Improvement Center
 package com.cimmyt.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.cimmyt.model.bean.SampleDetResult;
 import com.cimmyt.model.bean.StudyTemplate;
+import com.cimmyt.model.bean.StudyTemplateParams;
 
 public interface SeriviceStudyTemplate {
 
 	public List<StudyTemplate> getStudyTemplate (StudyTemplate bean);
-	public void add (StudyTemplate bean);
+	public void add (StudyTemplate bean, boolean hasStudies);
 	public void delete (StudyTemplate bean);
 	public StudyTemplate getStudyTemplateByNameregistred( String name);
 	public SampleDetResult getSampleDetResultByGIDAndIDTemplate(Integer sampleId, Integer paramId);
+	public void deleteStudyTemplateParams (Set<StudyTemplateParams> set, boolean hasStudies);
 }

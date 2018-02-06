@@ -32,6 +32,7 @@ Copyright 2013 International Maize and Wheat Improvement Center
 package com.cimmyt.model.dao.impl;
 
 import java.io.Serializable;
+import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,11 +47,13 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.impl.SessionImpl;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.cimmyt.bean.Operator;
 import com.cimmyt.bean.Operator.DataType;
+import com.cimmyt.utils.StrUtils;
 
 /**
  * TODO add class documentation here
@@ -78,6 +81,7 @@ public abstract class AbstractDAO <T,PK extends Serializable> extends HibernateD
 	 */
 	@Override
 	public void delete(T persistentObject) {
+		getHibernateTemplate().flush();
 		getHibernateTemplate().delete(persistentObject);
 	}
 
@@ -90,7 +94,6 @@ public abstract class AbstractDAO <T,PK extends Serializable> extends HibernateD
 	 * @see org.cimmyt.cril.apps.sampletracking.core.persistence.dao.GenericDAO#read(java.io.Serializable)
 	 */
 	@Override
-	@SuppressWarnings(value="unchecked")
 	public T read(PK id) {
 		T result = (T)getHibernateTemplate().get(type, id);
 		getHibernateTemplate().initialize(result);
@@ -106,7 +109,6 @@ public abstract class AbstractDAO <T,PK extends Serializable> extends HibernateD
 		getHibernateTemplate().flush();
 		getHibernateTemplate().saveOrUpdate(transientObject);
 		getHibernateTemplate().flush();
- 		
 	}
 	
 
@@ -120,12 +122,11 @@ public abstract class AbstractDAO <T,PK extends Serializable> extends HibernateD
 	 * @param filter
 	 * @return
 	 */
-	@SuppressWarnings(value = "unchecked")
+	@SuppressWarnings(value = { "unchecked", "deprecation" })
 	public List<T> getListByFilter(final T filter) {
 		List<T> resultList = null; 
 		resultList = (List<T>) this.getHibernateTemplate().executeFind(
 				new HibernateCallback() {
-
 					@Override
 					public Object doInHibernate(Session session)
 							throws HibernateException, SQLException {
@@ -381,13 +382,13 @@ public abstract class AbstractDAO <T,PK extends Serializable> extends HibernateD
 
 			if(dataType == DataType.STRING){
 				if(condition == Operator.TypeString.LIKE){
-					junction.add(Restrictions.like(qualifiedParam, "%"+value+"%"));
+					junction.add(Restrictions.like(qualifiedParam, value, MatchMode.ANYWHERE));
 				}else if(condition == Operator.TypeString.EQUAL){
-					junction.add(Restrictions.eq(qualifiedParam, value));
+					junction.add(Restrictions.like(qualifiedParam, value, MatchMode.EXACT));
 				}else if(condition == Operator.TypeString.NOT_EQUAL){
 					junction.add(Restrictions.ne(qualifiedParam, value));
 				}else if(condition == Operator.TypeString.NOT_LIKE){
-					junction.add(Restrictions.not( Restrictions.like(qualifiedParam, "%"+value+"%")) );
+					junction.add(Restrictions.not( Restrictions.like(qualifiedParam, value,MatchMode.ANYWHERE)) );
 				}
 				
 			}else if(dataType == DataType.NUMBER){
@@ -410,32 +411,37 @@ public abstract class AbstractDAO <T,PK extends Serializable> extends HibernateD
 							ex.printStackTrace();
 						}
 					}
-					System.out.println("List ::: "+listStr);
 					junction.add(Restrictions.in(qualifiedParam, listStr ) );
 				}
 				
 			}
 		}else{
-			String prefix = parseSamplePrefix(value);
-			int id = parseSampleId(value);
-			
+			String prefix = StrUtils.getPrefixSampleFindString(value);
+			int id = StrUtils.getSampleIDFindString(value);
+			if (prefix.trim().equals(""))
+				prefix = value;	
 			if(condition == Operator.TypeString.LIKE){
 				junction.add(Restrictions.like("study.prefix", prefix,MatchMode.ANYWHERE));
+				if (id > 0)
 				junction.add(Restrictions.eq("sample.samplegid", id));
 			}else if(condition == Operator.TypeString.EQUAL){
 				junction.add(Restrictions.eq("study.prefix", prefix));
+				if (id > 0)
 				junction.add(Restrictions.eq("sample.samplegid", id));
 			}else if(condition == Operator.TypeString.NOT_EQUAL){
 				junction.add(Restrictions.ne("study.prefix", prefix));
+				if (id > 0)
 				junction.add(Restrictions.ne("sample.samplegid", id));
 			}else if(condition == Operator.TypeString.NOT_LIKE){
 				junction.add(Restrictions.not( Restrictions.like("study.prefix", prefix,MatchMode.ANYWHERE)) );
+				if (id > 0)
 				junction.add(Restrictions.not( Restrictions.eq("sample.samplegid", id)) );
 			}
 		}
 	}
 	
 
+	/*
 	private int parseSampleId(String input){
 		for(String s : input.split("\\D+")){
 			if(!s.isEmpty()){
@@ -452,7 +458,7 @@ public abstract class AbstractDAO <T,PK extends Serializable> extends HibernateD
 		}
 		return "";
 	}
-
+*/
 	@SuppressWarnings("unchecked")
 	public  List<T> findListByQuery(T clazz, String queryString) 
     {
@@ -497,4 +503,25 @@ public abstract class AbstractDAO <T,PK extends Serializable> extends HibernateD
         } 
     	 return null;
     }
+
+	public void callStoreProcedureAddFieldToTemplate(int idTemplateParams, int studytemplateid){
+		SessionImpl session = (SessionImpl)getHibernateTemplate().getSessionFactory().openSession();
+		
+		 CallableStatement callableStatement = null;
+		try {
+			System.out.println("Session : "+session);
+			callableStatement = session.connection().prepareCall("Call sp_add_fields_template_result(?,?)");
+			System.out.println("Callable stament : "+callableStatement);
+			callableStatement.setInt(1, idTemplateParams);
+			callableStatement.setInt(2, studytemplateid );
+			 callableStatement.execute();
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+	}
 }

@@ -18,6 +18,7 @@ import java.util.Set;
 import com.cimmyt.bean.InvestigatorBean;
 import com.cimmyt.bean.RoleBean;
 import com.cimmyt.bean.UserBean;
+import com.cimmyt.model.bean.Log;
 import com.cimmyt.model.bean.Organism;
 import com.cimmyt.model.bean.Role;
 import com.cimmyt.model.bean.UserFuntions;
@@ -38,7 +39,9 @@ public class AuthUserBean {
 	private Set<UserFuntions> userFuntionses = new HashSet<UserFuntions>(0);
 	
 	private StInvestigator investigator;
-	
+
+	private Set<Log> stLogs =  new HashSet<Log>(0);
+
 	public Integer getIdUser() {
 		return idUser;
 	}
@@ -136,7 +139,14 @@ public class AuthUserBean {
 		user.setTypeCorp(auth.getStOrganism().getOrganismid());
 		user.setOrganism(auth.getStOrganism());
 		user.setUserName(userName);
+		user.setStatus(auth.getStatus());
 		return user;
+	}
+	public Set<Log> getStLogs() {
+		return stLogs;
+	}
+	public void setStLogs(Set<Log> stLogs) {
+		this.stLogs = stLogs;
 	}
 
 }

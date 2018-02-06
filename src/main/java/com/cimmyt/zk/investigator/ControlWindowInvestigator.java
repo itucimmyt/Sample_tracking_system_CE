@@ -280,16 +280,16 @@ public class ControlWindowInvestigator extends Window {
 			buidSetUserBaseFilds();
 			idRowsUser.appendChild(crearteComponentComboResearcher());
 			idRowsUser.appendChild(createComponentFuntions());
-			setMapByRoleResearcharAssistent();
 			idRol = id;
+			setMapByRoleResearcharAssistent();
 			break;
 		case ConstantsDNA.ROLE_ASSISTENT:
 			idRowsUser.appendChild(crearteComponentComboFromRequest());
 			buidSetUserBaseFilds();
 			idRowsUser.appendChild(crearteComponentComboResearcher());
 			idRowsUser.appendChild(createComponentFuntions());
-			setMapByRoleResearcharAssistent();
 			idRol = id;
+			setMapByRoleResearcharAssistent();
 			break;
 		}
 	}

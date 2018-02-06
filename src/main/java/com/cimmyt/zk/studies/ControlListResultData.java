@@ -13,10 +13,9 @@ Copyright 2013 International Maize and Wheat Improvement Center
 package com.cimmyt.zk.studies;
 
 import static com.cimmyt.utils.Constants.ATTRIBUTE_LABSTUDY_ITEM;
-import static com.cimmyt.utils.Constants.ATTRIBUTE_PARAM_REPORT;
-import static com.cimmyt.utils.ConstantsDNA.ATTRIBUTE_RESULT_DATA_BEAN_REPORT;
 import static com.cimmyt.utils.Constants.LOCALE_LANGUAGE;
 import static com.cimmyt.utils.Constants.RESULT_PREFERENCE_SERVICE;
+import static com.cimmyt.utils.ConstantsDNA.ATTRIBUTE_RESULT_DATA_BEAN_REPORT;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,7 +25,6 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
-import org.zkoss.zk.ui.Executions;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Listbox;

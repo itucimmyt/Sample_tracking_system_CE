@@ -83,9 +83,7 @@ public class ControlRegister extends Window{
 
 	public void doAfterCompose(){
 		pro = (PropertyHelper)getDesktop().getSession().getAttribute(LOCALE_LANGUAGE);
-		System.out.println("Load Coponent");
 		loadComponents();
-		System.out.println("Not visible");
 		notVisible(false);
 		fillComboBox();
 		
@@ -162,7 +160,6 @@ public class ControlRegister extends Window{
 			return;
 		}
 			saveRegister();
-			System.out.println("validate in DB....");
 			idWindow.onClose();
 	}
 

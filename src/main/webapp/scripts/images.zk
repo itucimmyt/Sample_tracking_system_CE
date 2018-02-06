@@ -29,9 +29,13 @@ Contains variables that store the URL to images.
 		String imgBlank = props.getKey("img.url.plate.blank",Bundle.img).trim();
 		String imgControlCIMMYT = props.getKey("img.url.tube.control",Bundle.img).trim();
 		String imgSelControl = props.getKey("img.url.plate.selcontrol",Bundle.img).trim();
+		String imgSelControl32 = props.getKey("img.url.plate.selcontrol.32",Bundle.img).trim();
 		String imgRandomControl = props.getKey("img.url.plate.randomcontrol",Bundle.img).trim();
+		String imgRandomControl32 = props.getKey("img.url.plate.randomcontrol.32",Bundle.img).trim();
 		String imgDartControl = props.getKey("img.url.plate.dartcontrol",Bundle.img).trim();
+		String imgDartControl32 = props.getKey("img.url.plate.dartcontrol.32",Bundle.img).trim();
 		String imgKbioscience = props.getKey("img.url.plate.kbioscience",Bundle.img).trim();
+		String imgKbioscience32 = props.getKey("img.url.plate.kbioscience.32",Bundle.img).trim();
 		String imgLoadCsv = props.getKey("img.url.plate.loadcsv",Bundle.img).trim();
 		String imgCreateControl = props.getKey("img.url.plate.createcontrol",Bundle.img).trim();
 		String imgFileControls = props.getKey("img.url.plate.filecontrols",Bundle.img).trim();
@@ -39,6 +43,7 @@ Contains variables that store the URL to images.
 		String imgTemplateDownload = props.getKey("img.url.plate.filecontrols.download.template",Bundle.img).trim();
 		String imgHelp = props.getKey("img.url.plate.help",Bundle.img).trim();
 		String imgSaveN = props.getKey("img.url.save.new",Bundle.img).trim();
+		String imgControlIntertek = props.getKey("img.url.tube.control.intertek",Bundle.img).trim();
 
 		String imgBannerTop = props.getKey("img.url.bannertop",Bundle.img).trim();
 		String imgDnastIcon = props.getKey("img.url.dnast",Bundle.img).trim();
@@ -78,3 +83,10 @@ Contains variables that store the URL to images.
 		//images download file
 		String imgDownloadExcel = props.getKey("img.url.download.excel",Bundle.img).trim();
 		String imgDownloadCSV = props.getKey("img.url.download.csv",Bundle.img).trim();
+		
+		//Images log
+		String imgLOGModule = props.getKey("img.url.button.menu.log",Bundle.img).trim();
+		
+		//Images Project 
+		String imgProgram = props.getKey("img.url.project.program",Bundle.img).trim();
+		String imgPurpose = props.getKey("img.url.project.purpose",Bundle.img).trim();

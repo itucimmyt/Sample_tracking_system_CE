@@ -12,6 +12,8 @@ Copyright 2013 International Maize and Wheat Improvement Center
 */
 package com.cimmyt.zk.shipments;
 
+import static com.cimmyt.utils.Constants.ATTRIBUTE_EDIT_SHIPMENT;
+import static com.cimmyt.utils.Constants.ATTRIBUTE_NAME_USER_BEAN;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SAMPLE_LOCATION_LIST;
 import static com.cimmyt.utils.Constants.ATTRIBUTE_SHIPMENTS_ITEM;
 import static com.cimmyt.utils.Constants.LABSTUDY_SERVICE_BEAN_NAME;
@@ -25,7 +27,6 @@ import static com.cimmyt.utils.Constants.LOCALE_LANGUAGE;
 import static com.cimmyt.utils.Constants.SAMPLE_DETAIL_SERVICE_BEAN_NAME;
 import static com.cimmyt.utils.Constants.SHIPMENT_SERVICE_DETAIL_BEAN_NAME;
 import static com.cimmyt.utils.Constants.SHIPMENT_SERVICE_SET_BEAN_NAME;
-import static com.cimmyt.utils.Constants.ATTRIBUTE_EDIT_SHIPMENT;
 import static com.cimmyt.utils.Constants.SHOW_ROWS_LIST;
 
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ import org.zkoss.zul.Window;
 import org.zkoss.zul.event.PagingEvent;
 import org.zkoss.zul.event.ZulEvents;
 
+import com.cimmyt.bean.UserBean;
 import com.cimmyt.constants.PlateType;
 import com.cimmyt.model.bean.LabStudy;
 import com.cimmyt.model.bean.SampleDetail;
@@ -82,6 +84,7 @@ public class ControlWindowSearch extends Window {
 	private PropertyHelper pro=null;
 	private ShipmentSet bean;
 	private int SHOW_ROWS_LIST_SAMPLES = 384;
+	 private static UserBean userBean;
 	
 	boolean isEditMode;
 	static {
@@ -135,6 +138,9 @@ public class ControlWindowSearch extends Window {
 		ShipmentSet shipSet = (ShipmentSet)getDesktop().getAttribute(ATTRIBUTE_SHIPMENTS_ITEM);
 		isEditMode = getDesktop().hasAttribute(ATTRIBUTE_EDIT_SHIPMENT) && 
 				(Boolean)getDesktop().getAttribute(ATTRIBUTE_EDIT_SHIPMENT);
+		if (getDesktop().getSession().getAttribute(ATTRIBUTE_NAME_USER_BEAN) != null){
+			userBean = (UserBean)getDesktop().getSession().getAttribute(ATTRIBUTE_NAME_USER_BEAN);
+		}
 		
 		if(shipSet == null){
 			
@@ -205,7 +211,7 @@ public class ControlWindowSearch extends Window {
 			idPaging.setActivePage(0);
 			idPaging.setTotalSize(rows);
 		}
-		List<LabStudy> listStudies = serviceLabStudy.getLabStudysByIdResearch(labStudyFilter, null, firstResult, SHOW_ROWS_LIST, null, true);
+		List<LabStudy> listStudies = serviceLabStudy.getLabStudysByIdResearch(labStudyFilter, null, firstResult, SHOW_ROWS_LIST, null, true,userBean.getRole().getIdstRol());
 
 		if (listStudies != null && !listStudies.isEmpty()){
 			idListBS.getItems().clear();
@@ -289,7 +295,8 @@ public class ControlWindowSearch extends Window {
 			if (bean.getSamplegid() !=null){
 				Listcell cell5 = new Listcell(bean.getLabstudyid().getProject().getProjectname()+
 						bean.getLabstudyid().getProject().getPurposename()+
-						String.valueOf(bean.getSamplegid()));
+						(bean.getLabstudyid().isUsePadded() ? StrUtils.getPaddingCeros(bean.getSamplegid()) :
+							String.valueOf(bean.getSamplegid())));
 				lIt.appendChild(cell5);
 			}else {
 				lIt.appendChild(new Listcell());

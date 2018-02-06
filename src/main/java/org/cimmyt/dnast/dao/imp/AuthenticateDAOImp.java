@@ -37,6 +37,7 @@ public class AuthenticateDAOImp  extends HibernateDaoSupport implements Authenti
 	private final String ERROR_1 = "error1"; //invalid User
 	private final String ERROR_2 = "error2"; //invalid password
 	private final String ERROR_3 = "error3"; //invalid crop
+	private final String ERROR_4 = "error4"; //User disabled
 	private boolean isValidOrganism = true;
 	
 	public UserBean validateUser(final String user, final String password, final int organismid)throws BackException{
@@ -98,6 +99,8 @@ public class AuthenticateDAOImp  extends HibernateDaoSupport implements Authenti
 				
 				userBean.setResearcherName(authUser.getInvestName());
 				userBean.setResearcherEMail(authUser.getEmail());
+				userBean.setIdUser(authUser.getIdUser());
+				userBean.setStatus(authUser.getStatus());
 				return authUser;
 			}
 		});
@@ -107,6 +110,8 @@ public class AuthenticateDAOImp  extends HibernateDaoSupport implements Authenti
 			throw new BackException(ERROR_2);
 		if (!isValidOrganism)
 			throw new BackException(ERROR_3);
+		if (!authUserBean.getStatus())
+			throw new BackException(ERROR_4);
 		
 		return userBean;
 	}

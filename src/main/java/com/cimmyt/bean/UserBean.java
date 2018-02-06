@@ -38,6 +38,7 @@ public class UserBean implements Serializable{
 	private String researcherEMail;
 	private String password;
 	private String email;
+	private boolean status = true;
 	private  List<UserFuntionsBean> setFuntionsBean  = new ArrayList<UserFuntionsBean>();
 	/*
 	 *variable to management type of corp 
@@ -151,6 +152,12 @@ public class UserBean implements Serializable{
 				"email : "+email+ " set functions :"+ setFuntionsBean;
 				
 	}
-	
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 }

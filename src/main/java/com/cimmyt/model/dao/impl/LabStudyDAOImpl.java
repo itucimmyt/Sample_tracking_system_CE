@@ -50,6 +50,7 @@ import com.cimmyt.model.bean.StudyTemplate;
 import com.cimmyt.model.bean.StudyTemplateParams;
 import com.cimmyt.model.bean.Tissue;
 import com.cimmyt.model.dao.LabStudyDAO;
+import com.cimmyt.utils.ConstantsDNA;
 import com.cimmyt.utils.StrUtils;
 import com.cimmyt.zk.query.QueryViewDefinition;
 
@@ -63,6 +64,7 @@ public class LabStudyDAOImpl extends AbstractDAO<LabStudy, Integer> implements L
 		super(LabStudy.class);
 	}
 	private Map<String, String> metadata;
+	private Integer idstRol;
 
 	/*
 	 * (non-Javadoc)
@@ -98,22 +100,35 @@ public class LabStudyDAOImpl extends AbstractDAO<LabStudy, Integer> implements L
 			criteria.add(Restrictions.eq("labstudyid", filter.getLabstudyid()));
 		}
 		
-		if(filter != null && filter.getInvestigatorid()!=null){
-			criteria.add(Restrictions.eq("investigatorid.investigatorid", filter.getInvestigatorid()));
+		if (idstRol != null){
+			switch (idstRol){
+			case ConstantsDNA.ROLE_RESEARCHER:
+			case ConstantsDNA.ROLE_RESEARCHER_ASSISTENT:
+			case ConstantsDNA.ROLE_ASSISTENT:
+				if(filter != null && filter.getInvestigatorid()!=null){
+					criteria.add(Restrictions.eq("investigatorid.investigatorid", filter.getInvestigatorid()));
+				}
+				if (id != null){
+					if (id.intValue() > 0 )
+					criteria.add(Restrictions.eq("investigatorid.investigatorid", id));
+				}
+				break;
+			}
+		}else {
+			if(filter != null && filter.getInvestigatorid()!=null){
+				criteria.add(Restrictions.eq("investigatorid.investigatorid", filter.getInvestigatorid()));
+			}
 		}
 		
 		if (filter != null && StrUtils.notEmpty(filter.getTitle())) {
 			criteria.add(Restrictions.like("title", "%"+filter.getTitle()+"%"));
 		}
-		if (id != null){
-			if (id.intValue() > 0 )
-			criteria.add(Restrictions.eq("investigatorid.investigatorid", id));
-		}
+		
 		if (filter != null && StrUtils.notEmpty(filter.getPrefix())) {
 			criteria.add(Restrictions.like("prefix", filter.getPrefix(),MatchMode.ANYWHERE));
 		}
 
-		criteria.addOrder(Order.asc("labstudyid"));
+		criteria.addOrder(Order.desc("labstudyid"));
 	}
 
 	@Override
@@ -340,11 +355,15 @@ public class LabStudyDAOImpl extends AbstractDAO<LabStudy, Integer> implements L
 	}
 
 	@Override
-	public void createStudy(LabStudy newInstance, boolean edit){
-		if (edit)
+	public int createStudy(LabStudy newInstance, boolean edit){
+		if (edit){
 			super.update(newInstance);
-		else 
+			return newInstance.getLabstudyid();
+		}
+		else{ 
 			super.create(newInstance);
+			return newInstance.getLabstudyid();
+		}
 	}
 
 	@Override
@@ -353,7 +372,8 @@ public class LabStudyDAOImpl extends AbstractDAO<LabStudy, Integer> implements L
 	}
 
 	@Override
-	public List<LabStudy> getLabStudysByIdResearch(LabStudy filter, Integer idResearch, int firstResult, int maxResults, String sortColumn, boolean ascending){
+	public List<LabStudy> getLabStudysByIdResearch(LabStudy filter, Integer idResearch, int firstResult, int maxResults, String sortColumn, boolean ascending, Integer idstRol){
+		this.idstRol = idstRol;
 		return super.getListByFilter(filter, idResearch, firstResult, maxResults, sortColumn, ascending);
 	}
 
@@ -371,9 +391,7 @@ public class LabStudyDAOImpl extends AbstractDAO<LabStudy, Integer> implements L
 					public List<LabStudy> doInHibernate(Session session) throws HibernateException, SQLException {
 						DetachedCriteria criteria = DetachedCriteria.forClass(LabStudy.class,VALUE_STUDY);
 						addCriteria(criteria, paramsTmp, false);
-
 						addCurrentSampleFilters(criteria, studyIdList);
-
 						return (List<LabStudy>) getHibernateTemplate().findByCriteria(criteria, firstResult, maxResults);
 					}
 				});
@@ -393,9 +411,7 @@ public class LabStudyDAOImpl extends AbstractDAO<LabStudy, Integer> implements L
 					public Integer doInHibernate(Session session) throws HibernateException, SQLException {
 						DetachedCriteria criteria = DetachedCriteria.forClass(LabStudy.class,VALUE_STUDY);
 						addCriteria(criteria, paramsTmp, false);
-
 						addCurrentSampleFilters(criteria, studyIdList);
-
 						criteria.setProjection(Projections.rowCount());
 						return (Integer)getHibernateTemplate().findByCriteria(criteria).get(0);
 					}
@@ -496,7 +512,8 @@ public class LabStudyDAOImpl extends AbstractDAO<LabStudy, Integer> implements L
 		}
 	}
 
-	public Integer getTotalRowsByIdResearch(LabStudy filter, Integer idResearch) {
+	public Integer getTotalRowsByIdResearch(LabStudy filter, Integer idResearch, Integer idstRol) {
+		this.idstRol = idstRol;
 		return super.getTotalRowsByFilter(filter, idResearch);
 	}
 

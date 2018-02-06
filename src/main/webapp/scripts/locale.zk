@@ -124,6 +124,8 @@ PropertyHelper props = null;
  		String lblMGColPlantNo = props.getKey("lbl.generic.message.column.plant.no").trim();
  		String lblMGColSpecie = props.getKey("lbl.generic.message.column.specie").trim();
  		String lblMGColEntNo = props.getKey("lbl.generic.message.column.entry.no").trim();
+ 		String lblMGSelect = props.getKey("lbl.generic.window.select").trim();
+ 		String lblMGStatus = props.getKey("lbl.generic.window.status").trim();
  		
  		// projects
 		String lblProTit = props.getKey("lbl.projects.title").trim();
@@ -152,6 +154,7 @@ PropertyHelper props = null;
 		String lblInvSelectRole = props.getKey("lbl.investigators.sub.window.select.role").trim();
 		String lblInvRole = props.getKey("lbl.investigators.sub.window.role").trim();
 		String lblInvResearcherName = props.getKey("lbl.investigators.sub.window.name.researcher").trim();
+		String lblInvResChangeSta = props.getKey("lbl.investigators.grid.change.status").trim();
 
 		// Tissues
 		String lblTiTit = props.getKey("lbl.tissue.title").trim();
@@ -263,6 +266,11 @@ PropertyHelper props = null;
 		String lblSWFUBM = props.getKey("lbl.studies.file.upload.box.message").trim();
 		String lblSRLab = props.getKey("lbl.studies.laboratory.report").trim();
 		String lblSRDP = props.getKey("lbl.studies.laboratory.result.data").trim();
+		String lblSWFPC = props.getKey("lbl.studies.winowd.padded.ceros").trim();
+		String lblSWFPCT = props.getKey("lbl.studies.winowd.padded.ceros.tooltip").trim();
+		String lblSEST = props.getKey("lbl.studies.window.edit.sample.title").trim();
+		String lblSESA = props.getKey("lbl.studies.window.edit.sample.assigned").trim();
+		String lblSRPrefix = props.getKey("lbl.studies.laboratory.report.prefix").trim();
 
 		// Shipping history
 		String lblHST = props.getKey("lbl.history.shipping.title").trim();
@@ -314,6 +322,9 @@ PropertyHelper props = null;
 		
 		//Temporary samples
 		String lblTempSampleButton = props.getKey("lbl.temporal.sample.message.assign.button");
+
+		// Roles 
+		String lblRolesResearcher = props.getKey("lbl.role.description.researcher");
 		
 		//BMS
 		String lblBMSModule = props.getKey("lbl.bms.module");
@@ -321,4 +332,24 @@ PropertyHelper props = null;
 		String lblBMSColDes = props.getKey("lbl.bms.col.descrition");
 		String lblBMSColNotes = props.getKey("lbl.bms.col.notes");
 		String lblBMSColListSize = props.getKey("lbl.bms.col.list.size");
+
+		//Log
+		String lblLogModule = props.getKey("lbl.log.module");
+		String lblLogAll = props.getKey("lbl.log.module.all");
+		String lblLogUser = props.getKey("lbl.log.module.user");
+		String lblLogOperation = props.getKey("lbl.log.module.operation");
+		String lblLogInitDate = props.getKey("lbl.log.module.init.date");
+		String lblLogFinalDate = props.getKey("lbl.log.module.final.date");
+		String lblLogEntity = props.getKey("lbl.log.module.entity");
+		String lblLogDescription = props.getKey("lbl.log.module.description");
+		String lblLogOperationLbl = props.getKey("lbl.log.module.operation.label");
+		String lblLogOperationDate = props.getKey("lbl.log.module.operation.date");
 		
+		// Program && Purpose
+		String lblProgram = props.getKey("lbl.program.title");
+		String lblPurpose = props.getKey("lbl.prurpose.title");
+		String lblProgramPurposeCode = props.getKey("lbl.programpurpose.leteter.code");
+		String lblProgramPurposeName = props.getKey("lbl.programpurpose.name");
+		String lblProgramPurposeDescription = props.getKey("lbl.programpurpose.description");
+		String lblProgramPurposeYear = props.getKey("lbl.programpurpose.year");
+		String lblProgramPurposePIScientist = props.getKey("lbl.programpurpose.pi.scientist");

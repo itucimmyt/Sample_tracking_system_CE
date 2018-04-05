@@ -816,7 +816,7 @@ CREATE TABLE IF NOT EXISTS `st_program` (
   INDEX `fk_st_program_1_idx` (`organismid` ASC),
   CONSTRAINT `fk_st_program_1`
     FOREIGN KEY (`organismid`)
-    REFERENCES `sampletrackingw`.`st_organism` (`organismid`)
+    REFERENCES `st_organism` (`organismid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -833,7 +833,7 @@ CREATE TABLE IF NOT EXISTS `st_purpose` (
   INDEX `fk_st_purpose_1_idx` (`organismid` ASC),
   CONSTRAINT `fk_st_purpose_1`
     FOREIGN KEY (`organismid`)
-    REFERENCES `sampletrackingw`.`st_organism` (`organismid`)
+    REFERENCES `st_organism` (`organismid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB

@@ -60,6 +60,14 @@ public class UserDAOImpl extends AbstractDAO<AuthUserBean, Integer>  implements 
 	}
 	public AuthUserBean getAuthUserBeanByUserNameOrEmailOrName(AuthUserBean authUser){
 		String sql= "FROM AuthUserBean where userName ='"+authUser.getUserName()+"' or email ='"+authUser.getEmail()+"' or investName ='"+authUser.getInvestName()+"'";
+		switch (authUser.getStRole().getIdstRol()){
+			case ConstantsDNA.ROLE_DATA_MANAGER:
+			case ConstantsDNA.ROLE_RESEARCHER:
+			sql = sql + "or investigator.investAbbreviation ='"+authUser.getInvestigator().getInvestAbbreviation()+"'";
+				break;
+			default:
+		}
+		System.out.println("Sql :: "+sql);
 		return (AuthUserBean) super.findGenericByQuery(new AuthUserBean(), sql);
 	}
 

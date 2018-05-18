@@ -87,7 +87,7 @@ public class ShipmentDetailDAOImpl extends AbstractDAO<ShipmentDetail, Integer> 
 	public List<ShipmentDetail> getShipmentDetails(final ShipmentSet set) {
 		List<ShipmentDetail> detail = null;
 		final String queryString = "from ShipmentDetail as det "
-				+ " where det.stShipmentSet.idShipmentSet = :SETS";
+				+ " where det.stShipmentSet.idShipmentSet = :SETS order by det.stSampleDetail.studysampleid ASC ";
 
 		detail= (List<ShipmentDetail>)getHibernateTemplate().execute(
 				new HibernateCallback() {

@@ -114,10 +114,13 @@
 				width="40px" height="35px" />	
 			<image id="logFunction" tooltiptext="${lblLogModule}" src="${imgLOGModule}" visible="false"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.LOG,idCenterMenu, self)" 
 				width="40px" height="35px" />	
+				<!--  <image id="idBreadingC" tooltiptext="${lblBMSModule}" src="${imgBMSModule}" visible="true"	onClick="ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.BMS,idCenterMenu, self)" 
+				width="40px" height="35px" />-->
 		    </vbox>
 
 
 <!--        < label="${lblBMSModule}" image="${imgBMSModule}" visible="false">
+
 					<attribute name="onClick">
 						ControlMenuAndTool.selectMenu2(ControlMenuAndTool.ListMenu.BMS,
 								idCenterMenu, self);

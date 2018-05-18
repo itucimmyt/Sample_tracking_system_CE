@@ -9,6 +9,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.util.GenericType;
+import org.wso2.client.model.Brapi_Multicrop.BrEntryTO;
 
 import com.cimmyt.bean.UserBean;
 import com.cimmyt.bms.client.dto.GermplamsDetail;
@@ -131,5 +132,33 @@ public class RESTSpringClientBMSAPI implements BMSService{
 		this.serviceTemporalSample = serviceTemporalSample;
 	}
 
+
+	@Override
+	public int saveGermplasmEntry(List<BrEntryTO> list, UserBean userBean,
+			Season season, LocationCatalog location) {
+			int size = 0;
+			List<TemporalSample> listTemporalSample = new ArrayList<TemporalSample>();
+			for (BrEntryTO to : list){
+				TemporalSample temp =  new TemporalSample();
+				temp.setGid(to.getGermplasmDbId());
+				temp.setAcc(to.getPedigree());
+				temp.setEntryNo(new Integer(1));
+				temp.setLocation(location);
+				temp.setSeason(season);
+				temp.setPlantNo(new Integer(1));
+				temp.setResearcher(userBean.getInvestigatorBean().getInvestigator(
+						userBean.getInvestigatorBean()));
+				temp.setSpecie(getOrganism(userBean));
+				listTemporalSample.add(temp);
+			}
+			if (!listTemporalSample.isEmpty()){
+				serviceTemporalSample.addListTempSampleWithSesson(listTemporalSample);
+				size = listTemporalSample.size();
+				return size;
+				
+			}else{
+				return 0;
+			}
+	}
 	
 }

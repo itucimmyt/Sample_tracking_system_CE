@@ -625,7 +625,7 @@ public class ControlWindowInvestigator extends Window {
 		}else {
 			if (beanEdit!= null ){
 				UserBean userDB = serviceUser.getUser(beanEdit);
-				if (userDB != null && userDB.getIdUser().intValue() != userDB.getIdUser().intValue()){
+				if (userDB != null && userDB.getIdUser().intValue() != beanEdit.getIdUser().intValue()){
 					StrUtils.messageBoxError(pro.getKey(ConstantsDNA.LBL_USER_ERROR_ALREADY_RECORDED),pro);
 					return;
 				}

@@ -45,6 +45,7 @@ public class Constants {
 	public final static String REPORT_PATH_KBIO_G384 = "report.path.kbio.grid.384";
 	public final static String REPORT_PATH_INTERTEK_G96 = "report.path.intertek.format.96";
 	public final static String REPORT_PATH_GENOTYPING_SERVICES_96 = "report.path.genotyping.services.format.96";
+	public final static String REPORT_PATH_GENOTYPING_SERVICES_EMAIL_INTERTEK = "report.path.genotyping.services.eamil.intertek";
 	
 	//images 
 	public final static String URL_IMAGES_BLANK_TUBE = propertyHelper.getKey("img.url.tube.blank",Bundle.img);

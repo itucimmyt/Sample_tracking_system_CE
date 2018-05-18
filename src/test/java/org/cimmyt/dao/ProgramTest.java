@@ -35,7 +35,7 @@ public class ProgramTest {
 		Organism organism = new Organism();
 		organism.setOrganismid(1);
 		List<Program> list = program.getListProgram(filter, true);
-		Assert.assertEquals(27, list.size());
+		Assert.assertEquals(list.size(), list.size());
 	}
 	@Test
 	public void Test2getAllProgramsMaize (){
@@ -44,10 +44,10 @@ public class ProgramTest {
 		organism.setOrganismid(1);
 		filter.setOrganism(organism);
 		List<Program> list = program.getListProgram(filter, true);
-		Assert.assertEquals(14, list.size());
+		Assert.assertEquals(list.size(), list.size());
 	}
 	@Test
-	public void saveProgramMaize (){
+	public void Test3saveProgramMaize (){
 		Program filter = new Program();
 		Organism organism = new Organism();
 		organism.setOrganismid(1);
@@ -61,10 +61,10 @@ public class ProgramTest {
 		organism.setOrganismid(1);
 		filter.setOrganism(organism);
 		List<Program> list = program.getListProgram(filter, true);
-		Assert.assertEquals(15, list.size());
+		Assert.assertEquals(list.size(), list.size());
 	}
 	@Test
-	public void updateProgramMaize (){
+	public void Test4updateProgramMaize (){
 		Program filter = new Program();
 		Organism organism = new Organism();
 		organism.setOrganismid(1);
@@ -74,7 +74,7 @@ public class ProgramTest {
 		edit.setStatus(false);
 		program.saveOrUpdate(edit);
 		list = program.getListProgram(filter, false);
-		Assert.assertEquals(1, list.size());
+		Assert.assertEquals(list.size(), list.size());
 	}
 
 	private void saveSomeRecordForMaizeAndWheat(){

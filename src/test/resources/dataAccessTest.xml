@@ -32,12 +32,12 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
 		<!--  <property name="url" value="jdbc:mysql://localhost:3306/">-->
-		 <property name="url" value="jdbc:mysql://172.17.61.5:43306/">
+		 <property name="url" value="jdbc:mysql://172.17.60.85:3306/">
 		
 		</property>
-  		<property name="username" value="root"></property>
+  		<property name="username" value="lpuebla"></property>
         <!--<property name="password" value="cimmyt"></property>-->
-        <property name="password" value="siu*2016"></property>
+        <property name="password" value="dnast2015"></property>
  		</bean>
  		
  		 <bean id="dbInit" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
@@ -98,12 +98,12 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
 		<!-- <property name="url" value="jdbc:mysql://localhost:3306/sampletrackingTest">-->
-		 <property name="url" value="jdbc:mysql://172.17.61.5:43306/sampletrackingTest">
+		 <property name="url" value="jdbc:mysql://172.17.60.85:3306/sampletrackingTest3">
 		
 		</property>
-  		<property name="username" value="root"></property>
+  		<property name="username" value="lpuebla"></property>
         <!--<property name="password" value="cimmyt"></property>-->
-        <property name="password" value="siu*2016"></property>
+        <property name="password" value="dnast2015"></property>
  		</bean>
  		
   	<bean id="mySqlProcedure" class="com.cimmyt.model.dao.impl.MySQLProcedureDAOImpl">

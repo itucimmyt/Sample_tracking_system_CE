@@ -121,7 +121,7 @@ public class ControlPlateInformation extends Window{
 		Rows rows = new  Rows ();
 		Row row = new Row();
 		int numberCell = 0;
-		for (int index = 0; index < 18; index++){
+		for (int index = 0; index < 19; index++){
 			if (numberCell < 3){
 				loadField(ResultsCamposFijosUnEstudio.lookupById(index),
 						index,new ResultsPreferencesDetail(), row);

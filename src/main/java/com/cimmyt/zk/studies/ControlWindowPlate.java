@@ -371,6 +371,8 @@ public class ControlWindowPlate extends Window{
 			//index is idLoadType - 1
 			loadValueForComboLoadWay(bean.getLoadType().getIdLoadType().intValue());
 			idChckBPadded.setDisabled(isEdit);
+			idSPS.setDisabled(isEdit);
+			idSNP.setDisabled(isEdit);
 		}
 	}
 

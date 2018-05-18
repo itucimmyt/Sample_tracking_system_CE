@@ -184,7 +184,7 @@ public class ServiceReportLaboratoryImpl implements ServiceReportLaboratory{
 	     StringBuilder fields = new StringBuilder();		
 			for (StudyTemplateParams studyTemplateParams: listStudyTemParams){
 				SampleDetResult sampleDetResult = seriviceStudyTemplate.getSampleDetResultByGIDAndIDTemplate(detail.getStudysampleid(), studyTemplateParams.getTemplateparamid());
-				if (sampleDetResult != null){
+				if (sampleDetResult != null && sampleDetResult.getResult()!= null && !sampleDetResult.getResult().isEmpty()){
 					if (isPrefix)
 					fields.append(studyTemplateParams.getFactorname() + " : ");
 					fields.append(sampleDetResult.getResult());

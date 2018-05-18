@@ -44,7 +44,7 @@ public class ControlMenuAndTool {
 	        {
 			 PropertyHelper pro=(PropertyHelper) border.getDesktop().getSession().getAttribute(LOCALE_LANGUAGE);
 
-			 if (option != ListMenu.Queries)
+			 //if (option != ListMenu.Queries)
 			 if(Executions.getCurrent().getSession().getAttribute(Constants.ATTRIBUTE_NAME_USER_BEAN) == null){
 				 Messagebox.show(pro.getKey(LBL_GENERIC_MESS_LOGIN),pro.getKey(LBL_GENERIC_MESS_INFORMATION), 
 							Messagebox.OK, Messagebox.INFORMATION);

@@ -1,7 +1,6 @@
-drop schema If EXISTS sampletrackingTest;
+CREATE DATABASE  IF NOT EXISTS `sampletrackingTest3` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `sampletrackingTest3`;
 
-CREATE DATABASE  IF NOT EXISTS `sampletrackingTest` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `sampletrackingTest`;
 -- MySQL dump 10.13  Distrib 5.5.47, for debian-linux-gnu (x86_64)
 --
 -- Host: 127.0.0.1    Database: sampletrackingw
@@ -97,6 +96,7 @@ CREATE TABLE `st_investigator` (
   `investigatorid` int(11) NOT NULL AUTO_INCREMENT,
   `invest_abbreviation` varchar(20) DEFAULT NULL,
   `invest_name` varchar(255) DEFAULT NULL,
+  `status` BIT(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`investigatorid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -470,7 +470,7 @@ CREATE TABLE `st_study_template_params` (
   `templateparamid` int(11) NOT NULL AUTO_INCREMENT,
   `studytemplateid` int(11) NOT NULL COMMENT 'Study template parent for the parameter',
   `parametername` varchar(20) DEFAULT NULL COMMENT 'Short name for the parameter',
-  `description` varchar(50) DEFAULT NULL COMMENT 'Large description for the parameter',
+  `description` varchar(200) DEFAULT NULL COMMENT 'Large description for the parameter',
   `datatype` char(1) DEFAULT NULL COMMENT 'Data type for the parameter (CHAR, DATE, NUMERIC)',
   PRIMARY KEY (`templateparamid`),
   KEY `fk_study_template_params_study_template1` (`studytemplateid`),
@@ -605,7 +605,7 @@ CREATE TABLE `st_sample_detail` (
   `labstudyid` int(11) NOT NULL COMMENT 'Lab study ID for the sample',
   `breedergid` int(11) DEFAULT NULL COMMENT 'Breeders GID for the sample',
   `sampleid` int(11) DEFAULT NULL COMMENT 'Sample GID',
-  `entryNo` int(11) DEFAULT NULL COMMENT 'Entry number in the study, this value is in the range of 1 ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚',
+  `entryNo` int(11) DEFAULT NULL COMMENT 'Entry number in the study, this value is in the range of 1',
   `nplanta` int(11) DEFAULT NULL COMMENT 'Number of individual',
   `nval` varchar(255) DEFAULT NULL COMMENT 'Name ',
   `platename` varchar(50) DEFAULT NULL COMMENT 'Name of the plate',

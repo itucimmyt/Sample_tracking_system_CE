@@ -32,7 +32,8 @@ public enum ResultsCamposFijosUnEstudio {
 	DATATYPE(14,"Data Type",RESULT_FIELD_CONSTANT_CHARACTER,"controltype",false),
 	CURRENTLOCATION(15,"Current Location",RESULT_FIELD_CONSTANT_CHARACTER,"storageLocation.lname",false),
 	LOCATION(16,"Location",RESULT_FIELD_CONSTANT_CHARACTER,"locationid.location_name",true),
-	SEASON(17,"Season",RESULT_FIELD_CONSTANT_CHARACTER,"seasonid.season_name",true);
+	SEASON(17,"Season",RESULT_FIELD_CONSTANT_CHARACTER,"seasonid.season_name",true),
+	TISSUE(18,"Tissue",RESULT_FIELD_CONSTANT_CHARACTER,"tissue.tissuename",true);
 	
 	private Integer id;
 	private String value;

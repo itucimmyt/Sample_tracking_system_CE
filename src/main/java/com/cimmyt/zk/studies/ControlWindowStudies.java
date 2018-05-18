@@ -533,7 +533,9 @@ public class ControlWindowStudies extends Window{
 					
 			if (listStudies != null && !listStudies.isEmpty()){
 				for (LabStudy studyIn: listStudies){
+
 					if (bean != null && bean.getLabstudyid() != null && !bean.getLabstudyid().equals(studyIn.getLabstudyid())){
+
 					Messagebox.show(pro.getKey(LBL_GENERIC_MESS_ER_DIF_REG,new String []{pro.getKey(LBL_GENERIC_MESS_STUDY_NAME)+" + "+
 							pro.getKey(LBL_GENERIC_MESS_PURPOSE)}), 
 							pro.getKey(LBL_GENERIC_MESS_ERROR), 

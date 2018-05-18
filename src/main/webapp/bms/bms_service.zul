@@ -18,7 +18,7 @@
 <north  sclass="borderNort" border="none" 
 				margins="0,15,0,0" style="overflow:visible;"  height="50px">
 				<hbox width="100%" hflex="true" style="position:absolute; ">
-					
+		
 				<image id="idAddFilter" tooltiptext="${lblMenTAdd}" src="${imgAdd}" onClick=""
 					width="40px" height="40px">
 						<attribute name="onMouseOver">
@@ -64,10 +64,10 @@
 				 >
 				<columns>
 				<column label=""  width="5%" />
-				 <column label="${lblBMSColListName}"  width="35%" />
-				 <column label="${lblBMSColDes}"  width="35%" />
-				 <column label="${lblBMSColNotes}"  width="20%" />
-				 <column label="${lblBMSColListSize}"  width="5%" />
+				 <column label="${lblBMSColListName}"  width="45%" />
+				 <column label="${lblBMSColDes}"  width="45%" />
+				 <column label="${lblBMSColNotes}"  width="10%" />
+				 <!--  <column label="${lblBMSColListSize}"  width="5%" />-->
 				</columns>
 			</grid>
 			</div>

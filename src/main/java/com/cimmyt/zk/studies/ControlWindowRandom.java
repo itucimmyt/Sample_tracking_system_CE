@@ -51,6 +51,7 @@ public class ControlWindowRandom extends Window{
 	private PropertyHelper pro=null;
 	private Map<String, Object> mapCellSample = new HashMap<String, Object>();
 	private Map<String, Integer> mapSizePlate = new HashMap<String, Integer>();
+	private Map<String, String> mapRandomControls = new HashMap<String,String>();
 	
 	/** 
 	 * Close Window
@@ -85,6 +86,7 @@ public class ControlWindowRandom extends Window{
 		  Set set = mapSizePlate.entrySet();
 	      Iterator it=set.iterator();
 	      StringBuilder strB = new StringBuilder();
+	      mapRandomControls = new HashMap<String,String>();
 	      while(it.hasNext())
 	      {
 	          Map.Entry m =(Map.Entry)it.next();
@@ -144,29 +146,76 @@ public class ControlWindowRandom extends Window{
 	        Random randomGeneratorNum = new Random();
 	        Random randomGeneratorLetter = new Random();
 	        for (int idxN = 1; idxN <= size;){
-	        	int randomInt = randomGeneratorNum.nextInt(sizeColumns);
+	        	boolean isUnic = false;
+	        	int randomInt = 0;
+	        	String letterRandom = "";
+	        	int idLoopRandom = 1;
+	        	while (!isUnic) {
+	        	randomInt = randomGeneratorNum.nextInt(sizeColumns);
 	        	int indexLetter = (int) (randomGeneratorLetter.nextDouble()*letterArr.length);
-	        	String letterRandom = letterArr[indexLetter];
-	        	//System.out.println("letter" +key+DELIMITER_PIE_SAMPLE+letterRandom+randomInt);
-	        	Cell cell = (Cell)mapCellSample.get(key+DELIMITER_PIE_SAMPLE+letterRandom+randomInt);
-	        	if (cell != null && cell.getAttribute(ATTRIBUTE_SAMPLE_ITEM) != null && 
-            			(Integer)cell.getAttribute(ATTRIBUTE_SAMPLE_ITEM) 
-            			== PlateRow.ASSIGNED_NUM) {
-	        		cell.setAttribute(ATTRIBUTE_SAMPLE_ITEM, PlateRow.RANDOM_CONTROL_ITEM_NUM);
-                	Image image = (Image)cell.getChildren().get(0).getChildren().get(1);
-                	image.setSrc(URL_IMAGES_CONTROL_RANDOM_TUBE);
-                	Label label = (Label)cell.getChildren().get(0).getChildren().get(2);
-                	label.setValue(pro.getKey(LBL_STUDIES_RANDOM_TUBE));
-                	idxN++;
-                	sizePlate--;
-                	numberControlRandom++;
+	        	letterRandom = letterArr[indexLetter];
+	        	String cellStr = letterRandom+"|"+randomInt;
+		        	if (idLoopRandom <= 96) {
+		        		if (!mapRandomControls.containsValue(cellStr)) {
+			        			Cell cell = (Cell)mapCellSample.get(key+DELIMITER_PIE_SAMPLE+letterRandom+randomInt);
+			    	        	if (cell != null && cell.getAttribute(ATTRIBUTE_SAMPLE_ITEM) != null && 
+			                			(Integer)cell.getAttribute(ATTRIBUTE_SAMPLE_ITEM) 
+			                			== PlateRow.ASSIGNED_NUM) {
+			    	        		mapRandomControls.put(cellStr, cellStr);
+			    	        		changingPropertieCellRandom(cell);
+			    	        		idLoopRandom ++;
+			                    	idxN++;
+			                    	sizePlate--;
+			                    	numberControlRandom++;
+			                    	isUnic = true;
+			    	        	}else {
+			    	        		isUnic = false;
+			    	        		idLoopRandom++;
+			    	        	}
+			        			
+		        			}else {
+		        				isUnic = false;
+		        				idLoopRandom++;
+		        			}
+		        	}else if (idLoopRandom > 96){
+		        		Cell cell = (Cell)mapCellSample.get(key+DELIMITER_PIE_SAMPLE+letterRandom+randomInt);
+	    	        	if (cell != null && cell.getAttribute(ATTRIBUTE_SAMPLE_ITEM) != null && 
+	                			(Integer)cell.getAttribute(ATTRIBUTE_SAMPLE_ITEM) 
+	                			== PlateRow.ASSIGNED_NUM) {
+	    	        		mapRandomControls.put(cellStr, cellStr);
+	    	        		idLoopRandom++;
+	    	        		changingPropertieCellRandom(cell);
+	                    	idxN++;
+	                    	sizePlate--;
+	                    	numberControlRandom++;
+	                    	isUnic = true;
+	    	        	}else {
+	    	        		isUnic = false;
+	    	        		idLoopRandom++;
+	    	        	}
+			        		
+		        	}else {
+		        		isUnic = false;
+		        		idLoopRandom++;
+		        	}
+		        	idLoopRandom++;
 	        	}
+	      
 	        }
+	        System.out.println("Map Cell :::"+mapRandomControls);
 	        mapSizePlate.put(key, sizePlate);
 	      
 	    }
 	    getDesktop().setAttribute(ATTRIBUTE_MAP_NUM_ITEM_SELECT, mapSizePlate);
 	    getDesktop().setAttribute(ATTRIBUTE_NUMBER_SAMPLES_CONTROL, numberControlRandom);
 	    
+	}
+
+	private void changingPropertieCellRandom(Cell cell) {
+		cell.setAttribute(ATTRIBUTE_SAMPLE_ITEM, PlateRow.RANDOM_CONTROL_ITEM_NUM);
+    	Image image = (Image)cell.getChildren().get(0).getChildren().get(1);
+    	image.setSrc(URL_IMAGES_CONTROL_RANDOM_TUBE);
+    	Label label = (Label)cell.getChildren().get(0).getChildren().get(2);
+    	label.setValue(pro.getKey(LBL_STUDIES_RANDOM_TUBE));
 	}
 }

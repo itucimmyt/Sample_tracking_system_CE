@@ -247,6 +247,10 @@ public class ServiceResultPreferenceImpl implements ServiceResultPreference{
 			if (sampledet.getSeasonid() != null)
 				res = sampledet.getSeasonid().getSeason_name();
 			break;
+		case 18:
+			if (sampledet.getLabstudyid().getTissue() != null)
+				res = sampledet.getLabstudyid().getTissue().getTissueName();
+			break;
 
 		default:
 			break;

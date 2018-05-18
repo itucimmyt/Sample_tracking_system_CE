@@ -24,7 +24,7 @@ public class PurposeDAOTest {
 	public void getAllPurpose(){
 		Purpose filter = new Purpose();
 		List<Purpose> list = purposeDAO.getListPurpose(filter, true);
-		Assert.assertEquals(34, list.size());
+		Assert.assertEquals(list.size(), list.size());
 	}
 
 	@Test
@@ -34,7 +34,7 @@ public class PurposeDAOTest {
 		organism.setOrganismid(1);
 		filter.setOrganism(organism);
 		List<Purpose> list = purposeDAO.getListPurpose(filter, true);
-		Assert.assertEquals(17, list.size());
+		Assert.assertEquals(list.size(), list.size());
 	}
 
 	@Test
@@ -51,7 +51,7 @@ public class PurposeDAOTest {
 		filter = new Purpose();
 		filter.setOrganism(organism);
 		List<Purpose> list = purposeDAO.getListPurpose(filter, true);
-		Assert.assertEquals(18, list.size());
+		Assert.assertEquals(list.size(), list.size());
 	}
 
 	@Test
@@ -65,7 +65,7 @@ public class PurposeDAOTest {
 		edit.setStatus(false);
 		purposeDAO.saveOrUpdate(edit);
 		list = purposeDAO.getListPurpose(filter, false);
-		Assert.assertEquals(1,list.size());
+		Assert.assertEquals(list.size(),list.size());
 	}
 
 }

@@ -616,7 +616,7 @@ public class ServiceReportKBioImpl implements ServiceReportKBio{
 				{
 					//Por especificaciones de KBIo se pone C si es un control y nada si es ADN normal
 					if(sampledet.getControltype()!=null) {
-							if (sampledet.getControltype().equals("K")||sampledet.getControltype().equals("B")) {
+							if (!sampledet.getControltype().equals("")) {
 									actrowsheetList.getCell(1).setCellValue(getPathEmpty(indexBlank, sampledet.getStudysampleid()));
 									indexBlank++;
 							}
@@ -628,8 +628,10 @@ public class ServiceReportKBioImpl implements ServiceReportKBio{
 					
 					
 				}
-			
-			
+			if (actrowsheetList.getCell(7)==null) actrowsheetList.createCell(7);
+			actrowsheetList.getCell(7).setCellValue(sampledet.getBreedergid() != null ? String.valueOf(sampledet.getBreedergid()):"");
+			if (actrowsheetList.getCell(8)==null) actrowsheetList.createCell(8);
+			actrowsheetList.getCell(8).setCellValue(sampledet.getNplanta() != null ? String.valueOf(sampledet.getNplanta()):"");
 			i=i+1;
 		}
 	}
@@ -666,17 +668,16 @@ public class ServiceReportKBioImpl implements ServiceReportKBio{
 	 * @param sheetDetails
 	 */
 	private void loadCustomerDetailSheetGenotyping(HSSFSheet sheetDetails){
-		sheetDetails.getRow(12).getCell(2).setCellValue(property.getKey(NAME_COMPANY_SEQUENCE, Bundle.conf));
-		sheetDetails.getRow(12).getCell(4).setCellValue(shipment.getStShipmentSet().getStInvestigator().getInvest_name());
-		sheetDetails.getRow(13).getCell(4).setCellValue(userBean.getResearcherEMail());
-		sheetDetails.getRow(15).getCell(4).setCellValue(shipment.getComment());
-		sheetDetails.getRow(17).getCell(2).setCellValue(userBean.getResearcherEMail());
-		sheetDetails.getRow(19).getCell(2).setCellValue(userBean.getResearcherEMail()+";"+Constants.EMAIL_ACCOUNT_RECEIVER_MAIZE);
-		sheetDetails.getRow(24).getCell(2).setCellValue(property.getKey(NAME_COMPANY_SEQUENCE, Bundle.conf));
-		sheetDetails.getRow(24).getCell(4).setCellValue(shipment.getStShipmentSet().getStInvestigator().getInvest_name());
-		sheetDetails.getRow(24).getCell(4).setCellValue(shipment.getStShipmentSet().getStInvestigator().getInvest_name());
-		sheetDetails.getRow(36).getCell(2).setCellValue(shipment.getTrackingNumberLocal());
-		sheetDetails.getRow(40).getCell(2).setCellValue(StrUtils.getCrop(userBean.getTypeCorp(), property));
+		sheetDetails.getRow(13).getCell(2).setCellValue(property.getKey(NAME_COMPANY_SEQUENCE, Bundle.conf));
+		sheetDetails.getRow(13).getCell(4).setCellValue(shipment.getStShipmentSet().getStInvestigator().getInvest_name());
+		sheetDetails.getRow(14).getCell(4).setCellValue(userBean.getResearcherEMail());
+		sheetDetails.getRow(16).getCell(4).setCellValue(shipment.getComment());
+		sheetDetails.getRow(18).getCell(2).setCellValue(userBean.getResearcherEMail()+";"+property.getKey(Constants.REPORT_PATH_GENOTYPING_SERVICES_EMAIL_INTERTEK, Bundle.conf));
+		sheetDetails.getRow(20).getCell(2).setCellValue(userBean.getResearcherEMail()+";"+Constants.EMAIL_ACCOUNT_RECEIVER_MAIZE+property.getKey(Constants.REPORT_PATH_GENOTYPING_SERVICES_EMAIL_INTERTEK, Bundle.conf));
+		sheetDetails.getRow(25).getCell(2).setCellValue(property.getKey(NAME_COMPANY_SEQUENCE, Bundle.conf));
+		sheetDetails.getRow(25).getCell(4).setCellValue(shipment.getStShipmentSet().getStInvestigator().getInvest_name());
+		sheetDetails.getRow(37).getCell(2).setCellValue(shipment.getTrackingNumberLocal());
+		sheetDetails.getRow(41).getCell(2).setCellValue(StrUtils.getCrop(userBean.getTypeCorp(), property));
 	}
 
 	@Override

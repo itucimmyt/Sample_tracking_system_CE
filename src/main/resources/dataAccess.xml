@@ -22,7 +22,6 @@
     
      <!--   <jee:jndi-lookup id="dataSource" jndi-name="jdbc/MyDBwheatCimmyt" />-->   
 
-<!--
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
@@ -32,17 +31,17 @@
         <property name="password" value="2017!dnast"></property>
  		</bean>
 	
-	-->	
+<!--		
 	  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
-		<property name="url" value="jdbc:mysql://localhost:3306/sampletrackingTest">
+		<property name="url" value="jdbc:mysql://localhost:3306/sampletrackingm">
 		
 		</property>
   		<property name="username" value="root"></property>
         <property name="password" value="cimmyt"></property>
  		</bean>
- 		
+ 	-->	
  	
 	<!--
 	  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">

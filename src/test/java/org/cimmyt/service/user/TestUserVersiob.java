@@ -47,9 +47,12 @@ public class TestUserVersiob {
 	@Before
 	public void beforeTest(){
 		user.setUserName("luisZiou");
-		user.setEmail("juve_upiicsa@hotmail.com");
+		user.setEmail("l.puebla@cgiar.org");
 		user.setResearcherName("Luis LUna");
 		user.setPassword("test");
+		RoleBean role = new RoleBean();
+		role.setIdstRol(ConstantsDNA.ROLE_RESEARCHER_ASSISTENT);
+		user.setRole(role);
 		
 	}
 
@@ -135,7 +138,7 @@ public class TestUserVersiob {
 	public void Test7saveUserBean() throws BackException{
 	
 		user.setUserName("luisZiou");
-		user.setEmail("cimmyt10@hotmail.com");
+		user.setEmail("l.puebla@cgiar.org");
 		user.setResearcherName("Luis LUna");
 		user.setPassword("test");
 		InvestigatorBean investigatorBean = new InvestigatorBean();

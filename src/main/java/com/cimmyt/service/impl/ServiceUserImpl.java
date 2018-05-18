@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.apache.lucene.queryparser.xml.builders.UserInputQueryBuilder;
 import org.cimmyt.dnast.dto.AuthUserBean;
 import org.cimmyt.dnast.dto.StInvestigator;
 
@@ -139,6 +140,16 @@ public class ServiceUserImpl implements ServiceUser{
 		autUser.setUserName(userBean.getUserName());
 		autUser.setEmail(userBean.getEmail());
 		autUser.setInvestName(userBean.getResearcherName());
+		if (userBean.getInvestigatorBean() != null) {
+			StInvestigator investigator= new StInvestigator();
+			investigator.setInvestAbbreviation(userBean.getInvestigatorBean().getInvest_abbreviation());
+			autUser.setInvestigator(investigator);
+			}
+		if(userBean.getRole() != null) {
+			Role stRole = new Role();
+			stRole.setIdstRol(userBean.getRole().getIdstRol());
+			autUser.setStRole(stRole);
+		}
 		autUser.setStatus(true);
 		AuthUserBean autUserDB = userDAO.getAuthUserBeanByUserNameOrEmailOrName(autUser);
 		if ( autUserDB != null){
@@ -153,6 +164,16 @@ public class ServiceUserImpl implements ServiceUser{
 		autUser.setUserName(userBean.getUserName());
 		autUser.setEmail(userBean.getEmail());
 		autUser.setInvestName(userBean.getResearcherName());
+		if (userBean.getInvestigatorBean() != null) {
+			StInvestigator investigator= new StInvestigator();
+			investigator.setInvestAbbreviation(userBean.getInvestigatorBean().getInvest_abbreviation());
+			autUser.setInvestigator(investigator);
+		}
+		if(userBean.getRole() != null) {
+			Role stRole = new Role();
+			stRole.setIdstRol(userBean.getRole().getIdstRol());
+			autUser.setStRole(stRole);
+		}
 		autUser.setStatus(true);
 		AuthUserBean bean = userDAO.getAuthUserBeanByUserNameOrEmailOrName(autUser);
 		if (bean != null){

@@ -1,5 +1,7 @@
-CREATE DATABASE  IF NOT EXISTS `sampletrackingTest3` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `sampletrackingTest3`;
+drop schema If EXISTS sampletrackingTest;
+
+CREATE DATABASE  IF NOT EXISTS `sampletrackingTest` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `sampletrackingTest`;
 
 -- MySQL dump 10.13  Distrib 5.5.47, for debian-linux-gnu (x86_64)
 --
@@ -815,7 +817,7 @@ CREATE TABLE IF NOT EXISTS `st_program` (
   INDEX `fk_st_program_1_idx` (`organismid` ASC),
   CONSTRAINT `fk_st_program_1`
     FOREIGN KEY (`organismid`)
-    REFERENCES `sampletrackingw`.`st_organism` (`organismid`)
+    REFERENCES `st_organism` (`organismid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -832,7 +834,7 @@ CREATE TABLE IF NOT EXISTS `st_purpose` (
   INDEX `fk_st_purpose_1_idx` (`organismid` ASC),
   CONSTRAINT `fk_st_purpose_1`
     FOREIGN KEY (`organismid`)
-    REFERENCES `sampletrackingw`.`st_organism` (`organismid`)
+    REFERENCES `st_organism` (`organismid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB

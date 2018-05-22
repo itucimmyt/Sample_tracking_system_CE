@@ -1,5 +1,4 @@
---CREATE DATABASE  IF NOT EXISTS `sampletrackingw` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `sampletrackingTest3`;
+USE `sampletrackingTest`;
 -- MySQL dump 10.13  Distrib 5.5.47, for debian-linux-gnu (x86_64)
 --
 -- Host: 127.0.0.1    Database: sampletrackingw
@@ -82,7 +81,8 @@ UNLOCK TABLES;
 
 LOCK TABLES `st_storage_location` WRITE;
 /*!40000 ALTER TABLE `st_storage_location` DISABLE KEYS */;
-INSERT INTO `st_storage_location` VALUES (1,'GRAL LOC','GENERAL LOCATIONS','GENERAL LOCATIONS',NULL),(2,'CIMMYT-HQ','CIMMYT-HQ','CIMMYT-HQ',1),(5,'CIMMYT MEX','CIMMYT MEXICO','CIMMYT MEX',2),(6,'PRINCIPAL','PRINCIPAL LABORATORY','PRINCIPAL LABORATORY',5),(7,'FREEZER-30','FREEZER -30','MINUS 30 FREEZER',6),(8,'FREEZER-80','FREEZER -80','MUNIS 80 FREEZER',6),(9,'MAIN DRYER','MAIN DRYER','MAIN DRYER FOR LAB',6),(10,'KBIOSCIENC','KBIOSCIENCE','SENDED TO KBIOSCIENCE',1),(11,'DART','DART','SENDED TO DART',1),(12,'CORNELL','CORNELL','SENDED TO CORNELL ',1),(13,'WMB','WMB LABORATORY','Wheat laboratory bioscience complex',5),(14,'CF','CUARTO FRIO','WMB storage in CF',14),(15,'CF','CUARTO FRIO','WMB storage in CF',13),(18,'CF','CUARTO','DNA',18),(19,'','Diversity Arrays Technology Pty Ltd','',1);
+INSERT INTO `st_storage_location` VALUES (1,'GRAL LOC','GENERAL LOCATIONS','GENERAL LOCATIONS',NULL),(2,'CIMMYT-HQ','CIMMYT-HQ','CIMMYT-HQ',1),(5,'CIMMYT MEX','CIMMYT MEXICO','CIMMYT MEX',2),(6,'PRINCIPAL','PRINCIPAL LABORATORY','PRINCIPAL LABORATORY',5),(7,'FREEZER-30','FREEZER -30','MINUS 30 FREEZER',6),(8,'FREEZER-80','FREEZER -80','MUNIS 80 FREEZER',6),(9,'MAIN DRYER','MAIN DRYER','MAIN DRYER FOR LAB',6),(10,'KBIOSCIENC','KBIOSCIENCE','SENDED TO KBIOSCIENCE',1),(11,'DART','DART','SENDED TO DART',1),(12,'CORNELL','CORNELL','SENDED TO CORNELL ',1),(13,'','SAGA','',1),(14,'','SAGA','',1),(15,'','SAGA','',1),(16,'','Diversity Arrays Technology Pty Ltd','',1),(17,'','SAGA-Centro Nacional de Recursos Geneticos','',1)
+,(18,'','SAGA','',1),(19,'','Intertek 1','',1),(20,'','Intertek 2','',1),(21,'','Intertek-Hyderabad','',1),(22,'','Intertek-Sweeden','',1),(23,'','Intertek-Sweeden','',1);
 /*!40000 ALTER TABLE `st_storage_location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +92,12 @@ UNLOCK TABLES;
 
 LOCK TABLES `st_company` WRITE;
 /*!40000 ALTER TABLE `st_company` DISABLE KEYS */;
-INSERT INTO `st_company` VALUES (1,'K-BIOSCIENCE','KBioscience Unit 7 Maple Park Hoddesdon Herts','info@kbioscience.co.uk','','1 978 232 9430 ',10),(2,'Institute for Genomic Diversity','130 Biotechnology Building Cornell University Ithaca, NY 14853-2703','','Ed Buckler','',12),(3,'Diversity Arrays Technology Pty Ltd','Bldg 3, Lv D, University of Canberra,\nKirinari st., Bruce, ACT 2617, Australia','a.kilian@diversityarrays.com','Andrzej Kilian','+ 61 2 6122 7300',19);
+INSERT INTO `st_company` VALUES (1,'K-BIOSCIENCE','KBioscience Unit 7 Maple Park Hoddesdon Herts','info@kbioscience.co.uk','','1 978 232 9430 ',10),
+								(2,'Institute for Genomic Diversity','130 Biotechnology Building Cornell University Ithaca, NY 14853-2703','','Ed Buckler','',12),
+								(3,'Diversity Arrays Technology Pty Ltd','Bldg 3, Lv D, University of Canberra,\nKirinari st., Bruce, ACT 2617, Australia','a.kilian@diversityarrays.com','Andrzej Kilian','+ 61 2 6122 7300',16),
+								(4,'SAGA','Carretera Mexico Veracruz KM45. El Batan. Texcoco. Estado de Mexico.','C.Sansaloni@cgiar.org','Sansaloni, Carolina Paola','+52 (55) 5804 2004, Ext. 2210',18),
+								(5,'Intertek-Hyderabad','Intertek-Hyderabad','agritech.india@intertek.com','Petra van Roggen','',21),
+								(6,'Intertek-Sweeden','Intertek-Sweeden','agritech.sweden@intertek.co','Petra van Roggen','',23);
 /*!40000 ALTER TABLE `st_company` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -379,7 +379,6 @@ UNLOCK TABLES;
 
 LOCK TABLES `st_temp_samples` WRITE;
 /*!40000 ALTER TABLE `st_temp_samples` DISABLE KEYS */;
-INSERT INTO `st_temp_samples` VALUES (1,123,'ABCD',1,'comments 1',1,1,14,23,1),(2,124,'ABCD',1,'comments 1',1,1,14,23,1);
 /*!40000 ALTER TABLE `st_temp_samples` ENABLE KEYS */;
 UNLOCK TABLES;
 

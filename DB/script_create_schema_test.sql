@@ -33,7 +33,7 @@ CREATE TABLE `st_storage_location` (
   `comments` varchar(250) DEFAULT NULL COMMENT 'Additional info',
   `imslocidparent` int(11) DEFAULT NULL COMMENT 'Recursive parent for this locations (LAB/FREZER/SECTION 1)',
   PRIMARY KEY (`imslocid`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1 COMMENT='Information about all Locations in the Lab where the user st';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COMMENT='Information about all Locations in the Lab where the user st';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `st_season` (
   `season_name` varchar(255) DEFAULT NULL COMMENT 'Season name',
   `season_description` varchar(255) DEFAULT NULL COMMENT 'Season description (optional)',
   PRIMARY KEY (`seasonid`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `st_company` (
   PRIMARY KEY (`idCompany`),
   KEY `FK_st_company` (`imslocid`),
   CONSTRAINT `FK_//st_company` FOREIGN KEY (`imslocid`) REFERENCES `st_storage_location` (`imslocid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COMMENT='Contact info for the companies (like KBiosciences) that make';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='Contact info for the companies (like KBiosciences) that make';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,7 +83,7 @@ CREATE TABLE `st_funtions` (
   `idst_funtions` int(11) NOT NULL AUTO_INCREMENT,
   `funtion_key` varchar(45) NOT NULL,
   PRIMARY KEY (`idst_funtions`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `st_investigator` (
   `invest_name` varchar(255) DEFAULT NULL,
   `status` BIT(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`investigatorid`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -114,7 +114,7 @@ CREATE TABLE `st_load_type` (
   `id_load_type` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(45) NOT NULL,
   PRIMARY KEY (`id_load_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +129,7 @@ CREATE TABLE `st_location` (
   `location_name` varchar(255) DEFAULT NULL COMMENT 'Location name',
   `location_description` varchar(255) DEFAULT NULL COMMENT 'Location description (optional)',
   PRIMARY KEY (`locationid`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +143,7 @@ CREATE TABLE `st_log_type_entity` (
   `idst_log_type_entity` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(150) NOT NULL,
   PRIMARY KEY (`idst_log_type_entity`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +157,7 @@ CREATE TABLE `st_log_type_operation` (
   `idst_log_type_operation` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`idst_log_type_operation`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -206,7 +206,7 @@ CREATE TABLE `st_organism` (
   `organismid` int(11) NOT NULL AUTO_INCREMENT,
   `organismName` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`organismid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +224,7 @@ CREATE TABLE `st_project` (
   `purposeDescription` varchar(255) DEFAULT NULL,
   `lastsampleid` int(11) DEFAULT NULL,
   PRIMARY KEY (`projectid`)
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,7 +247,7 @@ CREATE TABLE `st_last_plate_project` (
   CONSTRAINT `FK_st_last_plate_project_st_investigator` FOREIGN KEY (`investigatorid`) REFERENCES `st_investigator` (`investigatorid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_st_last_plate_project_st_organism` FOREIGN KEY (`organismid`) REFERENCES `st_organism` (`organismid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_st_last_plate_project_st_project` FOREIGN KEY (`projectid`) REFERENCES `st_project` (`projectid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -272,7 +272,7 @@ CREATE TABLE `st_register` (
   `isPending` bit(1) NOT NULL DEFAULT b'1',
   `register_date` date NOT NULL,
   PRIMARY KEY (`idst_register`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,7 +291,7 @@ CREATE TABLE `st_results_preferences_detail` (
   `header` varchar(255) DEFAULT NULL,
   `orden` int(11) DEFAULT NULL,
   PRIMARY KEY (`detailresprefid`)
-) ENGINE=InnoDB AUTO_INCREMENT=547 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -305,7 +305,7 @@ CREATE TABLE `st_rol` (
   `idst_rol` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(80) NOT NULL,
   PRIMARY KEY (`idst_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -359,7 +359,7 @@ CREATE TABLE `st_sampleid` (
   `sampleid` int(11) DEFAULT NULL,
   PRIMARY KEY (`idsample`),
   KEY `index_repeat_samples` (`projectid`,`gid`,`nplant`,`locationid`,`seasonid`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=218495 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -377,7 +377,7 @@ CREATE TABLE `st_shipment_set` (
   PRIMARY KEY (`id_shipment_set`),
   KEY `fk_st_shipment_set_st_investigator` (`fk_investigator`),
   CONSTRAINT `fk_st_shipment_set_st_investigator` FOREIGN KEY (`fk_investigator`) REFERENCES `st_investigator` (`investigatorid`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -406,7 +406,7 @@ CREATE TABLE `st_shipment` (
   CONSTRAINT `fk_st_shipment_company` FOREIGN KEY (`fk_company`) REFERENCES `st_company` (`idCompany`),
   CONSTRAINT `fk_st_shipment_set` FOREIGN KEY (`fk_shipment_set`) REFERENCES `st_shipment_set` (`id_shipment_set`),
   CONSTRAINT `fk_st_shipment_status` FOREIGN KEY (`fk_status`) REFERENCES `st_status` (`id_status`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -439,7 +439,7 @@ CREATE TABLE `st_study_template` (
   `templatename` varchar(45) DEFAULT NULL COMMENT 'Name for the template, for example SEED TEMPLATE, LEAF TEMPLATE',
   `comments` varchar(255) DEFAULT NULL COMMENT 'Additional info for the template',
   PRIMARY KEY (`studytemplateid`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1 COMMENT='Template for different studies in the wet lab for leaf, seed';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COMMENT='Template for different studies in the wet lab for leaf, seed';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -457,7 +457,7 @@ CREATE TABLE `st_results_preferences` (
   PRIMARY KEY (`resultpreferencesid`),
   KEY `FK_st_results_preferences_st_template` (`studytemplateid`),
   CONSTRAINT `FK_st_results_preferences_st_template` FOREIGN KEY (`studytemplateid`) REFERENCES `st_study_template` (`studytemplateid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -476,7 +476,7 @@ CREATE TABLE `st_study_template_params` (
   PRIMARY KEY (`templateparamid`),
   KEY `fk_study_template_params_study_template1` (`studytemplateid`),
   CONSTRAINT `fk_study_template_params_study_template1` FOREIGN KEY (`studytemplateid`) REFERENCES `st_study_template` (`studytemplateid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=latin1 COMMENT='All the parameters associated to an study template';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COMMENT='All the parameters associated to an study template';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -538,7 +538,7 @@ CREATE TABLE `st_tissue` (
   `tissueid` int(11) NOT NULL AUTO_INCREMENT,
   `tissuename` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`tissueid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -591,7 +591,7 @@ CREATE TABLE `st_lab_study` (
   CONSTRAINT `FK_st_lab_study_st_season` FOREIGN KEY (`seasonid`) REFERENCES `st_season` (`seasonid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_st_lab_study_st_status` FOREIGN KEY (`fk_status`) REFERENCES `st_status` (`id_status`),
   CONSTRAINT `fk_lab_study_study_template1` FOREIGN KEY (`studytemplateid`) REFERENCES `st_study_template` (`studytemplateid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=288 DEFAULT CHARSET=latin1 COMMENT='Information about the study in the Lab, for example plate ty';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COMMENT='Information about the study in the Lab, for example plate ty';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -630,7 +630,7 @@ CREATE TABLE `st_sample_detail` (
   CONSTRAINT `fk_sample_detail_lab_study1` FOREIGN KEY (`labstudyid`) REFERENCES `st_lab_study` (`labstudyid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_st_sample_detail_st_status` FOREIGN KEY (`selforsend`) REFERENCES `st_status` (`id_status`),
   CONSTRAINT `fk_st_sample_detail_st_storage_location1` FOREIGN KEY (`currentlocation`) REFERENCES `st_storage_location` (`imslocid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=267352 DEFAULT CHARSET=latin1 COMMENT='Information for each sample (tube) in the plate or plates in';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COMMENT='Information for each sample (tube) in the plate or plates in';
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -667,7 +667,7 @@ CREATE TABLE `st_storage_mov` (
   KEY `fk_st_storage_mov_st_storage_location1` (`destlocation`),
   CONSTRAINT `fk_st_storage_mov_st_sample_detail1` FOREIGN KEY (`studysampleid`) REFERENCES `st_sample_detail` (`studysampleid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_st_storage_mov_st_storage_location1` FOREIGN KEY (`destlocation`) REFERENCES `st_storage_location` (`imslocid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1729 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -687,7 +687,7 @@ CREATE TABLE `st_shipment_detail` (
   KEY `fk_st_shipment_detail_sample` (`fk_study_sampleid`),
   CONSTRAINT `fk_st_shipment_detail_sample` FOREIGN KEY (`fk_study_sampleid`) REFERENCES `st_sample_detail` (`studysampleid`),
   CONSTRAINT `fk_st_shipment_detail_set` FOREIGN KEY (`fk_shipment_set`) REFERENCES `st_shipment_set` (`id_shipment_set`)
-) ENGINE=InnoDB AUTO_INCREMENT=67777 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -704,7 +704,7 @@ CREATE TABLE `st_plates_not_used` (
   PRIMARY KEY (`plateid`),
   KEY `FK_st_plates_not_used` (`labstudyid`),
   CONSTRAINT `FK_st_plates_not_used` FOREIGN KEY (`labstudyid`) REFERENCES `st_lab_study` (`labstudyid`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -727,7 +727,7 @@ CREATE TABLE `st_constants_cornell_report` (
   PRIMARY KEY (`idconstant`),
   KEY `FK_st_constants_lab_study` (`labstudyid`),
   CONSTRAINT `FK_st_constants_lab_study` FOREIGN KEY (`labstudyid`) REFERENCES `st_lab_study` (`labstudyid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -756,7 +756,7 @@ CREATE TABLE `st_user_version` (
   CONSTRAINT `fk_st_user_version_1` FOREIGN KEY (`organismid`) REFERENCES `st_organism` (`organismid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_st_user_version_2` FOREIGN KEY (`idst_rol`) REFERENCES `st_rol` (`idst_rol`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_st_user_version_3` FOREIGN KEY (`investigator_id`) REFERENCES `st_investigator` (`investigatorid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -782,7 +782,7 @@ CREATE TABLE `st_log` (
   CONSTRAINT `fk_st_log_1` FOREIGN KEY (`user_version_id`) REFERENCES `st_user_version` (`user_version_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_st_log_2` FOREIGN KEY (`idst_log_type_operation`) REFERENCES `st_log_type_operation` (`idst_log_type_operation`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_st_log_3` FOREIGN KEY (`idst_log_type_entity`) REFERENCES `st_log_type_entity` (`idst_log_type_entity`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -801,7 +801,7 @@ CREATE TABLE `st_user_funtions` (
   KEY `fk_st_user_funtions_2_idx` (`user_version_id`),
   CONSTRAINT `fk_st_user_funtions_1` FOREIGN KEY (`idst_funtions`) REFERENCES `st_funtions` (`idst_funtions`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_st_user_funtions_2` FOREIGN KEY (`user_version_id`) REFERENCES `st_user_version` (`user_version_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1447 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -855,7 +855,7 @@ CREATE TABLE `st_sample_det_result` (
   KEY `fk_sample_det_result_study_template_params1` (`templateparamid`),
   CONSTRAINT `fk_sample_det_result_sample_detail1` FOREIGN KEY (`studysampleid`) REFERENCES `st_sample_detail` (`studysampleid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sample_det_result_study_template_params1` FOREIGN KEY (`templateparamid`) REFERENCES `st_study_template_params` (`templateparamid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2368350 DEFAULT CHARSET=latin1 COMMENT='The result for each SAMPLE DETAIL according to the parameter';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COMMENT='The result for each SAMPLE DETAIL according to the parameter';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 

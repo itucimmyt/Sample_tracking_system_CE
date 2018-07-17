@@ -57,10 +57,15 @@ public class TemporalSample implements Serializable{
 	@ManyToOne(optional = true)
 	private Investigator researcher;
 
+	public TemporalSample() {
+		
+	}
+	
+	/*
 	public TemporalSample(){
 		acc = new String ();
 		comments = new String();
-	}
+	}*/
 
 	public TemporalSample (Integer idTempSample){
 	this.idTemSample = idTempSample;	

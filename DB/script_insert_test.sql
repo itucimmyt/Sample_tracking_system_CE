@@ -1,3 +1,4 @@
+USE `sampletrackingCE`;
 -- MySQL dump 10.13  Distrib 5.7.13, for Win64 (x86_64)
 --
 -- Host: 172.17.60.85    Database: sampletrackingBMS
@@ -252,87 +253,6 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`lpuebla`@`%`*/ /*!50003 TRIGGER Insert_sampleID AFTER INSERT  ON st_sample_detail
-FOR EACH ROW
-	BEGIN
-		DECLARE id_SampleID int;
-		DECLARE id_project int;
-                declare pactions  varchar(1000);
-		SET id_project = null;
-		SELECT lab.projectid into id_project 
-		FROM st_lab_study lab where lab.labstudyid = NEW.labstudyid;
-		select Count(*)
-		INTO id_SampleID
-		   FROM st_sampleid id
-			WHERE 
-				id.gid = NEW.breedergid
-				and id.nplant = NEW.nplanta
-				and id.locationid = NEW.locationid
-				and id.seasonid = NEW.seasonid
-				and id.projectid = id_project;
-
-       IF(id_SampleID = 0)
-       THEN
-	  
-		  IF(NEW.nplanta IS NOT NULL AND  NEW.breedergid IS NOT NULL)
-			THEN
-				Insert into st_sampleid 		
-					values(0,id_project,NEW.breedergid,NEW.nplanta,NEW.locationid, NEW.seasonid, NEW.sampleid);
-
-			END IF;
-        END IF;
-	END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = '' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`lpuebla`@`%`*/ /*!50003 TRIGGER Update_sampleID AFTER UPDATE ON st_sample_detail
-FOR EACH ROW
-	BEGIN
-		DECLARE id_SampleID int;
-		DECLARE id_project int;
-                declare pactions  varchar(1000);
-		SET id_project = null;
-		SELECT lab.projectid into id_project 
-		FROM st_lab_study lab where lab.labstudyid = NEW.labstudyid;
-        select Count(*)
-				INTO id_SampleID
-				   FROM st_sampleid id
-					WHERE 
-						id.gid = NEW.breedergid
-						and id.nplant = NEW.nplanta
-						and id.locationid = NEW.locationid
-						and id.seasonid = NEW.seasonid
-						and id.projectid = id_project;
-
-				   IF(id_SampleID = 0)
-				   THEN
-				  
-						  IF(NEW.nplanta IS NOT NULL AND  NEW.breedergid IS NOT NULL)
-							THEN
-								Insert into st_sampleid 		
-									values(0,id_project,NEW.breedergid,NEW.nplanta,NEW.locationid, NEW.seasonid, NEW.sampleid);
-
-							END IF;
-					END IF;
-		
-	END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-
 --
 -- Dumping data for table `st_sample_mixture`
 --
@@ -459,7 +379,6 @@ UNLOCK TABLES;
 
 LOCK TABLES `st_temp_samples` WRITE;
 /*!40000 ALTER TABLE `st_temp_samples` DISABLE KEYS */;
-INSERT INTO `st_temp_samples` VALUES (1,123,'ABCD',1,'comments 1',1,1,14,23,1),(2,124,'ABCD',1,'comments 1',1,1,14,23,1);
 /*!40000 ALTER TABLE `st_temp_samples` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -489,7 +408,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `st_user_version` WRITE;
 /*!40000 ALTER TABLE `st_user_version` DISABLE KEYS */;
-INSERT INTO `st_user_version` VALUES (1,'Administrator','administrator@cgair.org','Administrator','administrator@cgair.org','2.0','Admin2012',1,1,1,''),(2,'CIMMYT1_DM','cimmyt1dm@cgiar.org','CIMMYT1_DM','cimmyt1dm@cgiar.org','2.0','cimmyt1dm2012',1,1,2,''),(3,'CIMMYT1_researcher','cimmyt1researcher@cgiar.org','CIMMYT1_researcher','cimmyt1researcher@cgiar.org','2.0','cimmyt1researcher2012',1,1,3,''),(4,'CIMMYT1_researcher_assistant','cimmyt1researcher_assistant@cgiar.org','CIMMYT1_researcher_assistant','cimmyt1researcher_assistant@cgiar.org','2.0','cimmyt1researcher_assistant2012',1,1,4,''),(5,'CIMMYT1_assistant','cimmyt1_assistant@cgiar.org','CIMMYT1_assistant','cimmyt1_assistant@cgiar.org','2.0','cimmyt1_assistant2012',1,1,5,''),(6,'mkigoni','M.Kigoni@cgiar.org','Milcah Kigoni',NULL,'2.0','mkigoni_st2018',20,1,2,''),(7,'HTPG','HTPG@HPTG.HTPG','HTPG',NULL,'2.0','HTPG_st2018',20,1,3,''),(8,'IITA','IITA@IITA.IITA','IITA',NULL,'2.0','IITA',21,1,3,'');
+INSERT INTO `st_user_version` VALUES (1,'Administrator','administrator@cgair.org','Administrator','administrator@cgair.org','2.0','Admin2012',1,1,1,''),(2,'CIMMYT1_DM','cimmyt1dm@cgiar.org','CIMMYT1_DM','cimmyt1dm@cgiar.org','2.0','cimmyt1dm2012',1,1,2,''),(3,'CIMMYT1_researcher','cimmyt1researcher@cgiar.org','CIMMYT1_researcher','cimmyt1researcher@cgiar.org','2.0','cimmyt1researcher2012',1,1,3,''),(4,'CIMMYT1_researcher_assistant','cimmyt1researcher_assistant@cgiar.org','CIMMYT1_researcher_assistant','cimmyt1researcher_assistant@cgiar.org','2.0','cimmyt1researcher_assistant2012',1,1,4,''),(5,'CIMMYT1_assistant','cimmyt1_assistant@cgiar.org','CIMMYT1_assistant','cimmyt1_assistant@cgiar.org','2.0','cimmyt1_assistant2012',1,1,5,'');
 /*!40000 ALTER TABLE `st_user_version` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

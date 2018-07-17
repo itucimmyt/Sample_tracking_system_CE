@@ -1,7 +1,7 @@
-drop schema If EXISTS sampletrackingTest;
+drop schema If EXISTS sampletrackingCE;
 
-CREATE DATABASE  IF NOT EXISTS `sampletrackingTest` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `sampletrackingTest`;
+CREATE DATABASE  IF NOT EXISTS `sampletrackingCE` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `sampletrackingCE`;
 -- MySQL dump 10.13  Distrib 5.5.47, for debian-linux-gnu (x86_64)
 --
 -- Host: 127.0.0.1    Database: sampletrackingw

@@ -22,12 +22,16 @@ import com.cimmyt.model.bean.Log;
 import com.cimmyt.model.bean.Organism;
 import com.cimmyt.model.bean.Role;
 import com.cimmyt.model.bean.UserFuntions;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class AuthUserBean {
 
 	private Integer idUser;
 	private String version;
+	@JsonIgnoreProperties("stOrganism")
 	private Organism stOrganism;
 	private Role stRole;
 	private String userName;
@@ -97,10 +101,12 @@ public class AuthUserBean {
 		this.password = password;
 	}
 
+	@JsonProperty
 	public Organism getStOrganism() {
 		return this.stOrganism;
 	}
 
+	@JsonIgnore
 	public void setStOrganism(Organism stOrganism) {
 		this.stOrganism = stOrganism;
 	}

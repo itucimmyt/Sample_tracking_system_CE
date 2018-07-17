@@ -53,7 +53,7 @@ public class UpLoadSampleService {
 	}
 
 	@PUT
-	@Path("/setTemSamĺeRepeat")
+	@Path("/setTemSampleRepeat")
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	public void setListTemSample(@RequestParam List<TemporalSample> listTem) throws BackException {
 		pro.setMessagesBundle(pro.setLanguageToLocale());
@@ -67,7 +67,7 @@ public class UpLoadSampleService {
 	}
 
 	@POST
-	@Path("/upDateListTemSampĺeRepeat")
+	@Path("/upDateListTemSampleRepeat")
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	public void upDateListTemSample(@RequestParam List<TemporalSample> listTem) throws BackException {
 		pro.setMessagesBundle(pro.setLanguageToLocale());
@@ -81,7 +81,7 @@ public class UpLoadSampleService {
 	}
 
 	@DELETE
-	@Path("/deleteListTemSamĺeRepeat")
+	@Path("/deleteListTemSamleRepeat")
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	public void deleteListTemSample(@RequestParam List<TemporalSample> listTem) throws BackException {
 		pro.setMessagesBundle(pro.setLanguageToLocale());

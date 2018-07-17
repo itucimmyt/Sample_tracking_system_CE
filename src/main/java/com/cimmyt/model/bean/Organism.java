@@ -27,6 +27,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.cimmyt.dnast.dto.AuthUserBean;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * 
  * @author 
@@ -48,9 +52,10 @@ public class Organism implements Serializable{
 	@Column(name = "organismName")
 	private String organismname;
 	
+	/*@JsonIgnoreProperties("stUserVersions")
 	 @OneToMany(fetch = FetchType.LAZY, mappedBy = "stOrganism")
 	private Set<AuthUserBean> stUserVersions = new HashSet<AuthUserBean>(0);
-
+*/
 	 public Organism(){
 
 	 }
@@ -58,7 +63,7 @@ public class Organism implements Serializable{
 	 public Organism(Integer organismid, String  organismname,Set<AuthUserBean> stUserVersions ){
 		 this.organismid = organismid;
 		 this.organismname =  organismname;
-		 this.stUserVersions = stUserVersions;
+		// this.stUserVersions = stUserVersions;
 	 }
 
 	public Integer getOrganismid() {
@@ -82,14 +87,15 @@ public class Organism implements Serializable{
 	    	return organismname;
 	    }
 
-	
+	 /*
+	 @JsonProperty
 		public Set<AuthUserBean> getStUserVersions() {
 			return this.stUserVersions;
 		}
-
+		@JsonIgnore
 		public void setStUserVersions(Set<AuthUserBean> stUserVersions) {
 			this.stUserVersions = stUserVersions;
 		}
-	  
+	  */
 }
 

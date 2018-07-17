@@ -51,7 +51,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `st_investigator` WRITE;
 /*!40000 ALTER TABLE `st_investigator` DISABLE KEYS */;
-INSERT INTO `st_investigator` VALUES (1,'CI','CIMMYT1',''),(2,'CM','CIMMYT2',''),(3,'MK','Milcah Kigoni',''),(4,'HG','HTPG',''),(5,'II','IITA','');
+INSERT INTO `st_investigator` VALUES (1,'CI','CIMMYT1',''),(2,'CM','CIMMYT2','');
 /*!40000 ALTER TABLE `st_investigator` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -7,7 +7,7 @@ import com.cimmyt.bean.InvestigatorBean;
 import com.cimmyt.bean.LocationBean;
 import com.cimmyt.bean.SeasonBean;
 import com.cimmyt.model.bean.Organism;
-
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class CatalogDTO {
 

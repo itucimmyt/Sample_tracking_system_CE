@@ -1,1 +1,1 @@
-drop schema sampletrackingTest3;
+drop schema sampletrackingTest;

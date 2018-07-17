@@ -27,6 +27,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.cimmyt.dnast.dto.AuthUserBean;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * 
  * @author 
@@ -55,8 +58,9 @@ public class Investigator implements Serializable{
 	@Column(name = "status")
 	private boolean status = true;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "investigator")
-	private Set<AuthUserBean> setAuthUserBean = new HashSet<AuthUserBean>(0);
+	//@JsonIgnore
+	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "investigator")
+	//private Set<AuthUserBean> setAuthUserBean = new HashSet<AuthUserBean>(0);
 	
 	public boolean isStatus() {
 		return status;
@@ -90,15 +94,17 @@ public class Investigator implements Serializable{
 		invest_name = investName;
 	}
 	
-
+/*
+	@JsonProperty
 	public Set<AuthUserBean> getSetAuthUserBean() {
 		return setAuthUserBean;
 	}
 
+	@JsonIgnore
 	public void setSetAuthUserBean(Set<AuthUserBean> setAuthUserBean) {
 		this.setAuthUserBean = setAuthUserBean;
 	}
-
+*/
 	@Override
 	    public String toString() {
 	    	return "investigatorid : "+investigatorid+" invest_name : "+ invest_name + " invest_abbreviation : "+invest_abbreviation ;

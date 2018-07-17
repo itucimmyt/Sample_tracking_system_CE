@@ -26,6 +26,10 @@ import com.cimmyt.service.ServiceLocation;
 import com.cimmyt.service.ServiceOrganism;
 import com.cimmyt.service.ServiceSeason;
 import com.cimmyt.utils.PropertyHelper;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+@Api(value = "/app")
 @Path("/catalogsServices")
 public class CatalogsServices {
 
@@ -47,6 +51,11 @@ public class CatalogsServices {
 	}
 	@GET
 	@Path ("/getListOrganism")
+	@ApiOperation(value = "Get list of example resources", 
+    notes = "Note test", 
+    response = CatalogDTO.class
+    //responseContainer = "object"
+			)
 	@ClientResponseType(entityType=CatalogDTO.class)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
 	public CatalogDTO getListCrops() throws BackException{
